@@ -26,6 +26,46 @@ body {
   input {
     outline: none;
   }
+
+  input[type='checkbox'] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(244, 228, 188, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  input[type='checkbox']:checked {
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    border-color: rgba(212, 175, 55, 0.8);
+  }
+
+  input[type='checkbox']:checked::after {
+    content: '✓';
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type='checkbox']:hover {
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+  }
+
+  input[type='checkbox']:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+  }
 }
 
 /* -------------------- */
@@ -356,4 +396,11 @@ body::-webkit-scrollbar-thumb:active {
 }
 .stagger-5 {
   animation-delay: 3.7s;
+}
+
+@theme {
+  --default-font-family: '--font-noto-serif-sc', serif;
+  --color-text-primary: #991a1b;
+  --color-border-primary: #b6a985;
+  --color-bg-btn-primary: #991a1b;
 }
