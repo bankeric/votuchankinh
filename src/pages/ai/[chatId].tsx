@@ -43,7 +43,7 @@ import { useRouter } from 'next/router'
 import { useCompletion } from '@ai-sdk/react'
 import { getBackEndUrl } from '@/configs/config'
 import { useAuth } from '@/contexts/authContext'
-import { formatText } from '@/helpers/formatText'
+import { formatText, formatTextEndStream } from '@/helpers/formatText'
 import { MessageFeedbackModal } from '@/components/MessageFeedbackModal'
 
 const translations = {
@@ -134,6 +134,7 @@ export default function AIPage() {
     streamProtocol: 'text',
     onFinish: async (prompt: string, completion: string) => {
       // const newMessages = await fetchMessages(chatId)
+      const ids = formatTextEndStream(completion)
 
       const response = formatText(completion)
       setListMessages((prev) => [
@@ -147,7 +148,7 @@ export default function AIPage() {
           like_user_ids: null,
           role: 'assistant',
           thought: null,
-          uuid: uuid()
+          uuid: ids ? ids.response_answer_id : ''
         }
       ])
       setDisplayedAIText('')
@@ -287,8 +288,7 @@ export default function AIPage() {
     scrollToBottom()
   }, [conversations.length])
 
-  const handleSubmit = async (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key !== 'Enter') return
+  const handleSendMessage = () => {
     if (!accessToken) return
     if (!input.trim() || !chatId || !agent) return
 
@@ -327,14 +327,23 @@ export default function AIPage() {
       session_id: chatId
     }
 
-    setInput('')
-
-    await complete(input, {
+    complete(input, {
       headers: {
         Authorization: `Bearer ${accessToken}` // TODO: Need to check
       },
       body: newMessage
     })
+
+    setInput('')
+  }
+
+  const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return
+    handleSendMessage()
+  }
+
+  const onClickSend = () => {
+    handleSendMessage()
   }
 
   const handleRecording = () => {
@@ -894,7 +903,7 @@ export default function AIPage() {
 
                 {/* Send Message Button */}
                 <button
-                  // onClick={handleSendMessage}
+                  onClick={onClickSend}
                   disabled={!input.trim() || isTyping}
                   className='flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-[#f3ead7] text-[#1f1f1f] rounded-2xl
              border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
