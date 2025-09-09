@@ -17,14 +17,18 @@ import {
   Copy,
   Share,
   Mic,
-  Paperclip
+  Paperclip,
+  Check
 } from 'lucide-react'
 import Image from 'next/image'
 import {
+  addFeedBack,
   createConversation,
+  dislikeMessage,
   getAgents,
   getConversations,
-  getMessages
+  getMessages,
+  likeMessage
 } from '@/services/aiService'
 import {
   Agent,
@@ -40,6 +44,7 @@ import { useCompletion } from '@ai-sdk/react'
 import { getBackEndUrl } from '@/configs/config'
 import { useAuth } from '@/contexts/authContext'
 import { formatText } from '@/helpers/formatText'
+import { MessageFeedbackModal } from '@/components/MessageFeedbackModal'
 
 const translations = {
   vi: {
@@ -90,6 +95,7 @@ export default function AIPage() {
   const [showSignIn, setShowSignIn] = useState(false)
   const [language, setLanguage] = useState<'vi' | 'en'>('vi')
   const [isRecording, setIsRecording] = useState(false)
+  const [isOpenFeedback, setIsOpenFeedback] = useState<string | null>(null) // ID message for feedback
   // const [input, setInput] = useState('');
   // const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
@@ -109,6 +115,8 @@ export default function AIPage() {
   // Messages
   const [listMessages, setListMessages] = useState<Message[]>([])
   const [displayedAIText, setDisplayedAIText] = useState<string>('')
+  const [isCopy, setIsCopy] = useState(false)
+
   // const [isTyping, setIsTyping] = useState(false);
 
   const t = translations[language]
@@ -360,6 +368,64 @@ export default function AIPage() {
 
   const onChangeConversation = (id: string) => {
     router.push(`/ai/${id}`)
+  }
+
+  const onLikeMessage = async (messageId: string) => {
+    if (!accessToken) return
+    const newMessage = await likeMessage(messageId, accessToken)
+    setListMessages((prev) =>
+      prev.map((msg) =>
+        msg.uuid === messageId
+          ? {
+              ...msg,
+              like_user_ids: newMessage.like_user_ids,
+              dislike_user_ids: newMessage.dislike_user_ids
+            }
+          : msg
+      )
+    )
+  }
+
+  const onDislikeMessage = async (messageId: string) => {
+    if (!accessToken) return
+    const newMessage = await dislikeMessage(messageId, accessToken)
+    setListMessages((prev) =>
+      prev.map((msg) =>
+        msg.uuid === messageId
+          ? {
+              ...msg,
+              dislike_user_ids: newMessage.dislike_user_ids,
+              like_user_ids: newMessage.like_user_ids
+            }
+          : msg
+      )
+    )
+  }
+
+  const onOpenFeedback = (messageId: string) => {
+    setIsOpenFeedback(messageId)
+  }
+
+  const onFeedbackMessage = async (messageId: string, feedback: string) => {
+    if (!accessToken || !feedback) return
+    await addFeedBack(messageId, feedback, accessToken)
+  }
+
+  const onCopyMessage = (text: string) => {
+    navigator.clipboard.writeText(text)
+    setIsCopy(true)
+
+    setTimeout(() => {
+      setIsCopy(false)
+    }, 2000)
+  }
+
+  const checkMessageLike = (message: Message) => {
+    return message.like_user_ids && message.like_user_ids.length > 0
+  }
+
+  const checkMessageDislike = (message: Message) => {
+    return message.dislike_user_ids && message.dislike_user_ids.length > 0
   }
 
   const containerVariants = {
@@ -615,42 +681,62 @@ export default function AIPage() {
                             <MarkdownRenderer content={message.content} />
                             <div className='flex items-center justify-between mt-3 pt-2 border-t border-[#2c2c2c]/20'>
                               <div className='flex items-center space-x-1 md:space-x-2'>
-                                <button
+                                {/* <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Read aloud'
                                 >
                                   <Volume2 className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
-                                </button>
+                                </button> */}
                                 <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Like'
+                                  onClick={() => onLikeMessage(message.uuid)}
                                 >
-                                  <ThumbsUp className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
+                                  <ThumbsUp
+                                    className={`w-3 h-3 md:w-3.5 md:h-3.5 ${
+                                      checkMessageLike(message)
+                                        ? 'text-bg-btn-primary'
+                                        : 'text-[#2c2c2c]/60'
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Dislike'
+                                  onClick={() => onDislikeMessage(message.uuid)}
                                 >
-                                  <ThumbsDown className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
+                                  <ThumbsDown
+                                    className={`w-3 h-3 md:w-3.5 md:h-3.5 ${
+                                      checkMessageDislike(message)
+                                        ? 'text-bg-btn-primary'
+                                        : 'text-[#2c2c2c]/60'
+                                    }`}
+                                  />
                                 </button>
                                 <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Comment'
+                                  onClick={() => onOpenFeedback(message.uuid)}
                                 >
                                   <MessageCircle className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
                                 </button>
                                 <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Copy'
+                                  onClick={() => onCopyMessage(message.content)}
                                 >
-                                  <Copy className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
+                                  {isCopy ? (
+                                    <Check className='w-3 h-3 md:w-3.5 md:h-3.5 text-bg-btn-primary' />
+                                  ) : (
+                                    <Copy className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
+                                  )}
                                 </button>
-                                <button
+                                {/* <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Share'
                                 >
                                   <Share className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
-                                </button>
+                                </button> */}
                               </div>
                               {/* <p className="text-xs opacity-70 font-medium">
                               {new Date(message.created_at).toLocaleTimeString(
@@ -977,6 +1063,13 @@ export default function AIPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <MessageFeedbackModal
+        isOpen={!!isOpenFeedback}
+        onClose={() => setIsOpenFeedback(null)}
+        messageId={isOpenFeedback}
+        onConfirm={onFeedbackMessage}
+      />
     </main>
   )
 }

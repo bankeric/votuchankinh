@@ -101,3 +101,43 @@ export const createConversation = async (
   })
   return response.data as Section
 }
+
+export const likeMessage = async (messageId: string, apiToken: string) => {
+  const response = await axios({
+    method: 'POST',
+    url: `${url}/api/v1/messages/${messageId}/like`,
+    headers: {
+      Authorization: `Bearer ${apiToken}`
+    }
+  })
+  return response.data.data
+}
+
+export const dislikeMessage = async (messageId: string, apiToken: string) => {
+  const response = await axios({
+    method: 'POST',
+    url: `${url}/api/v1/messages/${messageId}/dislike`,
+    headers: {
+      Authorization: `Bearer ${apiToken}`
+    }
+  })
+  return response.data.data
+}
+
+export const addFeedBack = async (
+  messageId: string,
+  feedback: string,
+  apiToken: string
+) => {
+  const response = await axios({
+    method: 'PUT',
+    url: `${url}/api/v1/messages/${messageId}`,
+    headers: {
+      Authorization: `Bearer ${apiToken}`
+    },
+    data: {
+      feedback
+    }
+  })
+  return response.data
+}
