@@ -52,6 +52,8 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/select'
+import textToSpeechService from '@/services/voiceService'
+import { useVoice } from '@/hooks/useVoice'
 
 const translations = {
   vi: {
@@ -110,6 +112,10 @@ export default function AIPage() {
   const chatId = router.query.chatId as string
   const url = getBackEndUrl()
 
+  // Reading
+  const [isReading, setIsReading] = useState(false)
+  const [readingProgress, setReadingProgress] = useState(0)
+
   // Conversations
   const [conversations, setConversations] = useState<Conversation[]>([])
   const [activeConversation, setActiveConversation] = useState<string>('')
@@ -126,6 +132,7 @@ export default function AIPage() {
 
   // const [isTyping, setIsTyping] = useState(false);
 
+  const { getVoiceSettings } = useVoice()
   const t = translations[language]
   const { accessToken, isAuthenticated: isSignedIn, logout } = useAuth()
 
@@ -444,6 +451,66 @@ export default function AIPage() {
     return message.dislike_user_ids && message.dislike_user_ids.length > 0
   }
 
+  const handleReadText = (content: string) => {
+    const textToRead = content
+    // console.log('textToRead', textToRead)
+    if (isReading) {
+      // Stop reading if already in progress
+      setIsReading(false)
+      return
+    }
+
+    // if (!textToRead.trim()) {
+    //   toast.error(t('chat.actions.noTextToRead'))
+    //   return
+    // }
+
+    setIsReading(true)
+
+    // Get voice settings based on current language
+    const voiceSettings = getVoiceSettings(
+      language === 'vi' ? 'vi-VN' : 'en-US'
+    )
+
+    textToSpeechService.playAudioStream(
+      textToRead,
+      {
+        voice_name: voiceSettings.selectedVoice,
+        language_code: language === 'vi' ? 'vi-VN' : 'en-US',
+        audio_encoding: 'MP3',
+        speaking_rate: voiceSettings.speakingRate,
+        pitch: voiceSettings.pitch,
+        volume_gain_db: voiceSettings.volumeGain,
+        chunked: true
+      },
+      () => {
+        // onStart callback
+        console.log('Started reading text')
+        setReadingProgress(0)
+      },
+      (progress) => {
+        // onProgress callback
+        setReadingProgress(progress)
+        // setShowProgressPopover(true)
+        console.log(`Reading progress: ${progress}%`)
+      },
+      () => {
+        // onEnd callback
+        setIsReading(false)
+        setReadingProgress(0)
+        // setShowProgressPopover(false)
+        console.log('Finished reading text')
+      },
+      (error) => {
+        // onError callback
+        setIsReading(false)
+        setReadingProgress(0)
+        // setShowProgressPopover(false)
+        console.error('Text-to-speech error:', error)
+      }
+    )
+  }
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -717,12 +784,15 @@ export default function AIPage() {
                             <MarkdownRenderer content={message.content} />
                             <div className='flex items-center justify-between mt-3 pt-2 border-t border-[#2c2c2c]/20'>
                               <div className='flex items-center space-x-1 md:space-x-2'>
-                                {/* <button
+                                <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Read aloud'
+                                  onClick={() =>
+                                    handleReadText(message.content)
+                                  }
                                 >
                                   <Volume2 className='w-3 h-3 md:w-3.5 md:h-3.5 text-[#2c2c2c]/60' />
-                                </button> */}
+                                </button>
                                 <button
                                   className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-full transition-colors'
                                   title='Like'
