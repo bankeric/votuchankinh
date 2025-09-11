@@ -136,6 +136,12 @@ export default function AIPage() {
   const t = translations[language]
   const { accessToken, isAuthenticated: isSignedIn, logout } = useAuth()
 
+  useEffect(() => {
+    if (isSignedIn === false) {
+      router.push('/login')
+    }
+  }, [isSignedIn])
+
   const {
     completion,
     complete,

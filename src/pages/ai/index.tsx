@@ -101,18 +101,13 @@ export default function AIPage() {
   const [listAgents, setListAgents] = useState<Agent[]>([])
 
   const router = useRouter()
-  const {
-    accessToken,
-    loading,
-    isAuthenticated: isSignedIn,
-    logout
-  } = useAuth()
+  const { accessToken, isAuthenticated: isSignedIn, logout } = useAuth()
 
   useEffect(() => {
-    if (!loading && !accessToken) {
+    if (isSignedIn === false) {
       router.push('/login')
     }
-  }, [accessToken, loading])
+  }, [isSignedIn])
 
   const t = translations[language]
 

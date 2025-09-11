@@ -68,6 +68,7 @@ export function useVoice() {
   >(() => {
     // Initialize from localStorage if available
     try {
+      if (!localStorage) return defaultVoiceSettings
       const storedSettings = localStorage.getItem(STORAGE_KEY)
       return storedSettings
         ? JSON.parse(storedSettings).state.voiceSettings

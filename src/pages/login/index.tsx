@@ -25,9 +25,9 @@ const LoginPage: React.FC = () => {
 
       if (user && user.token) {
         if (isRememberMe) {
-          login(user.token)
+          login(user.token, user.user)
         } else {
-          loginWithoutRemember(user.token)
+          loginWithoutRemember(user.token, user.user)
         }
       }
     } catch (err: unknown) {

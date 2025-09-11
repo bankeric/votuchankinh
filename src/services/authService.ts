@@ -27,3 +27,12 @@ export const forgotPassword = async (email: string) => {
   })
   return response.data
 }
+
+export const getMe = async (token: string) => {
+  const response = await axios.get(`${url}/api/v1/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  return response.data
+}

@@ -1,3 +1,5 @@
+import { getMe } from '@/services/authService'
+import { User } from '@/types'
 import { useRouter } from 'next/navigation'
 import React, {
   createContext,
@@ -9,12 +11,13 @@ import React, {
 
 interface AuthContextType {
   accessToken: string | null
-  isAuthenticated: boolean
+  user: User | null
+  isAuthenticated: boolean | undefined
   loading: boolean
-  login: (token: string) => void
+  login: (token: string, user: User) => void
   logout: () => void
   refreshToken: () => Promise<void>
-  loginWithoutRemember: (token: string) => void
+  loginWithoutRemember: (token: string, user: User) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -25,32 +28,70 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>()
+  const [loading, setLoading] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
   const router = useRouter()
 
   useEffect(() => {
     // Check if token exists in localStorage on mount
     const storedToken = localStorage.getItem('accessToken')
+
     if (storedToken) {
-      setAccessToken(storedToken)
+      setLoading(true)
+      isTokenValid(storedToken)
+        .then((isValid) => {
+          if (isValid) {
+            const storedUser = localStorage.getItem('user')
+            if (storedUser) {
+              setUser(JSON.parse(storedUser))
+            }
+            setAccessToken(storedToken)
+            setIsAuthenticated(true)
+          } else {
+            logout()
+          }
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    } else {
+      setIsAuthenticated(false)
     }
-    setLoading(false)
   }, [])
 
-  const login = (token: string) => {
+  const isTokenValid = async (token: string): Promise<boolean> => {
+    try {
+      const isValid = await getMe(token)
+      return !!isValid
+    } catch (error) {
+      console.error('Token validation error:', error)
+      return false
+    }
+  }
+
+  const login = (token: string, user: User) => {
     localStorage.setItem('accessToken', token)
+    localStorage.setItem('user', JSON.stringify(user))
     setAccessToken(token)
+    setUser(user)
+    setIsAuthenticated(true)
     router.push('/ai')
   }
 
   const logout = () => {
     localStorage.removeItem('accessToken')
+    localStorage.removeItem('user')
     setAccessToken(null)
+    setUser(null)
+    setIsAuthenticated(false)
     router.push('/')
   }
 
-  const loginWithoutRemember = (token: string) => {
+  const loginWithoutRemember = (token: string, user: User) => {
     setAccessToken(token)
+    setUser(user)
+    setIsAuthenticated(true)
     router.push('/ai')
   }
 
@@ -80,7 +121,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const value = {
     accessToken,
-    isAuthenticated: !!accessToken,
+    user,
+    isAuthenticated,
     loading,
     login,
     logout,

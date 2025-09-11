@@ -70,12 +70,13 @@ export interface CreateConversationProps {
   uuid: string
 }
 
+export interface User {
+  email: string
+  id: string
+  name: string
+  role: string
+}
 export interface LoginResponse {
   token: string
-  user: {
-    email: string
-    id: string
-    name: string
-    role: string
-  }
+  user: User
 }
