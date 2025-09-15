@@ -1,2 +1,11 @@
 // Add paths that don't require authentication
-export const publicPaths = ['/login', '/register', '/forgot-password', '/reset-password'];
+export const publicPaths = [
+  '/',
+  '/sutra',
+  '/community',
+  '/library',
+  '/login',
+  '/register',
+  '/forgot-password',
+  '/reset-password'
+]

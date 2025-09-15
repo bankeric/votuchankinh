@@ -1,5 +1,5 @@
-import { Model } from "@/interfaces/chat";
-import axiosInstance from "@/lib/axios";
+import { Model } from '@/interfaces/chat'
+import axiosInstance, { getAuthToken } from '@/lib/axios'
 
 const modelService = {
   getModels: async ({
@@ -7,24 +7,31 @@ const modelService = {
     offset,
     search,
     status,
-    language,
+    language
   }: {
-    limit: number;
-    offset: number;
-    search: string;
-    status: string;
-    language: string;
+    limit: number
+    offset: number
+    search: string
+    status: string
+    language: string
   }) => {
-    let params: Record<string, string | number> = {};
-    if (limit) params.limit = limit;
-    if (offset) params.offset = offset;
-    if (search) params.search = search;
-    if (status) params.status = status;
-    if (language) params.language = language;
+    if (!getAuthToken()) {
+      return []
+    }
 
-    const response = await axiosInstance.get<{models: Model[]}>("/api/v1/fine-tuning-models", { params });
-    return response.data.models;
-  },
-};
+    let params: Record<string, string | number> = {}
+    if (limit) params.limit = limit
+    if (offset) params.offset = offset
+    if (search) params.search = search
+    if (status) params.status = status
+    if (language) params.language = language
 
-export default modelService;
+    const response = await axiosInstance.get<{ models: Model[] }>(
+      '/api/v1/fine-tuning-models',
+      { params }
+    )
+    return response.data.models
+  }
+}
+
+export default modelService
