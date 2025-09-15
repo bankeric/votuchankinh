@@ -1,16 +1,16 @@
 // Example usage of handleAgentCreationEvent
-import { handleAgentCreationEvent } from "@/lib/toastify";
-import { useTranslations } from "@/hooks/use-translations";
+import { handleAgentCreationEvent } from '@/lib/toastify'
+import { useTranslations } from '@/hooks/use-translations'
 
 export function useAgentCreationHandler() {
-  const { t } = useTranslations();
-  let toastId: string | number | null = null;
+  const { t } = useTranslations()
+  let toastId: string | number | null = null
 
   const handleEvent = (event: any) => {
-    toastId = handleAgentCreationEvent(event, toastId, t);
-  };
+    toastId = handleAgentCreationEvent(event, toastId, t)
+  }
 
-  return { handleEvent };
+  return { handleEvent }
 }
 
 // Example implementation in a component:
@@ -44,6 +44,7 @@ export function AgentCreationComponent() {
   );
 }
 */
+//
 
 // Or if using WebSocket:
 /*
@@ -95,4 +96,4 @@ export async function createAgentWithStreaming() {
     }
   }
 }
-*/ 
+*/

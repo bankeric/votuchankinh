@@ -70,6 +70,8 @@
     "recording": "Đang ghi âm...",
     "fileAttached": "Đã đính kèm",
     "systemPromptSaved": "Đã lưu nội dung vào system prompt!",
+    "welcomeTitle": "Chào mừng đến với con đường vô đạo",
+    "welcomeSubtitle": "Điều gì đưa bạn đến đây hôm nay?",
     "placeholders": {
       "search": "Tìm kiếm bài giảng, kinh kệ của Sư Tam Vô...",
       "quiz": "Yêu cầu câu hỏi kiểm tra về giáo pháp...",
@@ -150,7 +152,7 @@
     "systemMode": "Hệ thống",
     "languageSelection": "Chọn ngôn ngữ",
     "selectLanguage": "Chọn ngôn ngữ",
-    "english": "Tiếng Anh",
+    "english": "English",
     "vietnamese": "Tiếng Việt"
   },
   "app": {
@@ -482,7 +484,7 @@
       "stats": {
         "total": "Tổng số",
         "admin": "Admin",
-        "contributor": "Contributor", 
+        "contributor": "Contributor",
         "student": "Student",
         "viewer": "Viewer"
       },
@@ -681,4 +683,4 @@
       "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
     }
   }
-} 
+}
