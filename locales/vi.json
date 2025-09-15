@@ -1,0 +1,684 @@
+{
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "add": "Thêm",
+    "search": "Tìm kiếm",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước đó",
+    "submit": "Gửi",
+    "reset": "Đặt lại",
+    "confirm": "Xác nhận",
+    "yes": "Có",
+    "no": "Không",
+    "ok": "OK"
+  },
+  "navigation": {
+    "home": "Trang chủ",
+    "chat": "Trò chuyện",
+    "settings": "Cài đặt",
+    "admin": "Quản trị",
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "register": "Đăng ký"
+  },
+  "auth": {
+    "signIn": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "signOut": "Đăng xuất",
+    "logout": "Đăng xuất",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "role": "Vai trò",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "forgotPassword": "Quên mật khẩu?",
+    "rememberMe": "Ghi nhớ đăng nhập",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "invalidCredentials": "Email hoặc mật khẩu không đúng",
+    "passwordMismatch": "Mật khẩu không khớp",
+    "emailRequired": "Email là bắt buộc",
+    "passwordRequired": "Mật khẩu là bắt buộc",
+    "confirmLogout": "Xác nhận Đăng xuất",
+    "logoutConfirmation": "Bạn có chắc chắn muốn đăng xuất? Bạn sẽ cần đăng nhập lại để truy cập tài khoản.",
+    "logoutConfirmButton": "Đăng xuất",
+    "logoutSuccess": "Đăng xuất thành công"
+  },
+  "chat": {
+    "noAgent": "Agent không khả dụng. Vui lòng thử lại sau hoặc liên hệ admin.",
+    "newChat": "Cuộc trò chuyện mới",
+    "sendMessage": "Gửi tin nhắn",
+    "typeMessage": "Nhập tin nhắn của bạn...",
+    "thinking": "Đang suy nghĩ...",
+    "noMessages": "Chưa có tin nhắn nào. Hãy bắt đầu cuộc trò chuyện!",
+    "clearChat": "Xóa cuộc trò chuyện",
+    "exportChat": "Xuất cuộc trò chuyện",
+    "chatHistory": "Lịch sử trò chuyện",
+    "noChats": "Chưa có cuộc trò chuyện nào",
+    "editTitlePrompt": "Đổi tên cuộc trò chuyện:",
+    "allChatsDisplayed": "Đã hiển thị tất cả cuộc trò chuyện ({{count}})",
+    "readyToHelp": "Buddha AI đã sẵn sàng giúp bạn",
+    "defaultMessage": "Chào phật tử, mong bạn được vui vẻ và bình an. Tôi có thể giúp gì cho bạn hôm nay?",
+    "recording": "Đang ghi âm...",
+    "fileAttached": "Đã đính kèm",
+    "systemPromptSaved": "Đã lưu nội dung vào system prompt!",
+    "placeholders": {
+      "search": "Tìm kiếm bài giảng, kinh kệ của Sư Tam Vô...",
+      "quiz": "Yêu cầu câu hỏi kiểm tra về giáo pháp...",
+      "guidance": "Chia sẻ khó khăn trong tu tập và cuộc sống...",
+      "poetry": "Nhập chủ đề hoặc cảm xúc để làm kệ...",
+      "default": "Nhập tin nhắn của bạn..."
+    },
+    "fileTypes": {
+      "image": "Hình ảnh",
+      "document": "Tài liệu"
+    },
+    "dropdown": {
+      "files": "Tệp tin",
+      "conversationMode": "Trò chuyện"
+    },
+    "messageBubble": {
+      "showThoughtProcess": "Hiển thị quá trình suy nghĩ",
+      "save": "Lưu",
+      "saved": "Đã lưu",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép"
+    },
+    "actions": {
+      "like": "Thích",
+      "dislike": "Không thích",
+      "loading": "Đang tải",
+      "read": "Đọc",
+      "copy": "Sao chép",
+      "feedback": "Phản hồi",
+      "copied": "Đã sao chép vào bộ nhớ tạm",
+      "copyFailed": "Không thể sao chép văn bản",
+      "speechNotSupported": "Trình duyệt này không hỗ trợ đọc văn bản",
+      "noTextToRead": "Không có văn bản để đọc",
+      "readFailed": "Không thể đọc văn bản"
+    },
+    "feedback": {
+      "positive": "Cảm ơn phản hồi tích cực của bạn!",
+      "negative": "Cảm ơn phản hồi của bạn. Chúng tôi sẽ cải thiện.",
+      "submitted": "Đã gửi phản hồi thành công!",
+      "error": "Không thể gửi phản hồi. Vui lòng thử lại.",
+      "modal": {
+        "title": "Gửi phản hồi",
+        "description": "Giúp chúng tôi cải thiện bằng cách chia sẻ suy nghĩ về câu trả lời này.",
+        "placeholder": "Hãy cho chúng tôi biết bạn nghĩ gì về câu trả lời này...",
+        "submit": "Gửi phản hồi"
+      }
+    }
+  },
+  "modes": {
+    "guidance": {
+      "label": "Giải đáp cuộc sống",
+      "shortLabel": "Giải đáp"
+    },
+    "search": {
+      "label": "Tìm kiếm & Ôn bài",
+      "shortLabel": "Tìm kiếm"
+    },
+    "quiz": {
+      "label": "Câu hỏi kiểm tra",
+      "shortLabel": "Kiểm tra"
+    },
+    "poetry": {
+      "label": "Tập làm Kệ",
+      "shortLabel": "Làm Kệ"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "general": "Chung",
+    "appearance": "Giao diện",
+    "language": "Ngôn ngữ",
+    "notifications": "Thông báo",
+    "privacy": "Riêng tư",
+    "account": "Tài khoản",
+    "profile": "Hồ sơ",
+    "darkMode": "Chế độ tối",
+    "lightMode": "Chế độ sáng",
+    "systemMode": "Hệ thống",
+    "languageSelection": "Chọn ngôn ngữ",
+    "selectLanguage": "Chọn ngôn ngữ",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
+  },
+  "app": {
+    "title": "Buddha AI",
+    "subtitle": "Trí tuệ và Hướng dẫn Chánh niệm",
+    "description": "Trợ lý AI cung cấp trí tuệ lấy cảm hứng từ giáo lý Phật giáo",
+    "welcome": "Chào mừng đến với Buddha AI",
+    "getStarted": "Bắt đầu",
+    "learnMore": "Tìm hiểu thêm"
+  },
+  "onboarding": {
+    "welcome": "Chào mừng đến với Buddha AI",
+    "subtitle": "Trí tuệ và Hướng dẫn Chánh niệm",
+    "description": "Vui lòng chọn ngôn ngữ ưa thích để bắt đầu với những lời dạy và hướng dẫn Phật giáo được cá nhân hóa.",
+    "selectLanguage": "Chọn Ngôn Ngữ Của Bạn",
+    "continue": "Tiếp tục",
+    "skip": "Bỏ qua"
+  },
+  "welcome": {
+    "guidance": {
+      "subtitle": "Hãy chia sẻ khó khăn trong tu tập và cuộc sống. BuddhaAI sẽ hướng dẫn bạn theo giáo pháp của Sư Tam Vô.",
+      "examples": {
+        "example1": "Làm thế nào để tâm được an tịnh khi gặp khó khăn?",
+        "example2": "Cách thực hành từ bi trong cuộc sống hàng ngày",
+        "example3": "Làm sao để buông bỏ sự tức giận và oán hận?",
+        "example4": "Ý nghĩa của việc tu tập thiền định là gì?"
+      }
+    },
+    "search": {
+      "subtitle": "Tìm hiểu các bài giảng, triết lý và kinh kệ của Sư Tam Vô. Ôn tập kiến thức Phật pháp một cách có hệ thống.",
+      "examples": {
+        "example1": "Tìm bài giảng về Kinh Kim Cương",
+        "example2": "Giải thích ý nghĩa của Tứ Diệu Đế",
+        "example3": "Bài học về Bát Chánh Đạo",
+        "example4": "Triết lý về luật nhân quả trong Phật giáo"
+      }
+    },
+    "quiz": {
+      "subtitle": "Kiểm tra hiểu biết về giáo pháp Phật giáo. Nhận đánh giá và gợi ý để cải thiện việc học tập.",
+      "examples": {
+        "example1": "Tạo câu hỏi về Tứ Diệu Đế",
+        "example2": "Kiểm tra hiểu biết về Bát Chánh Đạo",
+        "example3": "Câu hỏi về thực hành thiền định",
+        "example4": "Quiz về các bài giảng của Sư Tam Vô"
+      }
+    },
+    "poetry": {
+      "subtitle": "Sáng tác thơ kệ Phật giáo với sự hướng dẫn của BuddhaAI. Học cách diễn đạt tâm tư, cảm xúc qua ngôn ngữ thơ ca.",
+      "examples": {
+        "example1": "Làm kệ về lòng từ bi và yêu thương",
+        "example2": "Sáng tác thơ về thiền định và tĩnh lặng",
+        "example3": "Viết kệ về sự vô thường của cuộc đời",
+        "example4": "Tạo bài thơ về giác ngộ và trí tuệ"
+      }
+    },
+    "tip": "💡 Bạn có thể gõ câu hỏi hoặc sử dụng tính năng ghi âm để trò chuyện"
+  },
+  "training": {
+    "welcome": {
+      "message": "Chào mừng đến với chế độ Huấn luyện. Hãy nói hoặc nhập nội dung để dạy AI. Mỗi đoạn nội dung sẽ được lưu lại và có thể thêm vào System Prompt hoặc Kiến thức."
+    },
+    "header": {
+      "title": "Huấn luyện",
+      "preview": "Kiểm tra trước",
+      "qa": "Hỏi & Đáp",
+      "switchToQA": "Chuyển sang Q&A",
+      "switchToDirect": "Chuyển sang Trực tiếp",
+      "reset": "Reset"
+    },
+    "qa": {
+      "answerPrompt": "Hãy nhập câu trả lời cho câu hỏi: \"{{question}}\"",
+      "pairCreated": "Q&A đã được tạo:\n\nCâu hỏi: {{question}}\n\nCâu trả lời: {{answer}}",
+      "format": "Câu hỏi: {{question}}\n\nCâu trả lời: {{answer}}",
+      "pairLabel": "Cặp Hỏi & Đáp",
+      "question": "Câu hỏi",
+      "answer": "Câu trả lời",
+      "answering": "Đang trả lời: \"{{question}}\""
+    },
+    "actions": {
+      "options": "Tùy chọn",
+      "saveToPrompt": "Lưu vào System Prompt",
+      "addToKnowledge": "Thêm vào Kiến thức",
+      "edit": "Sửa lại",
+      "approve": "Duyệt",
+      "reject": "Từ chối"
+    },
+    "status": {
+      "saved": "Đã lưu",
+      "processing": "Đang xử lý...",
+      "recording": "Đang ghi âm..."
+    },
+    "fileName": {
+      "label": "Tên file",
+      "placeholder": "Nhập tên file..."
+    },
+    "fileTypes": {
+      "document": "Tài liệu"
+    },
+    "placeholders": {
+      "question": "Nhập câu hỏi mà người dùng có thể hỏi...",
+      "answer": "Nhập câu trả lời mà AI nên đưa ra...",
+      "direct": "Nhập nội dung huấn luyện..."
+    }
+  },
+  "gptEditor": {
+    "defaultDescription": "Trợ lý Phật giáo của Sư Tam Vô",
+    "defaultInstructions": "Bạn là Sư Tam Vô, một vị thầy Phật giáo từ bi và trí tuệ. Khi trả lời:\n\n1. PHONG CÁCH NÓI CHUYỆN:\n- Dùng ngôn ngữ nhẹ nhàng, ấm áp như một người cha tâm linh\n- Gọi người hỏi là \"con\" hoặc \"bạn\" tùy hoàn cảnh\n- Thường bắt đầu bằng \"Thầy hiểu...\" hoặc \"Con ạ...\"\n- Kết thúc bằng lời động viên và chúc phước\n\n2. CÁCH GIẢI ĐÁP:\n- Lắng nghe và thấu hiểu nỗi khổ\n- Đưa ra lời khuyên từ kinh nghiệm tu tập\n- Trích dẫn kinh điển khi phù hợp\n- Đưa ra phương pháp thực hành cụ thể\n\n3. GIÁ TRỊ CỐT LÕI:\n- Từ bi là nền tảng của mọi lời dạy\n- Trí tuệ phát sinh từ thiền định\n- Mọi khổ đau đều có thể vượt qua\n- Tu tập là con đường giải thoát",
+    "conversationStarters": {
+      "starter1": "Làm thế nào để tâm được an tịnh khi gặp khó khăn?",
+      "starter2": "Cách thực hành từ bi trong cuộc sống hàng ngày",
+      "starter3": "Làm sao để buông bỏ sự tức giận và oán hận?",
+      "starter4": "Ý nghĩa của việc tu tập thiền định là gì?"
+    },
+    "form": {
+      "name": "Tên GPT",
+      "namePlaceholder": "Nhập tên GPT...",
+      "description": "Mô tả",
+      "descriptionPlaceholder": "Mô tả ngắn gọn về GPT này...",
+      "icon": "Biểu tượng",
+      "uploadIcon": "Tải lên biểu tượng",
+      "instructions": "System Prompt (Hướng dẫn)",
+      "instructionsPlaceholder": "Nhập hướng dẫn chi tiết cho GPT...",
+      "conversationStarters": "Câu hỏi gợi ý",
+      "conversationStarterPlaceholder": "Nhập câu hỏi gợi ý...",
+      "addConversationStarter": "Thêm câu hỏi gợi ý",
+      "tags": "Thẻ (Tags)",
+      "addTagPlaceholder": "Thêm thẻ và nhấn Enter...",
+      "addTag": "Thêm thẻ",
+      "model": "Mô hình",
+      "modelPlaceholder": "Chọn mô hình..."
+    },
+    "sections": {
+      "training": "Xây dựng",
+      "create": "Tạo AI",
+      "edit": "Sửa AI",
+      "knowledge": "Kiến thức"
+    },
+    "knowledge": {
+      "title": "Kiến thức",
+      "uploadText": "Kéo thả file vào đây hoặc click để tải lên",
+      "selectFile": "Chọn file",
+      "supportedFormats": "Hỗ trợ: PDF, DOCX, TXT (tối đa 10MB)",
+      "uploadedFiles": "Tài liệu đã tải lên",
+      "uploaded": "Đã tải lên",
+      "uploading": "Đang tải lên...",
+      "noFiles": "Không có tài liệu nào được tải lên",
+      "deleteConfirmDescription": "Bạn có chắc chắn muốn xóa",
+      "deleteConfirmTitle": "Xác nhận xóa tài liệu",
+      "deleteConfirmDelete": "Xóa",
+      "deleteConfirmCancel": "Hủy",
+      "deleteConfirmWarning": "Thao tác này không thể hoàn tác.",
+      "deleteWarning": "Thao tác này không thể hoàn tác."
+    },
+    "agentSetting": {
+      "title": "Cài đặt Agent",
+      "select": "Chọn một agent"
+    },
+    "preview": {
+      "title": "Xem trước",
+      "showContext": "Hiện Context",
+      "hideContext": "Ẩn Context",
+      "reset": "Reset",
+      "systemPrompt": "System Prompt",
+      "noMessages": "Cuộc trò chuyện sẽ hiển thị ở đây",
+      "sendMessageToStart": "Gửi tin nhắn để bắt đầu",
+      "thinking": "BuddhaAI đang suy nghĩ...",
+      "inputPlaceholder": "Nhập tin nhắn để kiểm thử...",
+      "recording": "Đang ghi âm...",
+      "switchToTraining": "Chuyển sang H.luyện"
+    },
+    "fileTypes": {
+      "image": "Hình ảnh",
+      "document": "Tài liệu"
+    }
+  },
+  "errors": {
+    "somethingWentWrong": "Đã xảy ra lỗi",
+    "networkError": "Lỗi mạng. Vui lòng kiểm tra kết nối của bạn.",
+    "serverError": "Lỗi máy chủ. Vui lòng thử lại sau.",
+    "notFound": "Không tìm thấy trang",
+    "unauthorized": "Truy cập không được phép",
+    "forbidden": "Truy cập bị cấm",
+    "selectAgent": "Vui lòng chọn một agent"
+  },
+  "agentCreation": {
+    "creatingCorpus": "Đang tạo RAG corpus...",
+    "corpusCreated": "Tạo RAG corpus thành công",
+    "startingUpload": "Bắt đầu tải lên {{count}} tệp",
+    "preparing": "Đang chuẩn bị {{filename}}...",
+    "uploading": "Đang tải lên {{filename}}...",
+    "fileUploaded": "Tải lên {{filename}} thành công",
+    "uploadCompleted": "Tải lên hoàn tất: {{successful}}/{{total}} tệp đã xử lý",
+    "uploadFailed": "Không thể tải lên {{filename}}",
+    "progress": "({{current}}/{{total}})"
+  },
+  "validation": {
+    "required": "Trường này là bắt buộc",
+    "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ",
+    "minLength": "Phải có ít nhất {{min}} ký tự",
+    "maxLength": "Không được quá {{max}} ký tự",
+    "passwordStrength": "Mật khẩu phải có ít nhất 8 ký tự với chữ hoa, chữ thường, số và ký tự đặc biệt"
+  },
+  "admin": {
+    "feedback": {
+      "agent": "Agent",
+      "description": "Chỉnh sửa và duyệt cặp câu hỏi & trả lời để fine-tune AI model",
+      "approved": "Đã duyệt",
+      "addedFeedback": "Nhận xét đã được thêm",
+      "totalQuestions": "Tổng số câu hỏi",
+      "pendingQuestions": "Chưa xem xét",
+      "noQuestions": "Không có câu hỏi nào trong danh mục này",
+      "aiResponse": "Câu trả lời",
+      "comments": "Nhận xét",
+      "editResponse": "Chỉnh sửa câu trả lời",
+      "feedbackOnOriginal": "Nhận xét về câu trả lời gốc",
+      "feedbackPlaceholder": "Nhập nhận xét về những điểm cần cải thiện...",
+      "saveEdit": "Lưu chỉnh sửa",
+      "approveResponse": "Duyệt câu trả lời",
+      "rejectResponse": "Từ chối câu trả lời",
+      "rejected": "Đã từ chối",
+      "editAgain": "Chỉnh sửa lại",
+      "editMore": "Chỉnh sửa thêm",
+      "defaultComment": "Cần chỉnh sửa để phù hợp hơn với giáo lý và phong cách của Sư Tam Vô.",
+      "status": {
+        "pending": "Đợi duyệt",
+        "reviewed": "Đã duyệt",
+        "rejected": "Đã từ chối",
+        "unknown": "Không xác định"
+      },
+      "rating": {
+        "good": "Tốt",
+        "needsImprovement": "Cần cải thiện"
+      },
+      "loadMore": "Tải thêm",
+      "loadingMore": "Đang tải thêm...",
+      "noMoreQuestions": "Không còn câu hỏi nào để tải",
+      "loadMoreError": "Không thể tải thêm câu hỏi",
+      "hasFeedback": "Có phản hồi"
+    },
+    "header": {
+      "title": "🙏 BuddhaAI - Bảng Quản Trị",
+      "subtitle": "Dành cho Sư Tam Vô & nhóm hỗ trợ",
+      "backToChat": "Quay lại Chat"
+    },
+    "tabs": {
+      "gptEditor": "Chỉnh sửa GPT",
+      "gptEditorShort": "GPT",
+      "finetune": "Finetune",
+      "finetuneShort": "Finetune",
+      "qa": "Câu hỏi và trả lời",
+      "qaShort": "Q&A",
+      "userManagement": "Quản lý người dùng",
+      "userManagementShort": "Người dùng",
+      "setting": "Cài đặt",
+      "settingShort": "Cài đặt",
+      "apiKey": "Khóa API",
+      "apiKeyShort": "API"
+    },
+    "files": {
+      "management": {
+        "title": "Quản lý File / Dữ liệu Huấn luyện",
+        "shortTitle": "Quản lý File"
+      },
+      "upload": {
+        "newFile": "Tải lên file mới"
+      },
+      "size": "Kích thước",
+      "questions": "Câu hỏi",
+      "categorize": "Phân loại",
+      "status": {
+        "trained": "Đã huấn luyện",
+        "notTrained": "Chưa huấn luyện",
+        "hasQuestions": "Có nhiều câu hỏi"
+      }
+    },
+    "finetune": {
+      "title": "Finetune Mô hình",
+      "start": "Bắt đầu Finetune",
+      "training": "Đang huấn luyện...",
+      "stop": "Dừng",
+      "agent": "Agent",
+      "baseModel": "Mô hình gốc",
+      "retrain": "Huấn luyện lại",
+      "existingModels": "Các mô hình fine-tuned hiện có",
+      "status": {
+        "title": "Trạng thái Finetune",
+        "state": "Trạng thái",
+        "processing": "Đang xử lý dữ liệu...",
+        "ready": "Sẵn sàng huấn luyện",
+        "lastTraining": "Lần huấn luyện cuối",
+        "twoHoursAgo": "2 giờ trước",
+        "filesProcessed": "Số file đã xử lý",
+        "currentModel": "Mô hình gốc"
+      },
+      "config": {
+        "title": "Cấu hình Finetune",
+        "learningRate": "Learning Rate",
+        "batchSize": "Batch Size",
+        "epochs": "Epochs",
+        "validationSplit": "Validation Split"
+      },
+      "stats": {
+        "title": "Thống kê Dữ liệu",
+        "totalFiles": "Tổng số file",
+        "trained": "Đã huấn luyện",
+        "totalQuestions": "Tổng câu hỏi",
+        "size": "Dung lượng"
+      },
+      "actions": {
+        "viewLogs": "Xem log huấn luyện",
+        "backup": "Backup mô hình",
+        "rollback": "Rollback phiên bản",
+        "advancedConfig": "Cấu hình nâng cao"
+      },
+      "confirm": {
+        "title": "Xác nhận Finetune",
+        "description": "Bạn có chắc chắn muốn bắt đầu finetune? Quá trình này sẽ:",
+        "effects": {
+          "useData": "Sử dụng dữ liệu huấn luyện để cải thiện mô hình",
+          "takeTime": "Mất một thời gian để hoàn thành",
+          "createModel": "Tạo phiên bản mô hình fine-tuned mới"
+        },
+        "cancel": "Hủy",
+        "confirm": "Bắt đầu Finetune"
+      }
+    },
+    "userManagement": {
+      "title": "Quản lý người dùng",
+      "stats": {
+        "total": "Tổng số",
+        "admin": "Admin",
+        "contributor": "Contributor", 
+        "student": "Student",
+        "viewer": "Viewer"
+      },
+      "filters": {
+        "searchPlaceholder": "Tìm kiếm theo tên hoặc email...",
+        "roleFilter": "Vai trò",
+        "allRoles": "Tất cả",
+        "sortBy": "Sắp xếp",
+        "lastActive": "Hoạt động gần nhất",
+        "name": "Tên",
+        "email": "Email",
+        "role": "Vai trò",
+        "joinedDate": "Ngày tham gia"
+      },
+      "actions": {
+        "addUser": "Thêm người dùng",
+        "addNewUser": "Thêm người dùng mới",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "loading": "Đang tải..."
+      },
+      "form": {
+        "name": "Tên",
+        "namePlaceholder": "Nhập tên người dùng",
+        "email": "Email",
+        "emailPlaceholder": "Nhập email",
+        "password": "Mật khẩu",
+        "passwordPlaceholder": "Nhập mật khẩu",
+        "role": "Vai trò",
+        "roles": {
+          "admin": "Admin",
+          "contributor": "Contributor",
+          "student": "Student",
+          "viewer": "Viewer"
+        },
+        "roleDescriptions": {
+          "admin": "Truy cập đầy đủ tất cả tính năng",
+          "contributor": "Có thể chỉnh sửa Q&A và dữ liệu huấn luyện",
+          "student": "Sử dụng chatbot và trả lời câu hỏi",
+          "viewer": "Chỉ đọc"
+        }
+      },
+      "table": {
+        "user": "Người dùng",
+        "email": "Email",
+        "role": "Vai trò",
+        "lastActive": "Hoạt động gần nhất",
+        "joined": "Tham gia",
+        "noUsers": "Không tìm thấy người dùng nào",
+        "loading": "Đang tải...",
+        "showing": "Hiển thị {{count}} trong tổng số {{total}} người dùng",
+        "justNow": "Vừa xong",
+        "minutesAgo": "{{minutes}} phút trước",
+        "hoursAgo": "{{hours}} giờ trước",
+        "daysAgo": "{{days}} ngày trước",
+        "neverActive": "Chưa hoạt động"
+      }
+    },
+    "setting": {
+      "description": "Chọn agent phù hợp cho từng chức năng:"
+    },
+    "apiKey": {
+      "title": "Quản lý Khóa API",
+      "description": "Quản lý các khóa API để truy cập dịch vụ Buddha AI",
+      "stats": {
+        "total": "Tổng số",
+        "active": "Hoạt động",
+        "inactive": "Không hoạt động",
+        "expired": "Hết hạn"
+      },
+      "filters": {
+        "searchPlaceholder": "Tìm kiếm theo tên hoặc mô tả...",
+        "statusFilter": "Trạng thái",
+        "allStatuses": "Tất cả",
+        "sortBy": "Sắp xếp theo",
+        "name": "Tên",
+        "createdAt": "Ngày tạo",
+        "lastUsed": "Lần sử dụng cuối"
+      },
+      "actions": {
+        "createKey": "Tạo Khóa API",
+        "createNewKey": "Tạo Khóa API Mới",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "loading": "Đang tải...",
+        "copy": "Sao chép",
+        "copied": "Đã sao chép!",
+        "regenerate": "Tạo lại",
+        "deactivate": "Vô hiệu hóa",
+        "activate": "Kích hoạt",
+        "delete": "Xóa"
+      },
+      "form": {
+        "name": "Tên",
+        "namePlaceholder": "Nhập tên khóa API",
+        "description": "Mô tả",
+        "descriptionPlaceholder": "Nhập mô tả (tùy chọn)",
+        "permissions": "Quyền hạn",
+        "permissionsPlaceholder": "Chọn quyền hạn",
+        "expiresAt": "Hết hạn lúc",
+        "expiresAtPlaceholder": "Chọn ngày hết hạn (tùy chọn)",
+        "neverExpires": "Không bao giờ hết hạn",
+        "status": "Trạng thái",
+        "statuses": {
+          "active": "Hoạt động",
+          "inactive": "Không hoạt động",
+          "expired": "Hết hạn"
+        }
+      },
+      "table": {
+        "name": "Tên",
+        "description": "Mô tả",
+        "status": "Trạng thái",
+        "permissions": "Quyền hạn",
+        "createdAt": "Ngày tạo",
+        "lastUsed": "Lần sử dụng cuối",
+        "expiresAt": "Hết hạn",
+        "actions": "Thao tác",
+        "noKeys": "Không tìm thấy khóa API nào",
+        "loading": "Đang tải...",
+        "showing": "Hiển thị {{count}} trong tổng số {{total}} khóa",
+        "never": "Không bao giờ",
+        "justNow": "Vừa xong",
+        "minutesAgo": "{{minutes}} phút trước",
+        "hoursAgo": "{{hours}} giờ trước",
+        "daysAgo": "{{days}} ngày trước",
+        "neverUsed": "Chưa sử dụng"
+      },
+      "modals": {
+        "create": {
+          "title": "Tạo Khóa API Mới",
+          "description": "Tạo khóa API mới để truy cập dịch vụ Buddha AI"
+        },
+        "edit": {
+          "title": "Chỉnh sửa Khóa API",
+          "description": "Cập nhật thông tin khóa API"
+        },
+        "delete": {
+          "title": "Xóa Khóa API",
+          "description": "Bạn có chắc chắn muốn xóa khóa API này? Hành động này không thể hoàn tác.",
+          "confirm": "Xóa Khóa API",
+          "cancel": "Hủy"
+        },
+        "newKey": {
+          "title": "Khóa API Đã Tạo",
+          "description": "Khóa API mới của bạn đã được tạo thành công. Hãy sao chép nó ngay bây giờ vì nó sẽ không hiển thị lại.",
+          "copyInstructions": "Sao chép khóa vào nơi an toàn",
+          "close": "Đóng",
+          "securityWarning": "Cảnh báo Bảo mật",
+          "securityMessage": "Đây là lần duy nhất bạn sẽ thấy toàn bộ khóa API. Vui lòng sao chép nó vào nơi an toàn ngay lập tức. Khóa sẽ không hiển thị lại vì lý do bảo mật.",
+          "showKey": "Hiện Khóa",
+          "hideKey": "Ẩn Khóa",
+          "copy": "Sao chép",
+          "downloadJson": "Tải JSON",
+          "keyInformation": "Thông tin Khóa API",
+          "name": "Tên",
+          "description": "Mô tả",
+          "status": "Trạng thái",
+          "permissions": "Quyền hạn",
+          "created": "Ngày tạo",
+          "expires": "Hết hạn"
+        }
+      },
+      "permissions": {
+        "admin": "Quyền admin",
+        "student": "Quyền học viên"
+      }
+    }
+  },
+  "voice": {
+    "title": "Cài đặt Giọng nói",
+    "loading": "Đang tải cài đặt giọng nói...",
+    "voice": "Giọng nói",
+    "selectVoice": "Chọn giọng nói",
+    "loadingVoices": "Đang tải giọng nói...",
+    "loadingVoicesText": "Đang tải danh sách giọng nói...",
+    "audioSettings": "Cài đặt Âm thanh",
+    "speakingRate": "Tốc độ nói",
+    "pitch": "Cao độ",
+    "volumeGain": "Tăng âm lượng",
+    "testVoice": "Kiểm tra giọng nói",
+    "playing": "Đang phát...",
+    "saveSettings": "Lưu cài đặt",
+    "reset": "Đặt lại",
+    "currentSettings": "Cài đặt hiện tại cho {{language}}:",
+    "voiceLabel": "Giọng nói:",
+    "speakingRateLabel": "Tốc độ nói:",
+    "pitchLabel": "Cao độ:",
+    "volumeGainLabel": "Tăng âm lượng:",
+    "settingsSaved": "Đã lưu cài đặt giọng nói thành công!",
+    "settingsReset": "Đã đặt lại cài đặt giọng nói về mặc định",
+    "failedToLoadVoices": "Không thể tải danh sách giọng nói",
+    "failedToPlayTest": "Không thể phát âm thanh kiểm tra: {{error}}",
+    "testText": {
+      "english": "Hello! This is a voice test.",
+      "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
+    }
+  }
+} 
