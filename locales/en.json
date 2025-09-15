@@ -70,6 +70,8 @@
     "recording": "Recording...",
     "fileAttached": "File attached",
     "systemPromptSaved": "Content saved to system prompt!",
+    "welcomeTitle": "Welcome to the pathless path",
+    "welcomeSubtitle": "What brings you here today?",
     "placeholders": {
       "search": "Search for teachings, scriptures of Master Tam Vo...",
       "quiz": "Request quiz questions about the Dharma...",
@@ -265,7 +267,7 @@
       "stats": {
         "total": "Total",
         "admin": "Admin",
-        "contributor": "Contributor", 
+        "contributor": "Contributor",
         "student": "Student",
         "viewer": "Viewer"
       },
@@ -450,7 +452,7 @@
     "languageSelection": "Select Language",
     "selectLanguage": "Select Language",
     "english": "English",
-    "vietnamese": "Vietnamese"
+    "vietnamese": "Tiếng Việt"
   },
   "app": {
     "title": "Buddha AI",
@@ -687,4 +689,4 @@
       "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
     }
   }
-} 
+}
