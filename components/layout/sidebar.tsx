@@ -123,7 +123,7 @@ export function Sidebar({
 
   const handleLogout = async () => {
     await logout()
-    router.push('/')
+    router.push('/landing')
     appToast(t('auth.logoutSuccess'), {
       type: 'success'
     })

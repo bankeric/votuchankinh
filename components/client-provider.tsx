@@ -18,7 +18,6 @@ export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
   const { getCurrentUser, user } = useAuthStore()
   const { fetchAgentSettings } = useAgentSettingStore()
   const { fetchAgents } = useAgentStore()
-  const { getChats } = useChatStore()
   const { language } = useTranslations()
   const { getModels } = useAppStateStore()
   // const pathname = usePathname()
@@ -32,7 +31,6 @@ export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
     fetchAgentSettings()
     fetchAgents(language, false)
     getModels()
-    getChats()
   }, [user, language])
   return <HydrationZustand>{children}</HydrationZustand>
 }
