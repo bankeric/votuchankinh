@@ -50,6 +50,7 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
 
     try {
       await login(formData)
+      window.location.reload()
       appToast('Welcome back', {
         type: 'success'
       })

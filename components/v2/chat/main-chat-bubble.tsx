@@ -437,7 +437,7 @@ export function MainChatBubble({
                       )}
                     </Button>
                   </div>
-                  <span className='text-xs font-light text-right'>
+                  <span className='text-xs font-light text-right hidden md:inline'>
                     {formatTime(new Date(message.created_at || '').getTime())}
                   </span>
                 </div>

@@ -18,6 +18,7 @@ export function TitleHeader({}: TitleHeaderProps) {
 
   const { chats, activeChatId, setActiveChatId } = useChatStore()
   const activeChat = chats.find((chat) => chat.uuid === activeChatId)
+  console.log('activeChat', activeChat, chats)
 
   const handleSelectAgent = (agentId: string) => {
     onSelectAgent(agentId)

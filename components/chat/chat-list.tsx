@@ -162,7 +162,7 @@ export function ChatList({
                     <Button
                       variant='ghost'
                       size='sm'
-                      className='h-6 w-6 p-0 text-inherit'
+                      className='h-6 w-6 p-0 text-inherit hover:bg-black/10'
                       onClick={(e) => {
                         e.stopPropagation()
                         handleEditTitle(chat.uuid, chat.title)
@@ -174,7 +174,7 @@ export function ChatList({
                     <Button
                       variant='ghost'
                       size='sm'
-                      className='h-6 w-6 p-0 text-inherit hover:text-red-600'
+                      className='h-6 w-6 p-0 text-inherit hover:bg-black/10'
                       onClick={(e) => onDeleteChat(chat.uuid, e)}
                       title={t('common.delete')}
                     >
