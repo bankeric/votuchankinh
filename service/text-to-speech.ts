@@ -225,14 +225,24 @@ class TextToSpeechService {
             onProgress(Math.min(progress, 95)) // Cap at 95% until fully complete
           }
 
-          // Process this sentence
-          await this.playBase64Audio(
-            sentence,
-            options,
-            i === 0 ? onStart : undefined, // Only call onStart for the first chunk
-            i === sentences.length - 1 ? onEnd : undefined, // Only call onEnd for the last chunk
-            onError
-          )
+          // Create a promise that resolves when the audio finishes playing
+          await new Promise<void>((resolve, reject) => {
+            // Process this sentence
+            this.playBase64Audio(
+              sentence,
+              options,
+              i === 0 ? onStart : undefined, // Only call onStart for the first chunk
+              () => {
+                // When this chunk ends, resolve the promise to continue to the next chunk
+                if (i === sentences.length - 1 && onEnd) onEnd() // Call onEnd for the last chunk
+                resolve()
+              },
+              (error) => {
+                if (onError) onError(error)
+                reject(error)
+              }
+            )
+          })
         }
 
         // All chunks processed
