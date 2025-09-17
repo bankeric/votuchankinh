@@ -353,7 +353,7 @@ export function Sidebar({
         />
       </div>
 
-      {/* Footer */}
+      {/* Footers */}
       <div className='p-5 border-t border-[#2c2c2c]/30'>
         <div className='flex items-center justify-center gap-2'>
           <DropdownMenu>
