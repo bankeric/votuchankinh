@@ -8,6 +8,9 @@ import { Chat as ChatType } from '@/interfaces/chat'
 import { MainLayout } from '@/components/layout/main-layout'
 import useCreateChat from '@/hooks/use-create-chat'
 import useAgents from '@/hooks/use-agents'
+import { useSession } from 'next-auth/react'
+import { useAuthStore } from '@/store/auth'
+import { useEffect } from 'react'
 
 function ChatPage() {
   const { id } = useParams()
@@ -22,6 +25,16 @@ function ChatPage() {
   } = useChatStore()
   const { handleCreateChat } = useCreateChat()
   const { setSelectedAgentId } = useAgents()
+  const { data: session } = useSession()
+  const { loginWithSocial } = useAuthStore()
+
+  // Login when session exists
+  useEffect(() => {
+    if (session && session.user && session.user.email && session.user.name) {
+      console.log('User is logged in:', session.user)
+      loginWithSocial(session.user.email, session.user.name)
+    }
+  }, [session])
   // Set active chat on mount and handle navigation
   useOnce(() => {
     const initChat = async () => {

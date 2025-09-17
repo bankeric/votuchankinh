@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { publicPaths } from './constants/route'
+export { auth as authMiddleware } from '@/auth'
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('buddha-token')

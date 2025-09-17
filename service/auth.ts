@@ -4,7 +4,6 @@ import axiosInstance, {
   removeAuthToken,
   getAuthToken
 } from '@/lib/axios'
-import Cookies from 'js-cookie'
 
 export interface LoginDto {
   email: string
@@ -69,6 +68,12 @@ class AuthService {
   async logout(): Promise<void> {
     try {
       await axiosInstance.post(`${this.BASE_URL}/logout`)
+      // Sign out from NextAuth to prevent headers error
+      if (typeof window !== 'undefined') {
+        await import('next-auth/react').then(({ signOut }) =>
+          signOut({ callbackUrl: '/landing' })
+        )
+      }
     } catch (error) {
       console.error('Logout error:', error)
     } finally {
@@ -123,6 +128,24 @@ class AuthService {
       return data
     } catch (error) {
       console.error('Reset password error:', error)
+      throw error
+    }
+  }
+
+  // Login user
+  async loginWithSocial(email: string, name: string): Promise<AuthResponse> {
+    try {
+      const { data } = await axiosInstance.post<AuthResponse>(
+        `${this.BASE_URL}/social-login`,
+        {
+          email,
+          name
+        }
+      )
+      setAuthToken(data.token)
+      return data
+    } catch (error) {
+      console.error('Login error:', error)
       throw error
     }
   }
