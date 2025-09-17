@@ -5,7 +5,8 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
+  DialogFooter
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -20,6 +21,8 @@ import { appToast } from '@/lib/toastify'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth'
+import { signIn } from 'next-auth/react'
+import { AuthProvider } from '@/interfaces/auth'
 
 interface OnboardingModalProps {
   open: boolean
@@ -71,6 +74,10 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSignIn = async (provider: AuthProvider) => {
+    await signIn(provider)
   }
 
   return (
@@ -165,6 +172,56 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
             </Link>
           </p>
         </form>
+
+        <DialogFooter>
+          <div className='flex flex-col items-center w-full space-y-4 pt-4 border-t border-[#2c2c2c]/30 mt-4'>
+            <p className='text-orange-700 text-sm'>Or continue with</p>
+            <div className='flex justify-center space-x-4 w-full'>
+              <Button
+                type='button'
+                variant='ghost'
+                className='flex items-center space-x-2 hover:bg-black/10'
+                onClick={() => handleSignIn(AuthProvider.FACEBOOK)}
+              >
+                <Image
+                  src='/images/facebook.png'
+                  alt='Facebook'
+                  width={20}
+                  height={20}
+                />
+                <span>Facebook</span>
+              </Button>
+              <Button
+                type='button'
+                variant='ghost'
+                className='flex items-center space-x-2 hover:bg-black/10'
+                onClick={() => handleSignIn(AuthProvider.GOOGLE)}
+              >
+                <Image
+                  src='/images/google.png'
+                  alt='Google'
+                  width={20}
+                  height={20}
+                />
+                <span>Google</span>
+              </Button>
+              <Button
+                type='button'
+                variant='ghost'
+                className='flex items-center space-x-2 hover:bg-black/10'
+                onClick={() => handleSignIn(AuthProvider.TIKTOK)}
+              >
+                <Image
+                  src='/images/tiktok.png'
+                  alt='TikTok'
+                  width={20}
+                  height={20}
+                />
+                <span>TikTok</span>
+              </Button>
+            </div>
+          </div>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

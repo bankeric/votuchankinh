@@ -1,34 +1,34 @@
-import { createSafeAudioElement, base64ToBlob } from '@/lib/utils';
+import { createSafeAudioElement, base64ToBlob } from '@/lib/utils'
 
 export interface TTSRequest {
-  text: string;
-  voice_name?: string;
-  language_code?: string;
-  audio_encoding?: string;
-  speaking_rate?: number;
-  pitch?: number;
-  volume_gain_db?: number;
-  chunked?: boolean;
+  text: string
+  voice_name?: string
+  language_code?: string
+  audio_encoding?: string
+  speaking_rate?: number
+  pitch?: number
+  volume_gain_db?: number
+  chunked?: boolean
 }
 
 export interface TTSResponse {
-  audio_base64?: string;
-  content_type?: string;
-  text_length?: number;
-  error?: string;
+  audio_base64?: string
+  content_type?: string
+  text_length?: number
+  error?: string
 }
 
 export interface VoicesResponse {
-  voices: string[];
-  language_code: string;
-  count: number;
+  voices: string[]
+  language_code: string
+  count: number
 }
 
 class TextToSpeechService {
-  private readonly baseUrl: string;
+  private readonly baseUrl: string
 
   constructor() {
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
   }
 
   async streamTextToSpeech(
@@ -47,59 +47,64 @@ class TextToSpeechService {
         speaking_rate: options.speaking_rate || 1.0,
         pitch: options.pitch || 0.0,
         volume_gain_db: options.volume_gain_db || 0.0,
-        chunked: options.chunked !== false, // default to true
-      };
+        chunked: options.chunked !== false // default to true
+      }
 
       const response = await fetch(`${this.baseUrl}/api/v1/tts/stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.getAuthToken()}`,
+          Authorization: `Bearer ${this.getAuthToken()}`
         },
-        body: JSON.stringify(requestBody),
-      });
+        body: JSON.stringify(requestBody)
+      })
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       if (!response.body) {
-        throw new Error('No response body');
+        throw new Error('No response body')
       }
 
-      const reader = response.body.getReader();
-      const chunks: Uint8Array[] = [];
-      let totalBytes = 0;
+      const reader = response.body.getReader()
+      const chunks: Uint8Array[] = []
+      let totalBytes = 0
 
       while (true) {
-        const { done, value } = await reader.read();
-        
-        if (done) break;
-        
-        chunks.push(value);
-        totalBytes += value.length;
-        
+        const { done, value } = await reader.read()
+
+        if (done) break
+
+        chunks.push(value)
+        totalBytes += value.length
+
         // Call the onProgress callback with progress percentage
         if (onProgress) {
           // Estimate progress based on received bytes (this is approximate)
-          const estimatedProgress = Math.min((totalBytes / (text.length * 100)) * 100, 95);
-          onProgress(estimatedProgress);
+          const estimatedProgress = Math.min(
+            (totalBytes / (text.length * 100)) * 100,
+            95
+          )
+          onProgress(estimatedProgress)
         }
       }
 
       // Combine all chunks into a single blob
-      const audioBlob = new Blob(chunks, { type: 'audio/mpeg' });
-      
+      const audioBlob = new Blob(chunks, { type: 'audio/mpeg' })
+
       if (onProgress) {
-        onProgress(100);
+        onProgress(100)
       }
-      
+
       if (onComplete) {
-        onComplete(audioBlob);
+        onComplete(audioBlob)
       }
     } catch (error) {
-      console.error('Text-to-speech streaming error:', error);
-      onError?.(error instanceof Error ? error.message : 'Unknown error occurred');
+      console.error('Text-to-speech streaming error:', error)
+      onError?.(
+        error instanceof Error ? error.message : 'Unknown error occurred'
+      )
     }
   }
 
@@ -115,48 +120,53 @@ class TextToSpeechService {
         audio_encoding: options.audio_encoding || 'MP3',
         speaking_rate: options.speaking_rate || 1.0,
         pitch: options.pitch || 0.0,
-        volume_gain_db: options.volume_gain_db || 0.0,
-      };
+        volume_gain_db: options.volume_gain_db || 0.0
+      }
 
       const response = await fetch(`${this.baseUrl}/api/v1/tts/base64`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.getAuthToken()}`,
+          Authorization: `Bearer ${this.getAuthToken()}`
         },
-        body: JSON.stringify(requestBody),
-      });
+        body: JSON.stringify(requestBody)
+      })
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
 
-      const data: TTSResponse = await response.json();
-      return data;
+      const data: TTSResponse = await response.json()
+      return data
     } catch (error) {
-      console.error('Text-to-speech base64 error:', error);
-      throw error;
+      console.error('Text-to-speech base64 error:', error)
+      throw error
     }
   }
 
-  async getAvailableVoices(languageCode: string = 'en-US'): Promise<VoicesResponse> {
+  async getAvailableVoices(
+    languageCode: string = 'en-US'
+  ): Promise<VoicesResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/v1/tts/voices?language_code=${languageCode}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${this.getAuthToken()}`,
-        },
-      });
+      const response = await fetch(
+        `${this.baseUrl}/api/v1/tts/voices?language_code=${languageCode}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${this.getAuthToken()}`
+          }
+        }
+      )
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
 
-      const data: VoicesResponse = await response.json();
-      return data;
+      const data: VoicesResponse = await response.json()
+      return data
     } catch (error) {
-      console.error('Get voices error:', error);
-      throw error;
+      console.error('Get voices error:', error)
+      throw error
     }
   }
 
@@ -165,14 +175,14 @@ class TextToSpeechService {
       const response = await fetch(`${this.baseUrl}/api/v1/tts/health`, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${this.getAuthToken()}`,
-        },
-      });
+          Authorization: `Bearer ${this.getAuthToken()}`
+        }
+      })
 
-      return response.ok;
+      return response.ok
     } catch (error) {
-      console.error('Health check error:', error);
-      return false;
+      console.error('Health check error:', error)
+      return false
     }
   }
 
@@ -186,33 +196,38 @@ class TextToSpeechService {
   ): Promise<void> {
     try {
       if (onStart) {
-        onStart();
+        onStart()
       }
 
       // Use base64 method instead of blob URLs to avoid CORS issues
-      const data = await this.getBase64Audio(text, options);
-      
+      const data = await this.getBase64Audio(text, options)
+
       if (data.error) {
-        throw new Error(data.error);
+        throw new Error(data.error)
       }
 
       if (!data.audio_base64) {
-        throw new Error('No audio data received');
+        throw new Error('No audio data received')
       }
 
       // Convert base64 to audio blob using utility function
-      const audioBlob = base64ToBlob(data.audio_base64, data.content_type || 'audio/mpeg');
-      
+      const audioBlob = base64ToBlob(
+        data.audio_base64,
+        data.content_type || 'audio/mpeg'
+      )
+
       // Create safe audio element with proper cleanup
-      const audio = createSafeAudioElement(audioBlob, onEnd, onError);
-      
+      const audio = createSafeAudioElement(audioBlob, onEnd, onError)
+
       audio.play().catch((error) => {
-        console.error('Error playing audio:', error);
-        onError?.('Failed to play audio');
-      });
+        console.error('Error playing audio:', error)
+        onError?.('Failed to play audio')
+      })
     } catch (error) {
-      console.error('Error in playAudioStream:', error);
-      onError?.(error instanceof Error ? error.message : 'Unknown error occurred');
+      console.error('Error in playAudioStream:', error)
+      onError?.(
+        error instanceof Error ? error.message : 'Unknown error occurred'
+      )
     }
   }
 
@@ -225,45 +240,54 @@ class TextToSpeechService {
   ): Promise<void> {
     try {
       if (onStart) {
-        onStart();
+        onStart()
       }
 
-      const data = await this.getBase64Audio(text, options);
-      
+      const data = await this.getBase64Audio(text, options)
+
       if (data.error) {
-        throw new Error(data.error);
+        throw new Error(data.error)
       }
 
       if (!data.audio_base64) {
-        throw new Error('No audio data received');
+        throw new Error('No audio data received')
       }
 
       // Convert base64 to audio blob using utility function
-      const audioBlob = base64ToBlob(data.audio_base64, data.content_type || 'audio/mpeg');
-      
+      const audioBlob = base64ToBlob(
+        data.audio_base64,
+        data.content_type || 'audio/mpeg'
+      )
+
       // Create safe audio element with proper cleanup
-      const audio = createSafeAudioElement(audioBlob, onEnd, onError);
-      
+      const audio = createSafeAudioElement(audioBlob, onEnd, onError)
+
       audio.play().catch((error) => {
-        console.error('Error playing audio:', error);
-        onError?.('Failed to play audio');
-      });
+        console.error('Error playing audio:', error)
+        onError?.('Failed to play audio')
+      })
     } catch (error) {
-      console.error('Error in playBase64Audio:', error);
-      onError?.(error instanceof Error ? error.message : 'Unknown error occurred');
+      console.error('Error in playBase64Audio:', error)
+      onError?.(
+        error instanceof Error ? error.message : 'Unknown error occurred'
+      )
     }
   }
 
   private getAuthToken(): string {
     // Get token from cookies or localStorage
     if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('buddha-token') || 
-                   document.cookie.split('; ').find(row => row.startsWith('buddha-token='))?.split('=')[1];
-      return token || '';
+      const token =
+        localStorage.getItem('buddha-token') ||
+        document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('buddha-token='))
+          ?.split('=')[1]
+      return token || ''
     }
-    return '';
+    return ''
   }
 }
 
-export const textToSpeechService = new TextToSpeechService();
-export default textToSpeechService; 
+export const textToSpeechService = new TextToSpeechService()
+export default textToSpeechService

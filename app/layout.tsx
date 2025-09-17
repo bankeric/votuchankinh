@@ -7,6 +7,7 @@ import { ClientProvider } from '@/components/client-provider'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { cn } from '@/lib/utils'
+import { SessionProvider } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,15 +45,17 @@ export default function RootLayout({
           ebGaramond.className
         )}
       >
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='light'
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ClientProvider>{children}</ClientProvider>
-          <ToastContainer />
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='light'
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ClientProvider>{children}</ClientProvider>
+            <ToastContainer />
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   )
