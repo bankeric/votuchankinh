@@ -23,6 +23,7 @@ import { WelcomeScreenV2 } from '../v2/chat/welcome-screen-v2'
 import { InputArea } from './input-area'
 import { getAuthToken } from '@/lib/axios'
 import { LoginModal } from './login-modal'
+import { useSpeechToText } from '@/hooks/useSpeechToText'
 
 const useChat = () => {
   const {
@@ -42,7 +43,6 @@ const useChat = () => {
   const conversation = chats.find((chat) => chat.uuid === activeChatId)
   const messages = conversation?.messages || []
   const [input, setInput] = useState('')
-  const [isRecording, setIsRecording] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
   const [showFileSubmenu, setShowFileSubmenu] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -53,6 +53,7 @@ const useChat = () => {
   const { model } = useAppStateStore()
   const { currentAgent } = useAgents()
   const { t } = useTranslation()
+
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     value?: string
@@ -160,7 +161,6 @@ const useChat = () => {
     conversation,
     messages,
     input,
-    isRecording,
     handleSubmit,
     isLoading: loadingChatId,
     setInput,
@@ -179,6 +179,12 @@ export function ChatArea() {
     chat
 
   const { isConversationMode, setIsConversationMode } = useChatStore()
+  const { isListening, startListening, stopListening } = useSpeechToText({
+    lang: 'vi-VN',
+    onResult: (text) => {
+      setInput(text)
+    }
+  })
 
   const handleConversationMode = (checked: boolean) => {
     setIsConversationMode(checked)
@@ -186,7 +192,6 @@ export function ChatArea() {
     console.log('Conversation mode toggled:', checked)
   }
 
-  const [isRecording, setIsRecording] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
   const [showFileSubmenu, setShowFileSubmenu] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -217,16 +222,14 @@ export function ChatArea() {
   }, [showDropdown])
 
   const handleVoiceToggle = () => {
-    if (isRecording) {
-      // Stop recording logic
-      setIsRecording(false)
-      // Here you would implement actual speech-to-text
-      logging('Stopping voice recording...')
+    if (isListening) {
+      // Stop listening logic
+      stopListening()
+      logging('Stopping voice listening...')
     } else {
-      // Start recording logic
-      setIsRecording(true)
-      // Here you would implement actual speech-to-text
-      logging('Starting voice recording...')
+      // Start listening logic
+      startListening()
+      logging('Starting voice listening...')
     }
   }
 
@@ -315,7 +318,7 @@ export function ChatArea() {
         setInput={setInput}
         handleKeyDown={handleKeyDown}
         isLoading={isLoading}
-        isRecording={isRecording}
+        isRecording={isListening}
         handleVoiceToggle={handleVoiceToggle}
         fileInputRef={fileInputRef}
         handleFileChange={handleFileChange}

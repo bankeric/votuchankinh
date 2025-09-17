@@ -199,6 +199,47 @@ class TextToSpeechService {
         onStart()
       }
 
+      // Check if the text is too long and needs to be split
+      if (text.length > 500) {
+        // Adjust this threshold based on your needs
+        console.log(
+          'Long text detected, splitting into chunks for better performance'
+        )
+
+        // Split the text into sentences
+        const sentences = text.match(/[^.!?]+[.!?]+/g) || [text]
+
+        // Initialize progress tracking
+        let totalProcessed = 0
+        const totalLength = text.length
+
+        // Process each sentence sequentially
+        for (let i = 0; i < sentences.length; i++) {
+          const sentence = sentences[i].trim()
+          if (!sentence) continue
+
+          // Update progress based on how much text we've processed
+          if (onProgress) {
+            totalProcessed += sentence.length
+            const progress = Math.round((totalProcessed / totalLength) * 100)
+            onProgress(Math.min(progress, 95)) // Cap at 95% until fully complete
+          }
+
+          // Process this sentence
+          await this.playBase64Audio(
+            sentence,
+            options,
+            i === 0 ? onStart : undefined, // Only call onStart for the first chunk
+            i === sentences.length - 1 ? onEnd : undefined, // Only call onEnd for the last chunk
+            onError
+          )
+        }
+
+        // All chunks processed
+        if (onProgress) onProgress(100)
+        return
+      }
+
       // Use base64 method instead of blob URLs to avoid CORS issues
       const data = await this.getBase64Audio(text, options)
 
