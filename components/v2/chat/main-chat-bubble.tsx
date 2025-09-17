@@ -135,7 +135,6 @@ export function MainChatBubble({
 
   const handleReadText = () => {
     const textToRead = markdownToText(message.content)
-    console.log('textToRead', textToRead)
     if (isReading) {
       // Stop reading if already in progress
       setIsReading(false)
