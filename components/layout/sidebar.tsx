@@ -303,12 +303,12 @@ export function Sidebar({
 
         {/* Admin Panel Button */}
         {isAdmin && (
-          <div className='mb-4'>
+          <div className='mb-3'>
             <Button
               variant='outline'
               size='sm'
               onClick={() => router.push('/admin')}
-              className='w-full justify-start gap-2 h-8 text-sm border border-black bg-inherit text-black rounded-2xl'
+              className='w-full justify-start gap-2 h-6 text-xs border border-black bg-inherit text-black rounded-lg'
             >
               <span className='text-gray-700'>{t('navigation.admin')}</span>
             </Button>
@@ -319,9 +319,9 @@ export function Sidebar({
           variant='outline'
           size='sm'
           onClick={handleCreateNewChat}
-          className='w-full justify-center items-center gap-2 border border-black  text-black rounded-2xl bg-transparent'
+          className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-transparent h-6 text-xs'
         >
-          <Plus className='w-4 h-4' />
+          <Plus className='w-2 h-2' />
           <span>{t('chat.newChat')}</span>
         </Button>
       </div>
@@ -354,7 +354,7 @@ export function Sidebar({
       </div>
 
       {/* Footer */}
-      <div className='p-4 border-t border-[#2c2c2c]/30'>
+      <div className='p-5 border-t border-[#2c2c2c]/30'>
         <div className='flex items-center justify-center gap-2'>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
