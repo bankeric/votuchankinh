@@ -219,6 +219,20 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
                 />
                 <span>TikTok</span>
               </Button>
+              <Button
+                type='button'
+                variant='ghost'
+                className='flex items-center space-x-2 hover:bg-black/10'
+                onClick={() => handleSignIn(AuthProvider.INSTAGRAM)}
+              >
+                <Image
+                  src='/images/instagram.png'
+                  alt='Instagram'
+                  width={20}
+                  height={20}
+                />
+                <span>Instagram</span>
+              </Button>
             </div>
           </div>
         </DialogFooter>
