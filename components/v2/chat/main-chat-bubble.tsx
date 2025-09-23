@@ -6,12 +6,7 @@ import { MessageRole } from '@/interfaces/chat'
 import { useTranslation } from 'react-i18next'
 import { useTranslations } from '@/hooks/use-translations'
 import ReactMarkdown from 'react-markdown'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from '@/components/ui/accordion'
+
 import {
   Dialog,
   DialogContent,
@@ -37,7 +32,11 @@ import {
   Volume2,
   Check,
   Send,
-  ThumbsUpIcon
+  ThumbsUpIcon,
+  Square,
+  Play,
+  VolumeX,
+  Pause
 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { messagesService } from '@/service/messages'
@@ -45,6 +44,7 @@ import { useAuthStore } from '@/store/auth'
 import { useChatStore } from '@/store/chat'
 import { textToSpeechService } from '@/service/text-to-speech'
 import { useVoiceStore } from '@/store/voice'
+import { useAudioPlayerStore } from '@/store/audio-player'
 import useAgents from '@/hooks/use-agents'
 import Image from 'next/image'
 interface MainChatBubbleProps {
@@ -67,13 +67,30 @@ export function MainChatBubble({
   const { getVoiceSettings } = useVoiceStore()
   const { language } = useTranslations()
   const { agentsMap } = useAgents()
+  const {
+    currentPlayingMessageId,
+    isPlaying,
+    isPaused,
+    progress,
+    setCurrentPlaying,
+    setIsPlaying,
+    setIsPaused,
+    setProgress,
+    stopAll
+  } = useAudioPlayerStore()
 
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
   const [feedbackText, setFeedbackText] = useState('')
   const [copied, setCopied] = useState(false)
-  const [isReading, setIsReading] = useState(false)
-  const [readingProgress, setReadingProgress] = useState(0)
   const [showProgressPopover, setShowProgressPopover] = useState(false)
+
+  // Check if this message is currently playing or paused
+  const isThisMessagePlaying =
+    currentPlayingMessageId === message.uuid && isPlaying
+  const isThisMessagePaused =
+    currentPlayingMessageId === message.uuid && isPaused
+  const isThisMessageActive = currentPlayingMessageId === message.uuid
+
   const handleThumbsUp = async () => {
     if (!activeChatId) return
     try {
@@ -122,9 +139,9 @@ export function MainChatBubble({
     }
   }
 
-  const handleCopyText = async () => {
+  const handleCopyText = () => {
     try {
-      await navigator.clipboard.writeText(message.content)
+      navigator.clipboard.writeText(message.content)
       setCopied(true)
       toast.success(t('chat.actions.copied'))
       setTimeout(() => setCopied(false), 2000)
@@ -133,11 +150,28 @@ export function MainChatBubble({
     }
   }
 
-  const handleReadText = () => {
+  const handleReadText = async () => {
     const textToRead = markdownToText(message.content)
-    if (isReading) {
-      // Stop reading if already in progress
-      setIsReading(false)
+
+    // If another message is playing, stop it first
+    if (currentPlayingMessageId && currentPlayingMessageId !== message.uuid) {
+      textToSpeechService.stop()
+      stopAll()
+    }
+
+    // If this message is currently playing, pause it
+    if (isThisMessagePlaying) {
+      textToSpeechService.pause()
+      setIsPlaying(false)
+      setIsPaused(true)
+      return
+    }
+
+    // If this message is paused, resume it
+    if (isThisMessagePaused) {
+      textToSpeechService.resume()
+      setIsPlaying(true)
+      setIsPaused(false)
       return
     }
 
@@ -146,51 +180,67 @@ export function MainChatBubble({
       return
     }
 
-    setIsReading(true)
+    // Start playing this message
+    setCurrentPlaying(message.uuid)
+    setIsPlaying(true)
+    setIsPaused(false)
+    setProgress(0)
 
     // Get voice settings based on current language
     const voiceSettings = getVoiceSettings(
       language === 'vi' ? 'vi-VN' : 'en-US'
     )
 
-    textToSpeechService.playAudioStream(
-      textToRead,
-      {
-        voice_name: voiceSettings.selectedVoice,
-        language_code: language === 'vi' ? 'vi-VN' : 'en-US',
-        audio_encoding: 'MP3',
-        speaking_rate: voiceSettings.speakingRate,
-        pitch: voiceSettings.pitch,
-        volume_gain_db: voiceSettings.volumeGain,
-        chunked: true
-      },
-      () => {
-        // onStart callback
-        console.log('Started reading text')
-        setReadingProgress(0)
-      },
-      (progress) => {
-        // onProgress callback
-        setReadingProgress(progress)
-        setShowProgressPopover(true)
-        console.log(`Reading progress: ${progress}%`)
-      },
-      () => {
-        // onEnd callback
-        setIsReading(false)
-        setReadingProgress(0)
-        setShowProgressPopover(false)
-        console.log('Finished reading text')
-      },
-      (error) => {
-        // onError callback
-        setIsReading(false)
-        setReadingProgress(0)
-        setShowProgressPopover(false)
-        console.error('Text-to-speech error:', error)
-        toast.error(t('chat.actions.readFailed') || 'Failed to read text')
-      }
-    )
+    try {
+      await textToSpeechService.playAudioStream(
+        textToRead,
+        {
+          voice_name: voiceSettings.selectedVoice,
+          language_code: language === 'vi' ? 'vi-VN' : 'en-US',
+          audio_encoding: 'MP3',
+          speaking_rate: voiceSettings.speakingRate,
+          pitch: voiceSettings.pitch,
+          volume_gain_db: voiceSettings.volumeGain,
+          chunked: true
+        },
+        () => {
+          // onStart callback
+          console.log('Started reading text for message:', message.uuid)
+          setProgress(0)
+          setShowProgressPopover(true)
+        },
+        (progressValue) => {
+          // onProgress callback
+          setProgress(progressValue)
+          setShowProgressPopover(true)
+          console.log(`Reading progress: ${progressValue}%`)
+        },
+        () => {
+          // onEnd callback
+          console.log('Finished reading text for message:', message.uuid)
+          stopAll()
+          setShowProgressPopover(false)
+        },
+        (error) => {
+          // onError callback
+          console.error('Text-to-speech error:', error)
+          stopAll()
+          setShowProgressPopover(false)
+          toast.error(t('chat.actions.readFailed') || 'Failed to read text')
+        }
+      )
+    } catch (error) {
+      console.error('Error starting text-to-speech:', error)
+      toast.error(t('chat.actions.readFailed'))
+      stopAll()
+      setShowProgressPopover(false)
+    }
+  }
+
+  const handleStopReading = () => {
+    textToSpeechService.stop()
+    stopAll()
+    setShowProgressPopover(false)
   }
 
   const handleFeedbackSubmit = async () => {
@@ -387,25 +437,48 @@ export function MainChatBubble({
                       <MessageSquare className='h-2 w-2 mr-1' />
                     </Button>
                     <Popover
-                      open={showProgressPopover && isReading}
+                      open={showProgressPopover && isThisMessageActive}
                       onOpenChange={setShowProgressPopover}
                     >
                       <PopoverTrigger asChild>
-                        <Button
-                          variant='ghost'
-                          title={t('chat.actions.read')}
-                          size='sm'
-                          onClick={handleReadText}
-                          className={cn(
-                            'h-6 w-6 p-0  text-black rounded-full hover:bg-black/5',
-                            isReading && 'bg-orange-100'
+                        <div className='flex space-x-1'>
+                          <Button
+                            variant='ghost'
+                            title={
+                              isThisMessagePaused
+                                ? t('chat.actions.resume')
+                                : isThisMessagePlaying
+                                ? t('chat.actions.pause')
+                                : t('chat.actions.read')
+                            }
+                            size='sm'
+                            onClick={handleReadText}
+                            className={cn(
+                              'h-6 w-6 p-0 text-black rounded-full hover:bg-black/5',
+                              isThisMessageActive && 'bg-orange-100'
+                            )}
+                          >
+                            {isThisMessagePaused ? (
+                              <Play className='h-3 w-3' />
+                            ) : isThisMessagePlaying ? (
+                              <Pause className='h-3 w-3' />
+                            ) : (
+                              <Volume2 className='h-3 w-3' />
+                            )}
+                          </Button>
+
+                          {isThisMessageActive && (
+                            <Button
+                              variant='ghost'
+                              title={t('chat.actions.stop')}
+                              size='sm'
+                              onClick={handleStopReading}
+                              className='h-6 w-6 p-0 text-black rounded-full hover:bg-black/5'
+                            >
+                              <Square className='h-3 w-3 fill-red-500 text-red-500' />
+                            </Button>
                           )}
-                          disabled={isReading}
-                        >
-                          <Volume2
-                            className={cn('h-3 w-3', isReading && 'opacity-50')}
-                          />
-                        </Button>
+                        </div>
                       </PopoverTrigger>
                       <PopoverContent
                         className='w-auto p-2'
@@ -414,10 +487,13 @@ export function MainChatBubble({
                       >
                         <div className='text-center'>
                           <span className='text-xs text-gray-500'>
-                            {t('chat.actions.loading')}:
+                            {isThisMessagePaused
+                              ? t('chat.actions.paused')
+                              : t('chat.actions.loading')}
+                            :
                           </span>
                           <span className='text-sm font-medium text-orange-700 ml-1'>
-                            {Math.round(readingProgress)}%
+                            {Math.round(progress)}%
                           </span>
                         </div>
                       </PopoverContent>
