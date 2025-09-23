@@ -179,11 +179,24 @@ export function ChatArea() {
     chat
 
   const { isConversationMode, setIsConversationMode } = useChatStore()
-  const { isListening, startListening, stopListening } = useSpeechToText({
-    lang: 'vi-VN',
-    onResult: (text) => {
-      setInput(text)
-    }
+  const { isListening, toggleListening } = useSpeechToText({
+    lang: language,
+    onResult: (text, isFinal) => {
+      console.log('🗣️ Speech result:', text)
+      if (isFinal) {
+        // If final, append to input with a space
+        setInput((prev) => (prev ? prev + ' ' + text : text))
+      } else {
+        // If interim, just set the input to the current text
+        setInput(text)
+      }
+    },
+    onError: (error) => {
+      console.error('❌ Speech error in chat:', error)
+      // Optionally show toast notification
+    },
+    continuous: true,
+    interimResults: true
   })
 
   const handleConversationMode = (checked: boolean) => {
@@ -222,15 +235,8 @@ export function ChatArea() {
   }, [showDropdown])
 
   const handleVoiceToggle = () => {
-    if (isListening) {
-      // Stop listening logic
-      stopListening()
-      logging('Stopping voice listening...')
-    } else {
-      // Start listening logic
-      startListening()
-      logging('Starting voice listening...')
-    }
+    console.log('🎙️ Voice toggle clicked, current state:', isListening)
+    toggleListening()
   }
 
   const handleFileUpload = (type: string) => {

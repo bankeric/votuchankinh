@@ -31,7 +31,7 @@ function ChatPage() {
   // Login when session exists
   useEffect(() => {
     if (session && session.user && session.user.email && session.user.name) {
-      console.log('User is logged in:', session.user)
+      console.log('User is logged in:', session)
       loginWithSocial(session.user.email, session.user.name)
     }
   }, [session])
