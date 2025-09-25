@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { ChevronDown, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAgentStore } from '@/store/agent'
-import { Agent } from '@/interfaces/agent'
+import { Agent, AgentStatus } from '@/interfaces/agent'
 import {
   Select,
   SelectContent,
@@ -18,6 +18,10 @@ interface AgentSelectorProps {
 
 const AgentSelector = ({ value, onSelectAgent }: AgentSelectorProps) => {
   const { agents, isLoading } = useAgentStore()
+
+  const activeAgent = agents.filter(
+    (agent) => agent.status === AgentStatus.ACTIVE
+  )
   return (
     <Select
       value={value?.uuid}
@@ -41,7 +45,7 @@ const AgentSelector = ({ value, onSelectAgent }: AgentSelectorProps) => {
         align='end'
         sideOffset={8}
       >
-        {agents.map((agent) => (
+        {activeAgent.map((agent) => (
           <SelectItem
             key={agent.uuid}
             value={agent.uuid}
