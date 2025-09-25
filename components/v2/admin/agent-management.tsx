@@ -12,7 +12,10 @@ import {
   GraduationCap,
   X,
   Loader2,
-  Trash
+  Trash,
+  EyeIcon,
+  EyeClosedIcon,
+  EyeOffIcon
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -35,6 +38,8 @@ import { useUserStore } from '@/store/users'
 import { User, CreateUserDto, Role } from '@/interfaces/user'
 import { useTranslation } from 'react-i18next'
 import { useAgentStore } from '@/store/agent'
+import { Agent } from '@/interfaces/agent'
+import { useTranslations } from '@/hooks/use-translations'
 
 const roleConfig = {
   admin: {
@@ -64,7 +69,7 @@ const roleConfig = {
 }
 
 export function AgentManagement() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslations()
 
   const {
     users,
@@ -89,7 +94,8 @@ export function AgentManagement() {
     searchAgents,
     searchTerm,
     deleteAgent,
-    setSearchTerm
+    setSearchTerm,
+    updateAgent
   } = useAgentStore()
 
   const [isAddUserOpen, setIsAddUserOpen] = useState(false)
@@ -146,6 +152,16 @@ export function AgentManagement() {
     if (newRole) {
       await updateUserRole(userId, newRole)
     }
+  }
+
+  const handleUpdateAgentStatus = (agent: Agent) => {
+    updateAgent(
+      agent.uuid,
+      {
+        status: agent.status === 'active' ? 'inactive' : 'active'
+      },
+      language
+    )
   }
 
   const formatJoinedDate = (date: Date | string) => {
@@ -383,10 +399,24 @@ export function AgentManagement() {
                         <p className='text-gray-900'>{agent.language}</p>
                       </td>
                       <td className='p-4'>
-                        <Trash
-                          className='cursor-pointer text-gray-400 hover:text-gray-600'
-                          onClick={() => deleteAgent(agent.uuid)}
-                        />
+                        <div className='flex items-center gap-4'>
+                          {agent.status === 'active' ? (
+                            <EyeOffIcon
+                              className='cursor-pointer text-gray-400 hover:text-gray-600'
+                              onClick={() => handleUpdateAgentStatus(agent)}
+                            />
+                          ) : (
+                            <EyeIcon
+                              className='cursor-pointer text-gray-400 hover:text-gray-600'
+                              onClick={() => handleUpdateAgentStatus(agent)}
+                            />
+                          )}
+
+                          <Trash
+                            className='cursor-pointer text-gray-400 hover:text-gray-600'
+                            onClick={() => deleteAgent(agent.uuid)}
+                          />
+                        </div>
                       </td>
                     </tr>
                   )

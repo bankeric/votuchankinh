@@ -6,7 +6,7 @@ import {
   appToastUpload,
   handleUploadEvent
 } from '@/lib/toastify'
-import { agentService, CreateAgentDto } from '@/service/agent'
+import { agentService, CreateAgentDto, UpdateAgentDto } from '@/service/agent'
 import { Agent } from '@/interfaces/agent'
 import { PreviewMessage } from '@/interfaces/chat'
 import { ragFileService } from '@/service/rag-file'
@@ -75,7 +75,7 @@ interface AgentState {
   ) => Promise<Agent | null>
   updateAgent: (
     uuid: string,
-    agentData: Partial<CreateAgentDto>,
+    agentData: Partial<UpdateAgentDto>,
     language: string
   ) => Promise<Agent | null>
   deleteAgent: (uuid: string) => Promise<boolean>
@@ -384,7 +384,7 @@ export const useAgentStore = create<AgentState>()((set, get) => {
 
     updateAgent: async (
       uuid: string,
-      agentData: Partial<CreateAgentDto>,
+      agentData: Partial<UpdateAgentDto>,
       language: string
     ) => {
       set({ isUpdating: true })

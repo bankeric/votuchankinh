@@ -17,6 +17,7 @@ export interface CreateAgentDto {
 
 export interface UpdateAgentDto extends Partial<CreateAgentDto> {
   uuid: string
+  status?: 'active' | 'inactive'
 }
 
 class AgentService {
@@ -78,7 +79,7 @@ class AgentService {
   // Update an agent
   async update(
     uuid: string,
-    agentData: Partial<CreateAgentDto>
+    agentData: Partial<UpdateAgentDto>
   ): Promise<Agent> {
     try {
       const { data } = await axiosInstance.put<Agent>(
