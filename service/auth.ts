@@ -133,11 +133,16 @@ class AuthService {
   }
 
   // Login user
-  async loginWithSocial(email: string, name: string): Promise<AuthResponse> {
+  async loginWithSocial(
+    socialId: string,
+    email: string,
+    name: string
+  ): Promise<AuthResponse> {
     try {
       const { data } = await axiosInstance.post<AuthResponse>(
         `${this.BASE_URL}/social-login`,
         {
+          social_id: socialId,
           email,
           name
         }

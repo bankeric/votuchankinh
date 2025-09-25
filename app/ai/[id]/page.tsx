@@ -30,9 +30,15 @@ function ChatPage() {
 
   // Login when session exists
   useEffect(() => {
-    if (session && session.user && session.user.email && session.user.name) {
+    if (
+      session &&
+      session.user &&
+      session.user.email &&
+      session.user.name &&
+      session.user.id
+    ) {
       console.log('User is logged in:', session)
-      loginWithSocial(session.user.email, session.user.name)
+      loginWithSocial(session.user.id, session.user.email, session.user.name)
     }
   }, [session])
   // Set active chat on mount and handle navigation
