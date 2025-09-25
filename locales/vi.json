@@ -409,7 +409,9 @@
       "setting": "Cài đặt",
       "settingShort": "Cài đặt",
       "apiKey": "Khóa API",
-      "apiKeyShort": "API"
+      "apiKeyShort": "API",
+      "agentManagement": "Quản lý Agent",
+      "agentManagementShort": "Agent"
     },
     "files": {
       "management": {
@@ -541,6 +543,31 @@
         "hoursAgo": "{{hours}} giờ trước",
         "daysAgo": "{{days}} ngày trước",
         "neverActive": "Chưa hoạt động"
+      }
+    },
+    "agentManagement": {
+      "title": "Quản lý Agent",
+      "stats": {
+        "total": "Tổng số",
+        "active": "Hoạt động",
+        "inactive": "Không hoạt động"
+      },
+      "filters": {
+        "searchPlaceholder": "Tìm kiếm theo tên...",
+        "roleFilter": "Vai trò",
+        "allRoles": "Tất cả",
+        "sortBy": "Sắp xếp",
+        "lastActive": "Hoạt động gần nhất",
+        "name": "Tên",
+        "email": "Email",
+        "role": "Vai trò",
+        "joinedDate": "Ngày tham gia"
+      },
+      "table": {
+        "name": "Tên",
+        "description": "Mô tả",
+        "language": "Ngôn ngữ",
+        "status": "Trạng thái"
       }
     },
     "setting": {

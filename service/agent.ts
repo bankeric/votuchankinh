@@ -24,7 +24,7 @@ class AgentService {
 
   // Get all agents
   async getAll({
-    limit = 10,
+    limit = 100,
     offset = 0,
     language
   }: {
@@ -120,7 +120,7 @@ class AgentService {
   async search(query: string): Promise<Agent[]> {
     try {
       const { data } = await axiosInstance.get<Agent[]>(
-        `${this.BASE_URL}/search?q=${encodeURIComponent(query)}`
+        `${this.BASE_URL}/search?query=${encodeURIComponent(query)}`
       )
       return data
     } catch (error) {
