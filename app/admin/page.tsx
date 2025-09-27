@@ -6,11 +6,11 @@ import { Role } from '@/interfaces/user'
 import { useAuthStore } from '@/store/auth'
 
 export default function AdminPage() {
-  const { user } = useAuthStore()
+  const { user, isAuthenticated } = useAuthStore()
   useOnce(() => {
-    if (!user || user.role !== Role.ADMIN) {
+    if (isAuthenticated !== undefined && (!user || user.role !== Role.ADMIN)) {
       window.location.href = '/ai/new'
     }
-  }, [user])
+  }, [user, isAuthenticated])
   return <AdminPanel />
 }
