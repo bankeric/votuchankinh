@@ -50,6 +50,7 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+<<<<<<< HEAD
 "@auth/core@0.40.0":
   version "0.40.0"
   resolved "https://registry.npmjs.org/@auth/core/-/core-0.40.0.tgz"
@@ -61,6 +62,8 @@
     preact "10.24.3"
     preact-render-to-string "6.5.11"
 
+=======
+>>>>>>> b6999ca4c3f1964c25b2572140d3ec8d56c0a1a0
 "@babel/runtime@^7.23.2", "@babel/runtime@^7.27.6", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
   version "7.27.6"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.27.6.tgz"
@@ -2058,11 +2061,19 @@ fraction.js@^4.3.7:
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
 framer-motion@^12.23.12:
+<<<<<<< HEAD
   version "12.23.22"
   resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-12.23.22.tgz"
   integrity sha512-ZgGvdxXCw55ZYvhoZChTlG6pUuehecgvEAJz0BHoC5pQKW1EC5xf1Mul1ej5+ai+pVY0pylyFfdl45qnM1/GsA==
   dependencies:
     motion-dom "^12.23.21"
+=======
+  version "12.23.13"
+  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-12.23.13.tgz"
+  integrity sha512-OMF57Xh0fuTXfJQPtCieYGeU9Fam4SxqPLVz78YI7ATRFrfz8SARtqr1+qv56cX45kPFcIEfkUorVfxlOsjcUg==
+  dependencies:
+    motion-dom "^12.23.12"
+>>>>>>> b6999ca4c3f1964c25b2572140d3ec8d56c0a1a0
     motion-utils "^12.23.6"
     tslib "^2.4.0"
 
@@ -2947,10 +2958,17 @@ minimist@^1.2.8:
   resolved "https://registry.npmjs.org/minipass/-/minipass-7.1.2.tgz"
   integrity sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==
 
+<<<<<<< HEAD
 motion-dom@^12.23.21:
   version "12.23.21"
   resolved "https://registry.npmjs.org/motion-dom/-/motion-dom-12.23.21.tgz"
   integrity sha512-5xDXx/AbhrfgsQmSE7YESMn4Dpo6x5/DTZ4Iyy4xqDvVHWvFVoV+V2Ri2S/ksx+D40wrZ7gPYiMWshkdoqNgNQ==
+=======
+motion-dom@^12.23.12:
+  version "12.23.12"
+  resolved "https://registry.npmjs.org/motion-dom/-/motion-dom-12.23.12.tgz"
+  integrity sha512-RcR4fvMCTESQBD/uKQe49D5RUeDOokkGRmz4ceaJKDBgHYtZtntC/s2vLvY38gqGaytinij/yi3hMcWVcEF5Kw==
+>>>>>>> b6999ca4c3f1964c25b2572140d3ec8d56c0a1a0
   dependencies:
     motion-utils "^12.23.6"
 
@@ -3209,6 +3227,7 @@ postcss@8.4.31:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+<<<<<<< HEAD
 preact-render-to-string@6.5.11:
   version "6.5.11"
   resolved "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-6.5.11.tgz"
@@ -3219,6 +3238,8 @@ preact@10.24.3:
   resolved "https://registry.npmjs.org/preact/-/preact-10.24.3.tgz"
   integrity sha512-Z2dPnBnMUfyQfSQ+GBdsGa16hz35YmLmtTLhM169uW944hYL6xzTYkJjC07j+Wosz733pMWx0fgON3JNw1jJQA==
 
+=======
+>>>>>>> b6999ca4c3f1964c25b2572140d3ec8d56c0a1a0
 pretty-bytes@^5.6.0:
   version "5.6.0"
   resolved "https://registry.npmjs.org/pretty-bytes/-/pretty-bytes-5.6.0.tgz"
@@ -3300,9 +3321,15 @@ react-hook-form@^7.54.1:
   integrity sha512-RbEks3+cbvTP84l/VXGUZ+JMrKOS8ykQCRYdm5aYsxnDquL0vspsyNhGRO7pcH6hsZqWlPOjLye7rJqdtdAmlg==
 
 react-i18next@^15.5.3:
+<<<<<<< HEAD
   version "15.7.4"
   resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-15.7.4.tgz"
   integrity sha512-nyU8iKNrI5uDJch0z9+Y5XEr34b0wkyYj3Rp+tfbahxtlswxSCjcUL9H0nqXo9IR3/t5Y5PKIA3fx3MfUyR9Xw==
+=======
+  version "15.7.3"
+  resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-15.7.3.tgz"
+  integrity sha512-AANws4tOE+QSq/IeMF/ncoHlMNZaVLxpa5uUGW1wjike68elVYr0018L9xYoqBr1OFO7G7boDPrbn0HpMCJxTw==
+>>>>>>> b6999ca4c3f1964c25b2572140d3ec8d56c0a1a0
   dependencies:
     "@babel/runtime" "^7.27.6"
     html-parse-stringify "^3.0.1"
