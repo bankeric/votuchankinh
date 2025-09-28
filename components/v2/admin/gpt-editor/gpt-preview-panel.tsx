@@ -52,7 +52,7 @@ export function GptPreviewPanel({ isMobile = false, onSetMobileChatMode }: { isM
   }, []);
 
   return (
-    <div className="w-full sm:w-1/2 flex flex-col bg-gray-50 h-full">
+    <div className="w-1/2 flex flex-col bg-gray-50 h-full">
       <div className="p-4 border-b bg-white flex items-center justify-between">
         <h2 className="font-medium">{t("gptEditor.preview.title")}</h2>
         <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export function GptPreviewPanel({ isMobile = false, onSetMobileChatMode }: { isM
               variant="outline"
               size="sm"
               onClick={togglePromptContext}
-              className="text-xs gap-1"
+              className="text-xs gap-1 min-w-[140px] whitespace-nowrap"
             >
               {showPromptContext ? (
                 <ChevronUp className="w-3 h-3" />
@@ -91,7 +91,7 @@ export function GptPreviewPanel({ isMobile = false, onSetMobileChatMode }: { isM
             variant="outline"
             size="sm"
             onClick={resetChat}
-            className="text-xs gap-1"
+            className="text-xs gap-1 min-w-[80px] whitespace-nowrap"
           >
             <RefreshCw className="w-3 h-3" />
             {t("gptEditor.preview.reset")}
