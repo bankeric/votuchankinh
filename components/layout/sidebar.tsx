@@ -370,7 +370,7 @@ export function Sidebar({
       </div>
 
       {/* Footer V2 */}
-      <div className='p-5 border-t border-[#2c2c2c]/30'>
+      <div className='px-5 pt-6 pb-5 border-t border-[#2c2c2c]/30'>
         <div className='flex items-center justify-center gap-2'>
           <div className='transition-all duration-300 ease-in-out'>
             {user && (

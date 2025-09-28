@@ -171,7 +171,7 @@ export const SidebarMobile = ({
         </div>
 
         {/* Footer */}
-        <div className='p-4 border-t border-[#2c2c2c]/30'>
+        <div className='p-2 border-t border-[#2c2c2c]/30'>
           <div className='flex items-center justify-center gap-2'>
             <div className='transition-all duration-300 ease-in-out'>
               {user && (
