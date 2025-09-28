@@ -139,6 +139,31 @@
     }
   },
   "admin": {
+    "agentManagement": {
+      "title": "Agent Management",
+      "stats": {
+        "total": "Total",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "filters": {
+        "searchPlaceholder": "Search by name...",
+        "roleFilter": "Role",
+        "allRoles": "All",
+        "sortBy": "Sort by",
+        "lastActive": "Last active",
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "joinedDate": "Joined date"
+      },
+      "table": {
+        "name": "Name",
+        "description": "Description",
+        "language": "Language",
+        "status": "Status"
+      }
+    },
     "feedback": {
       "agent": "Agent",
       "description": "Edit and approve Q&A pairs to fine-tune the model",
@@ -192,7 +217,9 @@
       "setting": "Setting",
       "settingShort": "Setting",
       "apiKey": "API Keys",
-      "apiKeyShort": "API"
+      "apiKeyShort": "API",
+      "agentManagement": "Agent Management",
+      "agentManagementShort": "Agent"
     },
     "files": {
       "management": {
@@ -424,7 +451,7 @@
           "downloadJson": "Download JSON",
           "keyInformation": "API Key Information",
           "name": "Name",
-          "description": "Description",
+          "keyDescription": "Description",
           "status": "Status",
           "permissions": "Permissions",
           "created": "Created",
@@ -612,8 +639,7 @@
     },
     "agentSetting": {
       "title": "Agent Settings",
-      "select": "Select an agent",
-      "description": "Select the agent for each function"
+      "select": "Select an agent"
     },
     "preview": {
       "title": "Preview",
@@ -631,6 +657,9 @@
     "fileTypes": {
       "image": "Image",
       "document": "Document"
+    },
+    "setting": {
+      "description": "Select the agent for each function:"
     }
   },
   "errors": {

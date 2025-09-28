@@ -141,7 +141,7 @@ export function AdminPanel() {
         </div>
 
         {/* Tabs */}
-        <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 gap-3 sm:gap-0'>
+        <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 md:mb-6 gap-3 sm:gap-0 w-full'>
           {/* Mobile Dropdown */}
           <div className='block sm:hidden w-full'>
             <Select
@@ -173,13 +173,13 @@ export function AdminPanel() {
           </div>
 
           {/* Desktop Tabs */}
-          <div className='hidden sm:flex flex-row gap-1 md:gap-2 py-2'>
+          <div className='hidden sm:flex flex-row gap-1 md:gap-2 py-2 flex-1'>
             {tabs.map((tab) => (
               <Button
                 key={tab.id}
                 variant={activeTab === tab.id ? 'default' : 'outline'}
                 onClick={() => setActiveTab(tab.id)}
-                className='gap-1 md:gap-2 whitespace-nowrap'
+                className='gap-1 md:gap-2 whitespace-nowrap flex-1 justify-center'
                 size='sm'
               >
                 {tab.icon}

@@ -122,7 +122,7 @@ export function GPTEditor({ onSave }: GPTEditorProps) {
                       activeSection === button.section ? "default" : "outline"
                     }
                     onClick={() => setActiveSection(button.section)}
-                    className="gap-1 whitespace-nowrap"
+                    className="gap-1 whitespace-nowrap min-w-[100px]"
                     size="sm"
                   >
                     <IconComponent className="w-4 h-4" />
@@ -191,7 +191,7 @@ export function GPTEditor({ onSave }: GPTEditorProps) {
                       activeSection === button.section ? "default" : "outline"
                     }
                     onClick={() => setActiveSection(button.section)}
-                    className="gap-2"
+                    className="gap-2 min-w-[120px] whitespace-nowrap"
                   >
                     <IconComponent className="w-4 h-4" />
                     {t(button.translationKey)}

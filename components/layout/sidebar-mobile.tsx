@@ -173,36 +173,43 @@ export const SidebarMobile = ({
         {/* Footer */}
         <div className='p-4 border-t border-[#2c2c2c]/30'>
           <div className='flex items-center justify-center gap-2'>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant='ghost'
-                  size='sm'
-                >
-                  <MoreVertical className='w-4 h-4' />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side='top'
-                align='center'
-                className='w-48'
-              >
-                <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
-                  <Settings className='w-4 h-4 mr-2' />
-                  {t('navigation.settings')}
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogoutConfirmation}>
-                  <LogOut className='w-4 h-4 mr-2' />
-                  {t('auth.logout')}
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className='transition-all duration-300 ease-in-out'>
+              {user && (
+                <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant='ghost'
+                        size='sm'
+                        className='transition-colors duration-200 hover:bg-black/10'
+                      >
+                        <MoreVertical className='w-4 h-4' />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      side='top'
+                      align='center'
+                      className='w-48'
+                    >
+                      <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
+                        <Settings className='w-4 h-4 mr-2' />
+                        {t('navigation.settings')}
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={handleLogoutConfirmation}>
+                        <LogOut className='w-4 h-4 mr-2' />
+                        {t('auth.logout')}
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              )}
+            </div>
 
             {language === Language.VI ? (
               <Button
                 variant={'ghost'}
                 size='sm'
-                className={`text-xs text-black hover:bg-black/10`}
+                className={`text-xs text-black hover:bg-black/10 transition-colors duration-200`}
                 onClick={() => changeLanguage(Language.EN)}
               >
                 🇺🇸 {t('settings.english')}
@@ -211,30 +218,26 @@ export const SidebarMobile = ({
               <Button
                 variant={'ghost'}
                 size='sm'
-                className={`text-xs text-black hover:bg-black/10`}
+                className={`text-xs text-black hover:bg-black/10 transition-colors duration-200`}
                 onClick={() => changeLanguage(Language.VI)}
               >
                 🇻🇳 {t('settings.vietnamese')}
               </Button>
             )}
 
-            {!user ? (
-              <Button
-                variant={'ghost'}
-                onClick={handleLogin}
-                className='text-black hover:bg-black/10'
-              >
-                <LogIn className='w-4 h-4' />
-              </Button>
-            ) : (
-              <Button
-                variant={'ghost'}
-                onClick={handleLogout}
-                className='text-black hover:bg-black/10'
-              >
-                <LogOut className='w-4 h-4' />
-              </Button>
-            )}
+            <div className='transition-all duration-300 ease-in-out'>
+              {!user && (
+                <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
+                  <Button
+                    variant={'ghost'}
+                    onClick={handleLogin}
+                    className='text-black hover:bg-black/10 transition-colors duration-200'
+                  >
+                    <LogIn className='w-4 h-4' />
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
