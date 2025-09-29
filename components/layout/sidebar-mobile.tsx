@@ -132,15 +132,17 @@ export const SidebarMobile = ({
           )}
 
           {/* New Chat Button */}
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={handleCreateChat}
-            className='w-full justify-start gap-2 rounded-2xl border-black bg-inherit'
-          >
-            <Plus className='w-4 h-4' />
-            <span>{t('chat.newChat')}</span>
-          </Button>
+          {user && (
+            <Button
+              variant='outline'
+              size='sm'
+              onClick={handleCreateChat}
+              className='w-full justify-start gap-2 rounded-2xl border-black bg-inherit'
+            >
+              <Plus className='w-4 h-4' />
+              <span>{t('chat.newChat')}</span>
+            </Button>
+          )}
         </div>
 
         {/* Search and Chats */}

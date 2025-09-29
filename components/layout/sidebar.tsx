@@ -221,15 +221,17 @@ export function Sidebar({
           </Button>
         )}
         {/* New Chat Button - Collapsed */}
-        <Button
-          variant='outline'
-          size='sm'
-          onClick={handleCreateNewChat}
-          className='w-10 h-10 p-0 mb-4'
-          title={t('chat.newChat')}
-        >
-          <Plus className='w-4 h-4' />
-        </Button>
+        {user && (
+          <Button
+            variant='outline'
+            size='sm'
+            onClick={handleCreateNewChat}
+            className='w-10 h-10 p-0 mb-4'
+            title={t('chat.newChat')}
+          >
+            <Plus className='w-4 h-4' />
+          </Button>
+        )}
 
         {/* User Menu - Collapsed */}
         <div className='mt-auto'>
@@ -331,15 +333,17 @@ export function Sidebar({
           </div>
         )}
         {/* New Chat Button */}
-        <Button
-          variant='outline'
-          size='sm'
-          onClick={handleCreateNewChat}
-          className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-transparent h-6 text-xs'
-        >
-          <Plus className='w-2 h-2' />
-          <span>{t('chat.newChat')}</span>
-        </Button>
+        {user && (
+          <Button
+            variant='outline'
+            size='sm'
+            onClick={handleCreateNewChat}
+            className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-transparent h-6 text-xs'
+          >
+            <Plus className='w-2 h-2' />
+            <span>{t('chat.newChat')}</span>
+          </Button>
+        )}
       </div>
 
       {/* Search and Chats */}
