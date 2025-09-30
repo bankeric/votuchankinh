@@ -1,92 +1,441 @@
 "use client";
 
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { User } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { 
+  User, 
+  Volume2, 
+  Palette, 
+  Database, 
+  Shield,
+  Globe,
+  Moon,
+  Sun,
+  Monitor,
+  LogOut,
+  X,
+  Download,
+  Trash2,
+  Crown
+} from "lucide-react";
 import { useTranslations } from "@/hooks/use-translations";
 import { useAuthStore } from "@/store/auth";
 import { SelectVoice } from "../v2/admin/voice/select-voice";
+import { cn } from "@/lib/utils";
+import { Language } from "@/interfaces/chat";
+import { useRouter } from "next/navigation";
 
 interface SettingsModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
+type SettingsSection = "general" | "voice" | "appearance" | "data" | "account";
+
 export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
-  const { t } = useTranslations();
-  const { user } = useAuthStore();
+  const { t, language, changeLanguage } = useTranslations();
+  const { user, logout } = useAuthStore();
+  const router = useRouter();
+  const [activeSection, setActiveSection] = useState<SettingsSection>("general");
+  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
+  const [autoSave, setAutoSave] = useState(true);
+  const [soundEffects, setSoundEffects] = useState(true);
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <User className="w-5 h-5 text-orange-600" />
-            {t('settings.title')}
-          </DialogTitle>
-        </DialogHeader>
+  const sidebarItems = [
+    { id: "general" as SettingsSection, label: t("settings.sections.general"), icon: User },
+    { id: "voice" as SettingsSection, label: t("settings.sections.voice"), icon: Volume2 },
+    { id: "appearance" as SettingsSection, label: t("settings.sections.appearance"), icon: Palette },
+    { id: "data" as SettingsSection, label: t("settings.sections.data"), icon: Database },
+    { id: "account" as SettingsSection, label: t("settings.sections.account"), icon: Shield },
+  ];
 
-        <div className="space-y-6">
-          {/* User Profile Section */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-orange-600" />
-              <h3 className="text-sm font-medium text-gray-900">
-                {t('settings.profile')}
-              </h3>
+  const renderContent = () => {
+    switch (activeSection) {
+      case "general":
+        return (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">{t("settings.general.title")}</h3>
+              <p className="text-gray-600">{t("settings.general.subtitle")}</p>
             </div>
-            <div className="space-y-3">
-              <div>
-                <Label htmlFor="email" className="text-sm text-gray-700">
-                  {t('auth.email')}
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={user?.email || ''}
-                  disabled
-                  className="mt-1 bg-gray-50"
-                />
+            
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="space-y-1">
+                    <Label className="text-base font-semibold flex items-center gap-2">
+                      <Globe className="w-5 h-5 text-orange-500" />
+                      {t("settings.general.language")}
+                    </Label>
+                    <p className="text-sm text-gray-600">{t("settings.general.languageDescription")}</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Button
+                    variant={language === Language.EN ? "default" : "outline"}
+                    size="lg"
+                    onClick={() => changeLanguage(Language.EN)}
+                    className={cn(
+                      "flex-1 h-12 text-base font-medium transition-all duration-200",
+                      language === Language.EN 
+                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg" 
+                        : "border-gray-300 hover:border-orange-300 hover:bg-orange-50"
+                    )}
+                  >
+                    🇺🇸 English
+                  </Button>
+                  <Button
+                    variant={language === Language.VI ? "default" : "outline"}
+                    size="lg"
+                    onClick={() => changeLanguage(Language.VI)}
+                    className={cn(
+                      "flex-1 h-12 text-base font-medium transition-all duration-200",
+                      language === Language.VI 
+                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg" 
+                        : "border-gray-300 hover:border-orange-300 hover:bg-orange-50"
+                    )}
+                  >
+                    🇻🇳 Tiếng Việt
+                  </Button>
+                </div>
               </div>
-              <div>
-                <Label htmlFor="role" className="text-sm text-gray-700">
-                  {t('auth.role')}
-                </Label>
-                <Input
-                  id="role"
-                  value={user?.role || ''}
-                  disabled
-                  className="mt-1 bg-gray-50"
-                />
+
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                    <Label className="text-base font-semibold flex items-center gap-2">
+                      <Database className="w-5 h-5 text-green-500" />
+                      Auto-save conversations
+                    </Label>
+                    <p className="text-sm text-gray-600">Automatically save your chat history for future reference</p>
+                  </div>
+                  <Switch
+                    checked={autoSave}
+                    onCheckedChange={setAutoSave}
+                    className="data-[state=checked]:bg-green-500"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-1">
+                    <Label className="text-base font-semibold flex items-center gap-2">
+                      <Volume2 className="w-5 h-5 text-blue-500" />
+                      Sound effects
+                    </Label>
+                    <p className="text-sm text-gray-600">Play sounds for notifications and interactions</p>
+                  </div>
+                  <Switch
+                    checked={soundEffects}
+                    onCheckedChange={setSoundEffects}
+                    className="data-[state=checked]:bg-blue-500"
+                  />
+                </div>
               </div>
             </div>
           </div>
+        );
 
-          <Separator />
+      case "voice":
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Voice Settings</h3>
+              <p className="text-gray-600">Configure audio preferences and voice options</p>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+              <SelectVoice />
+            </div>
+          </div>
+        );
 
-          <SelectVoice/>
-          <Separator />
+      case "appearance":
+        return (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Appearance</h3>
+              <p className="text-gray-600">Customize the look and feel of your interface</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <div className="space-y-4">
+                <div className="space-y-3">
+                  <Label className="text-base font-semibold flex items-center gap-2">
+                    <Palette className="w-5 h-5 text-purple-500" />
+                    Theme
+                  </Label>
+                  <p className="text-sm text-gray-600">Choose your preferred color scheme</p>
+                  <div className="grid grid-cols-3 gap-3">
+                    <Button
+                      variant={theme === "light" ? "default" : "outline"}
+                      size="lg"
+                      onClick={() => setTheme("light")}
+                      className={cn(
+                        "h-16 flex flex-col items-center gap-2 transition-all duration-200",
+                        theme === "light" 
+                          ? "bg-gradient-to-br from-yellow-400 to-orange-500 text-white shadow-lg" 
+                          : "border-gray-300 hover:border-yellow-300 hover:bg-yellow-50"
+                      )}
+                    >
+                      <Sun className="w-6 h-6" />
+                      <span className="text-sm font-medium">Light</span>
+                    </Button>
+                    <Button
+                      variant={theme === "dark" ? "default" : "outline"}
+                      size="lg"
+                      onClick={() => setTheme("dark")}
+                      className={cn(
+                        "h-16 flex flex-col items-center gap-2 transition-all duration-200",
+                        theme === "dark" 
+                          ? "bg-gradient-to-r from-gray-700 to-gray-900 text-white shadow-lg" 
+                          : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                      )}
+                    >
+                      <Moon className="w-6 h-6" />
+                      <span className="text-sm font-medium">Dark</span>
+                    </Button>
+                    <Button
+                      variant={theme === "system" ? "default" : "outline"}
+                      size="lg"
+                      onClick={() => setTheme("system")}
+                      className={cn(
+                        "h-16 flex flex-col items-center gap-2 transition-all duration-200",
+                        theme === "system" 
+                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg" 
+                          : "border-gray-300 hover:border-blue-300 hover:bg-blue-50"
+                      )}
+                    >
+                      <Monitor className="w-6 h-6" />
+                      <span className="text-sm font-medium">System</span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
 
-          {/* Actions */}
-          <div className="flex justify-end gap-3 pt-4">
-            <Button
-              variant="outline"
-              onClick={() => onOpenChange(false)}
-              className="border-orange-200 hover:bg-orange-50"
-            >
-              {t('common.close')}
-            </Button>
+      case "data":
+        return (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Data & Privacy</h3>
+              <p className="text-gray-600">Manage your data and privacy settings</p>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-green-100">
+                    <Download className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg">Export Data</h4>
+                    <p className="text-sm text-gray-600">Download your chat history and settings</p>
+                  </div>
+                </div>
+                <Button variant="outline" size="lg" className="w-full flex items-center gap-2 border-green-200 hover:bg-green-50 hover:border-green-300">
+                  <Download className="w-5 h-5" />
+                  Export Data
+                </Button>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-red-100 bg-red-50/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-red-100">
+                    <Trash2 className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-red-900">Clear Data</h4>
+                    <p className="text-sm text-red-700">Permanently delete all your chat history and settings</p>
+                  </div>
+                </div>
+                <Button variant="destructive" size="lg" className="w-full flex items-center gap-2">
+                  <Trash2 className="w-5 h-5" />
+                  Clear All Data
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+
+      case "account":
+        return (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Account Settings</h3>
+              <p className="text-gray-600">Manage your account information and preferences</p>
+            </div>
+            
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="email" className="text-base font-semibold flex items-center gap-2">
+                      <User className="w-5 h-5 text-blue-500" />
+                      Email Address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={user?.email || ''}
+                      disabled
+                      className="mt-2 bg-gray-50 border-gray-200 h-12"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="role" className="text-base font-semibold flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-purple-500" />
+                      Account Type
+                    </Label>
+                    <Input
+                      id="role"
+                      value={user?.role || 'Free'}
+                      disabled
+                      className="mt-2 bg-gray-50 border-gray-200 h-12"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-red-100 bg-red-50/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-red-100">
+                    <LogOut className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-lg text-red-900">Sign Out</h4>
+                    <p className="text-sm text-red-700">Sign out of your account securely</p>
+                  </div>
+                </div>
+                <Button 
+                  variant="destructive" 
+                  size="lg"
+                  onClick={() => {
+                    logout();
+                    onOpenChange(false);
+                  }}
+                  className="w-full flex items-center gap-2"
+                >
+                  <LogOut className="w-5 h-5" />
+                  Sign Out
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:max-w-[1000px] w-[1000px] h-[700px] p-0 bg-white border border-gray-200 shadow-2xl flex flex-col">
+        <DialogTitle className="sr-only">{t("settings.title")}</DialogTitle>
+        {/* Fixed Header */}
+        <div className="flex-shrink-0 p-6 pb-4 border-b border-gray-200 bg-gradient-to-r from-amber-50 to-orange-50">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 text-2xl font-bold text-gray-800">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg">
+                <User className="w-6 h-6 text-white" />
+              </div>
+{t("settings.title")}
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => {
+                  onOpenChange(false);
+                  router.push('/pricing');
+                }}
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg flex items-center gap-2"
+              >
+                <Crown className="w-4 h-4" />
+                {t("common.upgrade")}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => onOpenChange(false)}
+                className="h-10 w-10 p-0 rounded-full hover:bg-gray-200 transition-colors"
+              >
+                {/* <X className="h-5 w-5" /> */}
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-1 overflow-hidden">
+          {/* Fixed Sidebar */}
+          <div className="flex-shrink-0 w-64 border-r border-gray-200 bg-gradient-to-b from-gray-50 to-white p-4 overflow-hidden">
+            <nav className="space-y-1 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+              {sidebarItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Button
+                    key={item.id}
+                    variant="ghost"
+                    className={cn(
+                      "w-full justify-start text-left h-auto p-3 rounded-lg transition-all duration-200 group",
+                      activeSection === item.id 
+                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md" 
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    )}
+                    onClick={() => setActiveSection(item.id)}
+                  >
+                    <div className={cn(
+                      "p-1.5 rounded-md mr-3 transition-colors",
+                      activeSection === item.id 
+                        ? "bg-white/20" 
+                        : "bg-gray-100 group-hover:bg-gray-200"
+                    )}>
+                      <Icon className={cn(
+                        "w-4 h-4 transition-colors",
+                        activeSection === item.id ? "text-white" : "text-gray-600"
+                      )} />
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <span className="text-sm font-semibold">{item.label}</span>
+                      <span className={cn(
+                        "text-xs opacity-70",
+                        activeSection === item.id ? "text-white/80" : "text-gray-500"
+                      )}>
+                        {item.id === "general" && t("settings.descriptions.general")}
+                        {item.id === "voice" && t("settings.descriptions.voice")}
+                        {item.id === "appearance" && t("settings.descriptions.appearance")}
+                        {item.id === "data" && t("settings.descriptions.data")}
+                        {item.id === "account" && t("settings.descriptions.account")}
+                      </span>
+                    </div>
+                  </Button>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto bg-gradient-to-br from-white to-gray-50">
+            <div className="p-6">
+              <div className="max-w-3xl">
+                {renderContent()}
+              </div>
+            </div>
           </div>
         </div>
       </DialogContent>
     </Dialog>
   );
-} 
+}

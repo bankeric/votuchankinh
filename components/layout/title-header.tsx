@@ -7,7 +7,6 @@ import useAgents from '@/hooks/use-agents'
 import AgentSelector from '@/components/v2/agent-selector'
 import useCreateChat from '@/hooks/use-create-chat'
 import Image from 'next/image'
-import { useAuthStore } from '@/store/auth'
 
 interface TitleHeaderProps {}
 
@@ -16,7 +15,6 @@ export function TitleHeader({}: TitleHeaderProps) {
   const { t } = useTranslation()
   const { currentAgent, onSelectAgent } = useAgents()
   const { handleCreateChat } = useCreateChat()
-  const { user } = useAuthStore()
 
   const { chats, activeChatId, setActiveChatId } = useChatStore()
   const activeChat = chats.find((chat) => chat.uuid === activeChatId)
@@ -57,22 +55,13 @@ export function TitleHeader({}: TitleHeaderProps) {
           <span className='font-[serif-sc] text-lg md:text-xl font-medium tracking-wide whitespace-nowrap text-red-900'>
             Vô Tự AI
           </span>
-          {user ? (
-            <AgentSelector
-              onSelectAgent={handleSelectAgent}
-              value={currentAgent}
-            />
-          ) : (
-            <div
-              className='min-w-[120px] md:min-w-[170px] bg-[#f3ead7] text-[#1f1f1f] font-serif text-xs md:text-sm rounded-xl md:rounded-2xl px-2 md:px-4 py-1 md:py-2 border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset] hover:bg-[#efe2c9] focus:outline-none focus:ring-0 transition-colors flex items-center justify-between'
-              aria-label='Agent Tâm An - default model'
-            >
-              <span className='mr-1 md:mr-2'>Agent</span>
-              <span className='font-medium'>Tâm An</span>
-            </div>
-          )}
+          <AgentSelector
+            value={currentAgent}
+            onSelectAgent={handleSelectAgent}
+          />
         </div>
       </div>
+
     </div>
   )
 }
