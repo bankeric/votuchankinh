@@ -18,7 +18,8 @@
     "confirm": "Confirm",
     "yes": "Yes",
     "no": "No",
-    "ok": "OK"
+    "ok": "OK",
+    "upgrade": "Upgrade"
   },
   "navigation": {
     "home": "Home",
@@ -717,5 +718,115 @@
       "english": "Hello! This is a voice test.",
       "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
     }
+  },
+  "pricing": {
+    "title": "Choose the plan that suits you",
+    "subtitle": "Discover AI models with different levels of understanding to serve your needs",
+    "plans": {
+      "tamAn": {
+        "name": "Tam An – Free Plan",
+        "price": "Free",
+        "features": {
+          "0": "Chat with Tam An agent",
+          "1": "No login required: up to 20 questions/day",
+          "2": "Free login for unlimited usage and save history"
+        },
+        "buttonText": "Try Now",
+        "discountNote": "Free"
+      },
+      "giacNgo": {
+        "name": "Giac Ngo – Pro Plan",
+        "price": "99,000 VND/month",
+        "yearlyPrice": "1,069,200 VND/year (10% off)",
+        "features": {
+          "0": "Access Giac Ngo agent with deeper understanding model",
+          "1": "Unlimited questions, save history across multiple devices",
+          "2": "More insightful responses",
+          "3": "Priority support"
+        },
+        "buttonText": "Upgrade",
+        "discountNote": "Can apply 50% (STUDENT50) or 100% (HEAL100) discount codes for students and mental health patients"
+      },
+      "donNgo": {
+        "name": "Don Ngo – Premium Plan",
+        "price": "249,000 VND/month",
+        "yearlyPrice": "2,688,200 VND/year (10% off)",
+        "features": {
+          "0": "Access Don Ngo agent with the most advanced model",
+          "1": "Insightful responses, high speed",
+          "2": "Priority voice features and special content support",
+          "3": "Early access to new features",
+          "4": "24/7 support"
+        },
+        "buttonText": "Upgrade",
+        "discountNote": "Apply 50%/100% discount codes similar to Pro plan"
+      }
+    },
+    "popular": "Popular",
+    "discountCode": "Discount Code",
+    "applyDiscount": "Apply",
+    "discountPlaceholder": "Enter code...",
+    "support": {
+      "title": "Need support? Contact us",
+      "button": "Contact Support"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "general": {
+      "title": "General Settings",
+      "subtitle": "Customize your basic preferences and experience",
+      "language": "Language",
+      "languageDescription": "Choose your preferred language for the interface",
+      "autoSave": "Auto-save conversations",
+      "autoSaveDescription": "Automatically save your chat history for future reference",
+      "soundEffects": "Sound effects",
+      "soundEffectsDescription": "Play sounds for notifications and interactions"
+    },
+    "voice": {
+      "title": "Voice Settings",
+      "subtitle": "Configure audio preferences and voice options"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "subtitle": "Customize the look and feel of your interface",
+      "theme": "Theme",
+      "themeDescription": "Choose your preferred color scheme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "data": {
+      "title": "Data & Privacy",
+      "subtitle": "Manage your data and privacy settings",
+      "exportData": "Export Data",
+      "exportDataDescription": "Download your chat history and settings",
+      "clearData": "Clear Data",
+      "clearDataDescription": "Permanently delete all your chat history and settings"
+    },
+    "account": {
+      "title": "Account Settings",
+      "subtitle": "Manage your account information and preferences",
+      "emailAddress": "Email Address",
+      "accountType": "Account Type",
+      "signOut": "Sign Out",
+      "signOutDescription": "Sign out of your account securely"
+    },
+    "sections": {
+      "general": "General",
+      "voice": "Voice",
+      "appearance": "Appearance",
+      "data": "Data & Privacy",
+      "account": "Account"
+    },
+    "descriptions": {
+      "general": "Basic preferences",
+      "voice": "Audio settings",
+      "appearance": "Theme & display",
+      "data": "Privacy & storage",
+      "account": "User information"
+    },
+    "english": "English",
+    "vietnamese": "Vietnamese"
   }
 }

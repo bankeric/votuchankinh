@@ -18,7 +18,8 @@
     "confirm": "Xác nhận",
     "yes": "Có",
     "no": "Không",
-    "ok": "OK"
+    "ok": "OK",
+    "upgrade": "Nâng cấp"
   },
   "navigation": {
     "home": "Trang chủ",
@@ -709,5 +710,115 @@
       "english": "Hello! This is a voice test.",
       "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
     }
+  },
+  "pricing": {
+    "title": "Chọn gói phù hợp với bạn",
+    "subtitle": "Khám phá các mô hình AI với độ hiểu biết khác nhau để phục vụ nhu cầu của bạn",
+    "plans": {
+      "tamAn": {
+        "name": "Tâm An – Gói miễn phí",
+        "price": "0 đ",
+        "features": {
+          "0": "Trò chuyện với tác nhân Tâm An",
+          "1": "Không cần đăng nhập: tối đa 20 câu hỏi/ngày",
+          "2": "Đăng nhập miễn phí để dùng không giới hạn và lưu lịch sử"
+        },
+        "buttonText": "Dùng thử ngay",
+        "discountNote": "Miễn phí"
+      },
+      "giacNgo": {
+        "name": "Giác Ngộ – Gói Pro",
+        "price": "99.000 đ/tháng",
+        "yearlyPrice": "1.069.200 đ/năm (giảm 10%)",
+        "features": {
+          "0": "Truy cập tác nhân Giác Ngộ với mô hình hiểu biết sâu hơn",
+          "1": "Không giới hạn lượt hỏi, lưu lịch sử trên nhiều thiết bị",
+          "2": "Trả lời sâu sắc hơn",
+          "3": "Ưu tiên hỗ trợ"
+        },
+        "buttonText": "Nâng cấp",
+        "discountNote": "Có thể áp dụng mã giảm giá 50% (STUDENT50) hoặc 100% (HEAL100) cho sinh viên và người bệnh tâm thần"
+      },
+      "donNgo": {
+        "name": "Đốn Ngộ – Gói Premium",
+        "price": "249.000 đ/tháng",
+        "yearlyPrice": "2.688.200 đ/năm (giảm 10%)",
+        "features": {
+          "0": "Truy cập tác nhân Đốn Ngộ với mô hình cao cấp nhất",
+          "1": "Trả lời sâu sắc, tốc độ cao",
+          "2": "Ưu tiên tính năng giọng nói và hỗ trợ nội dung đặc biệt",
+          "3": "Truy cập sớm tính năng mới",
+          "4": "Hỗ trợ 24/7"
+        },
+        "buttonText": "Nâng cấp",
+        "discountNote": "Áp dụng mã giảm giá 50%/100% tương tự gói Pro"
+      }
+    },
+    "popular": "Phổ biến",
+    "discountCode": "Mã giảm giá",
+    "applyDiscount": "Áp dụng",
+    "discountPlaceholder": "Nhập mã...",
+    "support": {
+      "title": "Cần hỗ trợ? Liên hệ với chúng tôi",
+      "button": "Liên hệ hỗ trợ"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "general": {
+      "title": "Cài đặt chung",
+      "subtitle": "Tùy chỉnh các tùy chọn cơ bản và trải nghiệm của bạn",
+      "language": "Ngôn ngữ",
+      "languageDescription": "Chọn ngôn ngữ ưa thích cho giao diện",
+      "autoSave": "Tự động lưu cuộc trò chuyện",
+      "autoSaveDescription": "Tự động lưu lịch sử trò chuyện để tham khảo sau này",
+      "soundEffects": "Hiệu ứng âm thanh",
+      "soundEffectsDescription": "Phát âm thanh cho thông báo và tương tác"
+    },
+    "voice": {
+      "title": "Cài đặt giọng nói",
+      "subtitle": "Cấu hình tùy chọn âm thanh và giọng nói"
+    },
+    "appearance": {
+      "title": "Giao diện",
+      "subtitle": "Tùy chỉnh giao diện và cảm nhận của bạn",
+      "theme": "Chủ đề",
+      "themeDescription": "Chọn bảng màu ưa thích của bạn",
+      "light": "Sáng",
+      "dark": "Tối",
+      "system": "Hệ thống"
+    },
+    "data": {
+      "title": "Dữ liệu & Quyền riêng tư",
+      "subtitle": "Quản lý dữ liệu và cài đặt quyền riêng tư của bạn",
+      "exportData": "Xuất dữ liệu",
+      "exportDataDescription": "Tải xuống lịch sử trò chuyện và cài đặt của bạn",
+      "clearData": "Xóa dữ liệu",
+      "clearDataDescription": "Xóa vĩnh viễn tất cả lịch sử trò chuyện và cài đặt của bạn"
+    },
+    "account": {
+      "title": "Cài đặt tài khoản",
+      "subtitle": "Quản lý thông tin tài khoản và tùy chọn của bạn",
+      "emailAddress": "Địa chỉ Email",
+      "accountType": "Loại tài khoản",
+      "signOut": "Đăng xuất",
+      "signOutDescription": "Đăng xuất khỏi tài khoản của bạn một cách an toàn"
+    },
+    "sections": {
+      "general": "Chung",
+      "voice": "Giọng nói",
+      "appearance": "Giao diện",
+      "data": "Dữ liệu & Quyền riêng tư",
+      "account": "Tài khoản"
+    },
+    "descriptions": {
+      "general": "Tùy chọn cơ bản",
+      "voice": "Cài đặt âm thanh",
+      "appearance": "Chủ đề & hiển thị",
+      "data": "Quyền riêng tư & lưu trữ",
+      "account": "Thông tin người dùng"
+    },
+    "english": "English",
+    "vietnamese": "Tiếng Việt"
   }
 }

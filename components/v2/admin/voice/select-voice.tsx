@@ -176,15 +176,15 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6 px-4 sm:px-0">
-      <Card>
-        <CardHeader className="pb-4 sm:pb-6">
-          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-            <Volume2 className="h-5 w-5 sm:h-6 sm:w-6" />
+    <div className="space-y-4">
+      <Card className="border-0 shadow-none">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Volume2 className="h-5 w-5" />
             {t("voice.title")}
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6 pt-0">
+        <CardContent className="space-y-4 p-4 pt-0">
           <Separator />
 
           {/* Voice Selection */}
@@ -197,7 +197,7 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
               onValueChange={handleVoiceChange}
               disabled={isLoadingVoices}
             >
-              <SelectTrigger className="h-12 sm:h-10">
+              <SelectTrigger className="h-10">
                 <SelectValue
                   placeholder={
                     isLoadingVoices
@@ -208,7 +208,7 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
               </SelectTrigger>
               <SelectContent>
                 {availableVoices.map((voice) => (
-                  <SelectItem key={voice} value={voice} className="py-3 sm:py-2">
+                  <SelectItem key={voice} value={voice} className="py-2">
                     {voice}
                   </SelectItem>
                 ))}
@@ -225,20 +225,20 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
               <Separator />
 
               {/* Audio Settings */}
-              <div className="space-y-6">
-                <h3 className="text-base sm:text-sm font-medium">
+              <div className="space-y-4">
+                <h3 className="text-sm font-medium">
                   {t("voice.audioSettings")}
                 </h3>
 
                 {/* Speaking Rate */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Label
                     htmlFor="speaking-rate"
                     className="text-sm font-medium block"
                   >
                     {t("voice.speakingRate")}: {currentSettings.speakingRate}
                   </Label>
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <input
                       id="speaking-rate"
                       type="range"
@@ -249,7 +249,7 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
                       onChange={(e) =>
                         handleSpeakingRateChange(parseFloat(e.target.value))
                       }
-                      className="w-full h-8 sm:h-6 appearance-none bg-gray-200 rounded-lg outline-none slider-thumb"
+                      className="w-full h-6 appearance-none bg-gray-200 rounded-lg outline-none slider-thumb"
                       style={{
                         background: `linear-gradient(to right, #f97316 0%, #f97316 ${
                           ((currentSettings.speakingRate - 0.25) / (4.0 - 0.25)) * 100
@@ -266,11 +266,11 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
                 </div>
 
                 {/* Pitch */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Label htmlFor="pitch" className="text-sm font-medium block">
                     {t("voice.pitch")}: {currentSettings.pitch}
                   </Label>
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <input
                       id="pitch"
                       type="range"
@@ -281,7 +281,7 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
                       onChange={(e) =>
                         handlePitchChange(parseFloat(e.target.value))
                       }
-                      className="w-full h-8 sm:h-6 appearance-none bg-gray-200 rounded-lg outline-none slider-thumb"
+                      className="w-full h-6 appearance-none bg-gray-200 rounded-lg outline-none slider-thumb"
                       style={{
                         background: `linear-gradient(to right, #f97316 0%, #f97316 ${
                           ((currentSettings.pitch - (-20.0)) / (20.0 - (-20.0))) * 100
@@ -298,11 +298,11 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
                 </div>
 
                 {/* Volume Gain */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Label htmlFor="volume-gain" className="text-sm font-medium block">
                     {t("voice.volumeGain")}: {currentSettings.volumeGain}dB
                   </Label>
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <input
                       id="volume-gain"
                       type="range"
@@ -313,7 +313,7 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
                       onChange={(e) =>
                         handleVolumeGainChange(parseFloat(e.target.value))
                       }
-                      className="w-full h-8 sm:h-6 appearance-none bg-gray-200 rounded-lg outline-none slider-thumb"
+                      className="w-full h-6 appearance-none bg-gray-200 rounded-lg outline-none slider-thumb"
                       style={{
                         background: `linear-gradient(to right, #f97316 0%, #f97316 ${
                           ((currentSettings.volumeGain - (-96.0)) / (16.0 - (-96.0))) * 100
@@ -333,63 +333,65 @@ export const SelectVoice = ({ simple }: { simple?: boolean }) => {
               <Separator />
 
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <Button
-                  onClick={handleTestVoice}
-                  disabled={isPlaying || isLoadingVoices}
-                  variant="outline"
-                  size="default"
-                  className="h-12 sm:h-9 flex-1 sm:flex-none"
-                >
-                  <Play className="h-4 w-4 mr-2" />
-                  {isPlaying ? t("voice.playing") : t("voice.testVoice")}
-                </Button>
+              <div className="flex flex-col gap-2">
+                <div className="grid grid-cols-3 gap-2">
+                  <Button
+                    onClick={handleTestVoice}
+                    disabled={isPlaying || isLoadingVoices}
+                    variant="outline"
+                    size="sm"
+                    className="h-9"
+                  >
+                    <Play className="h-4 w-4 mr-2" />
+                    {isPlaying ? t("voice.playing") : t("voice.testVoice")}
+                  </Button>
 
-                <Button
-                  onClick={handleSaveSettings}
-                  size="default"
-                  className="h-12 sm:h-9 bg-orange-600 hover:bg-orange-700 flex-1 sm:flex-none"
-                >
-                  <Save className="h-4 w-4 mr-2" />
-                  {t("voice.saveSettings")}
-                </Button>
+                  <Button
+                    onClick={handleSaveSettings}
+                    size="sm"
+                    className="h-9 bg-orange-600 hover:bg-orange-700"
+                  >
+                    <Save className="h-4 w-4 mr-2" />
+                    {t("voice.saveSettings")}
+                  </Button>
 
-                <Button
-                  onClick={handleResetSettings}
-                  variant="outline"
-                  size="default"
-                  className="h-12 sm:h-9 flex-1 sm:flex-none"
-                >
-                  <RotateCcw className="h-4 w-4 mr-2" />
-                  {t("voice.reset")}
-                </Button>
+                  <Button
+                    onClick={handleResetSettings}
+                    variant="outline"
+                    size="sm"
+                    className="h-9"
+                  >
+                    <RotateCcw className="h-4 w-4 mr-2" />
+                    {t("voice.reset")}
+                  </Button>
+                </div>
               </div>
 
               {/* Current Settings Display */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="text-sm font-medium mb-3">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h4 className="text-sm font-medium mb-2">
                   {t("voice.currentSettings", {
                     language: SUPPORTED_LANGUAGES.find(
                       (l) => l.code === getVoiceLanguageCode(language)
                     )?.name,
                   })}
                 </h4>
-                <div className="text-sm text-gray-600 space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                    <strong className="min-w-0 sm:min-w-[120px]">{t("voice.voiceLabel")}</strong>
-                    <span className="break-all">{currentSettings.selectedVoice}</span>
+                <div className="text-sm text-gray-600 space-y-1">
+                  <div className="flex justify-between">
+                    <strong className="text-xs">{t("voice.voiceLabel")}</strong>
+                    <span className="text-xs break-all">{currentSettings.selectedVoice}</span>
                   </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                    <strong className="min-w-0 sm:min-w-[120px]">{t("voice.speakingRateLabel")}</strong>
-                    <span>{currentSettings.speakingRate}</span>
+                  <div className="flex justify-between">
+                    <strong className="text-xs">{t("voice.speakingRateLabel")}</strong>
+                    <span className="text-xs">{currentSettings.speakingRate}</span>
                   </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                    <strong className="min-w-0 sm:min-w-[120px]">{t("voice.pitchLabel")}</strong>
-                    <span>{currentSettings.pitch}</span>
+                  <div className="flex justify-between">
+                    <strong className="text-xs">{t("voice.pitchLabel")}</strong>
+                    <span className="text-xs">{currentSettings.pitch}</span>
                   </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                    <strong className="min-w-0 sm:min-w-[120px]">{t("voice.volumeGainLabel")}</strong>
-                    <span>{currentSettings.volumeGain}dB</span>
+                  <div className="flex justify-between">
+                    <strong className="text-xs">{t("voice.volumeGainLabel")}</strong>
+                    <span className="text-xs">{currentSettings.volumeGain}dB</span>
                   </div>
                 </div>
               </div>
