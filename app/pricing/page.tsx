@@ -101,7 +101,6 @@ export default function PricingPage() {
       features: featuresData.tamAn,
       buttonText: t("pricing.plans.tamAn.buttonText"),
       popular: false,
-      discountNote: t("pricing.plans.tamAn.discountNote")
     },
     {
       id: "giac-ngo",
@@ -112,7 +111,6 @@ export default function PricingPage() {
       features: featuresData.giacNgo,
       buttonText: t("pricing.plans.giacNgo.buttonText"),
       popular: true,
-      discountNote: t("pricing.plans.giacNgo.discountNote")
     },
     {
       id: "don-ngo",
@@ -123,7 +121,6 @@ export default function PricingPage() {
       features: featuresData.donNgo,
       buttonText: t("pricing.plans.donNgo.buttonText"),
       popular: false,
-      discountNote: t("pricing.plans.donNgo.discountNote")
     }
   ];
 
@@ -150,28 +147,31 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-amber-50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Back Button */}
-        <div className="mb-8">
+        {/* Header with Back Button and Title */}
+        <div className="flex items-start justify-between mb-16">
           <Button
             variant="outline"
             onClick={() => router.back()}
-            className="flex items-center gap-2 border-amber-300 text-amber-700 hover:bg-amber-100"
+            className="flex items-center gap-2 border-red-800 text-red-800 hover:bg-red-50 mt-8"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("common.back")}
           </Button>
-        </div>
-        
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-amber-900 mb-4">
-            {t("pricing.title")}
-          </h1>
-          <p className="text-xl text-amber-700 max-w-2xl mx-auto">
-            {t("pricing.subtitle")}
-          </p>
+          
+          <div className="text-center flex-1">
+            <div className="text-8xl font-bold text-red-800 mb-6">法</div>
+            <h1 className="text-4xl font-bold text-red-800 mb-6">
+              {t("pricing.title")}
+            </h1>
+            <p className="text-xl text-red-700 max-w-3xl mx-auto leading-relaxed">
+              {t("pricing.subtitle")}
+            </p>
+          </div>
+          
+          <div className="w-32"></div> {/* Spacer for centering */}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pricingPlans.map((plan) => {
             const IconComponent = plan.icon;
             return (
@@ -179,29 +179,29 @@ export default function PricingPage() {
                 key={plan.id}
                 className={`relative transition-all duration-300 hover:shadow-xl bg-amber-50 border-2 flex flex-col h-full ${
                   plan.popular 
-                    ? "border-gray-800 shadow-lg scale-105" 
-                    : "border-amber-300 hover:border-amber-400"
+                    ? "border-red-800 shadow-lg scale-105" 
+                    : "border-black hover:border-gray-800"
                 }`}
               >
                 {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-amber-700 text-white px-4 py-1">
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-red-800 text-white px-4 py-1">
                     {t("pricing.popular")}
                   </Badge>
                 )}
                 
-                <CardHeader className="text-center pb-4">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white border-2 border-amber-700 flex items-center justify-center">
-                    <IconComponent className="w-8 h-8 text-amber-700" />
+                <CardHeader className="text-center pb-6">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-amber-50 border-2 border-red-800 flex items-center justify-center">
+                    <IconComponent className="w-8 h-8 text-red-800" />
                   </div>
-                  <CardTitle className="text-xl font-semibold text-amber-900">
+                  <CardTitle className={`text-xl font-semibold text-black ${plan.popular ? "mt-2" : "mt-4"}`}>
                     {plan.name}
                   </CardTitle>
-                  <div className="mt-4">
-                    <div className="text-3xl font-bold text-amber-900">
+                  <div className="mt-6">
+                    <div className="text-3xl font-bold text-red-800">
                       {plan.price}
                     </div>
                     {plan.yearlyPrice && (
-                      <div className="text-sm text-amber-700 mt-1">
+                      <div className="text-sm mt-2 text-gray-700">
                         {plan.yearlyPrice}
                       </div>
                     )}
@@ -212,17 +212,17 @@ export default function PricingPage() {
                   <div className="space-y-3 flex-1">
                     {plan.features.map((feature, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-amber-700 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-amber-900">{feature}</span>
+                        <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-black" />
+                        <span className="text-sm text-black">{feature}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Bottom section with discount and upgrade button */}
-                  <div className="space-y-4 pt-4 border-t border-amber-300">
+                  <div className="space-y-4 pt-4 border-t border-red-300">
                     {plan.id !== "tam-an" && (
                       <div className="space-y-3">
-                        <div className="text-sm font-medium text-amber-900">
+                        <div className="text-sm font-medium text-black">
                           {t("pricing.discountCode")}
                         </div>
                         <div className="flex gap-2">
@@ -233,13 +233,13 @@ export default function PricingPage() {
                               ...prev,
                               [plan.id]: e.target.value
                             }))}
-                            className="flex-1 bg-white border-amber-300"
+                            className="flex-1 bg-white border-red-300"
                           />
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleApplyDiscount(plan.id)}
-                            className="px-4 bg-amber-700 text-white border-amber-700 hover:bg-amber-800"
+                            className="px-4 bg-gray-600 text-white border-gray-600 hover:bg-gray-700"
                           >
                             {t("pricing.applyDiscount")}
                           </Button>
@@ -249,37 +249,26 @@ export default function PricingPage() {
 
                     <Button
                       onClick={() => handleUpgrade(plan.id)}
-                      className={`w-full py-3 text-base font-medium transition-colors rounded-lg ${
-                        plan.popular
-                          ? "bg-amber-700 hover:bg-amber-800 text-white"
-                          : plan.id === "tam-an"
-                          ? "bg-amber-700 hover:bg-amber-800 text-white"
-                          : "bg-amber-700 hover:bg-amber-800 text-white"
-                      }`}
+                      className="w-full py-3 text-base font-medium transition-colors rounded-lg bg-red-800 hover:bg-red-900 text-white"
                     >
                       {plan.buttonText}
                     </Button>
                   </div>
 
-                  {(plan as any).discountNote && (
-                    <div className="text-xs text-amber-600 text-center pt-2">
-                      {(plan as any).discountNote}
-                    </div>
-                  )}
                 </CardContent>
               </Card>
             );
           })}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-amber-700 mb-4">
+        <div className="text-center mt-16 max-w-5xl mx-auto">
+          <p className="text-red-700 mb-4">
             {t("pricing.support.title")}
           </p>
           <Button
             variant="outline"
             onClick={() => router.push("/contact")}
-            className="border-amber-300 text-amber-700 hover:bg-amber-100"
+            className="border-red-300 text-red-700 hover:bg-red-100"
           >
             {t("pricing.support.button")}
           </Button>
