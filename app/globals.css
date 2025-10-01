@@ -389,3 +389,22 @@
 .stagger-5 {
   animation-delay: 3.7s;
 }
+
+/* Marquee animation for long text */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 4s linear infinite;
+}
+
+/* Hide scrollbar completely for settings sidebar */
+.settings-sidebar::-webkit-scrollbar {
+  display: none;
+}

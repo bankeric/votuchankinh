@@ -87,8 +87,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     className={cn(
                       "flex-1 h-12 text-base font-medium transition-all duration-200",
                       language === Language.EN 
-                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg" 
-                        : "border-gray-300 hover:border-orange-300 hover:bg-orange-50"
+                        ? "bg-gradient-to-r from-red-800 to-red-600 text-white shadow-lg" 
+                        : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
                     )}
                   >
                     🇺🇸 English
@@ -100,8 +100,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     className={cn(
                       "flex-1 h-12 text-base font-medium transition-all duration-200",
                       language === Language.VI 
-                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg" 
-                        : "border-gray-300 hover:border-orange-300 hover:bg-orange-50"
+                        ? "bg-gradient-to-r from-red-800 to-red-600 text-white shadow-lg" 
+                        : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
                     )}
                   >
                     🇻🇳 Tiếng Việt
@@ -184,8 +184,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                       className={cn(
                         "h-16 flex flex-col items-center gap-2 transition-all duration-200",
                         theme === "light" 
-                          ? "bg-gradient-to-br from-yellow-400 to-orange-500 text-white shadow-lg" 
-                          : "border-gray-300 hover:border-yellow-300 hover:bg-yellow-50"
+                          ? "bg-gradient-to-br from-red-800 to-red-600 text-white shadow-lg" 
+                          : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
                       )}
                     >
                       <Sun className="w-6 h-6" />
@@ -198,8 +198,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                       className={cn(
                         "h-16 flex flex-col items-center gap-2 transition-all duration-200",
                         theme === "dark" 
-                          ? "bg-gradient-to-r from-gray-700 to-gray-900 text-white shadow-lg" 
-                          : "border-gray-300 hover:border-gray-400 hover:bg-gray-50"
+                          ? "bg-gradient-to-br from-red-800 to-red-600 text-white shadow-lg" 
+                          : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
                       )}
                     >
                       <Moon className="w-6 h-6" />
@@ -212,8 +212,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                       className={cn(
                         "h-16 flex flex-col items-center gap-2 transition-all duration-200",
                         theme === "system" 
-                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg" 
-                          : "border-gray-300 hover:border-blue-300 hover:bg-blue-50"
+                          ? "bg-gradient-to-br from-red-800 to-red-600 text-white shadow-lg" 
+                          : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
                       )}
                     >
                       <Monitor className="w-6 h-6" />
@@ -245,7 +245,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     <p className="text-sm text-gray-600">Download your chat history and settings</p>
                   </div>
                 </div>
-                <Button variant="outline" size="lg" className="w-full flex items-center gap-2 border-green-200 hover:bg-green-50 hover:border-green-300">
+                <Button variant="outline" size="lg" className="w-full flex items-center gap-2 border-amber-300 hover:bg-amber-50 hover:border-red-600">
                   <Download className="w-5 h-5" />
                   Export Data
                 </Button>
@@ -347,10 +347,10 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
       <DialogContent className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:max-w-[1000px] w-[1000px] h-[700px] p-0 bg-white border border-gray-200 shadow-2xl flex flex-col">
         <DialogTitle className="sr-only">{t("settings.title")}</DialogTitle>
         {/* Fixed Header */}
-        <div className="flex-shrink-0 p-6 pb-4 border-b border-gray-200 bg-gradient-to-r from-amber-50 to-orange-50">
+        <div className="flex-shrink-0 p-6 pb-4 border-b border-amber-200/50 bg-gradient-to-r from-amber-50 to-white">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 text-2xl font-bold text-gray-800">
-              <div className="p-2 rounded-xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg">
+            <div className="flex items-center gap-3 text-2xl font-bold text-black">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-red-800 to-red-600 shadow-lg">
                 <User className="w-6 h-6 text-white" />
               </div>
 {t("settings.title")}
@@ -361,7 +361,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                   onOpenChange(false);
                   router.push('/pricing');
                 }}
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg flex items-center gap-2"
+                className="bg-gradient-to-r from-red-800 to-red-600 hover:from-red-700 hover:to-red-500 text-white shadow-lg flex items-center gap-2"
               >
                 <Crown className="w-4 h-4" />
                 {t("common.upgrade")}
@@ -370,7 +370,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => onOpenChange(false)}
-                className="h-10 w-10 p-0 rounded-full hover:bg-gray-200 transition-colors"
+                className="h-10 w-10 p-0 rounded-full hover:bg-amber-100 transition-colors"
               >
                 {/* <X className="h-5 w-5" /> */}
               </Button>
@@ -380,8 +380,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
 
         <div className="flex flex-1 overflow-hidden">
           {/* Fixed Sidebar */}
-          <div className="flex-shrink-0 w-64 border-r border-gray-200 bg-gradient-to-b from-gray-50 to-white p-4 overflow-hidden">
-            <nav className="space-y-1 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+          <div className="flex-shrink-0 w-32 border-r border-amber-200/50 bg-gradient-to-b from-amber-50 to-white p-3 overflow-hidden">
+            <nav className="space-y-2 h-full overflow-y-auto settings-sidebar" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
               {sidebarItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -389,37 +389,25 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     key={item.id}
                     variant="ghost"
                     className={cn(
-                      "w-full justify-start text-left h-auto p-3 rounded-lg transition-all duration-200 group",
+                      "w-full flex-col h-auto p-2 rounded-lg transition-all duration-200 group",
                       activeSection === item.id 
-                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md" 
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        ? "bg-gradient-to-b from-red-800 to-red-600 text-white shadow-md" 
+                        : "text-gray-600 hover:text-gray-900 hover:bg-amber-50"
                     )}
                     onClick={() => setActiveSection(item.id)}
                   >
                     <div className={cn(
-                      "p-1.5 rounded-md mr-3 transition-colors",
+                      "p-1.5 rounded-md mb-1 transition-colors",
                       activeSection === item.id 
                         ? "bg-white/20" 
-                        : "bg-gray-100 group-hover:bg-gray-200"
+                        : "bg-amber-100 group-hover:bg-amber-200"
                     )}>
                       <Icon className={cn(
                         "w-4 h-4 transition-colors",
                         activeSection === item.id ? "text-white" : "text-gray-600"
                       )} />
                     </div>
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-semibold">{item.label}</span>
-                      <span className={cn(
-                        "text-xs opacity-70",
-                        activeSection === item.id ? "text-white/80" : "text-gray-500"
-                      )}>
-                        {item.id === "general" && t("settings.descriptions.general")}
-                        {item.id === "voice" && t("settings.descriptions.voice")}
-                        {item.id === "appearance" && t("settings.descriptions.appearance")}
-                        {item.id === "data" && t("settings.descriptions.data")}
-                        {item.id === "account" && t("settings.descriptions.account")}
-                      </span>
-                    </div>
+                    <span className="text-xs font-medium text-center leading-tight px-1">{item.label}</span>
                   </Button>
                 );
               })}
@@ -427,7 +415,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
           </div>
 
           {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto bg-gradient-to-br from-white to-gray-50">
+          <div className="flex-1 overflow-y-auto bg-gradient-to-br from-white to-amber-50/30">
             <div className="p-6">
               <div className="max-w-3xl">
                 {renderContent()}
