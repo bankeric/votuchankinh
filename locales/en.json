@@ -465,7 +465,7 @@
       }
     }
   },
-  "settings": {
+  "settingsBasic": {
     "title": "Settings",
     "general": "General",
     "appearance": "Appearance",
