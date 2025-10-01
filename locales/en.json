@@ -720,8 +720,8 @@
     }
   },
   "pricing": {
-    "title": "Choose the plan that suits you",
-    "subtitle": "Discover AI models with different levels of understanding to serve your needs",
+    "title": "Member Upgrade",
+    "subtitle": "Choose the right plan to fully experience Buddha AI Chat. You can always start with the free Peace of Mind plan and upgrade whenever needed.",
     "plans": {
       "tamAn": {
         "name": "Tam An – Free Plan",
@@ -827,6 +827,6 @@
       "account": "User information"
     },
     "english": "English",
-    "vietnamese": "Vietnamese"
+    "vietnamese": "Tiếng Việt"
   }
 }
