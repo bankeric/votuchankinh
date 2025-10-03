@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -48,12 +49,22 @@ export function LoginForm() {
   }
 
   return (
-    <div>
+    <div className="bg-amber-50 border-2 border-black rounded-lg p-8">
       <div className='text-center mb-8'>
-        <h2 className='text-2xl font-bold text-orange-900 font-serif'>
-          Welcome Back
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/images/giac-ngo-logo-1.png"
+            alt="Giác Ngộ Logo"
+            width={80}
+            height={80}
+            className="object-contain"
+          />
+        </div>
+        <h2 className='text-3xl font-bold text-red-800 mb-2'>
+          Đăng nhập
         </h2>
-        <p className='text-orange-700/70 mt-2 font-light'>
+        <p className='text-gray-700'>
           Sign in to continue your journey
         </p>
       </div>
@@ -65,7 +76,7 @@ export function LoginForm() {
         <div className='space-y-2'>
           <Label
             htmlFor='email'
-            className='text-orange-800'
+            className='text-black font-medium'
           >
             Email
           </Label>
@@ -77,7 +88,7 @@ export function LoginForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder='Enter your email'
-            className='border-orange-200 focus:border-orange-400'
+            className='bg-white border-2 border-black focus:border-red-800'
             disabled={isLoading}
           />
         </div>
@@ -86,13 +97,13 @@ export function LoginForm() {
           <div className='flex items-center justify-between'>
             <Label
               htmlFor='password'
-              className='text-orange-800'
+              className='text-black font-medium'
             >
               Password
             </Label>
             <Link
               href='/forgot-password'
-              className='text-sm text-orange-600 hover:text-orange-700 font-light'
+              className='text-sm text-red-800 hover:text-red-900 font-light'
             >
               Forgot password?
             </Link>
@@ -105,7 +116,7 @@ export function LoginForm() {
             value={formData.password}
             onChange={handleChange}
             placeholder='Enter your password'
-            className='border-orange-200 focus:border-orange-400'
+            className='bg-white border-2 border-black focus:border-red-800'
             disabled={isLoading}
           />
         </div>
@@ -113,17 +124,17 @@ export function LoginForm() {
         <Button
           data-test='login-button'
           type='submit'
-          className='w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white shadow-lg'
+          className='w-full bg-red-800 hover:bg-red-900 text-white py-3 rounded-lg font-medium'
           disabled={isLoading}
         >
           {isLoading ? 'Signing in...' : 'Sign In'}
         </Button>
 
-        <p className='text-center text-sm text-orange-700/70 font-light'>
+        <p className='text-center text-sm text-gray-700 font-light'>
           Don't have an account?{' '}
           <Link
             href='/register'
-            className='text-orange-600 hover:text-orange-700 font-medium'
+            className='text-red-800 hover:text-red-900 font-medium'
           >
             Sign up
           </Link>
