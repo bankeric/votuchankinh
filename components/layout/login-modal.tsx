@@ -86,18 +86,18 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
       onOpenChange={onClose}
       modal
     >
-      <DialogContent className='sm:max-w-[600px] max-h-[90vh] overflow-y-auto [&>button]:hidden bg-[#efe0bd]'>
+      <DialogContent className='sm:max-w-[600px] max-h-[90vh] overflow-y-auto [&>button]:hidden bg-amber-50 border-2 border-black rounded-lg shadow-2xl'>
         <DialogHeader className='text-center space-y-4 pb-6'>
           <div className='flex justify-center'>
             <Image
               src={'/images/giac-ngo-logo-1.png'}
               alt='logo'
-              width={64}
-              height={64}
+              width={84}
+              height={84}
             />
           </div>
-          <DialogTitle className='text-2xl font-bold text-orange-900 text-center'>
-            {t('auth.signIn')}
+          <DialogTitle className='text-3xl font-bold text-red-800 text-center'>
+            Đăng nhập
           </DialogTitle>
         </DialogHeader>
 
@@ -108,7 +108,7 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
           <div className='space-y-2'>
             <Label
               htmlFor='email'
-              className='text-orange-800'
+              className='text-black font-medium'
             >
               Email
             </Label>
@@ -120,7 +120,7 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
               value={formData.email}
               onChange={handleChange}
               placeholder='Enter your email'
-              className='border-orange-200 focus:border-orange-400'
+              className='bg-white border-2 border-black focus:border-red-800'
               disabled={isLoading}
             />
           </div>
@@ -129,13 +129,13 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
             <div className='flex items-center justify-between'>
               <Label
                 htmlFor='password'
-                className='text-orange-800'
+                className='text-black font-medium'
               >
                 Password
               </Label>
               <Link
                 href='/forgot-password'
-                className='text-sm text-orange-600 hover:text-orange-700 font-light'
+                className='text-sm text-red-800 hover:text-red-900 font-light'
               >
                 Forgot password?
               </Link>
@@ -148,7 +148,7 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
               value={formData.password}
               onChange={handleChange}
               placeholder='Enter your password'
-              className='border-orange-200 focus:border-orange-400'
+              className='bg-white border-2 border-black focus:border-red-800'
               disabled={isLoading}
             />
           </div>
@@ -156,17 +156,17 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
           <Button
             data-test='login-button'
             type='submit'
-            className='w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white shadow-lg'
+            className='w-full bg-red-800 hover:bg-red-900 text-white py-3 rounded-lg font-medium'
             disabled={isLoading}
           >
             {isLoading ? 'Signing in...' : 'Sign In'}
           </Button>
 
-          <p className='text-center text-sm text-orange-700/70 font-light'>
+          <p className='text-center text-sm text-gray-700 font-light'>
             Don't have an account?{' '}
             <Link
               href='/register'
-              className='text-orange-600 hover:text-orange-700 font-medium'
+              className='text-red-800 hover:text-red-900 font-medium'
             >
               Sign up
             </Link>
@@ -174,8 +174,8 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
         </form>
 
         <DialogFooter>
-          <div className='flex flex-col items-center w-full space-y-4 pt-4 border-t border-[#2c2c2c]/30 mt-4'>
-            <p className='text-orange-700 text-sm'>Or continue with</p>
+          <div className='flex flex-col items-center w-full space-y-4 pt-4 border-t border-black mt-4'>
+            <p className='text-gray-700 text-sm'>Or continue with</p>
             <div className='flex justify-center space-x-4 w-full'>
               <Button
                 type='button'
