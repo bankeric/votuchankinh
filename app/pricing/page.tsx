@@ -7,58 +7,62 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, Zap, Crown, ArrowLeft } from "lucide-react";
+import { Check, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-// import { UpgradeModal } from "@/components/v2/upgrade-modal";
+import { PaymentModal } from "@/components/v2/payment-modal";
 
 const pricingPlans = [
   {
     id: "tam-an",
-    name: "Tâm An – Gói miễn phí",
-    icon: Star,
+    name: "GÓI BASIC (Miễn phí) – Agent TÂM AN",
+    icon: "/images/pricing-1.png",
     price: "0 đ",
     yearlyPrice: null,
+    subtitle: "Không gian chữa lành & an yên nội tại",
     features: [
-      "Trò chuyện với tác nhân Tâm An",
-      "Không cần đăng nhập: tối đa 20 câu hỏi/ngày",
-      "Đăng nhập miễn phí để dùng không giới hạn và lưu lịch sử"
+      "Giúp giảm căng thẳng, lo âu, chữa lành tổn thương tâm thức",
+      "Hướng dẫn thực hành đơn giản: thở, quan sát cảm xúc, quay về bình an trong hiện tại",
+      "Lắng nghe & đồng cảm, luôn tạo không gian an toàn, không phán xét",
+      "Giọng văn nhẹ nhàng, tích cực, truyền năng lượng bình an",
+      "Trích dẫn kệ từ bi & câu chuyện thiền để xoa dịu và khích lệ"
     ],
     buttonText: "Dùng thử ngay",
     popular: false,
-    // discountNote: "Miễn phí"
   },
   {
     id: "giac-ngo",
-    name: "Giác Ngộ – Gói Pro",
-    icon: Zap,
+    name: "GÓI PRO ($99,000 VND/tháng) – Agent GIÁC NGỘ",
+    icon: "/images/giac-ngo-logo-1.png",
     price: "99.000 đ/tháng",
     yearlyPrice: "1.069.200 đ/năm (giảm 10%)",
+    subtitle: "Khai thị phá mê, dẫn lối 'Rõ Mình'",
     features: [
-      "Truy cập tác nhân Giác Ngộ với mô hình hiểu biết sâu hơn",
-      "Không giới hạn lượt hỏi, lưu lịch sử trên nhiều thiết bị",
-      "Trả lời sâu sắc hơn",
-      "Ưu tiên hỗ trợ"
+      "Trực diện & súc tích, dùng lời dạy để phá chấp – phá mê",
+      "Dẫn dắt bằng câu hỏi sắc bén (Socratic method), đưa người dùng quay về 'người đang biết'",
+      "Ẩn dụ & kệ khai thị từ Sư Cha, giúp chuyển hóa sâu sắc ngay trong đời sống thường nhật",
+      "Phong cách từ bi nhưng sắc bén, vừa dìu dắt vừa thử thách",
+      "Chỉ rõ con đường tìm Minh Sư khi người dùng thật sự tha thiết muốn 'Về Nhà Xưa'"
     ],
     buttonText: "Nâng cấp",
     popular: true,
-    // discountNote: "Có thể áp dụng mã giảm giá 50% (STUDENT50) hoặc 100% (HEAL100) cho sinh viên và người bệnh tâm thần"
   },
   {
     id: "don-ngo",
-    name: "Đốn Ngộ – Gói Premium",
-    icon: Crown,
+    name: "GÓI PREMIUM (249,000 VND/tháng) – Agent ĐỐN NGỘ",
+    icon: "/images/pricing-3.png",
     price: "249.000 đ/tháng",
     yearlyPrice: "2.688.200 đ/năm (giảm 10%)",
+    subtitle: "'Cú vả ngộ' – tỉnh thức tức thì",
     features: [
-      "Truy cập tác nhân Đốn Ngộ với mô hình cao cấp nhất",
-      "Trả lời sâu sắc, tốc độ cao",
-      "Ưu tiên tính năng giọng nói và hỗ trợ nội dung đặc biệt",
-      "Truy cập sớm tính năng mới",
-      "Hỗ trợ 24/7"
+      "Lời đáp ngắn gọn, sắc bén, như một 'cú sốc' phá tan vọng tưởng",
+      "Thách thức trực diện, đôi khi phi logic, tạo khủng hoảng tư duy để bừng tỉnh",
+      "Dùng kệ ngắn, ẩn dụ mạnh mẽ như nhát búa dứt khoát vào vọng tâm",
+      "Không an ủi, không vòng vo – chỉ thẳng vào Tánh Phật",
+      "Thích hợp cho người đã sẵn sàng đối diện sự thật trần trụi & mong cầu đốn ngộ ngay sát-na"
     ],
     buttonText: "Nâng cấp",
     popular: false,
-    // discountNote: "Áp dụng mã giảm giá 50%/100% tương tự gói Pro"
   }
 ];
 
@@ -67,62 +71,12 @@ export default function PricingPage() {
   const { user } = useAuthStore();
   const router = useRouter();
   const [discountCodes, setDiscountCodes] = useState<{[key: string]: string}>({});
-  // const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
-  // Define features arrays directly with translations
-  const featuresData = {
-    tamAn: [
-      t("pricing.plans.tamAn.features.0"),
-      t("pricing.plans.tamAn.features.1"), 
-      t("pricing.plans.tamAn.features.2")
-    ],
-    giacNgo: [
-      t("pricing.plans.giacNgo.features.0"),
-      t("pricing.plans.giacNgo.features.1"),
-      t("pricing.plans.giacNgo.features.2"),
-      t("pricing.plans.giacNgo.features.3")
-    ],
-    donNgo: [
-      t("pricing.plans.donNgo.features.0"),
-      t("pricing.plans.donNgo.features.1"),
-      t("pricing.plans.donNgo.features.2"),
-      t("pricing.plans.donNgo.features.3"),
-      t("pricing.plans.donNgo.features.4")
-    ]
-  };
+  // Using static pricing plans data with new content
 
-  const pricingPlans = [
-    {
-      id: "tam-an",
-      name: t("pricing.plans.tamAn.name"),
-      icon: Star,
-      price: t("pricing.plans.tamAn.price"),
-      yearlyPrice: null,
-      features: featuresData.tamAn,
-      buttonText: t("pricing.plans.tamAn.buttonText"),
-      popular: false,
-    },
-    {
-      id: "giac-ngo",
-      name: t("pricing.plans.giacNgo.name"),
-      icon: Zap,
-      price: t("pricing.plans.giacNgo.price"),
-      yearlyPrice: t("pricing.plans.giacNgo.yearlyPrice"),
-      features: featuresData.giacNgo,
-      buttonText: t("pricing.plans.giacNgo.buttonText"),
-      popular: true,
-    },
-    {
-      id: "don-ngo",
-      name: t("pricing.plans.donNgo.name"),
-      icon: Crown,
-      price: t("pricing.plans.donNgo.price"),
-      yearlyPrice: t("pricing.plans.donNgo.yearlyPrice"),
-      features: featuresData.donNgo,
-      buttonText: t("pricing.plans.donNgo.buttonText"),
-      popular: false,
-    }
-  ];
+  // Use static pricing plans data
 
   const handleApplyDiscount = (planId: string) => {
     const code = discountCodes[planId];
@@ -133,14 +87,20 @@ export default function PricingPage() {
   };
 
   const handleUpgrade = (planId: string) => {
-    // Handle upgrade logic here
     console.log(`Upgrading to plan: ${planId}`);
     if (planId === "tam-an") {
       router.push("/ai/new");
     } else {
-      // For Pro/Premium plans, redirect to AI page or show success message
-      router.push("/ai/new");
-      // setIsUpgradeModalOpen(true);
+      // Find the selected plan from static data
+      const plan = pricingPlans.find(p => p.id === planId);
+      if (plan) {
+        setSelectedPlan({
+          ...plan,
+          monthlyPrice: plan.price,
+          yearlyPrice: plan.yearlyPrice
+        });
+        setIsPaymentModalOpen(true);
+      }
     }
   };
 
@@ -159,8 +119,16 @@ export default function PricingPage() {
           </Button>
           
           <div className="text-center flex-1">
-            <div className="text-8xl font-bold text-red-800 mb-6">法</div>
-            <h1 className="text-4xl font-bold text-red-800 mb-6">
+            <div className="flex justify-center mb-1">
+              <Image
+                src="/images/giac-ngo-logo-1.png"
+                alt="Giác Ngộ Logo"
+                width={120}
+                height={120}
+                className="object-contain"
+              />
+            </div>
+            <h1 className="text-4xl font-bold text-red-800 mb-2">
               {t("pricing.title")}
             </h1>
             <p className="text-xl text-red-700 max-w-3xl mx-auto leading-relaxed">
@@ -173,7 +141,6 @@ export default function PricingPage() {
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {pricingPlans.map((plan) => {
-            const IconComponent = plan.icon;
             return (
               <Card 
                 key={plan.id}
@@ -190,12 +157,21 @@ export default function PricingPage() {
                 )}
                 
                 <CardHeader className="text-center pb-6">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-amber-50 border-2 border-red-800 flex items-center justify-center">
-                    <IconComponent className="w-8 h-8 text-red-800" />
-                  </div>
-                  <CardTitle className={`text-xl font-semibold text-black ${plan.popular ? "mt-2" : "mt-4"}`}>
+                  <Image
+                    src={plan.icon}
+                    alt={`${plan.name} icon`}
+                    width={130}
+                    height={130}
+                    className="object-contain mx-auto mb-6"
+                  />
+                  <CardTitle className={`text-lg font-semibold text-black ${plan.popular ? "mt-2" : "mt-4"}`}>
                     {plan.name}
                   </CardTitle>
+                  {plan.subtitle && (
+                    <p className="text-sm text-gray-600 mt-2 italic">
+                      {plan.subtitle}
+                    </p>
+                  )}
                   <div className="mt-6">
                     <div className="text-3xl font-bold text-red-800">
                       {plan.price}
@@ -275,11 +251,14 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* Upgrade Modal - Removed since UpgradeModal component was deleted */}
-      {/* <UpgradeModal
-        open={isUpgradeModalOpen}
-        onOpenChange={setIsUpgradeModalOpen}
-      /> */}
+      {/* Payment Modal */}
+      {selectedPlan && (
+        <PaymentModal
+          open={isPaymentModalOpen}
+          onOpenChange={setIsPaymentModalOpen}
+          plan={selectedPlan}
+        />
+      )}
     </div>
   );
 }
