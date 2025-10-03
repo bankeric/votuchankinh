@@ -25,8 +25,12 @@ function LoginContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LoginContent />
-    </Suspense>
+    <div className="min-h-screen bg-amber-50 flex items-center justify-center py-12 px-4">
+      <div className="max-w-md w-full">
+        <Suspense fallback={<div>Loading...</div>}>
+          <LoginContent />
+        </Suspense>
+      </div>
+    </div>
   );
 } 
