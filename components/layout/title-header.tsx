@@ -7,6 +7,10 @@ import useAgents from '@/hooks/use-agents'
 import AgentSelector from '@/components/v2/agent-selector'
 import useCreateChat from '@/hooks/use-create-chat'
 import Image from 'next/image'
+import { Button } from '../ui/button'
+import { useState } from 'react'
+import { Crown } from 'lucide-react'
+import { SubscriptionModal } from './subscription-modal'
 
 interface TitleHeaderProps {}
 
@@ -15,6 +19,7 @@ export function TitleHeader({}: TitleHeaderProps) {
   const { t } = useTranslation()
   const { currentAgent, onSelectAgent } = useAgents()
   const { handleCreateChat } = useCreateChat()
+  const [showMembership, setShowMembership] = useState<boolean>(false)
 
   const { chats, activeChatId, setActiveChatId } = useChatStore()
   const activeChat = chats.find((chat) => chat.uuid === activeChatId)
@@ -59,9 +64,24 @@ export function TitleHeader({}: TitleHeaderProps) {
             value={currentAgent}
             onSelectAgent={handleSelectAgent}
           />
+
+          {/* Subscription Plan */}
+          <button
+            onClick={() => setShowMembership(true)}
+            className='hidden md:flex items-center space-x-2 px-3 py-2 bg-[#991b1b] text-[#f6efe0] font-serif text-sm rounded-xl
+               border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
+               hover:bg-[#7a1515] transition-colors w-full'
+          >
+            <Crown className='w-4 h-4' />
+            <span>Nâng cấp</span>
+          </button>
         </div>
       </div>
 
+      <SubscriptionModal
+        showMembership={showMembership}
+        setShowMembership={() => setShowMembership(false)}
+      />
     </div>
   )
 }
