@@ -27,7 +27,7 @@ export default function CommunityPage() {
         title: 'CỘNG ĐỒNG',
         subtitle: 'Huynh đệ đồng hành trên con đường Giác Ngộ',
         description:
-          'Giác Ngộ không phải là một tổ chức, một tôn giáo hay một học thuyết. Nó là con đường để mỗi người tự "Rõ Mình" và "V Nhà Xưa"',
+          'Giác Ngộ không phải là một tổ chức, một tôn giáo hay một học thuyết. Nó là con đường để mỗi người tự "Rõ Mình" và "Về Nhà Xưa"',
         awakening: 'Giác',
         enlightenment: 'Ngộ'
       },
