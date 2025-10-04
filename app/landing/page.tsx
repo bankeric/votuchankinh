@@ -55,7 +55,7 @@ function StatCard({ stat, isVisible }: { stat: Stat; isVisible: boolean }) {
       <div className='mb-3 text-[#eae6dd]/40'>{stat.icon}</div>
 
       {/* Value */}
-      <div className='text-4xl md:text-5xl font-serif-sc text-[#eae6dd] mb-2 font-light tracking-wider'>
+      <div className='text-4xl font-serif-sc text-[#eae6dd] mb-2 font-light tracking-wider'>
         {count}
         {stat.suffix}
       </div>
@@ -307,11 +307,11 @@ export default function WordlessSutraPage() {
 
       <main className='flex flex-col items-center justify-start min-h-screen bg-black/30'>
         <div
-          className='flex items-center justify-center min-h-screen w-full cursor-pointer'
+          className='flex flex-col items-center justify-center w-full cursor-pointer'
           onClick={handleClick}
         >
           <div
-            className={`flex flex-col items-center w-full max-w-3xl px-4 py-32 space-y-12 text-center text-[#eae6dd] font-serif-sc transition-opacity duration-1000 ${
+            className={`flex flex-col items-center w-full max-w-3xl px-4 py-20 space-y-12 text-center text-[#eae6dd] font-serif-sc transition-opacity duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -382,20 +382,21 @@ export default function WordlessSutraPage() {
               Click anywhere to enter
             </p>
           </div>
-        </div>
 
-        <div
-          ref={statsRef}
-          className='w-full max-w-6xl px-4 py-16 md:py-24'
-        >
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12'>
-            {stats.map((stat, idx) => (
-              <StatCard
-                key={idx}
-                stat={stat}
-                isVisible={statsVisible}
-              />
-            ))}
+          {/* Stats Section */}
+          <div
+            ref={statsRef}
+            className='w-full max-w-6xl px-4'
+          >
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12'>
+              {stats.map((stat, idx) => (
+                <StatCard
+                  key={idx}
+                  stat={stat}
+                  isVisible={statsVisible}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </main>

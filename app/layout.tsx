@@ -13,6 +13,7 @@ import { CheckoutProvider } from '@stripe/react-stripe-js/checkout'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { useMemo } from 'react'
+import axiosInstance from '@/lib/axios'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -48,14 +49,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const promise = useMemo(() => {
-    return fetch(
-      'http://localhost:3001/api/v1/stripe/create-checkout-session',
-      {
-        method: 'POST'
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => data.clientSecret)
+    return axiosInstance
+      .post('/api/v1/stripe/create-checkout-session')
+      .then((res) => res.data.clientSecret)
   }, [])
   return (
     <html
