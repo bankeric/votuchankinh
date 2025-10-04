@@ -15,6 +15,8 @@ import { Crown, Lock, DollarSign } from 'lucide-react'
 import Image from 'next/image'
 import { useElements, useStripe } from '@stripe/react-stripe-js'
 import { useTranslations } from '@/hooks/use-translations'
+import axios from 'axios'
+import axiosInstance from '@/lib/axios'
 
 interface PaymentModalProps {
   open: boolean
@@ -22,9 +24,13 @@ interface PaymentModalProps {
   plan: {
     id: string
     name: string
+    yearlyName: string
     icon: string
     monthlyPrice: string
     yearlyPrice: string
+    monthly: number
+    yearly: number
+    currency: string
   }
 }
 
@@ -73,13 +79,15 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
 
     try {
       // Gọi Flask API tạo PaymentIntent
-      const res = await fetch(
-        'http://localhost:3001/api/v1/stripe/create-checkout-session',
+      const res = await axiosInstance.post(
+        '/api/v1/stripe/create-checkout-session',
         {
-          method: 'POST'
+          currency: plan.currency,
+          amount: paymentType === 'yearly' ? plan.yearly : plan.monthly,
+          product_name: paymentType === 'yearly' ? plan.yearlyName : plan.name
         }
       )
-      const { id, url } = await res.json()
+      const { id, url } = res.data
       window.location.href = url
 
       // const cardElement = elements.getElement(CardElement)
