@@ -11,12 +11,13 @@ import { Button } from '../ui/button'
 import { useState } from 'react'
 import { Crown } from 'lucide-react'
 import { SubscriptionModal } from './subscription-modal'
+import { useTranslations } from '@/hooks/use-translations'
 
 interface TitleHeaderProps {}
 
 export function TitleHeader({}: TitleHeaderProps) {
   const isMobile = useIsMobile()
-  const { t } = useTranslation()
+  const { t, language } = useTranslations()
   const { currentAgent, onSelectAgent } = useAgents()
   const { handleCreateChat } = useCreateChat()
   const [showMembership, setShowMembership] = useState<boolean>(false)
@@ -73,7 +74,7 @@ export function TitleHeader({}: TitleHeaderProps) {
                hover:bg-[#7a1515] transition-colors w-full'
           >
             <Crown className='w-4 h-4' />
-            <span>Nâng cấp</span>
+            <span>{language === 'en' ? 'Upgrade' : 'Nâng cấp'}</span>
           </button>
         </div>
       </div>

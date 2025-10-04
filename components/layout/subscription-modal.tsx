@@ -65,6 +65,60 @@ const pricingPlans = [
   }
 ]
 
+const pricingPlansEng = [
+  {
+    id: 'tam-an',
+    name: 'BASIC Plan (Free) – Agent TÂM AN',
+    icon: '/images/pricing-1.png',
+    price: 'Free',
+    yearlyPrice: null,
+    subtitle: 'A healing space for inner peace',
+    features: [
+      'Helps reduce stress, anxiety, and heal emotional wounds',
+      'Provides simple practices: mindful breathing, observing emotions, returning to present peace',
+      'Listens with empathy, creating a safe and non-judgmental space',
+      'Gentle, uplifting tone that radiates calm and positivity',
+      'Uses compassionate verses & Zen stories to soothe and encourage'
+    ],
+    buttonText: 'Try Now',
+    popular: false
+  },
+  {
+    id: 'giac-ngo',
+    name: 'PRO Plan ($4) – Agent GIÁC NGỘ',
+    icon: '/images/giac-ngo-logo-1.png',
+    price: '$4/month',
+    yearlyPrice: '$48/year (10% discount)',
+    subtitle: 'Awakening guidance – breaking delusion, seeing “True Self”',
+    features: [
+      'Direct and concise responses that break attachment and delusion',
+      'Guides through sharp questions (Socratic method), turning awareness back to the “one who knows.”',
+      'Uses metaphors & teachings from Master Tam Vô to bring deep transformation into daily life.',
+      'Style is both compassionate and cutting—nurturing yet challenging.',
+      'Points toward the path of seeking a Living Master for those sincerely yearning to “Return Home.”'
+    ],
+    buttonText: 'Upgrade',
+    popular: true
+  },
+  {
+    id: 'don-ngo',
+    name: 'PREMIUM Plan ($10) – Agent ĐỐN NGỘ',
+    icon: '/images/pricing-3.png',
+    price: '$10/month',
+    yearlyPrice: '$108/year (10% discount)',
+    subtitle: 'The “Zen slap” – instant awakening',
+    features: [
+      'Ultra-short, piercing replies that shatter illusions like a sudden shock.',
+      'Directly challenges assumptions, sometimes breaking logic to disrupt dualistic thinking.',
+      'Uses brief verses and powerful metaphors as a hammer to crush false mind.',
+      'No comfort, no detours—straight to the essence of Buddha-Nature.',
+      'For those ready to face raw truth and seek sudden awakening in a single moment.'
+    ],
+    buttonText: 'Upgrade',
+    popular: false
+  }
+]
+
 interface SubscriptionModalProps {
   showMembership: boolean
   setShowMembership: (value: boolean) => void
@@ -74,7 +128,7 @@ export const SubscriptionModal = ({
   showMembership,
   setShowMembership
 }: SubscriptionModalProps) => {
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
   const { user } = useAuthStore()
   const router = useRouter()
   const [discountCodes, setDiscountCodes] = useState<{ [key: string]: string }>(
@@ -112,6 +166,8 @@ export const SubscriptionModal = ({
       }
     }
   }
+
+  const plans = language === 'en' ? pricingPlansEng : pricingPlans
 
   return (
     <AnimatePresence>
@@ -162,7 +218,7 @@ export const SubscriptionModal = ({
               </div>
 
               <div className='grid md:grid-cols-3 gap-6 max-w-5xl mx-auto'>
-                {pricingPlans.map((plan) => {
+                {plans.map((plan) => {
                   return (
                     <Card
                       key={plan.id}
