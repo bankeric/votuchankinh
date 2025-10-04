@@ -100,7 +100,7 @@ export default function SutraScrollPage() {
             {
               title: 'Vô Niệm',
               description:
-                'Kiến văn giác trì hành\nTrụ pháp thân thanh tịnh\nRõ vạn pháp hằng sanh\nNiệm khởi nơi vô niệm'
+                'Kiến văn giác tri hành\nTrụ pháp thân thanh tịnh\nRõ vạn pháp hằng sanh\nNiệm khởi nơi vô niệm'
             }
           ],
           quote:

@@ -1,52 +1,63 @@
 // Content data for the Buddhist library
- const sutraContent: Record<string, SutraContent> = {
-    "section-01-01-tam-vo": {
-      id: "section-01-01-tam-vo",
-      title: "Tam Vô",
-      content: `Tam Tinh Quy Nhất Bổn
-Vô Vật Bất Nhiễm Trần 
+ const sutraContent: Record<string, any> = {
+  "section-01-01-tam-vo": {
+    "id": "section-01-01-tam-vo",
+    "title": "Tam Vô",
+    "content": `Tam Tinh Quy Nhất Bổn
+Vô Vật Bất Nhiễm Trần
 Tam Vô Khai Chủng Tánh
-Cổ Kim Vô Ngại Hành 
+Cổ Kim Vô Ngại Hành
 
 TAM VÔ
- 13/ 09/2020
+13/ 09/2020
 
 
-Nguyện Đem Công Đức Này 
-Hồi Hướng Đến Tất Cả 
-Đệ Tử Và Chúng Sanh 
+Nguyện Đem Công Đức Này
+Hồi Hướng Đến Tất Cả
+Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-01-02-vo-tu-nga": {
-      id: "section-01-02-vo-tu-nga",
-      title: "Vô Tự Ngã",
-      content: `Thiên Địa Luôn Xoay Vần 
+`
+  },
+  "section-01-02-vo-tu-nga": {
+    "id": "section-01-02-vo-tu-nga",
+    "title": "Vô Tự Ngã",
+    "content": `Thiên Địa Luôn Xoay Vần 
 Tự Ngã Thị Tối Cao
 Tu Di Sơn Tan Rã 
 Trực Nhận Liên Hoa Cành
 
-28/ 07/2022`,
-    },
-    "section-01-03-vo-tuong": {
-      id: "section-01-03-vo-tuong",
-      title: "Vô Tướng",
-      content: `Pháp Tướng Hằng Sanh Diệt 
+28/ 07/2022
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Đến Tất Cả
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-01-03-vo-tuong": {
+    "id": "section-01-03-vo-tuong",
+    "title": "Vô Tướng",
+    "content": `Pháp Tướng Hằng Sanh Diệt 
 Kiến Tướng Bất Thị Tướng 
 Trực Nhận Pháp Tánh Không
 Rõ Chân Như Vạn Pháp 
 
 28/07/2023
-`,
-    },
-    "section-01-04-vo-niem": {
-      id: "section-01-04-vo-niem",
-      title: "Vô Niệm",
-      content: ` 
-Kiến Văn Giác Tri Hành
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Đến Tất Cả
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-01-04-vo-niem": {
+    "id": "section-01-04-vo-niem",
+    "title": "Vô Niệm",
+    "content": `Kiến Văn Giác Tri Hành
 Trụ Pháp Thân Thanh Tịnh
 Rõ Vạn Pháp Hằng Sanh
 Niệm Khởi Nơi Vô Niệm 
+
 
 TAM VÔ
  31/07/2022
@@ -57,12 +68,205 @@ Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
 
-`,
-    },
-    "section-02-01-ton-chi": {
-    id: "section-02-01-ton-chi",
-    title: "Tôn Chỉ",
-    content: `Muốn Tự Tại Giải Thoát
+`
+  },
+  "section-01-05-tam-vo-dai-nguyen": {
+    "id": "section-01-05-tam-vo-dai-nguyen",
+    "title": "Tam Vô Đại Nguyện",
+    "content": `Âm dương tứ đại xoay vần
+Luôn sanh cuốn hút khó lần lối ra
+Chúng sanh quên lối Về Nhà
+Trôi lăn lặn ngụp mãi mà không hay
+
+Tỷ năm Tỷ kiếp sa lầy
+Luân phiên sáu nẻo biết ngày nào Thôi
+Kẻ gieo Ác Nghiệp để rồi
+Địa Ngục mở cửa bị lôi ngay vào
+
+Rõ ngay đau khổ thế nào
+Thân tâm đau đớn phải gào khóc than
+Kẻ gieo ích kỷ nhỏ nhen
+Tham cầu tham chấp sống hèn đua tranh
+
+Làm thân Ngạ Quỷ phải đành
+Hơn thua dụ dỗ để dành miếng ăn
+Kẻ ham giết hại súc sanh
+Ăn thịt hành hạ Vật đành ngậm môi
+
+Kiếp sau thành Vật để rồi
+Nhận ngay cảnh cũ đã từng gây ra
+Ai gieo thiện nghiệp nhưng mà
+Chấp vào ái luyến người nhà bà con
+
+Nghiệp duyên dòng tộc vẫn còn
+Quay lại vay trả để tròn Tánh Nhân
+Ai gieo thiện hạnh mà Sân
+Còn mang ngã mạn lớn dần không buôn
+
+Phước về Thần Giới sống luôn
+Hưởng cầu vái lạy của người u mê
+Ai gieo phước thiện mọi bề
+Giúp người giúp vật sẽ về cõi Thiên
+
+An vui hưởng lạc ít phiền
+Phước duyên đã hết về liền cõi Nhân
+Tam Vô đã rõ mười phân
+Dạo chơi trần cấu ai cần chỉ ra
+
+Đại duyên xuống cõi Ta Bà
+Phát lời Đại Nguyện chỉ ra lối về
+Kẻ Đoạ Địa Ngục u Mê
+Biết được Pháp hiệu Tam Vô thoát liền
+
+Ngạ Quỷ mãi dính ưu phiền
+Thấy Tam Vô rõ thoát liền kiếp Ma
+Súc sanh u tối nhưng mà
+Nghe Tam Vô rõ thế là thoát mê
+
+Ai cầu Bản Thể để về
+Liễu Tam Vô Ý đường Quê hiển liền
+Thần mà muốn hết đảo điên
+Liễu Tam Vô Ý tan liền Ngã Nhân
+
+Trời mà muốn thoát Tiên thân
+Liễu Tam Vô Ý kiếp Nhân rõ Nhà
+Đại Nguyện gửi đến Phật Đà
+Mười Phương Chư Phật ở Nhà Chứng Minh
+
+Tam Vô nói rõ việc mình
+Luôn hành chỉ lối chúng sinh Về Nhà
+Đại Nguyện đã phát nếu mà
+Không tròn như thế Vô thà Tử Sanh
+
+Ở trong sáu nẻo mãi hành
+Đưa đàn con nhỏ loanh quanh về Nhà
+Chỉ cần ai muốn thế là
+Tam Vô đến đón về Nhà Như Lai
+
+Đại Nguyện Bất Nhị Không Hai
+Nguyện mà bất toại Tam Vô không về
+Chúng sanh rối rắm trăm bề
+Vô liền gỡ rối dẫn về Quê Xưa
+
+Mãi hành không ngại nắng mưa
+Sớm trưa Vô vẫn sẽ đưa người về
+Về Nhà người hết u mê
+Thường Lạc Ngã Tịnh nơi Quê của mình
+
+Đại duyên Vô gửi chút tình
+Nguyện cho đại chúng rõ mình Như Lai
+Từ nay hết cảnh bi ai
+Vô thời viên mãn về Ngai Phật Đài
+
+TAM VÔ
+13/09/2022
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo`
+  },
+  "section-01-06-tam-vo-hang-nhat": {
+    "id": "section-01-06-tam-vo-hang-nhat",
+    "title": "Tam Vô Hằng Nhật",
+    "content": `Sáng ra tĩnh tọa một mình
+Đến khi xã tọa bình minh đón chào 
+Bắt đầu nghe tiếng kêu gào 
+Từ nam ra bắc nơi nào cũng vang 
+
+
+Sáng nào cũng được ăn sang
+Tơ Nhện xào Đĩa đã hầm nhiều hôm
+Dọn thêm mấy dĩa đầu tôm 
+Khổ qua nhồi ớt bọc ôm sấu rừng 
+
+
+Buổi trưa ăn uống tưng bừng
+Bọ cạp rắn rết đã chưng cả nồi
+Lẩu cua lươn ếch làm mồi
+Rượu bia thuốc lá là ngồi hết trưa
+
+
+Tối càng ăn uống say xưa 
+Ruồi trộn dòi chúa chiên bừa một thau 
+Sán dây sán lá món xào 
+Rận rệp sam biển nướng chao thơm lừng 
+
+
+Ăn xong rồi phải đi mần 
+Lao công quét rác ân cần siêng năng 
+Quản thêm lũ trẻ lăng xăng 
+Chuẩn bị cơm nước chúng ăn ấm lòng 
+
+
+Nhận thêm nghề mở khóa còng 
+Tài xế chở đám lòng vòng thoát ra 
+Rồi làm thầy pháp bắt ma 
+Nhân viên hướng dẫn đường ra khỏi rừng 
+
+
+Bác sĩ trị bệnh tưng tưng 
+Dược sĩ bóc thuốc hết ưng thứ gì 
+Giáo viên Phá hết ngu si 
+Dội bom Phá núi tu di không còn 
+
+
+Làm Cha làm mẹ nuôi con 
+Làm Ông dạy cháu cho tròn bổn lai 
+Rảnh rang đi lượm ve chai 
+Tự tay Tái chế thành hài vô song
+
+
+Quy hoạch bãi rác thong dong 
+Làm nơi đổ rác vẫn không phiền lòng
+Lái đò đón kẻ lòng vòng
+Xong rồi thẩm mỹ từ trong ra ngoài 
+
+
+Làm nghề cướp bóc bi ai 
+Làm tên trộm cắp thói sai người đời
+Chuyên gia lừa lọc muôn thời
+Làm tên dụ dỗ nghe lời bị An
+
+
+Từ thiện chẳng tiếng thở than
+Ngọc ngà châu báu bạc vàng đều cho 
+Chẳng cần tính toán so đo 
+Ai duyên nhận được hết lo ưu phiền
+
+
+Dạo nghề diễn cảnh Phá điên 
+Nghề nào cũng nhận miễn người hết mê 
+Tùy duyên tiếp dẫn người về
+Rõ nơi bản thể chính Quê Phật Đà
+
+
+Mỗi ngày dạo cảnh la cà 
+Lang thang lặn lội tìm ra con mình 
+Nắm đầu kéo khỏi vũng sình 
+Tắm rửa sạch sẽ rồi rinh về Nhà 
+
+
+Đứa nào còn cứ la cà
+Nện cho một búa tánh ma mất liền 
+Đứa nào còn mãi đảo điên 
+Như Lai ngự đảnh về Liền Nhà xưa
+
+
+Tam Vô 
+30/07/2024
+
+
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-02-01-ton-chi": {
+    "id": "section-02-01-ton-chi",
+    "title": "Tôn Chỉ",
+    "content": `Muốn Tự Tại Giải Thoát
 Có Vô Tự Chân Kinh
 Thường Hành Tâm Thanh Tịnh
 Bất Loạn Động Và Si
@@ -84,12 +288,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-02-02-gioi-qui": {
-    id: "section-02-02-gioi-qui",
-    title: "Giới Qui",
-    content: `Ai Cũng Bình Đẳng Như Nhau
+    "id": "section-02-02-gioi-qui",
+    "title": "Giới Qui",
+    "content": `Ai Cũng Bình Đẳng Như Nhau
 Không Được Phân Biệt Người Ngoài Người Thân
 Lập Bè Kết Phái Càng Không
 Chê Bai Nói Xấu Đau Lòng Người Nghe
@@ -117,12 +321,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-02-03-cuong-linh": {
-    id: "section-02-03-cuong-linh",
-    title: "Cương Lĩnh",
-    content: `Giác Ngộ Phật dạy là chi
+    "id": "section-02-03-cuong-linh",
+    "title": "Cương Lĩnh",
+    "content": `Giác Ngộ Phật dạy là chi
 Người luôn hiểu biết hết đi lòng vòng
 Giải Thoát thì phải làm sao
 Hành không Dính Mắc thế nào cũng ra
@@ -146,369 +350,370 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
-    "section-03-01-tim-phat": {
-      id: "section-03-01-tim-phat",
-      title: "Tìm Phật",
-      content: `Suy Nghĩ Kiến Luận Mà Thông
+  "section-03-01-tim-phat": {
+    "id": "section-03-01-tim-phat",
+    "title": "Tìm Phật",
+    "content": `Suy Nghĩ Kiến Luận Mà Thông
 Là Đàng Sanh Tử Lông Bông Sáu Loài
 Tự Thân Chính Phật Đây Rồi
-Ngay Mình Không Nhận Kiếm Hoài Nơi Đâu`,
-    },
-    "section-03-02-duyen-an-vi-phat": {
-      id: "section-03-02-duyen-an-vi-phat",
-      title: "Duyên an vị Phật",
-      content: `Trôi lăn trong cảnh bể dâu
+Ngay Mình Không Nhận Kiếm Hoài Nơi Đâu
 
+TAM VÔ
+01/10/2022
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-03-02-duyen-an-vi-phat": {
+    "id": "section-03-02-duyen-an-vi-phat",
+    "title": "Duyên An Vị Phật",
+    "content": `Trôi lăn trong cảnh bể dâu
 Bơ vơ lạc lối nơi đâu là Nhà
-
 Lang bạc khắp chốn Ta Bà
-
 Mong tìm được lối thoát ra hồng trần
 
 Khổ công tìm kiếm xa gần
-
 Chỉ gặp các lối mê lầm lòng son
-
 Châu nào đâu ở núi non
-
 Cũng không ở chốn sông mòn rừng mê
 
 Thành tâm quyết chí tìm quê
-
 Nhưng càng tìm mãi càng mê càng mờ
-
 Nhất tâm tha thiết mong chờ
-
 Một ngày sẽ có duyên cơ Phật đàng
 
 Đại duyên đại phúc vô vàng
-
 Ngày An Vị Phật rõ đàng Như Lai
-
 Giúp người thoát cảnh bi ai
-
-Bảo Châu sẵn có sống hoài Tịnh Thanh
+Bảo Châu sẵn có sống hoài Tịnh Thanh 
 
 Từ nay hết bị loanh quanh
-
 Luôn hành tỉnh thức sẽ nhanh về Nhà
-
 Quê Nhà luôn sẵn có Cha
-
 Hoa môi luôn nở biết là tình thân
 
 Hữu duyên Vô chỉ ân cần
-
 Dẫn người thoát tục thoát trần thoát mê
-
 Nay người đã rõ lối về
-
 Hãy luôn tinh tấn đường quê nhất lòng
 
 Không còn ảo cảnh lòng vòng
+Không vọng không tưởng không mong không tìm
+Đời người sẽ mãi an yên
+Thường Lạc Ngã Tịnh nơi miền Quê Xưa 
 
-Không vọng không tưởng giữ lòng thanh cao`,
-    },
-    "section-03-03-tim-lau-dai": {
-      id: "section-03-03-tim-lau-dai",
-      title: "Tìm lầu đài",
-      content: `Bao năm cầu Đạo Lầu Đài
+Người ơi đừng ngại sớm trưa
+Nhà mình ở đó hãy ưa trở về
+Từ nay hết vọng hết mê
+Thong dong tự tại nơi Quê hương mình 
 
+TAM VÔ
+18/04/2023
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-03-03-tim-lau-dai": {
+    "id": "section-03-03-tim-lau-dai",
+    "title": "Tìm Lầu Đài",
+    "content": `Bao năm cầu Đạo Lầu Đài
 Gặp Vị khai rõ ở ngay mặt mình
-
 Nhưng mình nghi ngại lặng thinh
-
 Thế là tìm tiếp tử sinh vẫn hoài
 
 Đến khi người đã mệt nhoài
-
-Cầu xin chư Phật chỉ đường thoát ra
-
+Cầu xin chư Phật chỉ đường thoát ra 
 Buông đi kiến chấp Ngay Ta
+Gặp Vị phá Núi lòi ra Lầu Đài 
 
-Gặp Vị phá Núi lòi ra Lầu Đài
-
-Nhận được bản thể Như Lai
-
+Nhận được bản thể Như Lai 
 Không hình không vật an hoài là Ta
-
 Thấy nghe nói biết không va
-
-Chủ Nhân Ông đó là Nhà Quê Xưa
+Chủ Nhân Ông đó là Nhà Quê Xưa 
 
 Dù cho tứ đại kéo đưa
-
 Lục trần ngũ ấm dây dưa dụ hoài
+Ở yên bản thể Như Lai 
+Sống không dính mắc về Ngai Phật Đà 
 
-Ở yên bản thể Như Lai
-
-Sống không dính mắc về Ngai Phật Đà
-
-Tam VÔ
-
+Tam Vô 
 13/02/2024
 
-Nguyện Đem Công Đức Này
-
-Hồi Hướng Khắp Tất Cả
-
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh
-
-Đều Đồng Thành Phật Đạo`,
-    },
-    "section-03-04-bat-vong-do": {
-      id: "section-03-04-bat-vong-do",
-      title: "Bất vọng độ",
-      content: `Bao năm cầu đạo thoát mê
-      
-Mong tìm được lối đi về Nhà Xưa
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-03-04-bat-vong-do": {
+    "id": "section-03-04-bat-vong-do",
+    "title": "Bất Vọng Độ",
+    "content": `Bao năm cầu đạo thoát mê
+Mong tìm được lối đi về Nhà Xưa 
 Trãi qua bao cảnh nắng mưa
 Vẫn không thấy được đường xưa nơi nào
+
 Hữu duyên Vô vẽ chút màu
 Chỉ ra lối cũ để vào Như Lai
 Nhưng người cứ chọn lối sai
 Hiểu được một chút khoe hoài Ngã Nhân
+
 Lại cho đại chúng bị đần
 Thể hiện hiểu biết phá đần chúng sanh
 Bản thân còn mãi loanh quanh
 Vậy mà Vọng Độ tịnh thanh cho người
+
 Tưởng đâu mình đạt điểm mười
 Ngờ đâu bị chúng cười vào mặt cho
 Lộ ra cái Ngã rất To
 Sân si lý luận tự cho đúng rồi
+
 Đại duyên Vô tặng chữ "Thôi"
 Thôi luận Thôi lý càng Thôi Vọng Độ
 Thoát ra các cảnh xô bồ
 Ai ai cũng Phật người Rồ làm chi
+
 Nay duyên Vô chỉ cách ni
-Cầm Tô dạo bước mỗi khi ra đường
+Cầm Tô dạo bước mỗi khi ra đường 
 Hữu duyên gieo hạt chân thường
 Luôn hành tiếp dẫn rõ phương Quê Nhà
+
 Ai cầu sẽ rất thiết tha
 Ai nghi người chớ Ta Bà sân si
 Đường mình mình hãy cứ đi
 Đường người người bước có gì phân bua
+
 Từ nay thoát cảnh hơn thua
 Không còn vọng tưởng độ cho muôn loài
-Người liền thoát cảnh mệt nhoài
-Hành nơi Tự Tánh sẽ hoài an yên`,
-    },
-    "section-03-05-cau-dao": {
-      id: "section-03-05-cau-dao",
-      title: "Cầu đạo",
-      content: `Thanh Như trình kệ cúng dường Sư Cha Tam Vô
+Người liền thoát cảnh mệt nhoài 
+Hành nơi Tự Tánh sẽ hoài an yên
 
-Thế gian muôn kiếp lầm than
+Nay Vô thuyết lại chữ duyên
+Ai nhận đại phúc ở yên nơi mình 
+Đại duyên Vô gửi chút tình
+Người nhận liễu Ý bỏ lời Vô trao
 
-Vô minh che lấp nên mang nghiệp phàm
+Vạn lời cũng chỉ tào lao
+Lìa Tự liễu Nghĩa hành mau về Nhà
+Muốn cho thoát cảnh la cà
+Thôi đi vọng độ thế là hằng an
 
-Sống đời chẳng biết dừng tham
+Nguyện cho đại chúng an nhàn
+Thường hành Tự Tánh rõ đàng Như Lai
+Nguyện người thoát cảnh bi ai
+Rõ mình không vật chính ngai Phật Đà
 
-Trôi lăn sáu nẻo hỏi làm được chi
-
-Rồi khi thấy cảnh a tỳ
-
-Mới mong nhận được Pháp Y thoát lầm
-
-Tìm Bậc đức độ gieo mầm
-
-Cho người thấy được chơn tâm cõi trần
-
-Giúp người hiểu rõ Pháp Thân
-
-Nhận được thể tánh trực chân ngay mình
-
-Không còn chìm đắm u minh
-
-Thông đường tỏ lối lìa sinh tử đàng
-
-Thôi đi vọng tưởng thế gian
-
-Hành trì tinh tấn dần tan mê mờ
-
-Lời Cha thị rõ huyền cơ
-
-Tự buông bản ngã về bờ Chân Như
-
-Người cầu chánh pháp nhất từ
-
-Thường hành cung kính Phật Chư Phổ Hiền
-
-Đừng như nhân thế đảo điên
-
-Muôn thời lặn ngụp chẳng yên tánh mình
-
-Một tuần vật lí nhân sinh
-
-Chờ Cha khai thị rạng minh si lầm
-
-Buông đi mọi sự vướng tâm
-
-Như Lai Nhà đó về thăm hàng thời`,
-    },
-    "section-03-06-tim-cau": {
-      id: "section-03-06-tim-cau",
-      title: "Tìm cầu",
-      content: `TAM VÔ
-
-17/04/2022
+TAM VÔ
+02/07/2023
 
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả
-
 Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-03-05-cau-dao": {
+    "id": "section-03-05-cau-dao",
+    "title": "Cầu Đạo",
+    "content": `Bao năm lận đận lao đao
+Lao tâm khổ trí tìm vào Như Lai
+Nhưng toàn gặp cảnh bi ai
+Đưa người lẩn quẩn đi hoài không ra
 
-Đều Đồng Thành Phật Đạo!`,
-    },
-    "section-03-07-ga-lang-thang": {
-      id: "section-03-07-ga-lang-thang",
-      title: "Gà Lang Thang",
-      content: `Hoàng hôn ở Đất Phương Nam 
+Gặp toàn hạn quỷ hạn ma
+Làm người rối trí lạc nhà Chân Như
+Hữu duyên gặp được Tam Vô
+Nhưng lòng người vẫn hình như chắc là
+
+Đến khi nghe giảng thế là
+Tâm người khai tỏ thấy nhà mình ngay
+Nỗi niềm tìm kiếm lâu nay
+Như ong vỡ tổ mắt cay lệ oà
+
+Khóc mừng như trẻ lên ba
+Cầu xin Ta dạy người về Nhà Xưa
+Ta thời không ngại nắng mưa
+Chỉ cần người có Tín Tâm được liền
+
+Sống trong thể Tánh thường xuyên
+Muôn thời người được an yên thanh bình
+Tánh người vốn sẵn lặng thinh
+An nhiên tự tại biết mình là ai
+
+TAM VÔ
+14/07/2022
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-03-06-tim-cau": {
+    "id": "section-03-06-tim-cau",
+    "title": "Tìm Cầu",
+    "content": `Sinh ra ở cõi Ta Bà
+Vì danh vì lợi thế là cầu mong
+Đến chùa lạy lục đợi trông
+Tài lộc xin mãi vẫn không thấy gì
+
+Thế là Đình - Miếu cứ đi
+Dâng mâm dâng lễ cầu chi hỡi người
+Đến Đình đến Miếu thì tươi
+Về nhà rủ rượi rõ người vô minh
+
+Gia đình cứ mãi lình xình
+Hơn thua cãi vã không nhìn mặt nhau
+Sân si uất hận từ đâu
+Phải chăng tự rước Bọn Sâu về nhà
+
+Xong rồi cầu chỗ Thầy Bà
+Mong trục được đám Sâu mà tự mang
+Nhưng hoài chẳng thấy an nhàn
+Gia đình vẫn cứ ngày càng tan hoang
+
+Mỗi ngày gia cảnh càng toang
+Làm sao để được con ngoan gia hoà
+Người ơi đừng để mù loà
+Thành tâm hướng Phật về toà Như Lai
+
+Ngọc Châu không của riêng ai
+Ngay mình sẵn có kiếm hoài nơi đâu
+Không tìm không kiếm không cầu
+Về ngay Tự Tánh thoát sầu lạc trôi
+
+An nhiên tự tại đây rồi
+Không cần tìm kiếm xa xôi nơi nào
+Gia đình vui vẻ bên nhau
+Thường Lạc Ngã Tịnh là màu hằng an
+
+Đại duyên Vô chỉ rõ đàng
+Luôn hành Tự Tánh an nhàn tại gia
+
+TAM VÔ
+17/11/2022
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-03-07-ga-lang-thang": {
+    "id": "section-03-07-ga-lang-thang",
+    "title": "Gà Lang Thang",
+    "content": `Hoàng hôn ở Đất Phương Nam 
 Có con gà trống lang thang ra vào 
-
 Nhảy qua 6 nhánh mai đào 
-
 Tụ họp cọp sói heo rừng và nai
 
 
 Cùng nhau kiếm cái sinh nhai 
-
 Cạo lông thay áo thành hài cao nhân 
-
 Cái ăn chẳng phải phân vân 
-
 Chỉ còn cái ngủ phơi thân ngoài trời 
 
 
 Gà kia chỉ muốn một đời
-
 Chiều nào cũng bước tìm nơi bồ đề 
-
 Kềnh kềnh Cú Quạ trăm bề 
-
 Thợ săn cọp sói heo rừng lăm le 
 
 
 Tôn Gà làm tướng chở che 
-
 Đi theo một lũ kẹt xe kẹt đường 
-
 Nhận ra thấy cảnh bất thường 
-
-Vua lệnh giải tán Gà về Tây Sơn
-
+Vua lệnh giải tán Gà về Tây Sơn 
 
 
 Kẻ vui kẻ khóc kẻ hờn 
-
 Mỗi ngày Gà chỉ lờn vờn Cà Tiêu 
-
 Bổng nhiên vào một buổi Chiều 
-
 Gà kia muốn được về miền tây thiên 
 
 
 Phương Nam Gà bỏ đi liền 
-
 Lũ kia được dịp đảo điên theo cùng 
-
 Lại tạo bao cảnh điên khùng 
-
 Hơn thua cãi vã lùng bùng khắp nơi 
 
 
 Dù cho Gà mệt đứt hơi 
-
 Kềnh kềnh Quạ Cú chẳng thời dừng tay 
-
 Thợ săn cọp sói hiện thầy 
-
 Heo rừng nai cứ mỗi ngày ăn theo 
 
 
 Mỗi ngày Gà nhảy thang leo 
-
 Được Tôn Gà cứ càng trèo càng cao 
-
 Lâm nguy chẳng thể kêu gào 
-
 Cả đàn ăn ké càng bào càng vui 
 
 
 Chiều nào Gà cũng lui cui 
-
 Vướng vào một đống bùi nhùi trách ai 
-
 Chỉ vì một nút gắn sai 
-
 Kéo theo một loạt nút cài lung tung 
 
 
 Dù cho Gà có phát khùng 
-
 Đám kia cũng chẳng chịu dừng mồi ngon 
-
 Một khi hình tướng Gà còn 
-
 Đám kia cứ vẫn bào mòn ngày đêm 
 
 
 Hoàng hôn tắt lộ màn đêm 
-
 Gà tìm chỗ ngủ tạm êm cuộc đời 
-
 Một ngày Gà muốn tách rời 
-
 Không còn dính lũ ẩn nơi một mình 
 
 
 Đời Gà tạm chỗ yên bình 
-
 Uổng cho một kiếp nhân sinh Gà Mờ 
-
 Dù cho Gà được tôn thờ 
-
 Chính Gà tự biết mình Ngơ thế nào 
 
 
 Giờ đây chẳng biết làm sao 
-
 Ẩn mình cũng chẳng thể nào tỏ thông 
-
 Dù Gà có bước lông bông 
-
 Lại bị lũ ké đẩy ngông lên trời 
 
 
 Chỉ khi Gà sống ở đời 
-
 Tìm được bản thể liền rời thế gian 
-
 Gặp được Vị chỉ rõ đàng
-
 Hành được bổn tánh tự an muôn thời 
 
 
 Ai duyên liễu ý bỏ lời 
-
 Sống không dính mắc muôn đời an yên 
-
 Dù cho vạn cảnh đảo điên 
-
 Người luôn tự tại ở miền Phật Xưa 
 
 
 Tam Vô 
-
 24/02/2025
-`,},
-"section-04-01-kinh-tang-me": {
-    id: "section-04-01-kinh-tang-me",
-    title: "Kính Tặng Mẹ",
-    content: `Nỗi niềm hạnh phúc thế gian
+
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-04-01-kinh-tang-me": {
+    "id": "section-04-01-kinh-tang-me",
+    "title": "Kính Tặng Mẹ",
+    "content": `Nỗi niềm hạnh phúc thế gian
 Muôn người vui khoẻ an nhàn thảnh thơi
 Sáng ra thấy ánh mặt trời
 Tâm hồn tươi sáng giữa đời an yên
@@ -637,15 +842,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hướng Về Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh  
-Đều Trọn Thành Phật Đạo 
-
-
-`,
+Đều Đồng Thành Phật Đạo 
+`
   },
   "section-04-02-dao-cam-thong": {
-    id: "section-04-02-dao-cam-thong",
-    title: "Đạo Cảm Thông",
-    content: `Có một kẻ từ khi sinh ra đời
+    "id": "section-04-02-dao-cam-thong",
+    "title": "Đạo Cảm Thông",
+    "content": `Có một kẻ từ khi sinh ra đời
 Khi còn trẻ luôn hồn nhiên vui vẻ
 Vô âu lo chẳng bao giờ buồn tẻ
 Không muộn phiền mà mãi thấy bình an
@@ -691,12 +894,13 @@ Tam Vô
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo.`,
+Đều Đồng Thành Phật Đạo.
+`
   },
   "section-04-03-chang-cung-tu": {
-    id: "section-04-03-chang-cung-tu",
-    title: "Chàng Cùng Tử",
-    content: `Ham chơi vào chốn Ta Bà
+    "id": "section-04-03-chang-cung-tu",
+    "title": "Chàng Cùng Tử",
+    "content": `Ham chơi vào chốn Ta Bà
 Hàng trăm tỷ kiếp quên Nhà Quê Xưa
 Trải qua bao kiếp gió mưa
 Vui buồn khổ não vẫn ưa chơi hoài
@@ -748,12 +952,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-04-04-lao-do": {
-    id: "section-04-04-lao-do",
-    title: "Lão Đò",
-    content: `Bao năm khuya sớm đưa đò
+    "id": "section-04-04-lao-do",
+    "title": "Lão Đò",
+    "content": `Bao năm khuya sớm đưa đò
 Vượt ngàn sóng gió giúp người qua sông 
 Ngày đêm chèo lái không công
 Lãi nhiều gươm giáo đâm hông lưng còng 
@@ -779,12 +983,14 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Tôn Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+
+
+`
   },
   "section-04-05-lao-ban-lao-ban": {
-    id: "section-04-05-lao-ban-lao-ban",
-    title: "Lão Bẩn Lão Bần",
-    content: `Lão Ươm có bẩn có bần
+    "id": "section-04-05-lao-ban-lao-ban",
+    "title": "Lão Bẩn Lão Bần",
+    "content": `Lão Ươm có bẩn có bần
 Cũng là hốt cứt dọn phân cho người 
 Đến khi sạch sẽ vui tươi
 Chớ cười Ươm lão trên người đầy phân
@@ -795,27 +1001,34 @@ Thành tâm sám hối lỗi lầm đâm chê
 Lành thay người đã hết mê 
 Lão đi hốt tiếp cười hề thong dong
 
+
 Nguyện cho người được thoát còng
 Ở yên bản thể đừng trông lão già
 Nguyện cho người hết la cà
 Giác Ngộ Giải Thoát về Nhà Như Lai 
 
+
 Tam Vô 
 15/08/2024
+
 
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo. 
 
+
+
+
+
 - Dạ thưa Sư Cha. Tịnh liên con có nghiên cứu thần số học, con xin Sư Cha khai thị cho con biết là thần số học có nói đúng không ạ? Con xin Sư Cha khai thị cho con biết ý nghĩa các con số ạ.
-- Tam Vô: con hãy nghe bài Kệ Vè này
-`,
+- Tam Vô: con hãy nghe bài Kệ Vè này.
+`
   },
   "section-04-06-chim-chi": {
-    id: "section-04-06-chim-chi",
-    title: "Chim Chi",
-    content: `Rừng xanh hiểm trở trùng trùng
+    "id": "section-04-06-chim-chi",
+    "title": "Chim Chi",
+    "content": `Rừng xanh hiểm trở trùng trùng
 Chim kia bay nhảy kiếm tìm thứ chi 
 Thấy nơi yên ổn tức thì 
 Tìm ngay cỏ tốt để đi xây nhà 
@@ -886,12 +1099,15 @@ Tam Vô
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.`,
+Đều Đồng Thành Phật Đạo. 
+
+
+`
   },
   "section-04-07-tu-hu": {
-    id: "section-04-07-tu-hu",
-    title: "Tu Hú",
-    content: `Thương thay tu hú ở đời 
+    "id": "section-04-07-tu-hu",
+    "title": "Tu Hú",
+    "content": `Thương thay tu hú ở đời 
 Trứng mình sinh ké ở nơi tổ người 
 Đến khi trứng nở tươi cười 
 Được cho ăn uống được chăm tận tình 
@@ -968,12 +1184,14 @@ Tam Vô
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo.`,
+Đều Đồng Thành Phật Đạo.
+
+`
   },
   "section-04-08-hieu-dao": {
-    id: "section-04-08-hieu-dao",
-    title: "Hiếu Đạo",
-    content: `Tôn Tử Đại Ngộ Kỳ Tâm Đắc
+    "id": "section-04-08-hieu-dao",
+    "title": "Hiếu Đạo",
+    "content": `Tôn Tử Đại Ngộ Kỳ Tâm Đắc
 Tinh Thông Vạn Vật Đồng Ma Dắt 
 Tổ Phụ Ngự Đảnh Phá Tu Di 
 Hiếu Đạo Mãn Viên Đáo Phật Đà 
@@ -986,13 +1204,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-`,
+Đều Đồng Thành Phật Đạo
+`
   },
   "section-05-01-hieu-biet-moi-yeu-thuong": {
-    id: "section-05-01-hieu-biet-moi-yeu-thuong",
-    title: "Hiểu Biết Mới Yêu Thương",
-    content: `Xưa kia người sống đơn thân
+    "id": "section-05-01-hieu-biet-moi-yeu-thuong",
+    "title": "Hiểu Biết Mới Yêu Thương",
+    "content": `Xưa kia người sống đơn thân
 Mong được kết tóc se duyên một người
 Đến khi duyên hảo đến rồi
 Cùng nhau ước nguyện cả đời yêu nhau
@@ -1049,12 +1267,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo 
-`,
+`
   },
   "section-05-02-thanh-that-chan-that": {
-    id: "section-05-02-thanh-that-chan-that",
-    title: "Thành Thật Chân Thật",
-    content: `Mọi người chung sống với nhau
+    "id": "section-05-02-thanh-that-chan-that",
+    "title": "Thành Thật Chân Thật",
+    "content": `Mọi người chung sống với nhau
 Hai chữ Thành Thật thế nào phải Thông
 Nếu không sẽ mãi lòng vòng
 Lươn lẹo lấp liếm hỏi lòng có An
@@ -1095,13 +1313,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo
-`,
+Đều Đồng Thành Phật Đạo 
+`
   },
   "section-05-03-soi-moi": {
-    id: "section-05-03-soi-moi",
-    title: "Soi Mói",
-    content: `Bao năm chung sống một nhà
+    "id": "section-05-03-soi-moi",
+    "title": "Soi Mói",
+    "content": `Bao năm chung sống một nhà
 Lúc vui lúc khổ vẫn chà đạp nhau
 Rảnh rang soi mói nỗi đau
 Tìm sâu trong lá gieo sầu cho nhau
@@ -1128,12 +1346,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-05-04-an-gia": {
-    id: "section-05-04-an-gia",
-    title: "An Gia",
-    content: `Hạnh phúc nào có đâu xa
+    "id": "section-05-04-an-gia",
+    "title": "An Gia",
+    "content": `Hạnh phúc nào có đâu xa
 An nhiên tự tại ngay Nhà mình thôi
 Có gì mà kiếm xa xôi
 Tiền tài danh lợi là nôi não phiền 
@@ -1154,13 +1372,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo
-`,
+Đều Đồng Thành Phật Đạo 
+`
   },
   "section-05-05-loi-vang": {
-    id: "section-05-05-loi-vang",
-    title: "Lời vàng (mẹ cùng con bỏ ngã nhân)",
-    content: `Lời chào của Đức Thích Ca
+    "id": "section-05-05-loi-vang",
+    "title": "Lời Vàng",
+    "content": `Lời chào của Đức Thích Ca
 Thiên Thượng Thiên Hạ Duy Ngã Độc Tôn
 Ngàn năm vẫn mãi trường tồn
 Đời người cái Ngã sưng tôn cao vời
@@ -1226,12 +1444,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Đến Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
+`
   },
   "section-06-01-thien": {
-    id: "section-06-01-thien",
-    title: "Thiền",
-    content: `An lạc hạnh phúc đâu xa
+    "id": "section-06-01-thien",
+    "title": "Thiền",
+    "content": `An lạc hạnh phúc đâu xa
 Ngay nơi tự tánh vậy mà tìm đâu
 Bắt chân quán chiếu tìm cầu
 Mong nhận chân lý thoát sầu trầm luân
@@ -1284,18 +1502,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
+`
   },
   "section-06-02-cua-thien": {
-    id: "section-06-02-cua-thien",
-    title: "Cửa Thiền",
-    content: `Dạ thưa Cha, Ái Như con xin trình Cha chỗ con ngồi thiền. Con đang ngồi biết rõ mình đang ngồi và an nhiên mỉm cười, xong tự nhiên con đến một không gian cảnh đẹp có rất nhiều mây, con thấy Thất Cha ở đó con mừng quá chạy đến cổng gõ cửa xin vào Thất, nhưng không huynh đệ nào mở cửa cho con, con thấy có Cha bên trong nhưng Cha cũng không mở cửa Cho con. Con trèo lên đỉnh cổng thấy rõ chữ Tam Vô Thất Cha, nhưng con vẫn không trèo vào được. Con loay hoay mãi đến khi con quay lại thân căn xả thiền ra con khóc hoài. 
-Con xin Cha khai thị cho con, có phải con bị lạc, Cha không cho con về Nhà không ạ?
-Tam Vô nói: Ta hỏi con: ai là người thấy con đang gõ cửa thất? Ai là người thấy con kêu gọi? Ai là người thấy con đang trèo qua cổng?
-Ái Như: khóc nức nở nói. Dạ thưa Cha, con ngộ ra rồi. Con xin cảm niệm Ân Cha!
-Tam Vô: tặng con bài kệ
-CỬA THIỀN 
-*********
+    "id": "section-06-02-cua-thien",
+    "title": "Cửa Thiền",
+    "content": `*********
 Cửa thiền là cửa Chân Không 
 Tâm ai vọng động sẽ không thể vào
 Cửa thiền không cổng ra vào 
@@ -1307,18 +1519,35 @@ Tam Vô
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-`,
+Đều Đồng Thành Phật Đạo.
+`
   },
-  "section-07-01-vo-tu-vo-chung": {
-    id: "section-07-01-vo-tu-vo-chung",
-    title: "Vô Tu Vô Chứng",
-    content: ``,
+  "section-06-03-thuyen-bat-nha": {
+    "id": "section-06-03-thuyen-bat-nha",
+    "title": "Thuyền Bát Nhã",
+    "content": `Quá Khứ Vị Lai Thị Hiện Hành
+Hành Ngay Tự Tánh Lục Căn Tịnh
+Càn Khôn Luân Chuyển Chân Tâm Vững
+Vô Đắc Vô Trụ Lạc Bình Thanh
+
+Ngoại Ly Vạn Tướng Năng Quy Tánh
+Trường Thọ An Nhiên Vô Ngại Hành
+Thuyền Nan Hành Giả Quy Bổn Tánh
+Hoá Độ Quần Sanh Viên Mãn Thành.
+
+TAM VÔ
+13/09/2020
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
   },
-  "section-07-02-pha-tuong": {
-    id: "section-07-02-pha-tuong",
-    title: "Phá Tướng",
-    content: `Sống trong nhân thế buộc ràng
+  "section-07-01-pha-tuong": {
+    "id": "section-07-01-pha-tuong",
+    "title": "Phá Tướng",
+    "content": `Sống trong nhân thế buộc ràng
 Dính chặt hình tướng mất đàng Vô Sanh
 Cuộc đời cứ mãi loanh quanh
 Chỉ vì chấp tướng phải đành trôi lăn
@@ -1361,12 +1590,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo 
-`,
+`
   },
-  "section-07-03-vo-chung": {
-    id: "section-07-03-vo-chung",
-    title: "Vô Chứng",
-    content: `Bao năm tìm Đạo thoát mê
+  "section-07-02-vo-chung": {
+    "id": "section-07-02-vo-chung",
+    "title": "Vô Chứng",
+    "content": `Bao năm tìm Đạo thoát mê
 Mong nhận lối thoát biết về Nhà Xưa
 Trôi lăn bao kiếp gió mưa
 Thần thông chứng đắc đường Xưa khó tìm
@@ -1417,13 +1646,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo 
-`,
+Đều Đồng Thành Phật Đạo
+`
   },
-  "section-07-04-thu-da": {
-    id: "section-07-04-thu-da",
-    title: "Thủ Đà",
-    content: `Hầu Khiêu Kỵ Mã Ngàn Trùng Xa 
+  "section-07-03-thu-da": {
+    "id": "section-07-03-thu-da",
+    "title": "Thủ Đà",
+    "content": `Hầu Khiêu Kỵ Mã Ngàn Trùng Xa 
 Tung Hoành Ngang Dọc Khắp Bôn Ba 
 Thần Thông Quảng Đại Tu Vi Nhất 
 Hòa Dĩ Bất Khả Đoạt Thủ Đà 
@@ -1435,12 +1664,76 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+
+
+`
+  },
+  "section-07-04-thoi-tu-thoi-chung": {
+    "id": "section-07-04-thoi-tu-thoi-chung",
+    "title": "Thôi Tu Thôi Chứng",
+    "content": `Bao đời tu chứng thần thông
+Thấy mình đắc quả rồi ngông ở đời
+Thấy ai cũng phán mọi thời 
+Phân chia tốt xấu lại rời Như Lai
+
+Nghĩ rằng mình chẳng đi sai
+Ngờ đâu là lối trôi hoài vạn năm
+Người lại tìm Ngọc xa xăm
+Vượt non lội suối lại lầm lạc trôi
+
+Cho mình chứng đắc quả rồi
+Dính bao huyển tướng ôi thôi lạc đường
+Mắt càng lâm cảnh mù sương
+Đường mình không rõ đòi thương đường người 
+
+Gặp người tâng bốc thì tươi
+Gặp người nói thật thì cười bực tâm
+Gánh bao ngày tháng âm thầm
+Đến khi mệt mỏi phá ầm tan hoang 
+
+Lại còn lôi kéo người ngay
+Khiến bao huynh đệ lung lay tín lòng
+Bản thân thì cứ lòng vòng
+Lại làm Nhất Xiển Đề còng Phật nhân
+
+Nay Vô chỉ rõ ân cần 
+Đường nào chứng đắc Thánh Thần dẫn đưa
+Muốn về được chốn quê xưa
+Ở yên Tự Tánh chẳng ưa cảnh gì 
+
+Là nơi bất khả tư nghì
+Ham mê chứng đắc lại đi luân hồi 
+Nay Vô để lại chữ "Thôi"
+Thôi "Tu" Thôi "Chứng" sẽ Thôi lòng vòng 
+
+Hành nơi Tự Tánh là xong
+Thấy Nghe Nói Biết rõ thông Niết Bàn 
+Ở nơi Pháp Thể thanh nhàn
+An nhiên người bước trên đàng Như Lai 
+
+Con Ta nhớ lấy chỗ này
+Mắt con u tối đau hoài mắt Ta
+Đi đâu hãy nhớ về Nhà 
+Đừng mê rong ruổi la cà thế gian
+
+Về Nhà là chốn hằng an
+Không vọng không tưởng là đàng thật chân
+Về đây rõ biết Pháp Thân
+Thường lạc ngã tịnh mười phân viên tròn
+
+TAM VÔ
+11/08/2023
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo.
+`
   },
   "section-08-01-niem-phat": {
-    id: "section-08-01-niem-phat",
-    title: "Niệm Phật",
-    content: `Lạc trôi tại cõi Ta Bà
+    "id": "section-08-01-niem-phat",
+    "title": "Niệm Phật",
+    "content": `Lạc trôi tại cõi Ta Bà
 Gian nan khổ cực tìm ra lối về
 Trải qua vạn lối u mê
 Như Lai chỉ rõ lối về Tây Phương
@@ -1470,12 +1763,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
+`
   },
   "section-08-02-a-di-da-phat": {
-    id: "section-08-02-a-di-da-phat",
-    title: "A Di Đà Phật",
-    content: `Cảm Thương A Di Đà Phật
+    "id": "section-08-02-a-di-da-phat",
+    "title": "A Di Đà Phật",
+    "content": `Cảm Thương A Di Đà Phật
 Thế nhân khổ nạn tất bật gọi tên
 Cầu sang Cực Lạc Tây Phương
 Người ơi có biết rõ đường nào đi
@@ -1542,12 +1835,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-08-03-chu-phat-day": {
-    id: "section-08-03-chu-phat-day",
-    title: "Chư Phật Dạy",
-    content: `Phật dạy Niệm Phật là chi
+    "id": "section-08-03-chu-phat-day",
+    "title": "Chư Phật Dạy",
+    "content": `Phật dạy Niệm Phật là chi
 Mà sao người cứ gọi A Di Đà
 Phật dạy Trì Chú nhưng mà
 Người luôn đọc mãi Chữ mà Phật trao
@@ -1581,13 +1874,58 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo 
-`,
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-08-04-phat-cung-gap-nan": {
+    "id": "section-08-04-phat-cung-gap-nan",
+    "title": "Phật Cũng Gặp Nạn",
+    "content": `Đản Sanh tại chốn Ta Bà
+Thọ thân tứ đại cùng là chúng sanh
+Tâm Thanh tại chốn tranh giành
+An nhiên tự tại, Phiền đành tránh xa
+
+Nhưng vì giáo hóa cõi ta
+Phật thân đây cũng phải va dòng đời
+Ma Vương không tiếc tuông lời
+Độc ngôn chửi bới Phật thời chẳng thâu
+
+Ma kia tự vả vào đâu
+Vả đâu đau đó tự thâu vào mình
+Phật Đà vẫn cứ lặng thinh
+Như Như Nhất Nhất Thanh Bình Tại Tâm
+
+TAM VÔ
+08/12/2019
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-08-05-dieu-lien": {
+    "id": "section-08-05-dieu-lien",
+    "title": "Diệu Liên",
+    "content": `Lâm Thanh U Hiện Diệu Liên Hương 
+Hoa Khai Soi Chiếu Khắp Thập Phương 
+Tam Kim Quang Tỏa Vô Lượng Xứ
+Hữu Duyên Dạo Lộ Cố Gia Thường
+
+TAM VÔ 
+04/02/2024
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Cho Tất Cả
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo.
+`
   },
   "section-09-01-phong-sanh": {
-    id: "section-09-01-phong-sanh",
-    title: "Phóng Sanh",
-    content: `Mọi người hành pháp phóng sanh
+    "id": "section-09-01-phong-sanh",
+    "title": "Phóng Sanh",
+    "content": `
+Mọi người hành pháp phóng sanh
 Mà sao cứ phóng chúng sanh bên ngoài
 Thế thì được phước hưởng sanh
 Luân hồi sanh tử loanh quanh cõi phàm
@@ -1612,17 +1950,85 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạọ.
-`,
+`
   },
   "section-09-02-dao-doi": {
-    id: "section-09-02-dao-doi",
-    title: "Đạo Đời",
-    content: ``,
+    "id": "section-09-02-dao-doi",
+    "title": "Đạo - Đời",
+    "content": `**********
+Đạo - Đời là một hay hai 
+Ai mà không rõ sẽ hoài lăng xăng 
+Đời người lo kiếm miếng ăn 
+Bỏ quên lối Đạo Thường Hằng sao yên
+
+Đời người mất của liền điên
+Chỉ cần hành Đạo Buông liền không lo
+Đời người tính toán so đo 
+Chỉ cần hành Đạo chẳng cho mình tài
+
+Đời người nóng giận gặp Tai
+Chỉ cần hành Đạo Từ hoài an nhiên 
+Đời người mê chấp ưu phiền 
+Chỉ cần hành Đạo Buông liền được an
+
+Đời người ngã mạn ngang tàng
+Chỉ cần hành Đạo khiêm nhường đức cao
+Đời người Nghi mãi thế nào 
+Chỉ cần hành Đạo Thường Hằng liền thông 
+
+Đời người lạy lục cầu mong 
+Chỉ cần hành Đạo Túc xong đại giàu
+Đời người kiến chấp thì sao
+Chỉ cần hành Đạo Buông màu sống ngông
+
+Đời người chấp tướng lông bông 
+Chỉ cần hành Đạo Tánh Không hết liền
+Đời người thọ lãnh không yên
+Chỉ cần hành Đạo không duyên cảnh trần 
+
+Đời người vọng tưởng sẽ đần
+Chỉ cần hành Đạo Tánh Mình tỏ minh
+Đời người hành mãi vọng sinh
+Chỉ cần hành Đạo Dừng theo vô thường 
+
+Đời người nhận thức không tường
+Chỉ cần hành Đạo Tánh Mình hằng thông
+Đời người Danh lợi khổ không 
+Chỉ cần hành Đạo Thôi Mong an liền
+
+Đời người ăn uống cũng phiền 
+Chỉ cần hành Đạo tùy duyên hết đòi
+Đời người ngủ nghỉ mệt nhoài 
+Chỉ cần hành Đạo mãi hoài tấn tinh 
+
+Người ơi hãy rõ sự tình 
+Đời mà không Đạo Đời mình khổ đau
+Đạo Đời luôn bước cùng nhau 
+Như đôi chân chẳng thể nào hai nơi 
+
+Đời người chỉ có một hơi 
+Đời không lìa Đạo muôn thời an nhiên 
+Bao Đời lặn ngụp triền miên 
+Khi Đời gặp Đạo Đời liền thong dong 
+
+Thuận duyên bày tỏ chút lòng
+Ai Nhận liễu ý thoát còng thế gian 
+Ai mà rõ Đạo mãi nhàn
+Giác Ngộ Giải Thoát là đàng Như Lai 
+
+Tam Vô
+25/01/2024
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
   },
   "section-09-03-va-ngo": {
-    id: "section-09-03-va-ngo",
-    title: "Vả Ngộ",
-    content: `Nhân gian sao thật lạ kỳ 
+    "id": "section-09-03-va-ngo",
+    "title": "Vả Ngộ",
+    "content": `Nhân gian sao thật lạ kỳ 
 Ham mê đón nhận những gì tốt thân
 Chê bai những thứ xấu bần
 Gặp được Ngọc Quý đem cân ra lường 
@@ -1654,12 +2060,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-09-04-hanh-noi-thinh-linh": {
-    id: "section-09-04-hanh-noi-thinh-linh",
-    title: "Hành Nơi Thình Lình",
-    content: `Học đạo là để hành đời
+    "id": "section-09-04-hanh-noi-thinh-linh",
+    "title": "Hành Nơi Thỉnh Lĩnh",
+    "content": `Học đạo là để hành đời
 Đừng ham lý thuyết mà rời thế gian 
 Đời đâu báo trước gian nan 
 Thình lình ăn Vả có an không nào
@@ -1685,14 +2091,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ  Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-
-
-`,
+`
   },
   "section-09-05-buong-vay-tra": {
-    id: "section-09-05-buong-vay-tra",
-    title: "Buông Vay Trả",
-    content: `Vạn kiếp trôi lăn khắp Ta Bà 
+    "id": "section-09-05-buong-vay-tra",
+    "title": "Buông Vay Trả",
+    "content": `Vạn kiếp trôi lăn khắp Ta Bà 
 Luân hồi sanh tử vọng thức va
 Trả vay ân oán rồi dính chấp
 Muôn đời tu mãi chẳng rõ Ta
@@ -1742,189 +2146,128 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-10-01-duyen-hanh": {
-      id: "section-10-01-duyen-hanh",
-      title: "Duyên hành",
-      content: `Đạo đời cứ thuận tuỳ duyên
-
+`
+  },
+  "section-10-01-duyen-hanh": {
+    "id": "section-10-01-duyen-hanh",
+    "title": "Duyên Hành",
+    "content": `Đạo đời cứ thuận tuỳ duyên
 Việc nào hảo ý hành liền không lo
-
 Cõi trần là cõi mượn cho
-
 Đừng đợi rối rắm mới lo Về Nhà
 
 Vô lo vô nghĩ thế là
-
 Vô danh vô lợi thế mà hằng An
-
 Người mà liễu ý sẽ nhàn
-
 Ung dung tự tại trên đàng Như Lai
 
 Tam Vô
-
 02/10/2022
 
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả 
-
 Đệ Tử Và Chúng Sanh 
-
 Đều Đồng Thành Phật Đạo.
-`,
-
-    },
-    "section-10-02-can-than-keo-lam": {
-      id: "section-10-02-can-than-keo-lam",
-      title: "Cẩn thận kẻo lầm",
-      content: `Vạn vật trên thế gian
+`
+  },
+  "section-10-02-can-than-keo-lam": {
+    "id": "section-10-02-can-than-keo-lam",
+    "title": "Cẩn Thận Kẻo Lầm",
+    "content": `Vạn vật trên thế gian
 Cầu Xin mà có được
-
 Đều là do Mê Lầm
-
 Dễ gặp hàng Quỷ Ma
 
 Sống thuận theo Nhân Quả
-
 Hiểu biết thật rõ ràng
-
 Gieo Nhân Lành việc tốt
-
 Ắt gặt Quả Phước Sanh
 
 Muốn hết bị loanh quanh
-
 Lìa Luân Hồi Sanh Tử
-
 Rõ Pháp Thân Thanh Tịnh
-
 Thường hành ở nơi ấy
 
 Công Đức vô lượng sanh
-
 Giải thoát khỏi Tam Giới
-
 Thấu triệt hết nhân sinh
-
 Thường hành trong thanh tịnh
 
 Dù Tam Thiên tan vỡ
-
 Vẫn ung dung tự tại
 
 TAM VÔ
-
 06/08/2022
 
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả 
-
 Đệ Tử Và Chúng Sanh
-
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-10-03-kiep-con-cua": {
-      id: "section-10-03-kiep-con-cua",
-      title: "Kiếp con cua",
-      content: `Con cua tám cẳng hai càng
-
+`
+  },
+  "section-10-03-kiep-con-cua": {
+    "id": "section-10-03-kiep-con-cua",
+    "title": "Kiếp Con Cua",
+    "content": `Con cua tám cẳng hai càng
 Bò ngang bò dọc chẳng màng đến ai
-
 Chẳng cần biết đúng hay sai
-
 Đụng vào càng cứ kẹp hoài không tha
 
 Đến khi bị bắt khóc la
-
 Nhốt vào xô rọ biết là khổ đau
-
 Cố bò cố trốn thoát mau
-
 Nhưng đàn cua khác bám sau chân mình
 
 Giờ đây mới rõ sự tình
-
 Khi gặp hoạn nạn tử sinh rõ Bè
-
 Quyết tâm thoát chẳng e dè
-
 Dù bao khổ nạn khóc nhè ích chi
 
 Thoát Xô cua ráng bước đi
-
 Vô tri vô giác nghĩ là thoát thân
-
 Ngờ đâu cua vẫn cứ đần
-
 Bò vào nồi lẩu bị mần thịt luôn
 
 Thương thay số kiếp con Cua
-
 Vươn càng ngang ngược hơn thua với đời
-
 Đến khi gặp cảnh thất thời
-
 Cua kia cũng phải dứt hơi lên bàn
 
 Muốn cho thấy được rõ đàng
-
 Càng tinh càng tấn phải càng tỏ minh
-
 Nếu không Cua chính như mình
-
 Bò ngang bò dọc rớt uỳnh nước sôi
 
 Muốn không gặp cảnh lăn trôi
-
 Tặng người hữu phúc chữ "Thôi" Phật truyền
-
 Thôi vọng thôi ngã thôi điên
-
 Nhận ra Tự Tánh là yên muôn thời
 
 Ai ơi đang sống ở đời
-
 Thấy nghe nói biết thảnh thơi ngay mình
-
 Vừa luôn tinh tấn vừa minh
-
 Hành ngay Tự Tánh tử sinh không màng
 
-
 Sống luôn tỉnh thức rõ ràng
-
 Muôn thời người bước trên đàng Như Lai
-
 Từ nay thoát cảnh bi ai
-
 Ung dung tự tại về Ngai Phật Đà
 
 TAM VÔ
-
 17/05/2023
 
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả
-
 Đệ Tử Và Chúng Sanh
-
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-10-04-thoat-nan": {
-      id: "section-10-04-thoat-nan",
-      title: "Thoát nạn",
-      content: `Trôi lăn trong chốn trần lao
+`
+  },
+  "section-10-04-thoat-nan": {
+    "id": "section-10-04-thoat-nan",
+    "title": "Thoát Nạn",
+    "content": `Trôi lăn trong chốn trần lao
 Hao tâm khổ trí biết ngày nào ra
-
 Ở trong cõi tạm Ta Bà
-
 Phật đâu chẳng thấy gặp Ma thì đầy
 
 Trãi qua khổ não mỗi ngày
@@ -1954,12 +2297,13 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-10-05-luon-leo": {
-      id: "section-10-05-luon-leo",
-      title: "Lươn lẹo",
-      content: `Sanh ra trong cảnh u minh
+`
+  },
+  "section-10-05-luon-lao": {
+    "id": "section-10-05-luon-lao",
+    "title": "Lươn Lẹo",
+    "content": `**********
+Sanh ra trong cảnh u minh
 Không người chỉ rõ biết mình là ai
 Tánh ma người mãi theo hoài
 Lươn lẹo lấp liếm sống sai không ngừng 
@@ -2006,12 +2350,13 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-10-06-hoi-thay-dai-chung": {
-      id: "section-10-06-hoi-thay-dai-chung",
-      title: "Hỏi thay đại chúng",
-      content: `Lành thay con trẻ trình bày 
+`
+  },
+  "section-10-06-hoi-thay-dai-chung": {
+    "id": "section-10-06-hoi-thay-dai-chung",
+    "title": "Hỏi Thay Đại Chúng",
+    "content": `**********
+Lành thay con trẻ trình bày 
 Lợi lạc đại chúng con thay hỏi liền
 Dù con chẳng có ưu phiền 
 Đặt ra câu hỏi giúp yên muôn người 
@@ -2028,30 +2373,12 @@ Ung dung ươm nở hạt mầm Liên Hoa
  
 TAM VÔ 
 06/12/2023
-
-Tâm An ở Bình Định Hỏi:
-*con xin phép Ân Sư Cha khai thị mấy câu sau:
-Câu 1: Nơi Chín Suối ( Cửu Tuyền), Suối Vàng ( Hoàng Tuyền) có giống nhau không ạ? Tại sao lại là chín mà không phải là 10 ạ? 
-Câu 2: Chánh Báo, Y Báo là gì ạ? 
-Câu 3: Quy Y Tam Bảo là gì ạ? 
-Câu 4: Từ , Bi, Hỷ, Xả có ý nghĩa gì ạ? 
-Câu 5: Tại sao thầy trò Đường Tăng lại phải trải qua đủ 81 kiếp nạn mới thành Phật được ạ? 
-Câu 6: 5 Thầy trò Đường Tăng tượng trưng cho những đức tính nào của 1 Người ạ? Tại sao Đường Tăng lại thu nhận Tôn Ngộ Không trước sau đó tới Ngộ Năng , N gộ Tịnh, Bạch Long Mã ạ?  Pháp Danh của Từng Nhân vật có ý nghĩa gì ạ? Tại sao Bạch Long Mã lại không có Pháp Danh ạ ? 
-Câu 7: Tại sao Đường Tăng thà tin lầm yêu quái chứ không tin Ngộ Không ạ
-Câu 8:  Dấu chấm đỏ trên trán Phật Tổ Như Lai có ý nghĩa gì ạ? 
-Câu 9 Câu niệm chú của Đường Tăng là gì mà khiến Vòng Kim Cô làm Ngộ Không đau đầu như vậy ạ? 
-Câu 10: Nếu thiếu 1 trong 4 đồ đệ thì Đường Tăng có thỉnh được Kinh không ạ. 
-Câu 11 Trong kiếp nạn " Thật, Giả Mỹ Hầu Vương" còn có một con khỉ khác y hệt Ngộ Không. Vậy con khỉ đó có nguồn gốc từ đâu ạ. 
-Câu 12: Tại sao hầu hết yêu quái cản đường Thầy Trò Đường Tăng lại là thú nuôi của các vị Tiên trên trời ạ? Các Vị ấy Vô tình để thú nuôi làm hại Bá Tánh vậy. Họ có phải chịu trách nhiệm gì không ạ? 
-Câu 13 Tại sao Bạch Long Mã  không được thành Phật ạ? Bát Giới chỉ được phong làm Tịnh Đàn Sứ Giả ( vậy Bát Giới vẫn chưa thành Phật ạ)? 
-Dạ !🙏Con xin Ân Sư Cha khai thị !🙏 
-Con cảm niệm Ân Sư Cha
-`,
-    },
-    "section-10-07-quen-gio-vang": {
-      id: "section-10-07-quen-gio-vang",
-      title: "Quên giờ vàng",
-      content: `Lăng xăng cả tháng với đời
+`
+  },
+  "section-10-07-quen-gio-vang": {
+    "id": "section-10-07-quen-gio-vang",
+    "title": "Quên Giờ Vàng",
+    "content": `Lăng xăng cả tháng với đời
 Một buổi Tỉnh Thức để rời thế gian 
 Nhưng người vẫn thích lang thang 
 Kiếp nào người mới vững đàng Như Lai 
@@ -2083,14 +2410,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-
-
-`,
-    },
-    "section-10-08-hanh-sam-hoi": {
-      id: "section-10-08-hanh-sam-hoi",
-      title: "Hạnh sám hối",
-      content: `Sám hối không chỉ bằng lời
+`
+  },
+  "section-10-08-hanh-sam-hoi": {
+    "id": "section-10-08-hanh-sam-hoi",
+    "title": "Hạnh Sám Hối",
+    "content": `Sám hối không chỉ bằng lời
 Gây ra lầm lỗi tức thời sám ngay
 Phát nguyện hối cãi từ đây
 Không còn tái phạm thứ gây sai lầm
@@ -2146,12 +2471,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-10-09-loi-nhac-nho": {
-      id: "section-10-09-loi-nhac-nho",
-      title: "Lời nhắc nhở",
-      content: `Trôi lăn sanh tử bao đời 
+`
+  },
+  "section-10-09-loi-nhac-nho": {
+    "id": "section-10-09-loi-nhac-nho",
+    "title": "Lời Nhắc Nhở",
+    "content": `Trôi lăn sanh tử bao đời 
 Hỉ nộ ái ố muôn thời khổ đau 
 Muốn dừng chẳng biết làm sao 
 Loanh quanh chẳng biết cách nào thoát ra 
@@ -2207,12 +2532,12 @@ NGUYỆN ĐEM CÔNG ĐỨC NÀY
 HỒI HƯỚNG KHẮP TẤT CẢ 
 ĐỆ TỬ VÀ CHÚNG SANH 
 ĐỀU ĐỒNG THÀNH PHẬT ĐẠO
-`,
-    },
-    "section-10-10-hang-nguoi-dang-kinh": {
-      id: "section-10-10-hang-nguoi-dang-kinh",
-      title: "Hạng người đáng kính",
-      content: `Trần gian đáng kính hai người 
+`
+  },
+  "section-10-10-hang-nguoi-dang-kinh": {
+    "id": "section-10-10-hang-nguoi-dang-kinh",
+    "title": "Hạng Người Đáng Kính",
+    "content": `Trần gian đáng kính hai người 
 Người Chơn Sám Hối người hành không sai
 Nay con buông ngã lành thay
 Trình ra đại chúng nhận ngay chính mình 
@@ -2231,13 +2556,13 @@ Tam Vô
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-`,
-    },
-    "section-10-11-quyet-chi-nghe-con": {
-      id: "section-10-11-quyet-chi-nghe-con",
-      title: "Quyết chí nghe con",
-      content: `"**********
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-10-11-quyet-chi-nghe-con": {
+    "id": "section-10-11-quyet-chi-nghe-con",
+    "title": "Quyết Chí Nghe Con",
+    "content": `**********
 Thật lành thay! con nay rõ cặn kẻ
 Quyết một lòng buông bỏ chuyện thế gian
 Theo gót Cha về quê sống an nhàn
@@ -2264,12 +2589,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-10-12-neu-mot-ngay-con-met-moi": {
-      id: "section-10-12-neu-mot-ngay-con-met-moi",
-      title: "Nếu một ngày con mệt mỏi",
-      content: `Nếu một ngày con cảm thấy mệt mỏi
+`
+  },
+  "section-10-12-neu-mot-ngay-con-met-moi": {
+    "id": "section-10-12-neu-mot-ngay-con-met-moi",
+    "title": "Nếu Một Ngày Con Mệt Mỏi",
+    "content": `Nếu một ngày con cảm thấy mệt mỏi
 Than trách mình sao sanh cõi u minh
 Về bên Cha nơi chẳng có tướng hình
 Thấy rõ mình chẳng sinh bao giờ cả
@@ -2321,35 +2646,31 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-11-01-3t": {
-      id: "section-11-01-3t",
-      title: "3T",
-      content: `Nó Không Là Gì Cả
-
+`
+  },
+  "section-11-01-3t": {
+    "id": "section-11-01-3t",
+    "title": "3T",
+    "content": `Nó Không Là Gì Cả
 Mình Và Người Vọng Động
-
 Rồi Đặt Tên Nó Là ...
-
 Thật Nó Không Là Gì
 
-TAM VÔ
+TAM VÔ 
+ 02/08/2022
 
-02/08/2022
 
-Nguyện Đem Công Đức Này
-
+Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
-
 Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
 
-Đều Đồng Thành Phật Đạo`,
-    },
-    "section-11-02-thay-minh": {
-      id: "section-11-02-thay-minh",
-      title: "Thấy mình",
-      content: `Thấy Sắc Không Dính Sắc
+`
+  },
+  "section-11-02-thay-minh": {
+    "id": "section-11-02-thay-minh",
+    "title": "Thấy Mình",
+    "content": `Thấy Sắc Không Dính Sắc
 Nghe Âm Không Dính Âm
 Biết Sắc Âm Đều Giả
 Nhận Ngay Pháp Thân Mình
@@ -2361,13 +2682,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-11-03-ro-minh": {
-      id: "section-11-03-ro-minh",
-      title: "Rõ mình",
-      content:
-        `Bản lai chúng sanh là Phật
+`
+  },
+  "section-11-03-ro-minh": {
+    "id": "section-11-03-ro-minh",
+    "title": "Rõ Mình",
+    "content": `Bản lai chúng sanh là Phật
 Vì theo niệm khởi tất bật trần gian
 Muôn đời tìm kiếm chữ An
 Rõ mình không vật bảo đàng Như Lai
@@ -2389,14 +2709,13 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    
-    "section-11-04-tai-vi-do-boi-tran-cau": {
-      id: "section-11-04-tai-vi-do-boi-tran-cau",
-      title: "Tại – vì – do – bởi trần cấu",
-      content:
-        `Sắc ơi sao đẹp tuyệt trần
+
+`
+  },
+  "section-11-04-tai-vi-do-boi-tran-cau": {
+    "id": "section-11-04-tai-vi-do-boi-tran-cau",
+    "title": "Tại - Vì - Do - Bởi - Trần - Cầu",
+    "content": `Sắc ơi sao đẹp tuyệt trần
 Làm cho ai đắm thất thần đê mê
 Sắc ơi sao lại xấu ghê
 Làm cho ai oán trách chê đủ điều
@@ -2466,12 +2785,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-11-05-cua-minh": {
-      id: "section-11-05-cua-minh",
-      title: "Của mình",
-      content: `Của mình thì mãi của mình
+`
+  },
+  "section-11-05-cua-minh": {
+    "id": "section-11-05-cua-minh",
+    "title": "Của Mình",
+    "content": `Của mình thì mãi của mình
 Nếu mà không phải tham cầu được sao
 Bao năm lận đận lao đao
 Cố mà níu giữ làm sao an lòng
@@ -2491,12 +2810,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-11-06-vo-nhan": {
-      id: "section-11-06-vo-nhan",
-      title: "Vô nhẫn",
-      content: `Vạn sự hành Nhẫn nén sân si
+`
+  },
+  "section-11-06-vo-nhan": {
+    "id": "section-11-06-vo-nhan",
+    "title": "Vô Nhẫn",
+    "content": `Vạn sự hành Nhẫn nén sân si
 Đến khi tức nước vỡ cảnh gì
 Tùy duyên đối cảnh vô tâm khởi 
 Vô nhiễm Vô Nhẫn hoài thảnh thơi 
@@ -2508,12 +2827,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-11-07-bao-tam": {
-      id: "section-11-07-bao-tam",
-      title: "Bảo tâm",
-      content: `"**********
+`
+  },
+  "section-11-07-bao-tam": {
+    "id": "section-11-07-bao-tam",
+    "title": "Báo Tâm",
+    "content": `**********
 Duyên Hợp Tâm Sanh Tan Tâm Diệt
 Truy Cầu Tâm Tức Thị Vọng Liên 
 Bảo Châu Vô Vật Vô Phương Trú
@@ -2526,12 +2845,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-11-08-cau-tam-an": {
-      id: "section-11-08-cau-tam-an",
-      title: "Cầu Tâm An",
-      content: `Vạn Niên Truy Cầu Đắc Tâm An 
+`
+  },
+  "section-11-08-cau-tam-an": {
+    "id": "section-11-08-cau-tam-an",
+    "title": "Cầu Tâm An",
+    "content": `Vạn Niên Truy Cầu Đắc Tâm An 
 Lạc Ta Truy Tậu Bất An Thường 
 Bản Lai Vô Vật Tâm An Trú 
 Nhị Nhãn Bất Dụng Hiển Tâm An 
@@ -2544,13 +2863,47 @@ TAM VÔ
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-`,
-    },
-    "section-12-01-bach-ngon": {
-      id: "section-12-01-bach-ngon",
-      title: "Bạch Ngôn",
-      content:`
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-11-09-tu-tam": {
+    "id": "section-11-09-tu-tam",
+    "title": "Tự Tâm (Bất Động)",
+    "content": `Bất Độ trình kệ sở ngộ cúng dường Sư Cha Tam Vô
+
+Quay về tự tâm hằng sáng
+Thấy nghe nói biết rõ ràng Huệ Tâm
+Phật là bản thể Vô Sanh
+Quên mình theo vật phải đành chuyển luân
+
+Phật thường tỏ sáng hằng luôn
+Nơi mình sẵn có tìm đâu nhọc nhằn
+Lặn lội rừng núi lăng xăng
+Thoát được mê lầm Phật ở tại tâm
+
+Thấy nghe nói biết không lầm
+Vạn vật thay đổi vô tâm an liền
+Từ nay con hết ưu phiền
+Cũng vì vọng động lặn chìm Phật ta
+
+Từ nay con đã rõ Nhà
+Luôn hằng thanh tịnh Phật Đà Quê Xưa
+Cảm Niệm Cha đã dẫn đưa
+Khai thị con rõ đường xưa về Nhà
+
+Bất Độ
+02/02/2023
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-12-01-bach-ngon": {
+    "id": "section-12-01-bach-ngon",
+    "title": "Bạch Ngôn",
+    "content": `
 Vô lượng ức kiếp chốn kim quang
 Nhất niệm lạc trôi sanh tử đàng
 Âm dương tứ đại luôn xoay chuyển
@@ -2721,13 +3074,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-12-02-dao-hanh": {
-      id: "section-12-02-dao-hanh",
-      title: "Dạo Hành",
-      content:`
-Ung Dung Nơi Trần Cảnh
+`
+  },
+  "section-12-02-dao-hanh": {
+    "id": "section-12-02-dao-hanh",
+    "title": "Dạo Hành",
+    "content": `Ung Dung Nơi Trần Cảnh
 Phổ Chân Kinh Vô Tự
 Năm Nhánh Tự Hoằng Sanh
 Bồ Đề Viên Mãn Thành
@@ -2740,13 +3092,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-12-03-thu-phat": {
-      id: "section-12-03-thu-phat",
-      title: "Thủ Phất",
-      content:
-        `Trường Giang Triều Đại Loạn Phong Ba
+`
+  },
+  "section-12-03-thu-phat": {
+    "id": "section-12-03-thu-phat",
+    "title": "Thủ Phát",
+    "content": `Trường Giang Triều Đại Loạn Phong Ba
 Thủ Phất Thuỷ Ly Thoát Ta Bà 
 Bản Lai Vô Vật Gia Hương Cố
 Hồng Trần Há Nhiễm Chốn Tam Vô
@@ -2758,12 +3109,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-12-04-hoan-tra-bui-hong": {
-      id: "section-12-04-hoan-tra-bui-hong",
-      title: "Hoàn trả bụi hồng",
-      content: `Vạn kiếp độ tận chốn nơi đây
+`
+  },
+  "section-12-04-hoan-tra-bui-hong": {
+    "id": "section-12-04-hoan-tra-bui-hong",
+    "title": "Hoàn Trả Bụi Hồng",
+    "content": `Vạn kiếp độ tận chốn nơi đây
 Chung quy nhìn lại chúng vẫn say
 Miệng đời phát nguyện tinh tấn bước
 Thân thủ tâm can mãi mê hoài
@@ -2781,18 +3132,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ  Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-12-05-me-cung-con-bo-nga-nhan": {
-    id: "section-12-05-me-cung-con-bo-nga-nhan",
-    title: "Mẹ Cùng Con Bỏ Ngã Nhân (Lời Vàng)",
-    content: `
-    `,
+`
   },
-    "section-12-06-thoat-me-lam": {
-      id: "section-12-06-thoat-me-lam",
-      title: "Thoát mê lầm",
-      content: `Nhân sinh khắp chốn hồng trần
+  "section-12-05-thoat-me-lam": {
+    "id": "section-12-05-thoat-me-lam",
+    "title": "Thoát Mê Lầm",
+    "content": `Nhân sinh khắp chốn hồng trần
 Vô minh chấp niệm chẳng cần thoát ra
 Cho rằng trong cõi Ta Ba
 Buồn vui sướng khổ mới là đời hay
@@ -2839,12 +3184,14 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo 
-`,
-    },
-    "section-12-07-thoat-me": {
-      id: "section-12-07-thoat-me",
-      title: "Thoát mê",
-      content: `Bao nhiêu đời lăn lộn
+
+
+`
+  },
+  "section-12-06-thoat-me": {
+    "id": "section-12-06-thoat-me",
+    "title": "Thoát Mê",
+    "content": `Bao nhiêu đời lăn lộn
 Mong được thoát bờ mê
 Khi trực nhận trân báu
 Tỏ rõ chân thật trần
@@ -2864,12 +3211,13 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-12-08-tim-an": {
-      id: "section-12-08-tim-an",
-      title: "Tìm an",
-      content: `Tìm đâu để thấy chữ An
+
+`
+  },
+  "section-12-07-tim-an": {
+    "id": "section-12-07-tim-an",
+    "title": "Tìm An",
+    "content": `Tìm đâu để thấy chữ An
 Tìm đâu đến chỗ an nhàn thảnh thơi
 Đời người chỉ có một hơi
 Đến khi lìa dứt một đời đã qua
@@ -2911,12 +3259,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo 
-`,
-    },
-    "section-12-09-nguoi-giau": {
-      id: "section-12-09-nguoi-giau",
-      title: "Người giàu",
-      content: `Sống trong ảo cảnh trần gian
+`
+  },
+  "section-12-08-nguoi-giau": {
+    "id": "section-12-08-nguoi-giau",
+    "title": "Người Giàu",
+    "content": `Sống trong ảo cảnh trần gian
 Mọi người dính chặt muôn ngàn lợi danh
 Bao năm tìm kiếm đua tranh
 Có nhiều của cải gọi là giàu sang
@@ -2946,12 +3294,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-12-10-khai-dao": {
-      id: "section-12-10-khai-dao",
-      title: "Khai Đạo",
-      content: `Lâm Thanh Thiên Hoả Vân Huyền Ảo
+`
+  },
+  "section-12-09-khai-dao": {
+    "id": "section-12-09-khai-dao",
+    "title": "Khai Đạo",
+    "content": `Lâm Thanh Thiên Hoả Vân Huyền Ảo
 Chúng Sanh Mê Đắm Xứ Trần Lao
 Ngao Du Khai Đạo Xuyên Tam Giới 
 Dẫn Độ Quần Sanh Đáo Phật Đà 
@@ -2963,12 +3311,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-12-11-mo-dao": {
-      id: "section-12-11-mo-dao",
-      title: "Mở đạo",
-      content: `
+`
+  },
+  "section-12-10-mo-dao": {
+    "id": "section-12-10-mo-dao",
+    "title": "Mở Đạo",
+    "content": `***********
 Trôi lăn bao kiếp chốn trần lao
 Lăng xăng tìm Đạo biết nơi nào 
 Gặp được người chỉ bao thiện pháp
@@ -2989,14 +3337,13 @@ Tam Vô
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả
 Đệ Tử và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-
-`,
-    },
-    "section-12-12-tai-sao-yeu-quai": {
-    id: "section-12-12-tai-sao-yeu-quai",
-    title: "Tại Sao Yêu Quái Thích Ăn Thịt Đường Tăng",
-    content: `Linh Đan xin hỏi Sư Ông
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-12-11-tai-sao-yeu-quai-thich-an-thit-duong-tang": {
+    "id": "section-12-11-tai-sao-yeu-quai-thich-an-thit-duong-tang",
+    "title": "Tại Sao Yêu Quái Thích Ăn Thịt Đường Tăng",
+    "content": `Linh Đan xin hỏi Sư Ông
 Vì sao Yêu Quái thích ăn Tam Tạng?
 Lành thay con hỏi Bảo Đàng
 Nay duyên ông chỉ rõ ràng Yêu Tinh
@@ -3040,13 +3387,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Tôn Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
-  "section-12-13-khai-ngo": {
-      id: "section-12-13-khai-ngo",
-      title: "Khai Ngộ",
-      content: `
-🌿🌿🌿 Thanh Như trình kệ Sở Ngộ cúng dường Sư Cha Tam Vô
+  "section-12-12-khai-ngo": {
+    "id": "section-12-12-khai-ngo",
+    "title": "Khai Ngộ",
+    "content": `Thanh Như trình kệ Sở Ngộ cúng dường Sư Cha Tam Vô
 
 Ngọc Quý nào ở đâu xa
 Ngay nơi Tự Tánh Sư Cha khai THIỀN
@@ -3100,15 +3446,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-
-
-`,
-    },
-    "section-12-14-gap-nguoi-khai-ngo": {
-      id: "section-12-14-gap-nguoi-khai-ngo",
-      title: "Gặp Người Khai Ngộ",
-      content: `
-Ý Như con xin Kính trình kệ Cúng Dường Cảm Niệm Sư Cha Tam Vô!,🙏🙏🙏
+`
+  },
+  "section-12-13-gap-nguoi-khai-ngo": {
+    "id": "section-12-13-gap-nguoi-khai-ngo",
+    "title": "Gặp Người Khai Ngộ",
+    "content": `Ý Như con xin Kính trình kệ Cúng Dường Cảm Niệm Sư Cha Tam Vô!,🙏🙏🙏
 
 Nhớ một ngày hơn một năm về trước
 Con gặp Người với ánh mắt ngây thơ
@@ -3161,16 +3504,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo.
- 
-
-`,
-    },
-  
-    "section-13-01-tom-hoa-rong": {
-      id: "section-13-01-tom-hoa-rong",
-      title: "Tôm hoá rồng",
-      content:
-        `Oai thay thân tướng con Tôm
+`
+  },
+  "section-13-01-tom-hoa-rong": {
+    "id": "section-13-01-tom-hoa-rong",
+    "title": "Tôm Hóa Rồng",
+    "content": `Oai thay thân tướng con Tôm
 Toàn thân áo giáp bọc ôm quanh mình
 Các chân múa phá tung sình
 Đuôi Tôm dũng mãnh thình lình búng xa
@@ -3217,12 +3556,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-13-02-chuyen-doi-dua": {
-      id: "section-13-02-chuyen-doi-dua",
-      title: "Chuyện đôi đũa",
-      content: `Đũa kia sao lại có đôi
+`
+  },
+  "section-13-02-chuyen-doi-dua": {
+    "id": "section-13-02-chuyen-doi-dua",
+    "title": "Chuyện Đôi Đũa",
+    "content": `Đũa kia sao lại có đôi
 Khi cầm một chiếc gắp đồ được chăng
 Đũa kia sao lại thẳng băng
 Khi mà cong quẹo gắp ăn thế nào
@@ -3289,12 +3628,13 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-13-03-dong-tien": {
-      id: "section-13-03-dong-tien",
-      title: "Đồng tiền",
-      content: `Đồng Tiền là cái chi chi
+`
+  },
+  "section-13-03-dong-tien": {
+    "id": "section-13-03-dong-tien",
+    "title": "Đồng Tiền",
+    "content": `
+Đồng Tiền là cái chi chi
 Mà sao người cứ mãi đi kiếm tìm
 Không Tiền xấu hổ lặng im 
 Có Tiền hống hách ngông nghênh với đời
@@ -3410,13 +3750,13 @@ Tam Vô
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-13-04-co-hoa-duong": {
-      id: "section-13-04-co-hoa-duong",
-      title: "Cỏ hoa đường",
-      content: `Cỏ cây hoa lá mọc ven đường 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-13-04-co-hoa-duong": {
+    "id": "section-13-04-co-hoa-duong",
+    "title": "Cỏ Hoa Đường",
+    "content": `Cỏ cây hoa lá mọc ven đường 
 Hương thơm bóng mát vạn người thương 
 Hỏi ai lối rộng sao không bước 
 Cớ sao giẫm đạp cỏ hoa đường 
@@ -3424,13 +3764,18 @@ Cớ sao giẫm đạp cỏ hoa đường
 
 Tam Vô 
 14/01/2025
-`,
-    },
-    "section-13-05-dao-cuc": {
-      id: "section-13-05-dao-cuc",
-      title: "Đạo Cực",
-      content: `
-Cờ tựa tâm ý khởi lên 
+
+
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-13-05-dao-cuc": {
+    "id": "section-13-05-dao-cuc",
+    "title": "Đạo Cực",
+    "content": `Cờ tựa tâm ý khởi lên 
 Ức do dính mắc lênh đênh sáu đàng 
 Khế hợp hôi thúi khắp làng 
 Bao đời ôm giữ hỏi người Nặng không 
@@ -3457,13 +3802,17 @@ Ai duyên tỏ ngộ lên đàng Cực Vui
 Tam Vô 
 02/12/2020
 
-`,
-    },
-    "section-13-06-uong-nuoc-het-benh": {
-      id: "section-13-06-uong-nuoc-het-benh",
-      title: "Uống nước hết bệnh",
-      content:
-        `Mọi người bệnh tật than van
+
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-13-06-uong-nuoc-het-benh": {
+    "id": "section-13-06-uong-nuoc-het-benh",
+    "title": "Uống Nước Hết Bệnh",
+    "content": `Mọi người bệnh tật than van
 Mong cho hết bệnh để An muôn thời
 Nhưng mà đã lãnh cái thân
 Sinh già bệnh tử một lần phải qua
@@ -3494,236 +3843,226 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-13-07-beo-tim-ben": {
-      id: "section-13-07-beo-tim-ben",
-      title: "Bèo tìm bến",
-      content: `Bèo không tướng thấy mình trôi nổi
-
+`
+  },
+  "section-13-07-beo-tim-ban": {
+    "id": "section-13-07-beo-tim-ban",
+    "title": "Bèo Tìm Bến",
+    "content": `Bèo không tướng thấy mình trôi nổi
 Cố kiếm tìm bến đỗ nương thân
-
 Nơi đâu trong chốn hồng trần
-
 Bèo kia ghé được không cần trôi lăn
 
 Theo dòng nước lăng xăng chảy mãi
-
 Cứ trôi hoài trong cảnh bi ai
-
 Gặp được tuyệt cảnh thật may
-
 Ngờ đâu là lối đoạ đày sáu phương
 
 Hỏi thế gian đâu là vô thượng
-
 Để chứa được vô tướng Bèo kia
-
 Chỉ khi dòng nước đứt lìa
-
 Bèo liền cập bến rõ tia Phật Đà 
 
 TAM VÔ
-
 06/02/2023
 
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả 
-
 Đệ Tử Và Chúng Sanh 
-
 Đều Đồng Thành Phật Đạo 
-`,
-    },
-    "section-13-08-binh-minh": {
-      id: "section-13-08-binh-minh",
-      title: "Bình minh",
-      content: `Bình minh ló dạng từ xa
-
+`
+  },
+  "section-13-08-binh-minh": {
+    "id": "section-13-08-binh-minh",
+    "title": "Bình Minh",
+    "content": `Bình minh ló dạng từ xa
 Từng tia nắng ấm xuyên qua sương mờ
-
 Ánh vàng dịu nhẹ như tơ
-
 Lướt qua ngọn cỏ nhành cây ao hồ
 
 Lũ chim được dịp bô bô
-
 Líu lo ríu rít xô bồ lăng xăng
-
 Con nào con nấy lăn tăn
-
 Nhảy qua nhảy lại từng cành trên cây
 
 Con thì bay nhảy tìm mồi
-
 Con thì líu ríu hót hoài không thôi
-
 Có đám đùa giỡn liên hồi
-
 Có con im lặng chỉ ngồi thẩn thơ
 
 Còn cặp Cu trắng nãy giờ
-
 Lượn vòng quấn quít tình thơ tuôn trào
-
 Vài con se sẻ bay vào
-
 Mang theo cọng cỏ bay vào tổ chim
 
 Lướt quanh cây cối mái nhà
-
 Đâu đâu cũng có tổ mà chúng xây
-
 Dưới thì lũ cá suốt ngày
-
 Lượn qua lượn lại như mây trên trời
 
 Dù cho Sáng tối sao dời
-
 Cá đây cũng mãi không lời mà bơi
-
 Chỉ cần một hạt thức rơi
-
 Cả đàn nhảy nhót tơi bời ăn nhanh
 
 Cá chim luôn sống an lành
-
 Chẳng tiền chẳng của vẫn hoài thảnh thơi
-
 Cá thì dưới nước mà bơi
-
 Chim thì bay nhảy chẳng rơi vào phiền
 
 Vậy sao người cứ đảo điên
-
 Lao tâm khổ trí để phiền đến ta
-
 Làm sao hằng sống trong Nhà
-
 Thong dong tự tại mới là An Yên
 
 TAM VÔ
 25/07/2022
 
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả 
-
 Đệ Tử Và Chúng Sanh
-
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-13-09-ngam-trang": {
-      id: "section-13-09-ngam-trang",
-      title: "Ngắm trăng",
-      content: `Một mình ngồi ngắm trăng thanh
-
+`
+  },
+  "section-13-09-ngam-trang": {
+    "id": "section-13-09-ngam-trang",
+    "title": "Ngắm Trăng",
+    "content": `Một mình ngồi ngắm trăng thanh
 Ánh trăng soi sáng xóa tan đêm dài
-
 Trăng soi chẳng quảng mệt nhoài
-
 Dù đêm u tối trăng hoài chiếu soi
   
 Trớ trêu mây thích tìm tòi 
-
 Bồng bềnh trôi nổi che mờ ánh trăng 
-
 Lại thêm cơn gió lăng xăng 
-
 Đưa mây khắp chốn trôi lăn liên hồi
   
 Khi mây che ánh trăng rồi
-
 Gió liền kéo đến rủ mời mây đi
-
 Mây đi trăng sáng diệu kỳ 
-
 Mây liền được gió đưa về che trăng
   
 Dù cho mây gió lăng xăng 
-
 Cứ hay đùa cợt nhưng trăng chẳng màng
-
 Trăng luôn soi sáng rõ ràng 
-
 Ai duyên được sáng tỏ đàng trong đêm
   
 Vững vàng người bước êm đềm
-
 Quê xưa người rõ màn đêm không còn
-
 Duyên nay ngồi ngắm trăng tròn
-
 Nguyện cho đại chúng không còn lạc trôi
   
 Tam Vô 
 30/09/2023
   
 Nguyện Đem Công Đức Này 
-
 Hồi Hướng Khắp Tất Cả 
-
 Đệ Tử Và Chúng Sanh 
-
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-13-10-bat-chao-hanh": {
-      id: "section-13-10-bat-chao-hanh",
-      title: "Bát cháo hành",
-      content: `Đời này thử hỏi có ai
-
+`
+  },
+  "section-13-10-bat-chao-hanh": {
+    "id": "section-13-10-bat-chao-hanh",
+    "title": "Bát Cháo Hành",
+    "content": `Đời này thử hỏi có ai
 Sinh già bệnh chết tránh hoài được không
-
 Vậy mà người cứ lông bông
-
 Chấp chặt thân xác cứ mong sống hoài
 
-
 Trôi lăn sinh tử chín loài
-
 Làm sao người thoát ra ngoài tử sanh
-
 Muốn cho hết bị loanh quanh
-
 Nhận ra Tự Tánh mà Hành thường xuyên
 
 Từ nay hết bị đảo điên
-
 Đời người chơn chánh ưu phiền tránh xa
-
 Thường Ăn Bát Cháo ở Nhà
-
 Sinh Già Bệnh Chết Sẽ tha người liền
 
 Từ nay người mãi an yên
-
 Ung dung người bước về miền Quê Xưa
-
 Khi người gặp cảnh nắng mưa
-
 Húp ngay Bát Cháo Hành đưa về Nhà
 
 TAM VÔ
-
 09/02/2023
-
 Nguyện Đem Công Đức Này
-
 Hồi Hướng Khắp Tất Cả
-
 Đệ Tử Và Chúng Sanh 
-
 Đều Đồng Thành Phật Đạo 
-`,
-    },
-    "section-14-01-dao-mua": {
-      id: "section-14-01-dao-mua",
-      title: "Dạo Mùa",
-      content:
-        `Xuân Hạ Thu Đông Tức Thị Tiết
+`
+  },
+  "section-13-11-ong-lao-trong-rung": {
+    "id": "section-13-11-ong-lao-trong-rung",
+    "title": "Ông Lão Trong Rừng",
+    "content": `Lạc trôi vào chốn rừng sâu
+Bảy ngày đói khát khổ sầu thân tâm
+Càng đi càng thấy mê lầm
+Mong tìm lối thoát khỏi rừng U Minh 
+  
+Hữu duyên gặp Lão đầy sình
+Toàn thân ghẻ lỡ quanh mình ghớm ghê
+Lão thân bệnh tật đề huề 
+Tay cầm đu đủ thảm thê một mình 
+  
+Người liền bày tỏ sự tình
+Lão cho đu đủ cứu người được no 
+Nhưng người vẫn thấy âu lo
+Lão liền chỉ lối giúp cho thoát rừng
+  
+Nhưng người cứ mãi lừng khừng
+Nghi ngờ Ông Lão biết đường thật không 
+Vì Ông vẫn ở rừng chông
+Nghi Ông biết lối sao không ra rừng
+  
+Rồi người chửi Lão không ngừng 
+Rồi chê Ông Lão rồi cười Ông dơ
+Chê Ông ghẻ lở như tơ
+Chê Ông bệnh tật bơ vơ một mình 
+  
+Tự người đánh mất niềm tin 
+Lại tự mò mẫm tự tìm lăng xăng 
+Thế là người cứ trôi lăn
+U mê tăm tối lại ăn khổ sầu 
+  
+Người ơi muốn hết đau đầu
+Nghe lời Ông Lão đừng thâu nghi ngờ 
+Người ơi muốn hết mê mờ 
+Nghe lời Ông Lão rừng mơ thoát liền
+  
+Rõ Ông chẳng có ưu phiền 
+Dù cho bệnh tật an nhiên một mình 
+Rõ Ông Đức Hạnh Hằng Minh
+Cho đi tất cả chẳng sinh mong cầu
+  
+Rõ Ông chẳng có ưu sầu
+Dù thân ghẻ lở vẫn đâu than gì 
+Rõ Ông biết rõ đường đi
+Chỉ người lối thoát Rừng Si mê mờ 
+  
+Người ơi đừng có chần chờ 
+Hành theo Ông Lão Rừng Mơ không còn 
+Đến nơi cảnh trí Viên Tròn 
+An nhiên người bước lối mòn Về Quê
+  
+Từ nay hết vọng hết mê
+Ung dung người bước đường về Nhà Xưa
+Đến nơi chẳng có nắng mưa 
+Lại gặp Ông Lão dẫn đưa hôm nào
+  
+TAM VÔ 
+09/10/2023
+  
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-14-01-dao-mua": {
+    "id": "section-14-01-dao-mua",
+    "title": "Dạo Mùa",
+    "content": `Xuân Hạ Thu Đông Tức Thị Tiết
 Cảnh Sắc Xoay Vần Dĩ Quy Không
 Lục Nẻo Trôi Lăn Mãi Lòng Vòng
 Tứ Mùa Nhất Cảnh Dạo Thong Dong
@@ -3735,12 +4074,13 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-14-02-oan-hu": {
-      id: "section-14-02-oan-hu",
-      title: "Oán hư",
-      content: `Càn Khôn Xoay Chuyển Quỹ Đạo Như 
+
+`
+  },
+  "section-14-02-oan-hu": {
+    "id": "section-14-02-oan-hu",
+    "title": "Oán Hư",
+    "content": `Càn Khôn Xoay Chuyển Quỹ Đạo Như 
 Vạn Vật Luân Lai Hồi Cổ Xứ 
 Âm Dương Tích Trữ Vô Lượng Thức
 Niệm Diệt Niệm Sanh Há Oán Hư 
@@ -3754,23 +4094,102 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-14-03-so-dao": {
-      id: "section-14-03-so-dao",
-      title: "Số đạo",
-      content:
-        `Vô vật bản thể - Nhất niệm hằng quy 
+`
+  },
+  "section-14-03-so-dao": {
+    "id": "section-14-03-so-dao",
+    "title": "Số Đạo",
+    "content": `Vô vật bản thể - Nhất niệm hằng quy 
 Bất nhiễm Lưỡng nghi - niệm ngôi Tam Bảo
 Diệu đế Tứ lão - lìa Ngũ ấm ma 
 Lục độ ba la - bồ đề Thất giác 
-`,
-    },
-    "section-14-04-nam-muoi": {
-      id: "section-14-04-nam-muoi",
-      title: "Năm mười",
-      content:`
-        Sinh ra trong cõi u minh 
+
+
+Chánh đạo hữu Bát - Cửu phẩm liên hoa 
+Thập viên ngự Gia - viên buông Thập Nhất
+Thập Nhị duyên dứt - viên bảo Thập Tam 
+Thập Tứ viên đàm - Thập Ngũ viên ấm
+
+
+Thập Lục viên độ - Thập Thất viên tình 
+Thập Bát viên minh - Thập Cửu viên kết 
+Nhị Thập lưỡng hết - Nhị Nhất tập tân 
+Song Nhị lưỡng phân - Nhị Tam lưỡng giới 
+
+
+Nhị Tứ lưỡng đế - Nhị Ngũ lưỡng ma 
+Nhị Lục lưỡng xà - lưỡng liên Nhị Thất 
+Nhị Bát lưỡng chánh - Nhị Cữu lưỡng tiêu 
+Tam Thập Bảo viên - Bảo buông Tam Nhất
+
+
+Tam Nhị độc tách - độc Giới Song Tam 
+Tam Tứ độc giam - Tam Ngũ độc ấm 
+Tam Lục độc trần - Tam Thất độc mê 
+Tam Bát bảo quê - Tam Cửu bảo phẩm 
+
+
+Tứ Thập đế trẫm - Tứ Nhất đại buông 
+Tứ Nhị xứ nguyên - Tứ Tam xứ bảo 
+Song Tứ tổng đạo - Tứ Ngũ diệu căn 
+Tứ Lục cần căn - Tứ Thất cần giác
+
+
+Đế Chánh tứ bát - Tứ Cửu diệu liên 
+Ngũ Thập lực viên - lực buông Ngũ Nhất 
+Ngũ Nhị ấm tách - ấm bảo Ngũ Tam 
+Ngũ Tứ ấm giam - Ngũ Song cân đối 
+
+
+Ngũ Lục hành thức - Ngũ Thất hành liên 
+Ngũ Bát hành thiền - Ngũ Cửu hành đích 
+Lục Thập độ thích - Lục Nhất độ quy 
+Lục Nhị độ nghi - Lục Tam độ giới 
+
+
+Lục Tứ mật đế - Lục Ngũ mật ma 
+Song Lục mật la - Lục Thất mật giác 
+Độ đạo Lục Bát - Lục Cửu độ liên 
+Thất Thập bộ viên - bộ buông Thất Nhất 
+
+
+Thất Nhị tình đối - tình độc Thất Tam 
+Thất Tứ tình giam - Thất Ngũ tình ấm 
+Thất Lục phần thức - Song Thất phần liên
+Thất Bát giác thiền - giác liên Thất Cửu 
+
+
+Bát Thập đạo đủ - Bát Nhất đạo buông 
+Bát Nhị đạo nguyên - Bát Tam đạo giới 
+Bát Tứ chánh đế - Bát Ngũ chánh hành 
+Bát Lục chánh trần - Bát Thất chánh giác 
+
+
+Dụng đạo Song Bát - Bát Cửu dụng liên 
+Cửu Thập phẩm viên - phẩm dừng Cửu Nhất 
+Cửu Nhị phẩm đối - phẩm bảo Cửu Tam 
+Cửu Tứ đích giam - đích hành Cửu Ngũ 
+
+
+Cửu Lục liên đủ - Cửu Thất liên chi 
+Cửu Bát liên quy - liên tiêu Song Cửu 
+Nhất Bách viên mãn - ai ngộ an nhiên
+Số Đạo luyên thuyên - ai thông tự tại 
+
+
+Tam Vô 
+31/08/2024
+
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo.`
+  },
+  "section-14-04-nam-muoi": {
+    "id": "section-14-04-nam-muoi",
+    "title": "Năm Mươi",
+    "content": `Sinh ra trong cõi u minh 
 Thọ thân tứ đại quên mình là ai
 Ngũ hành ngũ ấm ngục cai 
 Tầng tầng lớp lớp mê hoài nơi đây 
@@ -3800,59 +4219,55 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ  Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-14-05-dao-lua-troi": {
-      id: "section-14-05-dao-lua-troi",
-      title: "Đạo lửa trời",
-      content: `Than tro lửa cháy mà thành
+`
+  },
+  "section-14-05-dao-lua-troi": {
+    "id": "section-14-05-dao-lua-troi",
+    "title": "Đạo Lửa Trời",
+    "content": ` Than tro lửa cháy mà thành 
+Tro tàn đen đũi mặt mày tối thui 
+Chỉ cần gõ nhẹ than trui 
+Vỡ tan từng mảnh bùi nhùi làm phân 
 
-Tro tàn đen đũi mặt mày tối thui
 
-Chỉ cần gõ nhẹ than trui
+Lửa hùng nóng rực vạn lần 
+Đốt tan mọi thứ lại thành Kim Cương 
+Dù cho tàn Phá đủ đường 
+Vẫn luôn sáng chói muôn phương muôn thời 
 
-Vỡ tan từng mảnh bùi nhùi làm phân
 
-Lửa hùng nóng rực vạn lần
+Hữu duyên rõ Đạo Lửa Trời 
+Dù thăm địa ngục ngộ Lời liền an 
+Cảnh thuận cảnh nghịch chẳng mang 
+Thong dong dạo bước an nhàn mọi nơi 
 
-Đốt tan mọi thứ lại thành Kim Cương
-
-Dù cho tàn Phá đủ đường
-
-Vẫn luôn sáng chói muôn phương muôn thời
-
-Hữu duyên rõ Đạo Lửa Trời
-
-Dù thăm địa ngục ngộ Lời liền an
-
-Cảnh thuận cảnh nghịch chẳng mang
-
-Thong dong dạo bước an nhàn mọi nơi
 
 Kim Cương vốn sẵn mình rồi
+Lại không chịu nhận thích làm Than Tro 
+Suốt ngày ham cảnh mượn cho 
+Ngờ đâu mình vốn đủ no muôn thời 
 
-Lại không chịu nhận thích làm Than Tro
 
-Suốt ngày ham cảnh mượn cho
-
-Ngờ đâu mình vốn đủ no muôn thời
-
-Ai ơi đang sống ở đời
-
+Ai ơi đang sống ở đời 
 Rõ thân chân thật liền rời giả thân
+Thấy nghe nói biết mười phân 
+Công hạnh viên mãn một lần về Quê 
 
-Thấy nghe nói biết mười phân
 
-Công hạnh viên mãn một lần về Quê
+Tam Vô 
+23/01/2025
 
-Tam VÔ
 
-23/01/2025`,
-    },
-    "section-15-01-tam-nghi": {
-    id: "section-15-01-tam-nghi",
-    title: "Tâm nghi",
-    content: `Thế nhân sao thật lạ kỳ
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả
+Đệ  Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-15-01-tam-nghi": {
+    "id": "section-15-01-tam-nghi",
+    "title": "Tâm Nghi",
+    "content": `Thế nhân sao thật lạ kỳ
 Cùng chung một thể cứ nghi nhau hoài
 Trôi lăn bao kiếp mệt nhoài
 Luân hồi sáu nẻo chín loài đeo mang
@@ -3904,13 +4319,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-
-`,
+`
   },
   "section-15-02-dia-nguc-bat-vi-khong": {
-    id: "section-15-02-dia-nguc-bat-vi-khong",
-    title: "Địa ngục bất vị không",
-    content: `Ở Tánh Không Chân Như
+    "id": "section-15-02-dia-nguc-bat-vi-khong",
+    "title": "Địa Ngục Bất Vị Không",
+    "content": `Ở Tánh Không Chân Như
 Không có lấy một tướng
 Vậy Địa Ngục ở đâu
 Thiên Đàng cũng ở đâu
@@ -3951,13 +4365,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo 
-`,
+Đều Đồng Thành Phật Đạo
+`
   },
   "section-15-03-vong-tuong": {
-    id: "section-15-03-vong-tuong",
-    title: "Vọng tưởng",
-    content: `Đạo đời cứ thuận tùy duyên
+    "id": "section-15-03-vong-tuong",
+    "title": "Vọng Tưởng",
+    "content": `Đạo đời cứ thuận tùy duyên
 Muôn người Vọng Tưởng rước phiền vào thân
 Lăng xăng trong chốn hồng trần
 Dù Phật đến rước vạn lần vẫn trôi
@@ -3983,14 +4397,13 @@ Tam Vô
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-
-`,
+Đều Đồng Thành Phật Đạo.`
   },
-    "section-16-01-ta-o-dau": {
-      id: "section-16-01-ta-o-dau",
-      title: "Ta ở đâu?",
-      content: `Không có nơi đến nơi đi
+  "section-16-01-ta-o-dau": {
+    "id": "section-16-01-ta-o-dau",
+    "title": "Ta Ở Đâu?",
+    "content": `
+Không có nơi đến nơi đi
 Người ơi Vọng Tưởng hỏi chi chỗ này
 Mong ta cứ phải trình bày
 Ừ thì ta vẫn ở ngay đây mà
@@ -4006,113 +4419,108 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo!
-`,
-    },
-    "section-16-02-thu-gi": {
-      id: "section-16-02-thu-gi",
-      title: "Thứ gì",
-      content: `Thứ gì chẳng trước chẳng sau
-
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-16-02-thu-gi": {
+    "id": "section-16-02-thu-gi",
+    "title": "Thứ Gì",
+    "content": `Thứ gì chẳng trước chẳng sau
 Chẳng trên chẳng dưới chẳng đầu chẳng đuôi
-
 Chẳng tai chẳng mắt chẳng thân
-
 Chẳng miệng chẳng mũi chẳng cần có chi
 
 Chẳng tên chẳng tướng hình gì
-
 Chẳng đo được tuổi chẳng nghì mà thông
-
 Thứ gì hằng có lại không
-
 Ai mà luận lý lông bông sáu đàng
 
 Thứ gì chẳng thể luận bàn
-
 Chẳng thanh chẳng sắc lại càng chẳng hương
-
 Chẳng vị xúc pháp tồn thường
-
 Nhận được thứ ấy rõ đường Quê Xưa
 
 Thứ gì thấy biết chẳng ưa
-
 Vạn vật huyển hoá chẳng lừa được đâu
-
 Thứ gì nhận được Đại Giàu
-
 Núi vàng núi ngọc cũng đâu sánh bằng
 
 Thứ gì chẳng có thức sanh
-
 Sáu căn tiếp xúc sáu trần chẳng ra
-
 Thứ gì vẫn ở Ta Bà
-
 Hằng nghe thấy biết nói mà chẳng vương
 
 Thứ gì muôn khắc tỏ tường
-
 Dù cho năm ấm vẫn thường hoá sinh
-
 Luôn luôn huyển hoặc nơi mình
+Nhưng mà thứ ấy hằng minh chẳng màng
 
-Nhưng mà thứ ấy hằng minh chẳng màng`,
-    },
-    "section-16-03-xe-cam": {
-      id: "section-16-03-xe-cam",
-      title: "Xe câm",
-      content: `**********
+Thứ gì chẳng Pháp chẳng Đàng
+Chẳng Thanh chẳng Tịnh chẳng An chẳng Lành 
+Muốn cho hết bị loanh quanh
+Nhận được thứ ấy sẽ nhanh về Nhà
 
+Từ nay thoát cảnh ăn Cà
+Không còn Lang nướng hay là Bí ngô
+Ai mà liễu ý Tam Vô
+Thường hành Thứ Ấy bản đồ rõ thông
+
+Từ nay hết bị lông bông
+Nhận ra Thứ Ấy là xong luân hồi
+Nay Vô chỉ Thứ Ấy rồi
+Đại duyên nhận được về Ngôi Phật Đà 
+
+Nguyện cho nhân thế Ta Bà
+Nhận ra Thứ Ấy rõ Nhà về quê
+Nguyện cho nhân thế hết mê
+Nhận ra Thứ Ấy liền về Nhà Xưa
+
+TAM VÔ
+28/04/2023
+
+Nguyện Đem Công Đức Này
+Hồi Hướng Khắp Tất Cả
+Đệ Tử Và Chúng Sanh
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-16-03-xe-cam": {
+    "id": "section-16-03-xe-cam",
+    "title": "Xe Câm",
+    "content": `**********
 Có xe mà chẳng biết dùng
-
-Suốt ngày khoe mẽ kẻ khùng khác chi
-
+Suốt ngày khoe mẽ kẻ khùng khác chi 
 Có xe mà chẳng lái đi
-
 Suốt ngày bỏ xó khác gì rác đâu
 
 Có xe mà vứt đã lâu
-
-Đến khi cần đến biết đâu mà tìm
-
+Đến khi cần đến biết đâu mà tìm 
 Có xe mà mãi nằm im
-
 Đến khi cần đến nó liền không nghe
 
 Ai ai đều cũng có xe
+Mà không học lái kẻ què khác chi 
+Ai duyên liễu ý không nghi 
+Học ngay cách lái biết đi về Nhà 
 
-Mà không học lái kẻ què khác chi
-
-Ai duyên liễu ý không nghi
-
-Học ngay cách lái biết đi về Nhà
-
-Xe này không lái la cà
-
-Chỉ đi một hướng thoát ra mê lầm
-
+Xe này không lái la cà 
+Chỉ đi một hướng thoát ra mê lầm 
 Ai duyên lái được XE CÂM
+Mỉm cười dạo cảnh âm thầm về Quê 
 
-Mỉm cười dạo cảnh âm thầm về Quê
-
-TAM VÔ
-
+TAM VÔ 
 18/12/2023
 
-Nguyện Đem Công Đức Này
-
-Hồi Hướng Khắp Tất Cả
-
-Đệ Tử Và Chúng Sanh
-
-Đều Đồng Thành Phật Đạo`,
-    },
-    "section-16-04-truong-xuan": {
-      id: "section-16-04-truong-xuan",
-      title: "Trường xuân",
-      content: `Trường Xuân cảnh đẹp lạ lùng
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-16-04-truong-xuan": {
+    "id": "section-16-04-truong-xuan",
+    "title": "Trường Xuân",
+    "content": `Trường Xuân cảnh đẹp lạ lùng
 Đồi cao thấy rõ muôn trùng dặm xa
 Trường Xuân chẳng tiếng vọng va 
 Nghe xa đến chỗ chẳng sa âm nào
@@ -4164,12 +4572,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-16-05-song-tu-tai": {
-      id: "section-16-05-song-tu-tai",
-      title: "Sống tự tại",
-      content: `Dòng đời này như thế
+`
+  },
+  "section-16-05-song-tu-tai": {
+    "id": "section-16-05-song-tu-tai",
+    "title": "Sống Tự Tại",
+    "content": `Dòng đời này như thế
 Thử hỏi có mấy ai
 Ung dung tự tại không
 Buồn phiền rồi khổ mãi
@@ -4216,71 +4624,54 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-16-06-con-chi": {
-      id: "section-16-06-con-chi",
-      title: "Con chi",
-      content: `Thông đường tỏ lối lìa sinh tử đàng
+`
+  },
+  "section-16-06-con-chi": {
+    "id": "section-16-06-con-chi",
+    "title": "Con Chi",
+    "content": `Con chi sao thật lạ kỳ 
+Chân Ngựa tay Khỉ đầu thì như Tôm
+Thân như vỏ Ốc cứ ôm
+Nhưng hay uống éo như Lươn trong đầm 
 
-Thôi đi vọng tưởng thế gian
+Mũi như lũ Chuột trong hầm
+Mắt như lũ Sói âm thầm rừng sâu
+Tai thì như Thỏ lo âu
+Miệng rộng như Rắn lúc ăn con mồi
 
-Hành trì tinh tấn dần tan mê mờ
+Sống như Lợn thích nằm ngồi
+Tiếng kêu như Ếch lúc trời đổ mưa
+Đuôi như Bọ Cạp nhọn đưa
+Bụng đầy tơ Nhện cứ ưa bắt mồi
 
-Lời Cha thị rõ huyền cơ
+Sừng Trâu mọc ở trên đầu 
+Răng nanh vuốt Hổ sẵn sàng tấn công 
+Da đen lại giống Nhím lông
+Dáng đi ngơ ngác giống như Lạc Đà
 
-Tự buông bản ngã về bờ Chân Như
+Con Chi ở chốn Ta Bà 
+Hàng trăm tỷ kiếp mãi mà chẳng ra
+Nó luôn lảng vảng bên ta
+Ai mà không thấy thành Ma chín loài
 
-Người cầu chánh pháp nhất từ
+Ai duyên thấy rõ nó rồi 
+DỨT duyên vọng khởi sẽ rời nó ra
+Người liền ở chốn Phật Đà
+An nhiên người bước về Nhà Quê Xưa 
 
-Thường hành cung kính Phật Chư Phổ Hiền
+Tam Vô 
+04/11/2023
 
-Đừng như nhân thế đảo điên
-
-Muôn thời lặn ngụp chẳng yên tánh mình
-
-Một tuần vật lí nhân sinh
-
-Chờ Cha khai thị rạng minh si lầm
-
-Buông đi mọi sự vướng tâm
-
-Như Lai Nhà đó về thăm hàng thời
-
-Cảm niệm Cha đã khai lời
-
-Luôn vì con cháu mà khơi Chốn Nhà
-
-Ân Cha thị hiện độ tha
-
-Dẫn con thoát cảnh ta bà cõi nhân
-
-Con nguyện lìa bỏ mộng trần
-
-Cùng Huynh cùng Đệ pháp thân thường hành
-
-Quyết lòng một đạo Thiền Thanh
-
-An yên thanh tịnh thoát quanh Luân Hồi
-
-Thanh Như
-
-07/04/23
-
-Nguyện đem công đức này
-
-Hồi hướng khắp tất cả
-
-Đệ tử và chúng sanh
-
-Đều đồng thành Phật Đạo
-
-Nam mô A Di Đà Phật`,
-    },
-    "section-16-07-nha-o-dau": {
-      id: "section-16-07-nha-o-dau",
-      title: "Nhà ở đâu",
-      content:`Trôi lăn bao kiếp bể dâu
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-16-07-nha-o-dau": {
+    "id": "section-16-07-nha-o-dau",
+    "title": "Nhà Ở Đâu",
+    "content": `Trôi lăn bao kiếp bể dâu
 Giờ đây không nhớ nơi đâu là Nhà
 Lang thang trong cõi Ta Bà 
 Sanh già bệnh chết mãi mà không ra
@@ -4317,12 +4708,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-17-01-sen-no": {
-      id: "section-17-01-sen-no",
-      title: "Sen nở",
-      content: `****************
+`
+  },
+  "section-17-01-sen-no": {
+    "id": "section-17-01-sen-no",
+    "title": "Sen Nở",
+    "content": `****************
 Mười Hai Sen Nụ Đất Rồng
 Dâng Lên An Vị Thỉnh Ngài Như Lai
 Trụ Ngay Bên Phải Của Ngài
@@ -4340,12 +4731,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-17-02-da-nhan": {
-      id: "section-17-02-da-nhan",
-      title: "Đã nhận",
-      content: `Phương xa con trẻ khó về 
+`
+  },
+  "section-17-02-da-nhan": {
+    "id": "section-17-02-da-nhan",
+    "title": "Đã Nhận",
+    "content": `Phương xa con trẻ khó về 
 Nhưng lòng thành kính đã kề bên Ta
 Vậy nên chẳng phải nói ra
 Nhớ luôn tinh tấn thoát va hồng trần
@@ -4372,12 +4763,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-17-03-nguyen-cho-con-chau": {
-      id: "section-17-03-nguyen-cho-con-chau",
-      title: "Nguyện cho con cháu",
-      content: `Lành thay con kính lòng thành 
+`
+  },
+  "section-17-03-nguyen-cho-con-chau": {
+    "id": "section-17-03-nguyen-cho-con-chau",
+    "title": "Nguyện Cho Con Cháu",
+    "content": `Lành thay con kính lòng thành 
 Nhớ ngày thị hiện con nhanh về nhà 
 Không ham mê đắm Ta Bà 
 Các con các cháu bên Cha thâm tình
@@ -4414,12 +4805,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo 
-`,
-    },
-    "section-17-04-loi-chi-bay": {
-      id: "section-17-04-loi-chi-bay",
-      title: "Lời chỉ bày",
-      content: `Ôi lành thay con nay rõ cặn kẽ
+`
+  },
+  "section-17-04-loi-chi-bay": {
+    "id": "section-17-04-loi-chi-bay",
+    "title": "Lời Chỉ Bày",
+    "content": `Ôi lành thay con nay rõ cặn kẽ
 Lời chỉ bày Ta gửi tặng con thơ
 Kể từ nay đừng lạc chốn mộng mơ
 Luôn tinh tấn theo Ta về bờ Giác
@@ -4435,13 +4826,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo 
-`,
-    },
-    "section-17-05-the-nguyen": {
-      id: "section-17-05-the-nguyen",
-      title: "Thệ nguyện",
-      content: `Lành thay con trẻ biết Nhà
+Đều Đồng Thành Phật Đạo
+`
+  },
+  "section-17-05-the-nguyen": {
+    "id": "section-17-05-the-nguyen",
+    "title": "Thệ Nguyện",
+    "content": `Lành thay con trẻ biết Nhà
 Tỏ lòng cảm niệm Phật Đà dẫn đưa
 Các con chẳng ngại sớm trưa
 Thường hành Tự Tánh không ưa huyển trần
@@ -4458,13 +4849,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-
-`,
-    },
-    "section-17-06-nguyen-cho-con-tre": {
-      id: "section-17-06-nguyen-cho-con-tre",
-      title: "Nguyện cho con trẻ",
-      content: `Lành thay con trẻ tỏ lòng
+`
+  },
+  "section-17-06-nguyen-cho-con-tre": {
+    "id": "section-17-06-nguyen-cho-con-tre",
+    "title": "Nguyện Cho Con Trẻ",
+    "content": `Lành thay con trẻ tỏ lòng
 Nhớ ơn khai thị thoát vòng trầm luân
 Duyên ngày Báo Hiếu trần gian
 Các con các cháu về làng quê Cha
@@ -4486,12 +4876,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-17-07-nguoi-con-thuc-tinh": {
-      id: "section-17-07-nguoi-con-thuc-tinh",
-      title: "Người con thức tỉnh",
-      content: `Lành Thay con đã rõ mình
+`
+  },
+  "section-17-07-nguoi-con-thuc-tinh": {
+    "id": "section-17-07-nguoi-con-thuc-tinh",
+    "title": "Người Con Thức Tỉnh",
+    "content": `Lành Thay con đã rõ mình
 Bổn mệnh tại thế nhớ hành độ tha
 Giúp người điên đảo thoát ra 
 Không còn sanh tử về Nhà Phật xưa
@@ -4513,12 +4903,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Đến Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-17-08-tinh-giac-xuong-toc": {
-      id: "section-17-08-tinh-giac-xuong-toc",
-      title: "Tỉnh giác xuống tóc",
-      content: `Đại Duyên Tỉnh Giác ngộ rồi 
+`
+  },
+  "section-17-08-tinh-giac-xuong-toc": {
+    "id": "section-17-08-tinh-giac-xuong-toc",
+    "title": "Tỉnh Giác Xuống Tóc",
+    "content": `Đại Duyên Tỉnh Giác ngộ rồi 
 Xin được xuống tóc được rời thế gian 
 Nhờ Sư xuống tóc cho con 
 Để con buông bỏ không còn trôi lăn 
@@ -4561,12 +4951,21 @@ Luôn hành tự tánh về Nhà nha con
 
 
 Tam Vô
-`,
-    },
-    "section-17-09-lanh-thay-con-chau-ro-dang": {
-      id: "section-17-10-lanh-thay-con-chau-ro-dang",
-      title: "Lành thay con cháu rõ đàng",
-      content: `Vạn năm ở mãi ta bà
+02/06/2024
+
+
+Nguyện Đem Công Đức Này 
+Hồi Hướng Khắp Tất Cả 
+Đệ Tử Và Chúng Sanh 
+Đều Đồng Thành Phật Đạo
+
+
+`
+  },
+  "section-17-09-lanh-thay-con-chau-ro-dang": {
+    "id": "section-17-09-lanh-thay-con-chau-ro-dang",
+    "title": "Lành Thay Con Cháu Rõ Đáng",
+    "content": `Vạn năm ở mãi ta bà
 Tìm hoài chẳng thấy Phật Đà ở đâu
 Các con cứ mãi u sầu
 Buồn vui sướng khổ biết đâu mà lần
@@ -4591,13 +4990,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-`,
-    },
-    "section-17-10-con-chau-kinh-ngay-thi-hien": {
-      id: "section-17-11-con-chau-kinh-ngay-thi-hien",
-      title: "Con cháu kính ngày thị hiện",
-      content: `Lành thay con cháu tỏ bày
+Đều Đồng Thành Phật Đạo.
+`
+  },
+  "section-17-10-con-chau-thinh-cau": {
+    "id": "section-17-10-con-chau-thinh-cau",
+    "title": "Con Cháu Thỉnh Cầu",
+    "content": `Lành thay con cháu tỏ bày
 Nhớ ngày Thị Hiện biết quay Về Nhà
 Cùng nhau trình kệ Kính Cha 
 Một lòng quyết chí thoát va hồng trần
@@ -4614,45 +5013,14 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo.
-`,
-    },
-     "section-17-11-con-chau-thinh-cau": {
-    id: "section-17-11-con-chau-thinh-cau",
-    title: "Con Cháu Thỉnh Cầu",
-    content: `Lành thay con cháu thỉnh cầu
-Tam Vô trụ thế mở Cầu dẫn đưa
-Giúp cho đại chúng có Thừa
-Giác Ngộ Giải Thoát quê xưa chúng về
 
-
-Thỉnh cầu tha thiết hết mê
-Thiên Địa đã thấu muôn bề châu rơi
-Nay khuyên con cháu ở đời
-Đừng ham chơi mãi mà rời Nhà xưa
-
-
-Cảnh đời lúc nắng lúc mưa
-Vô thường thay đổi đường xưa hằng còn
-Hiện Vô tiếp độ cháu con
-Đến khi duyên hết con còn Bổn Lai
-
-
-Duyên đoạn con chớ bi ai
-Ở nơi bản thể Như Lai làm Thầy
-Về đây con hết Sa Lầy
-Nguyện cho con cháu sớm ngày Đạo Viên
-Tam Vô
-09/07/2024
-NGUYỆN ĐEM CÔNG ĐỨC NÀY
-HỒI HƯỚNG KHẮP TẤT CẢ
-ĐỆ TỬ VÀ CHÚNG SANH
-ĐỀU ĐỒNG THÀNH PHẬT ĐẠO
-`,
+`
   },
-  "section-17-12-nguyen-cho-con-chau-tinh-ngo": {
-    id: "section-17-12-nguyen-cho-con-chau-tinh-ngo",
-    title: "Nguyện Cho Con Cháu Tỉnh Ngộ",
-    content: `Các con các cháu tỏ lòng
+  "section-17-11-nguyen-cho-con-chau-tinh-ngo": {
+    "id": "section-17-11-nguyen-cho-con-chau-tinh-ngo",
+    "title": "Nguyện Cho Con Cháu Tỉnh Ngộ",
+    "content": `NGUYỆN CHO CON CHÁU TỈNH NGỘ
+Các con các cháu tỏ lòng
 Trình kệ sở ngộ thoát còng thế gian
 Nguyện cho con cháu rõ Đàng
 Thấy nghe nói biết chẳng màng dính chi
@@ -4672,12 +5040,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Con Cháu Cùng Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
-  "section-17-13-nguyen-con-chau-vien-man": {
-    id: "section-17-13-nguyen-con-chau-vien-man",
-    title: "Nguyện Con Cháu Viên Mãn",
-    content: `Lành thay con Cháu tỏ bày 
+  "section-17-12-nguyen-con-chau-vien-man": {
+    "id": "section-17-12-nguyen-con-chau-vien-man",
+    "title": "Nguyện Con Cháu Viên Mãn",
+    "content": `Lành thay con Cháu tỏ bày 
 Nhận được bản thể thoát lầy thế gian 
 Từ nay con đã rõ Đàng 
 Buông đi tất cả an nhàn thảnh thơi
@@ -4696,13 +5064,13 @@ TAM VÔ
 Nguyện Đem Công Đức Này 
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo. 
-`,
+Đều Đồng Thành Phật Đạo
+`
   },
   "section-18-01-tang-phu-nu": {
-    id: "section-18-01-tang-phu-nu",
-    title: "Tặng Phụ Nữ",
-    content: `Đại duyên ngày lễ quý Bà
+    "id": "section-18-01-tang-phu-nu",
+    "title": "Tặng Phụ Nữ",
+    "content": `Đại duyên ngày lễ quý Bà
 Tam Vô gửi tặng ngọc ngà Vô Sanh
 Nguyện cho quý Mẹ tịnh thanh
 Không còn khổ não loanh quanh cõi này
@@ -4729,12 +5097,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-18-02-xuan": {
-    id: "section-18-02-xuan",
-    title: "Xuân",
-    content: `Xuân Đến Xuân Đi Xuân Lại Đến
+    "id": "section-18-02-xuan",
+    "title": "Xuân",
+    "content": `Xuân Đến Xuân Đi Xuân Lại Đến
 Cũng như mấy độ Hạ Thu Đông
 Người ơi có cần phải ngóng trông
 Sống Sao cho Xuân mãi trong lòng
@@ -4750,35 +5118,37 @@ Tam Vô
 Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-`,
+Đều Đồng Thành Phật Đạo
+
+`
   },
   "section-18-03-tet-nguyen": {
-    id: "section-18-03-tet-nguyen",
-    title: "Tết Nguyện",
-    content: `Xuân Đến Xuân Đi Xuân Lại Đến
-Cũng như mấy độ Hạ Thu Đông
-Người ơi có cần phải ngóng trông
-Sống Sao cho Xuân mãi trong lòng
+    "id": "section-18-03-tet-nguyen",
+    "title": "Tết Nguyện",
+    "content": `Mừng xuân đón Tết khai niên
+Nguyện cho nhân thế hết phiền lo âu
+Ai duyên đều rõ mình Giàu
+Nhận ngay ngọc quý bảo châu nơi mình
 
-Chỉ cần không đắm tham cùng luyến
-Cảnh trần hư huyễn hóa hư không
-Muôn thời muôn khắc Thanh cùng Tịnh
-Chính là Xuân đó khỏi phải mong
+Từ nay hết tử hết sinh
+Trần gian bụi bẩn ngay mình chẳng vương
+Nguyện cho người tỏ rõ đường
+Như Lai nhà cũ người thường bước đi.
 
-Tam Vô
-25/01/2020
+TAM VÔ
+22/01/2023 ( mùng 1 tết Quý Mão)
 
 Nguyện Đem Công Đức Này
-Hồi Hướng Khắp Tất Cả 
+Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-`,
+Đều Đồng Thành Phật Đạo
+
+`
   },
   "section-18-04-mung-tet": {
-    id: "section-18-04-mung-tet",
-    title: "Mừng Tết",
-    content: `Tân Niên Mừng Tết Đến Muôn Nơi 
+    "id": "section-18-04-mung-tet",
+    "title": "Mừng Tết",
+    "content": `Tân Niên Mừng Tết Đến Muôn Nơi 
 Nguyện Cho Nhân Thế Sống Thảnh Thơi 
 An Nhiên Tự Tại Nơi Bổn Tánh
 Bất Tử Bất Sanh Lạc Muôn Thời 
@@ -4794,12 +5164,14 @@ Tam Vô
 Nguyện Đem Công Đức Này 
 Hồi Hướng Đến Tất Cả 
 Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.`,
+Đều Đồng Thành Phật Đạo
+`
   },
   "section-18-05-tet-xuan": {
-    id: "section-18-05-tet-xuan",
-    title: "Tết Xuân",
-    content: `Bộn bề tần tảo quanh năm 
+    "id": "section-18-05-tet-xuan",
+    "title": "Tết Xuân",
+    "content": `
+Bộn bề tần tảo quanh năm 
 Bao nhiêu phiền muộn âm thầm đeo mang
 Trải qua nhiều cảnh trái ngang
 Tết xuân buông hết lên đàng Về Cha
@@ -4881,12 +5253,14 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
+
+`
   },
   "section-18-06-kinh-le-phat-dan": {
-    id: "section-18-06-kinh-le-phat-dan",
-    title: "Kính Lễ Phật Đản",
-    content: `Mừng ngày Đại Lễ Phật Đà
+    "id": "section-18-06-kinh-le-phat-dan",
+    "title": "Kính Lễ Phật Đản",
+    "content": `
+Mừng ngày Đại Lễ Phật Đà
 Tái sanh xuất thế Ta Bà độ sanh
 Giúp người đại phúc Vô Sanh
 Giúp cho thế giới an lành thảnh thơi
@@ -4947,12 +5321,12 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả
 Đệ Tử Và Chúng Sanh
 Đều Đồng Thành Phật Đạo
-`,
+`
   },
   "section-18-07-thang-bay": {
-    id: "section-18-07-thang-bay",
-    title: "Tháng Bảy",
-    content: `Tháng Bảy là tháng thế nào
+    "id": "section-18-07-thang-bay",
+    "title": "Tháng Bảy",
+    "content": `Tháng Bảy là tháng thế nào
 Sao người lo lắng ra vào bất an 
 Làm gì cũng thấy gian nan
 Chỉ vì chấp niệm mất đàng an nhiên
@@ -5004,1018 +5378,7 @@ Nguyện Đem Công Đức Này
 Hồi Hướng Khắp Tất Cả 
 Đệ Tử Và Chúng Sanh 
 Đều Đồng Thành Phật Đạo
-`,
-  },
-  "section-18-08-con-chau-hieu-kinh-dai-le-vu-lan": {
-    id: "section-18-08-con-chau-hieu-kinh-dai-le-vu-lan",
-    title: "Con Cháu Hiếu Kính Đại Lễ Vu Lan",
-    content: `Lành thay con trẻ kính lòng
-Vu Lan Đại Lễ Kệ Thông con trình
-Tỏ lòng hiếu kinh ân sinh
-Ân dìu ân dắt ân tình bảo ban
-
-Dù cho đôi lúc lang thang
-Sanh Tâm nghi hoặc lạc đàng chân như
-Thành Tâm sám hối Phật Chư
-Quyết lòng buông bỏ sống như Phật truyền
-
-Vu Lan Đại Lễ đại duyên
-Nguyện cho con cháu rõ thuyền Như Lai
-Hành nơi tự tánh không sai
-Vô hình vô vật biết ai là mình
-
-Nguyện cho con cháu tỏ minh
-Thấy nghe nói biết vọng sinh không còn
-Hành không dính mắc viên tròn
-An nhiên dạo cảnh lối mòn về Quê
-
-Con ơi nhớ tỉnh đừng mê
-Tròn Ân tròn Hiếu đừng chê Lão Đò
-Theo Lão con thoát cảnh mò
-Đến nơi lạc quốc nhờ Đò Lão đưa
-
-Nguyện con cháu được rõ thừa
-Lên Đò Không Đáy quê xưa rõ liền
-Nguyện con cháu hết ưu phiền
-An nhiên lướt sóng về miền Như Lai
-
-Tam Vô
-16/08/2024
-
-NGUYỆN ĐEM CÔNG ĐỨC NÀY 
-HỒI HƯỚNG KHẮP TẤT CẢ 
-TÔN TỬ VÀ CHÚNG SANH 
-ĐỀU ĐỒNG THÀNH PHẬT ĐẠO
-`,
-  },
-  "section-18-09-dai-le-vu-lan-sam-hoi": {
-    id: "section-18-09-dai-le-vu-lan-sam-hoi",
-    title: "Đại Lễ Vu Lan Sám Hối",
-    content: `Vu Lan Đại Lễ Hiếu Ân 
-Các con sám hối thành tâm lỗi mình
-Thế gian hai hạng thoát sình 
-Một chân sám hối một hành không sai 
-
-
-Lành thay con rõ Như Lai 
-Tùy duyên hóa cảnh diễn hoài tướng Ma 
-Tỏ minh con chẳng vọng va 
-Vô vật bản thể mới là Phật Xưa 
-
-
-Nguyện con thoát cảnh nắng mưa 
-Nay con đã rõ đường xưa hãy về 
-Nguyện con thoát khỏi bờ mê 
-An nhiên con bước về miền Như Lai. 
-
-
-TAM VÔ 
-17/08/2024
-
-
-Nguyện Đem Công Đức Này 
-Hồi Hướng Khắp Tất Cả
-Tôn Tử  Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-`,
-  },
-  "section-18-10-20-11-nguyen": {
-    id: "section-18-10-20-11-nguyen",
-    title: "20/11 Nguyện",
-    content: `Lành thay con cháu tỏ lòng
-Nhớ ngày Giáo Lễ Đất Rồng năm nay
-kính lòng con cháu tỏ bày
-Lời kệ dâng kính rõ ngay lòng thành
-
-
-Các con đã được khai sanh
-Con đường giải thoát nhớ hành cho Viên
-Sống trong tam giới đảo điên
-Đạo đời con nhớ đi liền với nhau
-
-
-Nguyện cho con cháu thoát sầu
-Sống không dính mắc khổ đau không còn
-Nguyện cho con cháu Viên Tròn
-Đồng thành Phật Đạo cháu con sum vầy
-
-
-TAM VÔ
-20/11/2024
-
-
-Nguyện Đem Công Đức Này 
-Hồi Hướng Khắp Tất Cả
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-
-
-`,
-  },
-  "section-18-11-vu-lan-kinh-hieu-thanh-nhu": {
-    id: "section-18-11-vu-lan-kinh-hieu-thanh-nhu",
-    title: "Vu Lan Kính Hiếu (Thanh Như)",
-    content: `Thanh Như con xin kính trình Kệ cúng dường Sư Cha Tam Vô
-
-Vu Lan Tháng Bảy năm nay
-Được Cha khai thị hiện bày hiếu nhân
-Rõ Mình sống đúng Pháp Thân
-Buông đi chấp niệm muôn phần an yên
-
-Không gieo sai trái muộn phiền
-Không tham không luyến thoát liền tử sanh
-Cần chi cúng lạy loanh quanh
-Cần chi giải hạn đua tranh chốn đời
-
-Ân Cha không nói bằng lời
-Cho con được sống muôn thời thong dong
-Ngày đêm Cha chẳng tiếc công
-Thức cùng con trẻ rạng thông si lầm
-
-Vậy mà một phút lạc tâm
-Con buông tiếng gọi thậm thâm ngày nào
-Khi cần “Cha hỡi" ngọt ngào
-Về rồi sinh oán tuôn trào trách Cha
-
-Chạy theo cái Ngã vọng va
-Đâu còn nhớ đến lúc ta khổ sầu
-Ai thời không quản đêm thâu
-Giúp con thoát cảnh lo âu huyễn trần
-
-Cho con thấy rõ Pháp Thân
-Cảnh dù có đến chẳng cần vướng chi
-Chỉ vì con trẻ ngu lì
-Chứ Cha đâu lấy thứ gì của con
-
-Thấy tâm con trẻ còn non
-Cha luôn dìu dắt viên tròn từng li
-Thế mà con vẫn sinh nghi
-Buông lời cay nghiệt thoát ly Nhà mình
-
-Cha ơi, con nguyện thoát sình
-Cùng Huynh cùng Đệ vô minh xa rời
-Hành theo tự tánh muôn thời
-Vu Lan báo hiếu về nơi Quê Nhà
-
-Quê Nhà ở đó có Cha
-An nhiên tự tại thoát ra luân hồi
-
-Thanh Như
-31/08/2023
-
-Nguyện Đem Công Đức này
-Hồi hướng khắp tất cả
-Đệ tử và chúng sanh
-Đều đồng thành Phật Đạo
-`,
-  },
-  "section-18-12-long-con-kinh-hieu-y-nhu": {
-    id: "section-18-12-long-con-kinh-hieu-y-nhu",
-    title: "Lòng Con Kính Hiếu (Ý Như)",
-    content: `Dạ Nhân Mùa Vu Lan Kính Hiếu Ý Như Con Kính Trình Kệ 
-Cúng Dường Cảm Niệm Ân Sư Cha Tam Vô
-Niệm Ân Người vì chúng con thị hiện
-Sanh ra con trong Chánh Pháp Như Lai
-Ngày qua ngày chẳng màng đến thời gian
-Người nâng niu từng đứa con đỏ hỏn
-
-Khi chập chững đến lúc trưởng thành hơn
-Không quản ngại ngày đêm mưa hay nắng
-Ánh mắt Người luôn ấm áp yêu thương
-Con hư ngoan Người đều thương như một
-
-Không bao giờ phân biệt chỗ nhị nguyên 
-Con phạm lỗi con quỳ xin sám hối
-Suốt thâu đêm Người chẳng ngủ vì con
-Người ân cần thương cho đàn con dại
-
-Mãi mê mờ không ngại chốn trần lao
-Con chưa tròn Người đánh đòn Đại Bi
-Người uyển chuyển trong từng lời dạy dỗ
-Chỉ các con đến chỗ Bất Tư Nghì
-
-Người lại rưới nước Cam Lồ dịu mát
-Rửa bụi trần cho đàn con Tỉnh Thức
-Người luôn nhắc các con luôn rõ biết
-Không lang thang không dính mắc bụi trần
-
-Luôn Tỉnh Thức không rơi vào vòng xoáy
-Điện âm dương tứ đại cứ xoay vần
-Luôn rõ mình ở Pháp Thân thanh tịnh
-Sống an yên không dính mắc ưu phiền
-
-Phải rõ mình hiểu biết mới yêu thương
-Nơi tự tánh phải hành cho đúng đắn
-Dùng được tánh thì không vọng không tưởng
-Sống an nhiên thì đâu phải luân hồi
-
-Ngày qua ngày từng lời Người khai thị
-Ân của Người con nói sao hết được
-Lời nói được là lời không chân thật
-Ở Pháp Thân sẽ thấu rõ Ân Người
-
-Lòng con trẻ gửi trọn vào hư không
-Và luôn mãi hành theo lời Người dạy 
-Luôn tinh tấn bước đi không ngần ngại
-Chốn Quê Xưa nơi ấy Cha đang chờ.
-
-Ý Như  01/07/2023 ( Âm Lịch)
-
-Nguyện Đem Công Đức Này
-Hồi Hướng Đến Tất Cả
-Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo.
-`,
-  },
-  "section-18-13-tan-nien-nguyen": {
-    id: "section-18-13-tan-nien-nguyen",
-    title: "Tân Niên Nguyện",
-    content: `Cả năm trong cõi ta bà
-Có vui có khổ có va hầm cầu 
-Có tham có luyến có sầu
-Cuối năm con nhớ nơi đâu là Nhà
-
-Gửi cho con cháu đang cà
-Tân niên tinh tấn thoát ma thình lình 
-Muôn thời luôn biết rõ mình 
-Dù cho vạn cảnh diệt sinh không màng
-
-Đại duyên con đã rõ đàng 
-Nhớ hành ở chỗ luôn an muôn thời 
-Nguyện cho con cháu ở đời 
-Công hạnh viên mãn về nơi Phật Đà
-
-Tam Vô 
-03/01/2025
-`,
-  },
-  "section-18-14-tat-nien": {
-    id: "section-18-14-tat-nien",
-    title: "Tất Niên",
-    content: `Toàn Niên Tất Bật Trần Gian Giả
-Chung Niên Buông Xã Đáo Cổ Gia
-Tỏ Ta An Lạc Như Lai Chốn
-Hằng Niên Tự Tại Dạo Ta Bà
-
-Tam Vô
-23/01/2025
-`,
-  },
-  "section-18-15-nguyen-tet-xuan": {
-    id: "section-18-15-nguyen-tet-xuan",
-    title: "Nguyện Tết Xuân",
-    content: `Duyên xuân tết đến năm nay 
-Cháu con quy tụ sum vầy bên nhau 
-Pháo hoa nổ khắp muôn màu 
-Cùng nhau đối kệ đêm thâu vui mừng 
-
-Lành thay con cháu biết Dừng 
-Tết Xuân buôn hết từng bừng về Cha 
-Lành thay con mãi rõ Nhà 
-Tết Xuân trình kệ dâng Cha kính lòng 
-
-Duyên xuân Cha tặng chữ Không 
-Không buồn không khổ không than không sầu
-Nhắc con từ bỏ chữ Thâu 
-Tùy duyên đối cảnh chẳng Thâu vào mình 
-
-Nguyện cho con cháu tỏ minh 
-Rõ mình chính Phật ngay mình hằng an 
-Nguyện cho con cháu mãi nhàn 
-Thong dong con ở niết bàn muôn nơi 
-
-Tam Vô
-29/01/2025 (mùng 1 Tết ẤT TỴ)
-`,
-  },
-  "section-19-01-cung-chon-tanh": {
-    id: "section-19-01-cung-chon-tanh",
-    title: "Cúng Chơn Tánh",
-    content: `Nay là ngày ... tháng ...
-
-Chúng con thành tâm lập Đám Cảm Niệm
-
-Người mãi ngự ở trong tim
-Thành tâm con nhớ nỗi niềm tri ân
-Bao năm người sống ân cần
-Gieo bao duyên tốt cho nhân thế này
-
-Phận làm con cháu chẳng hay
-Nay người đã bỏ giới này ra đi
-Lòng con vẫn mãi khắc ghi
-Ân Sinh Nghĩa Dỗ Từ Bi của Người
-
-Trong lòng người hãy vui tươi
-Vì con đã thấy tiếng cười Vô Sanh
-Bao năm con đã loanh quanh
-Sân Si theo đuổi mộng xanh cõi đời
-
-Trôi lăn lặn ngụp muôn thời
-An đâu chẳng thấy cõi đời Trầm Luân
-Tâm con nay đã biết Dừng
-Không rong không đuổi Vọng từng theo con
-
-Ân người ví tựa Núi Non
-Sanh Thành Dưỡng Dục cho Con kiếp này
-Hữu duyên con gặp được Thầy
-Chỉ con lối thoát khỏi đày Sáu Phương
-
-Thành tâm con nguyện cúng dường
-Mười phương chư Phật con đường Bất Sanh
-Kính Dâng một tấm lòng thành
-Con nay tinh tấn mãi hành Chân Như
-
-Vì người chưa tỏ thực hư
-Nay con nói đến chỗ Chư Phật Đàm
-Chỉ cần ta biết dừng Tham
-Dừng Mê Dừng Vọng Dừng Ham Niết Bàn
-
-Si Mê gốc rẽ muôn đàng
-Sanh Tham Sân Ái mở đàng Phiền Tâm
-Chỉ cần đối cảnh dừng Tâm
-Dừng sanh nhị kiến dừng tâm phân trần
-
-Tâm người sẽ tỏ thiệt chân
-Lìa ngay Ái luyến cảnh trần đó ngay
-Chẳng Ái lấy gì Thọ đây
-Không Thọ Không Thủ thoát ngay bụi Trần
-
-Thoát rồi Người sẽ nhẹ Thân
-Tâm ta khoan khoái Khinh An nhẹ nhàng
-Lúc này người biết mình An
-Lìa được Vọng Chấp là Đàng Vô Sanh
-
-Nhưng còn cái Biết đã thành
-Tánh Nhân hiển lộ phải đành lìa luôn
-Lìa Nhân Giác Trí lại tuông
-Trí kia biết Giác phải buông ngay liền
-
-Từ nay Tâm hết ưu Phiền
-Nhưng còn Ngã tướng biết Phiền lìa Ta
-Thôi thì ta cứ Độ Tha
-Đến khi chẳng thấy có Ta Độ Người
-
-Thân Tâm thơi thới vui cười
-An Nhiên tự tại phương mười Phật Chư
-Hồng trần ảo vọng huyễn hư
-Bụi kia chẳng bám vào hư không này
-
-Con nay kính cẩn trình bày
-Người nghe chứng giám tỏ bày Tâm Con
-Nguyện cho người sống vuông tròn
-Nhìn ra Tánh Phật cùng con An Lòng
-
-Sống cùng Phật Tánh không mong
-Không Tham ảo vọng không lòng sân si
-Không chi vương vấn người đi
-Không chi dính mắc Ý người Chân Như
-
-Lòng này đã tỏ thật hư
-Mong người đón lấy sống Như Phật truyền
-Pháp này chẳng phải truyền riêng
-Người mau cảm thấu lên Thuyền về Quê
-
-TAM VÔ
-10/09/2019
-
-Nguyện Đem Công Đức Này
-Hồi Hướng Khắp Tất Cả
-Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo.
-`,
-  },
-  "section-19-02-cung-sieu-thoat": {
-    id: "section-19-02-cung-sieu-thoat",
-    title: "Cúng Siêu Thoát",
-    content: `Thương thay tục cúng thế gian 
-Đến ngày giỗ quả tràn lan thịt thà 
-Thắp nhang khấn vái người nhà
-Cầu xin đủ thứ để mà lợi Ta
-
-
-Thành tâm thảm thiết kêu ca
-Xin danh xin lợi xin nhà xin xe
-Xin cho sự nghiệp lên tiên 
-Xin được sức khoẻ xin tiền dư tiêu
-
-
-Xin cho con cháu biết điều 
-Xin con học giỏi xin nhiều lộc may
-Xin được thuận lợi mỗi ngày 
-Tiền tài danh lợi xin ngày xin đêm
-
-
-Xin cho cha mẹ anh em
-Vợ chồng con cháu xin thêm họ hàng 
-Ra đường sang chảnh khắp làng 
-Đến khi bày cúng thành hàng Ăn Xin
-
-
-Ai ơi có rõ sự tình 
-Người kia đã mất đang cần thứ chi 
-Bỏ thân mà vẫn chưa đi 
-Ở cùng con cháu loài gì chưa siêu
-
-
-Miệng thì mong họ được siêu
-Nhưng khi bày cúng đủ điều van xin
-Ai ơi có hiểu hương linh
-Họ cần siêu thoát gần mình làm chi 
-
-
-Lập đàn chẳng giúp họ đi
-Lại xin họ ở li bì nơi đây
-Duyên nay gửi tặng lời này
-Giúp người hiếu kính tỏ bày cúng tâm
-
-
-Đầu tiên phát nguyện âm thầm
-Tìm về bản thể hết nhầm lạc trôi
-Chẳng cần tìm kiếm xa xôi 
-Thấy nghe nói biết chính ngôi nhà mình
-
-
-Quyết hành thoát khỏi tử sinh 
-Sống không dính mắc ngay mình mãi an
-Từ nay người đã rõ đàng
-Không cần lễ bái lập đàn cầu xin
-
-
-Duyên ngày giỗ cúng hương linh 
-Cơm xôi hoa quả tỏ mình biết ơn
-Không xin chư vị gì hơn
-Vì mình đã biết sống chơn mỗi ngày
-
-
-Duyên nay khai mở chỗ này
-Chư vị biết rõ chốn đây vô thường 
-Ai sanh cũng phải một đường 
-Già rồi bệnh chết đừng vương xác phàm
-
-
-Nhân duyên có hợp sẽ tan
-Há gì chấp dính bất an muôn thời 
-Đến khi tắt thở hết đời
-Vẫn còn níu giữ chẳng rời cõi đây
-
-
-Đại Duyên vị gặp pháp này
-Hành ngay một chữ BUÔNG liền siêu sanh 
-Phát nguyện hậu kiếp nhân lành
-Gặp được chánh pháp người hành thoát ra
-
-
-Ai mà giỗ cúng ta bà
-Phát tâm tinh tấn Phật Đà hành ngay 
-Thấy nghe nói biết mỗi ngày 
-Hành không dính mắc gom đầy đức công
-
-
-Hồi Hướng công đức hương vong
-Hướng cho chư vị lòng vòng được siêu
-Nguyện cho chư vị vài điều
-Kiếp sau chư vị làm người tu chân
-
-
-Gặp được Sư chỉ thật thân
-Sống không dính mắc một lần về quê 
-Nguyện cho chư vị hết mê
-Công hạnh viên mãn được về Nhà xưa
-
-
-Nguyện cho ai cúng dừng ưa
-Dừng ưa sinh xác dừng ưa xin cầu
-Nguyện cho đại chúng hết sầu
-Buông dừng thôi dứt hết đau khổ mình
-
-
-Nguyện cho đại chúng tỏ minh 
-Lập đàn cúng giỗ cúng mình trước tiên
-Sống sao mình hết đảo điên 
-Không buồn không khổ không phiền không than
-
-
-Luôn hành tự tánh mãi an
-Tức người đã cúng lối đàn vô sanh
-Ai Duyên liễu ý mãi lành
-Nguyện cho đại chúng tử sanh không còn 
-
-
-Tam Vô
-19/06/2024
-
-
-NGUYỆN ĐEM CÔNG ĐỨC NÀY 
-HỒI HƯỚNG KHẮP TẤT CẢ 
-ĐỆ TỬ VÀ CHÚNG SANH 
-ĐỀU ĐỒNG THÀNH PHẬT ĐẠO
-
-
-`,
-  },
-    "section-20-01-cam-niem-nhu-lai": {
-      id: "section-20-01-cam-niem-nhu-lai",
-      title: "Cảm niệm Như Lai",
-      content: `
-Cổ Kim Như Lai Bậc Toàn Giác
-Vô Ngại chỉ dạy các chúng sanh
-Thoát ra khỏi chốn tranh đua ấy
-Ai ai cũng được thấy lối về
-
-Ta Bà thoát cảnh mê u tối
-An nhiên tự tại lối Hằng An
-Như Lai Phật Giới Nhàn không ở
-Trở lại trần gian Chở con về
-
-Con nay thấy rõ Quê Hương ấy
-Dẫn độ quần sanh thấy rõ Nhà
-Đồng hành Như Lai ca Diệu Pháp
-Vô Tự Chân Kinh Tháp Liên Đài
-
-Cảm Niệm Như Lai Ngài chỉ rõ
-Lối về quê cũ tỏ chân thường
-Các con thấy rõ đường Chân Lý
-Ung dung thường hành Ý của ngài
-
-Thường hành nơi ấy hoài không khổ
-Mãi mãi hằng An chỗ Phật Đà
-
-TAM VÔ
-15/09/2022
-
-Nguyện Đem Công Đức Này
-Hồi Hướng Khắp Tất Cả 
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo 
-
-`,
-    },
-    "section-20-02-cam-niem-phat-mau-quan-the-am": {
-      id: "section-20-02-cam-niem-phat-mau-quan-the-am",
-      title: "Cảm niệm Phật mẫu Quán Thế Âm",
-      content: `Đại duyên Mẹ ở Ta Bà
-Mười hai nguyện lớn Phật Đà Mẹ thi
-Cũng vì con trẻ ngu si
-Chấp mê bất ngộ mãi đi Luân Hồi
-
-Nay con tỏ ý Mẹ rồi
-Con đường sanh tử con Thôi không màng
-Đại bi khai thị rõ ràng
-Như Lai Thanh Tịnh là đàng bất sanh
-
-Con nguyện thoát cảnh loanh quanh
-Thoát ra huyển cảnh không tranh với đời
-Đại bi không nói bằng lời
-Vì con Mẹ hiện muôn thời cõi Ma
-
-Mẹ ơi con đã rõ nhà
-Nhớ ơn Mẹ đã độ tha con về
-Giúp cho con thoát bờ mê
-Công ơn Phật Mẹ nguyện thề con mang
-
-Từ nay con sống an nhàn
-Nhất tâm con thỉnh kim thân Mẹ về
-Mẹ là mái ấm miền Quê
-Cho con an lạc thoát mê cõi trần
-
-Con nay rõ ý hết đần
-Cảm niệm Mẹ mãi muôn lần bên con
-Mẹ ơi con dại còn son
-Nguyện xin Mẹ ngự bên con cõi này
-
-Nhắc con thoát khỏi bùn lầy
-Giúp con thoát kiếp đoạ đày sáu phương
-Con nay phát nguyện cúng dường
-Quyết theo Phật Mẹ trên đường Như Lai
-
-Đến nơi không có bi ai
-Thường Lạc Ngã Tịnh là ngai Phật Đà
-Cùng Mẹ con cũng độ tha
-Đưa người cùng cực thoát ra não phiền
-
-Giúp người hết đảo hết điên
-Cùng nhau về chốn an yên thanh bình
-Là nơi bất tử bất sinh
-An nhiên tự tại ngay mình hằng an
-
-TAM VÔ
-03/01/2023
-
-Nguyện Đem Công Đức Này
-Hồi Hướng Khắp Tất Cả
-Đệ Tử Và Chúng Sanh
-Đều Đồng Thành Phật Đạo.
-`,
-    },
-    "section-20-03-cam-niem-to-bo-de-dat-ma": {
-      id: "section-20-03-cam-niem-to-bo-de-dat-ma",
-      title: "Cảm niệm Tổ Bồ Đề Đạt Ma",
-      content: `**********
-Mãi lang thang mê đắm trần ai 
-Cứ lăng xăng vạn kiếp trôi hoài 
-Tưởng rằng đây cảnh thiên thai
-Ngờ đâu bĩ cực bi ai đời đời 
-
-Người thiết tha tìm nơi bến giác
-Quyết một lòng thoát sóng vọng mê
-Đạt Ma Sư Tổ Bồ Đề 
-Ngài liền hiện thế dẫn về Nhà xưa
-
-Dù Ta Bà nắng mưa sóng gió 
-Chẳng quản ngại ngự Liễu quá giang 
-Giúp người lặn ngụp gian nan 
-Thoát ra sóng cuộn được an muôn thời 
-
-Dù con cháu nhiều đời mê đắm
-Một Chiếc Giày Thiền Trượng vát vai
-Ai duyên liễu ý Tổ khai
-Buông Dừng Thôi Dứt về ngay quê mình
-
-Đấng trượng phu đầu trần chân đất
-Dạo cảnh trần chẳng vướng bụi nhơ
-Ai duyên liễu ý hết dơ
-Sống không dính mắc sông mơ không còn 
-
-Tùy nhân duyên ngao du khắp chốn 
-Nâng bát vàng giải khốn chúng sanh
-Ai tham danh lợi đua tranh
-Quay đầu thấy rõ tịnh thanh ngay mình 
-
-Đeo tràng hạt vô minh Ngài phá
-Đưa người vượt thập ác tám ma
-Ai duyên liễu ý thoát ra 
-Đến nơi cực lạc ở Nhà Như Lai 
-
-Cảm niệm Ngài Đạt Ma Sư Tổ 
-Đã thị hiện chốn khổ sông mê 
-Ngao du gieo giống Bồ Đề 
-Giúp người cùng cực được về Nhà Xưa 
-
-Đại nhân duyên Phật thừa đã rõ 
-Quyết cùng Ngài dạo bước độ tha
-Đưa đàn con cháu về Nhà
-Thoát ra sanh tử Phật Đà đáo lai 
-
-Kính thỉnh Ngài về đây An Vị 
-Giúp kẻ mê thức tỉnh lối đi 
-Công ơn Ngài bất tư nghì 
-Cảm niệm Ngài đã Phổ Thiền Thích Ca 
-
-Người hữu phúc nhận ra bổn tánh
-Kẻ vô duyên mê cảnh tranh giành 
-Ai duyên liễu Tổ Vô Sanh
-An nhiên tự tại tịnh thanh muôn thời 
-
-Đại nhân duyên vài lời nhắn gửi 
-Ai liễu hành liền tới Phật Phương 
-Tổ nay đã chỉ rõ đường 
-Người mau cất bước lên đường về Quê 
-
-Tam Vô 
-20/12/2023
-
-Nguyện Đem Công Đức Này 
-Hồi Hướng Khắp Tất Cả 
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo
-
-`,
-    },
-    "section-20-04-cam-niem-than-kim-cang": {
-      id: "section-20-04-cam-niem-than-kim-cang",
-      title: "Cảm niệm Thần Kim Cang",
-      content: `..........
-Trôi lăn lang bạt Ta Bà 
-Mê mờ muôn kiếp đường ra chẳng tường
-Vạn đời đắm cảnh mù sương 
-U minh tăm tối lạc đường Quê Xưa 
- 
-Thiết tha thoát cảnh nắng mưa 
-Thành tâm tìm kiếm Phật Thừa dẫn ra
-Thiết tha thoát khỏi cõi Ma
-Hành ngay Tự Tánh vượt qua dễ dàng 
- 
-Nhân Duyên hành Pháp Bảo Đàng
-Vạn Ma hoá cảnh gian nan cản đường 
-Thành tâm Tín Phật mười phương 
-Luôn hành tinh tấn gió sương không màn
- 
-Vị Thần luôn giúp mình An 
-Kim Cang Đại Sĩ hộ can Ma Tà
-Đại nguyện Ngài ở Ta Bà 
-Hộ người tinh tấn thoát ra hồng trần 
- 
-Đại Duyên thỉnh Kim Cang Thần
-Về đây An Vị Hộ Nhân thiền hành
-Giúp người Phật Tử mãi lành
-Yêu ma quỷ quái phải đành tránh xa
- 
-Nhờ Ngài xua đuổi lũ Ma
-Giúp người Phật Tử tránh xa não phiền
-Nhờ Ngài luôn ngự vân thiên
-Dõi theo Phật Tử giúp liền lúc nguy
- 
-Đại ơn Ngài bất tư nghì 
-Cao hơn biển cả chẳng gì sánh ngang
-Ngài không quảng ngại gian nan
-Cõi Phật không ở Ngài sang nơi này
- 
-Giúp cho đại chúng hết lầy
-Giúp người hữu phúc về ngay Phật Đà 
-Cảm Niệm Ngài ở Ta Bà 
-Hộ trì Phật Tử về Nhà Như Lai 
- 
-Từ nay sống đúng không sai
-Đồng hành tiếp dẫn những ai muốn về 
-Giúp người hữu phúc rõ Quê
-An nhiên dạo bước cùng về Nhà Xưa 
- 
-Tam Vô 
-29/11/2023
- 
-Nam Mô Bổn Sư Thích Ca Mâu Ni Phật (3 lần)
-Nam Mô Kim Cang Đại lực Sĩ (3 lần)
- 
-Nguyện Đem Công Đức Này 
-Hồi Hướng Khắp Tất Cả 
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo
-`,
-    },
-    "section-20-05-cam-on": {
-      id: "section-20-05-cam-on",
-      title: "Cảm Ơn",
-      content: "Simple expression of thanks and heartfelt gratitude for guidance and blessings.",
-    },
-    "section-20-06-tam-vo-cam-niem-an-cha": {
-      id: "section-20-06-tam-vo-cam-niem-an-cha",
-      title: "Tam Vô Cảm Niệm Ân Cha",
-      content:
-        `Thanh Như trình kệ cảm niệm Ân Sư Cha Tam Vô
-
-Thanh An Thường Lạc Muôn Ngã Tịnh
-
-Như Như Nhất Nhất Phổ Thiền Thanh
-
-Cảm Niệm Ân Cha Hằng Khai Thị
-
-Niệm Hành Như Lai Tại Tánh Mình
-
-Ân Ngài Bất Khả Tư Nghì Ngộ
-
-Sư Cha Soi Sáng Lối Bảo Đàng 
-
-TAM Tự Thường Tri Nơi Phật Tánh
-
-Vô Ngã Vô Tướng Vô Niệm Cầu
-
-Khai Hoa Độ Thế Qua Sầu Khổ
-
-Thị Hiện Dẫn Con Thoát Ta Bà
-
-Thanh Như
-15/12/2022
-
-Nguyện Đem Công Đức Này
-
-Hồi Hướng Khắp Tất Cả 
-
-Đệ Tử Và Chúng Sanh 
-
-Đều Đồng Thành Phật Đạo 
-`,
-    },
-      "section-21-01-chut-noi-niem": {
-    id: "section-21-01-chut-noi-niem",
-    title: "Chút Nỗi niềm",
-    content: `Chánh Kiến trình kệ cúng dường Sư Cha Tam Vô
-
-Cội nguồn CHA đã dẫn trao 
-Đáo lai vài bữa lại xao nhãng lòng 
-Lòng vòng rồi lại lòng vòng
-Hành không rõ biết nghi lời của CHA 
-
-Mới biết còn thấy thiết tha
-Học được một xíu nghĩ ta hơn người 
-Con ma nhìn thấy nó cười 
-PHẬT ĐÀ ngay đấy mà người vọng va
-
-Có ai thấu hiểu lòng Cha 
-Thấy con va vấp mà sa cõi lòng
-Vậy mà con trẻ sống ngông 
-Quên Cha bỏ cội hỏi còn Đạo không
-
-Chữ HIẾU còn hành chưa xong 
-Làm sao thông được PHẬT THỪA NGƯỜI trao
-Nhìn thấy mà dạ xót đau 
-Nguyện cho HUYNH ĐỆ chuốt trau thân mình 
-
-Từ nay trên dưới thuận tình 
-Dìu nhau vững bước con đường CHA trao
-Đến đây hơi thở nhẹ phào 
-Chốn lao đã mất ta vào Nhà Xưa 
-
-Người ơi đừng có nắng mưa
-Chữ ÂN chữ HIẾU nên ưa hành trì 
-Hạnh người sẽ Bất Tư Nghì
-Con đường PHẬT quả người đi nhẹ nhàng
-
-Chánh kiến 
-10/04/2023
-
-Nguyện Đem Công Đức Này 
-Hồi Hướng Đến Tất Cả
-Đệ Tử Và Chúng Sanh 
-Đều Trọn Thành Phật Đạo
-`,
-  },
-  "section-21-02-on-cha": {
-    id: "section-21-02-on-cha",
-    title: "Ơn Cha",
-    content: `Thưa Sư Cha !Chánh Kiến con xin Kính trình kệ Cúng Dường cảm niệm Ân Sư Cha!
-Cha ơi con trẻ rõ rồi 
-CHA luôn bên cạnh cho đời con An 
-Bên CHA con trẻ an nhàn 
-Không than chẳng trách rõ đàn CHÂN NHƯ 
-
-CHA là ánh sáng mười phương 
-Soi đàng dẫn lối cháu con rõ đường 
-Trãi qua bao cảnh vô thường 
-CHA luôn theo bước soi đường phá mê
-
-Nhờ CHA con đã trở về 
-ƠN NGƯỜI sao kể được lời thế gian 
-Hồng trần đôi lúc gian nan 
-Nhờ CHA ở cạnh thoát đàn Vô Sanh 
-
-Hôm nay gởi trọn lòng thành 
-ƠN CHA con niệm khắc ghi muôn đời 
-Con nguyện muôn khắc muôn thời 
-Ghi tâm ,khắc cốt những lời CHA trao 
-
-Nguyện khi gặp cảnh trần lao 
-Quay về TỰ TÁNH CHA nào bỏ con 
-Bên CHA mọi thứ viên tròn 
-Thường lạc ngã tịnh CHA con sum vầy .
-
-Chánh Kiến  04/06/2023
-
-Nguyện Đem Công Đức Này 
-Hồi Hướng Cho Tất Cả 
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo
-. 
-`,
-  },
-  "section-21-03-cung-tu-thoi-nay": {
-    id: "section-21-03-cung-tu-thoi-nay",
-    title: "Cùng tử thời nay",
-    content: `Chánh Kiến con xin Kính trình kệ Cúng Dường Sư Cha Tam Vô!🙏🙏🙏
-
-Thương chàng cùng TỬ năm xưa 
-Có ngọc không nhận lại ưa luân hồi 
-Suốt đời quanh quẩn tìm tòi 
-Người toàn bụi bẩn mà đòi THÍCH CA 
-
-Đời anh có một người CHA 
-NGỌC CHÂU chẳng thiếu vậy mà rên la 
-Cả đời hết vọng rồi va 
-CHA mình không nhận thành ra anh mù 
-
-Chúng sanh muốn trọn đường tu 
-Quay về TỰ TÁNH chẳng sanh điều gì 
-Nhận ngay chỗ Bất Tư Nghì 
-THẤY NGHE NÓI BIẾT vậy thì an yên 
-  
-Thời này cũng lắm kẻ điên 
-Noi gương cùng tử luyên thuyên cả ngày 
-Không rõ mình kẻ ăn mày 
-Lu mờ CHÁNH PHÁP cũng đòi độ tha 
-
-Có độ cũng hóa thành ma 
-Con đường CHÁNH PHÁP SƯ CHA khai rồi 
-Khư khư ôm giữ cái TÔI 
-Hơn thua chứng đắc lạc trôi CHA mình
-
-Ai ơi tỉnh thức rõ nhà 
-Biết mình đang có người CHA rất giàu 
-Chỉ cần nhận NGỌC CHA trao 
-An yên tự tại tùy duyên vẽ màu
-
-Đừng theo cùng tử năm  nào 
-Biết mình có NGỌC mà sao không dùng
-Ôm chi cái NGÃ to đùng 
-THÔI BUÔNG tất cả nhận CHA rõ nhà.
-
-Chánh Kiến  11/07/2023
-
-Nguyện Đem Công Đức Này
-Hồi Hướng Đến Tất Cả 
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo.
-`,
-  },
-  "section-21-04-tinh-cha": {
-    id: "section-21-04-tinh-cha",
-    title: "Tình Cha",
-    content: `Chánh Kiến Kính trình kệ Cúng Dường Sư Cha TAM VÔ
-
-Mừng ngày Thị Hiện Cha yêu
-Con thơ mượn bút thay lời kính dâng 
-CHA luôn thị hiện ân cần 
-Dù cho con trẻ có sân thế nào 
-
-Dù cho con trẻ lao xao 
-Dù cho con trẻ ngồi bào cả đêm 
-Dù cho con trẻ hỏi thêm 
-Dù cho con trẻ trình đêm trình ngày 
-
-Dù cho con trẻ đang say 
-Cảnh trần lôi cuốn quên quay về mình 
-Dù thân con trẻ đầy sình 
-Dù cho con trẻ vô tình với CHA 
-
-Dù cho con trẻ vấp va 
-Dù cho con trẻ quên CHA nhiều ngày 
-Dù cho con trẻ ăn mày 
-CHA luôn theo bước đưa con quay về
- 
-CHA luôn diệu dụng phá mê 
-Bao dung hết thảy không chê đứa nào 
-Cho dù thân thể ra sao 
-Chỉ cần con trẻ đứa nào cũng minh 
-
-Chỉ cần con trẻ tươi xinh 
-Lòng CHA ấm áp như trời đang xuân 
-Dù cho chịu cảnh gian truân 
-Cha luôn trọn hạnh với con sáu thời 
-
-Ân NGƯỜI xin tạm dùng lời 
-Kính mong CHA nhận  trọn đời bên CHA 
-Nhân ngày thị hiện cõi TA 
-Con thơ kính gởi lời ca ÂN TÌNH .
-
-CHÁNH KIẾN (13/09/2023)
-
-Nguyện Đem Công Đức Này 
-Hồi Hướng Khắp Tất Cả 
-Đệ Tử Và Chúng Sanh 
-Đều Đồng Thành Phật Đạo 
-`,
-  },
-  "section-21-05-chot-buon": {
-    id: "section-21-05-chot-buon",
-    title: "Chợt buồn",
-    content: `Chánh Kiến trình kệ Cúng Dường Sư Cha Tam Vô
-
-Hôm nay trời vẫn nhẹ nhàng 
-Gió đưa lay nhẹ vài nàng hoa xinh
-Sao lòng cứ mãi lặng thinh 
-Mắt rơi dòng lệ ÂN TÌNH NGƯỜI xưa
-
-Từ sáng cho tới lúc trưa 
-Dáng NGƯỜI mãi hiện cảnh xưa ùa về 
-Nhớ ngày NGƯỜI đã phá mê 
-Cho con thoát khỏi tứ bề bủa vây 
-
-Vì duyên không thể về ngay 
-Nơi xa con trẻ kính CHA ngàn lời 
-Kính CHA thị hiện dựng xây 
-Đưa đàn con cháu thoát lầy Về Quê
-
-Nguyện cho HUYNH ĐỆ hết mê
-Luôn luôn tỉnh thức về Quê Xưa mình 
-Sống sao đừng phụ ÂN TÌNH 
-Niệm CHA tất cả chút tình con thơ
- 
- CHÁNH KIẾN (NGÀY 13/09/2023)
-
-Nguyện Đem Công Đức Này
-Hồi Hướng Khắp Tất Cả 
-Đệ Tử Và Chúng Sanh
-Đều Đồng Thành PHẬT Đạo
-
-
-`,
-  },
-  "section-21-06-gian-truan-thinh-me": {
-    id: "section-21-06-gian-truan-thinh-me",
-    title: "Gian Truân Thỉnh Mẹ",
-    content: `Thương thay nhân thế ở đời
-U mê chấp niệm đời đời chuyển luân
-Quán âm đem đến mùa xuân
-Kẻ mê ngăn cản gian truân thỉnh ngài
-
-
-Ngàn năm khổ não dài dài
-Đến khi mệt mỏi cầu ngài nơi đâu
-Thiết tha mẹ vẫn hiện màu
-Giúp cho con cháu khổ đau không còn
-
-
-TAM VÔ
-12/01/2025
-`,
+`
   }
 }
 
