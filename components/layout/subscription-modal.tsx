@@ -88,7 +88,7 @@ const pricingPlansEng = [
     name: 'PRO Plan ($4) – Agent GIÁC NGỘ',
     icon: '/images/giac-ngo-logo-1.png',
     price: '$4/month',
-    yearlyPrice: '$48/year (10% discount)',
+    yearlyPrice: '$43.20/year (10% discount)',
     subtitle: 'Awakening guidance – breaking delusion, seeing “True Self”',
     features: [
       'Direct and concise responses that break attachment and delusion',
@@ -149,13 +149,15 @@ export const SubscriptionModal = ({
     }
   }
 
+  const plans = language === 'en' ? pricingPlansEng : pricingPlans
+
   const handleUpgrade = (planId: string) => {
     console.log(`Upgrading to plan: ${planId}`)
     if (planId === 'tam-an') {
       router.push('/ai/new')
     } else {
       // Find the selected plan from static data
-      const plan = pricingPlans.find((p) => p.id === planId)
+      const plan = plans.find((p) => p.id === planId)
       if (plan) {
         setSelectedPlan({
           ...plan,
@@ -166,8 +168,6 @@ export const SubscriptionModal = ({
       }
     }
   }
-
-  const plans = language === 'en' ? pricingPlansEng : pricingPlans
 
   return (
     <AnimatePresence>
@@ -222,7 +222,7 @@ export const SubscriptionModal = ({
                   return (
                     <Card
                       key={plan.id}
-                      className={`relative transition-all duration-300 hover:shadow-xl bg-amber-50 border-2 flex flex-col h-full ${
+                      className={`relative transition-all duration-300 hover:shadow-xl bg-[#EFE0BD] border-2 flex flex-col h-full ${
                         plan.popular
                           ? 'border-red-800 shadow-lg scale-105'
                           : 'border-black hover:border-gray-800'
@@ -282,13 +282,13 @@ export const SubscriptionModal = ({
                         </div>
 
                         {/* Bottom section with discount and upgrade button */}
-                        <div className='space-y-4 pt-4 border-t border-red-300'>
+                        <div className='space-y-4 pt-4 '>
                           {plan.id !== 'tam-an' && (
                             <div className='space-y-3'>
                               <div className='text-sm font-medium text-black'>
                                 {t('pricing.discountCode')}
                               </div>
-                              <div className='flex gap-2'>
+                              <div className='flex gap-2 items-center'>
                                 <Input
                                   placeholder={t('pricing.discountPlaceholder')}
                                   value={discountCodes[plan.id] || ''}
@@ -298,13 +298,13 @@ export const SubscriptionModal = ({
                                       [plan.id]: e.target.value
                                     }))
                                   }
-                                  className='flex-1 bg-white border-red-300'
+                                  className='flex-1 border-2 border-[#2c2c2c] rounded-xl bg-[#f3ead7]'
                                 />
                                 <Button
                                   variant='outline'
                                   size='sm'
                                   onClick={() => handleApplyDiscount(plan.id)}
-                                  className='px-4 bg-gray-600 text-white border-gray-600 hover:bg-gray-700'
+                                  className='px-4 bg-[#2c2c2c] text-white border-gray-600 rounded-xl hover:bg-[#2c2c2c] hover:text-white'
                                 >
                                   {t('pricing.applyDiscount')}
                                 </Button>
