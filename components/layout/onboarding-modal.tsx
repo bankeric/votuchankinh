@@ -53,21 +53,21 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
   return (
     <Dialog open={open} onOpenChange={() => {}} modal>
       <DialogContent 
-        className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto [&>button]:hidden"
+        className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto [&>button]:hidden bg-[#f3ead7] border-2 border-black rounded-lg"
       >
         <DialogHeader className="text-center space-y-4 pb-6">
           <div className="flex justify-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full flex items-center justify-center">
-              <span className="text-orange-700 text-2xl font-bold">🙏</span>
+            <div className="w-16 h-16 bg-[#f9f0dc] border-2 border-black rounded-full flex items-center justify-center">
+              <span className="text-red-800 text-2xl font-bold">🙏</span>
             </div>
           </div>
-          <DialogTitle className="text-2xl font-bold text-orange-900 text-center">
+          <DialogTitle className="text-2xl font-bold text-red-800 text-center">
             {t('onboarding.welcome')}
           </DialogTitle>
-          <p className="text-lg text-orange-700 font-medium text-center">
+          <p className="text-lg text-red-800 font-medium text-center">
             {t('onboarding.subtitle')}
           </p>
-          <p className="text-gray-600 max-w-md mx-auto">
+          <p className="text-gray-700 max-w-md mx-auto">
             {t('onboarding.description')}
           </p>
         </DialogHeader>
@@ -75,7 +75,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
         <div className="space-y-6">
           <div className="space-y-4">
             <div className="flex items-center gap-2 justify-center">
-              <Globe className="w-5 h-5 text-orange-600" />
+              <Globe className="w-5 h-5 text-red-800" />
               <h3 className="text-lg font-semibold text-gray-900">
                 {t('onboarding.selectLanguage')}
               </h3>
@@ -85,10 +85,10 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
               {languages.map((lang) => (
                 <Card 
                   key={lang.code}
-                  className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                  className={`cursor-pointer transition-all duration-200 border-2 ${
                     selectedLanguage === lang.code || language === lang.code
-                      ? 'ring-2 ring-orange-500 bg-orange-50' 
-                      : 'hover:bg-orange-25'
+                      ? 'bg-[#f9f0dc] border-red-800' 
+                      : 'bg-[#f9f0dc] border-black'
                   }`}
                   onClick={() => handleLanguageSelect(lang.code)}
                 >
@@ -101,7 +101,7 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
                       </div>
                     </div>
                     {(selectedLanguage === lang.code || language === lang.code) && (
-                      <CheckCircle className="w-5 h-5 text-orange-600" />
+                      <CheckCircle className="w-5 h-5 text-red-800" />
                     )}
                   </CardContent>
                 </Card>
@@ -113,13 +113,13 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
             <Button
               variant="outline"
               onClick={handleSkip}
-              className="flex-1 border-orange-200 hover:bg-orange-50"
+              className="flex-1 border-2 border-black bg-gray-200 hover:bg-gray-300 text-black"
             >
               {t('onboarding.skip')}
             </Button>
             <Button
               onClick={handleContinue}
-              className="flex-1 bg-orange-600 hover:bg-orange-700 text-white"
+              className="flex-1 bg-red-800 hover:bg-red-900 text-white border-2 border-red-800"
             >
               {t('onboarding.continue')}
             </Button>

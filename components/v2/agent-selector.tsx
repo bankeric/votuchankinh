@@ -39,7 +39,7 @@ const AgentSelector = ({ value, onSelectAgent }: AgentSelectorProps) => {
       </SelectTrigger>
 
       <SelectContent
-        className='bg-[#f3ead7] border-2 border-[#2c2c2c] rounded-xl md:rounded-2xl p-2 shadow-[0_6px_0_#00000030]
+        className='agent-select bg-[#f3ead7] border-2 border-[#2c2c2c] rounded-xl md:rounded-2xl p-2 shadow-[0_6px_0_#00000030]
                  data-[state=open]:animate-in'
         position='popper'
         align='end'
@@ -58,6 +58,10 @@ const AgentSelector = ({ value, onSelectAgent }: AgentSelectorProps) => {
           </SelectItem>
         ))}
       </SelectContent>
+      <style jsx global>{`
+        .agent-select [role="option"] { padding-right: 2rem; }
+        .agent-select span.absolute.left-2 { left: auto !important; right: 0.5rem; }
+      `}</style>
     </Select>
   )
 }

@@ -1,5 +1,6 @@
 import { useTranslations } from '@/hooks/use-translations'
 import { motion, Variants } from 'framer-motion'
+import Image from 'next/image'
 
 export const WelcomeScreenV2 = () => {
   const { t } = useTranslations()
@@ -17,8 +18,14 @@ export const WelcomeScreenV2 = () => {
       className='h-full flex flex-col justify-center items-center text-center px-4'
       variants={itemVariants}
     >
-      <div className='text-4xl md:text-8xl font-serif text-[#991b1b]/60 mb-8'>
-        無
+      <div className='mb-8'>
+        <Image
+          src={'/images/library.png'}
+          alt='Welcome Icon'
+          width={160}
+          height={160}
+          className='w-24 h-24 md:w-40 md:h-40 object-contain'
+        />
       </div>
       <h2 className='text-xl md:text-3xl font-serif text-[#991b1b] mb-4'>
         {t('chat.welcomeTitle')}

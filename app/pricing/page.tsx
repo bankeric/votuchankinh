@@ -33,7 +33,7 @@ const pricingPlans = [
   {
     id: "giac-ngo",
     name: "GÓI PRO ($99,000 VND/tháng) – Agent GIÁC NGỘ",
-    icon: "/images/giac-ngo-logo-1.png",
+    icon: "/images/pricing-2.png",
     price: "99.000 đ/tháng",
     yearlyPrice: "1.069.200 đ/năm (giảm 10%)",
     subtitle: "Khai thị phá mê, dẫn lối 'Rõ Mình'",
@@ -144,7 +144,7 @@ export default function PricingPage() {
             return (
               <Card 
                 key={plan.id}
-                className={`relative transition-all duration-300 hover:shadow-xl bg-amber-50 border-2 flex flex-col h-full ${
+                className={`relative transition-all duration-300 hover:shadow-xl bg-[#f9f0dc] border-2 flex flex-col h-full ${
                   plan.popular 
                     ? "border-red-800 shadow-lg scale-105" 
                     : "border-black hover:border-gray-800"
