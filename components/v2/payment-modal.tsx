@@ -140,7 +140,7 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
         </DialogHeader>
 
         {/* Plan Selection */}
-        <div className='bg-[#EFE0BD] border-2 border-black rounded-lg p-6 space-y-4'>
+        <div className='bg-[#f9f0dc] border-2 border-black rounded-lg p-6 space-y-4'>
           {/* Plan Header */}
           <div className='flex items-center justify-between'>
             <h3 className='text-lg font-semibold text-black'>{plan.name}</h3>
@@ -172,7 +172,7 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
                 className={`flex-1 p-3 rounded-lg border-2 cursor-pointer transition-all ${
                   paymentType === 'yearly'
                     ? 'bg-red-800 border-red-800 text-white'
-                    : 'bg-amber-50 border-black text-black'
+                    : 'bg-[#f9f0dc] border-black text-black'
                 }`}
               >
                 <div className='flex justify-between items-center'>
@@ -211,7 +211,7 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
                 className={`flex-1 p-3 rounded-lg border-2 cursor-pointer transition-all ${
                   paymentType === 'monthly'
                     ? 'bg-red-800 border-red-800 text-white'
-                    : 'bg-amber-50 border-black text-black'
+                    : 'bg-[#f9f0dc] border-black text-black'
                 }`}
               >
                 <div className='flex justify-between items-center'>

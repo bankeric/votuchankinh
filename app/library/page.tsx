@@ -3,6 +3,7 @@
 import type React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import SiteFooter from '@/components/site-footer'
 
@@ -515,8 +516,14 @@ export default function LibraryPage() {
           ) : (
             <div className='h-full flex items-center justify-center min-h-[600px]'>
               <div className='text-center animate-fade-in px-4'>
-                <div className='text-6xl sm:text-8xl font-serif text-[#991b1b]/40 mb-4 sm:mb-6'>
-                  經
+                <div className='mb-4 sm:mb-6 flex items-center justify-center'>
+                  <Image
+                    src={'/images/ai_1.png'}
+                    alt='Library Icon'
+                    width={160}
+                    height={160}
+                    className='w-24 h-24 sm:w-40 sm:h-40 object-contain'
+                  />
                 </div>
                 <h2 className='text-xl sm:text-2xl font-serif text-[#991b1b] mb-3 sm:mb-4'>
                   {translations[language].tableOfContents}

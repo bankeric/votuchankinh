@@ -41,7 +41,8 @@ import {
   Search,
   Settings,
   Trash2,
-  X
+  X,
+  ChevronsLeft
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { authService } from '@/service/auth'
@@ -196,14 +197,14 @@ export function Sidebar({
   // Collapsed sidebar
   if (isCollapsed) {
     return (
-      <div className='hidden md:flex w-16 bg-white border-r border-orange-200 flex-col items-center py-4'>
+      <div className='hidden md:flex w-16 bg-[#efe0bd] flex-col items-center py-4'>
         <Button
           variant='ghost'
           size='sm'
           onClick={() => {
             setIsCollapsed(false)
           }}
-          className='mb-4'
+          className='mb-4 hover:bg-red-800 hover:text-white'
         >
           <Menu className='w-5 h-5' />
         </Button>
@@ -214,10 +215,10 @@ export function Sidebar({
             variant='ghost'
             size='sm'
             onClick={() => router.push('/admin')}
-            className='w-10 h-10 p-0 mb-6 hover:bg-purple-50'
+            className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
             title={t('navigation.admin')}
           >
-            <span className='text-sm'>⚙️</span>
+            <span className='text-sm'><Image src={'/images/pricing-2.png'} alt='Admin' width={40} height={40} /></span>
           </Button>
         )}
         {/* New Chat Button - Collapsed */}
@@ -226,7 +227,7 @@ export function Sidebar({
             variant='outline'
             size='sm'
             onClick={handleCreateNewChat}
-            className='w-10 h-10 p-0 mb-4'
+            className='w-10 h-10 p-0 mb-4 bg-[#f9f0dc] border border-black text-black hover:bg-red-800 hover:text-white'
             title={t('chat.newChat')}
           >
             <Plus className='w-4 h-4' />
@@ -243,7 +244,7 @@ export function Sidebar({
                     <Button
                       variant='ghost'
                       size='sm'
-                      className='w-10 h-10 p-0 transition-colors duration-200 hover:bg-black/10'
+                      className='w-10 h-10 p-0 transition-colors duration-200 hover:bg-red-800 hover:text-white'
                     >
                       <MoreVertical className='w-4 h-4' />
                     </Button>
@@ -270,7 +271,7 @@ export function Sidebar({
                   variant='ghost'
                   size='sm'
                   onClick={() => setIsLogin(true)}
-                  className='w-10 h-10 p-0 transition-colors duration-200 hover:bg-black/10'
+                  className='w-10 h-10 p-0 transition-colors duration-200 hover:bg-red-800 hover:text-white'
                   title={t('auth.signIn')}
                 >
                   <LogIn className='w-4 h-4' />
@@ -288,25 +289,18 @@ export function Sidebar({
     <div className='hidden md:flex w-80 bg-[#efe0bd] border-r border-[#2c2c2c]/30 flex-col transform transition-all duration-300 ease-in-out'>
       {/* Header */}
       <div className='p-4 '>
-        {/* <div className='flex items-center justify-between mb-4'>
-          <div className='flex items-center gap-2'>
-            <div className='w-8 h-8 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full flex items-center justify-center'>
-              <span className='text-orange-700 text-sm font-bold'>🙏</span>
-            </div>
-            <h1 className='font-bold text-lg text-gray-800'>
-              {t('app.title')}
-            </h1>
-          </div>
-
+        <div className='flex items-center justify-between mb-2'>
+          <div className='flex-1' />
           <Button
             variant='ghost'
             size='sm'
             onClick={() => setIsCollapsed(true)}
-            className='text-black'
+            className='text-black hover:bg-red-800 hover:text-white'
+            title={t('common.collapse')}
           >
-            <X className='w-4 h-4' />
+            <ChevronsLeft className='w-4 h-4' />
           </Button>
-        </div> */}
+        </div>
 
         <div className='flex items-center justify-center mb-6'>
           <Image
@@ -326,7 +320,7 @@ export function Sidebar({
               variant='outline'
               size='sm'
               onClick={() => router.push('/admin')}
-              className='w-full justify-start gap-2 h-6 text-xs border border-black bg-inherit text-black rounded-lg'
+              className='w-full justify-center items-center h-6 text-xs border border-black bg-inherit text-black rounded-lg hover:bg-red-800 hover:text-white'
             >
               <span className='text-gray-700'>{t('navigation.admin')}</span>
             </Button>
@@ -338,7 +332,7 @@ export function Sidebar({
             variant='outline'
             size='sm'
             onClick={handleCreateNewChat}
-            className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-transparent h-6 text-xs'
+            className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-[#f9f0dc] h-6 text-xs hover:bg-red-800 hover:text-white'
           >
             <Plus className='w-2 h-2' />
             <span>{t('chat.newChat')}</span>
@@ -374,7 +368,7 @@ export function Sidebar({
       </div>
 
       {/* Footer V2 */}
-      <div className='px-5 pt-6 pb-5 border-t border-[#2c2c2c]/30'>
+      <div className='px-5 pt-5 pb-5 border-t border-[#2c2c2c]/40'>
         <div className='flex items-center justify-center gap-2'>
           <div className='transition-all duration-300 ease-in-out'>
             {user && (
@@ -384,7 +378,7 @@ export function Sidebar({
                     <Button
                       variant='ghost'
                       size='sm'
-                      className='text-black hover:bg-black/10 transition-colors duration-200'
+                      className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200'
                     >
                       <Settings className='w-4 h-4' />
                     </Button>
@@ -412,7 +406,7 @@ export function Sidebar({
             <Button
               variant={'ghost'}
               size='sm'
-              className={`text-xs text-black hover:bg-black/10 transition-colors duration-200`}
+              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200`}
               onClick={() => changeLanguage(Language.EN)}
             >
               🇺🇸 {t('settings.english')}
@@ -421,7 +415,7 @@ export function Sidebar({
             <Button
               variant={'ghost'}
               size='sm'
-              className={`text-xs text-black hover:bg-black/10 transition-colors duration-200`}
+              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200`}
               onClick={() => changeLanguage(Language.VI)}
             >
               🇻🇳 {t('settings.vietnamese')}
@@ -434,7 +428,7 @@ export function Sidebar({
                 <Button
                   variant={'ghost'}
                   onClick={() => setIsLogin(true)}
-                  className='text-black hover:bg-black/10 transition-colors duration-200'
+                  className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200'
                 >
                   <LogIn className='w-4 h-4' />
                 </Button>

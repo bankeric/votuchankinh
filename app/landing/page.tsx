@@ -384,10 +384,10 @@ export default function WordlessSutraPage() {
           </div>
 
           {/* Stats Section */}
-          <div className='w-full'>
+          <div className='w-full flex justify-center'>
             <div
               ref={statsRef}
-              className='w-fit'
+              className='w-fit mx-auto'
             >
               <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
                 {stats.map((stat, idx) => (
