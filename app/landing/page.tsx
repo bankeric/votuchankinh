@@ -47,28 +47,28 @@ function StatCard({ stat, isVisible }: { stat: Stat; isVisible: boolean }) {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center p-6 transition-all duration-1000 ${
+      className={`relative flex flex-col justify-center p-6 transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}
     >
       {/* Icon */}
-      <div className='mb-3 text-[#eae6dd]/40'>{stat.icon}</div>
-
-      {/* Value */}
-      <div className='text-4xl font-serif-sc text-[#eae6dd] mb-2 font-light tracking-wider'>
-        {count}
-        {stat.suffix}
-      </div>
+      {/* <div className='mb-3 text-[#eae6dd]/40'>{stat.icon}</div> */}
 
       {/* Title */}
-      <h3 className='text-sm md:text-base font-serif text-[#eae6dd]/70 mb-2 text-center'>
+      <h3 className='text-sm md:text-base font-serif text-[#eae6dd]/70'>
         {stat.title}
       </h3>
 
+      {/* Value */}
+      <div className='text-4xl font-serif-sc text-[#eae6dd] font-light tracking-wider'>
+        {count}
+        {/* {stat.suffix} */}
+      </div>
+
       {/* Description */}
-      <p className='text-xs text-[#eae6dd]/40 text-center max-w-[200px] font-light'>
+      {/* <p className='text-xs text-[#eae6dd]/40 text-center max-w-[200px] font-light'>
         {stat.description}
-      </p>
+      </p> */}
 
       {/* Tooltip */}
       {/* <div className='absolute top-2 right-2'>
@@ -305,9 +305,9 @@ export default function WordlessSutraPage() {
         }
       `}</style>
 
-      <main className='flex flex-col items-center justify-start min-h-screen bg-black/30'>
+      <main className='bg-black/30'>
         <div
-          className='flex flex-col items-center justify-center w-full cursor-pointer'
+          className='min-h-screen flex flex-col items-center justify-between w-full cursor-pointer'
           onClick={handleClick}
         >
           <div
@@ -384,18 +384,20 @@ export default function WordlessSutraPage() {
           </div>
 
           {/* Stats Section */}
-          <div
-            ref={statsRef}
-            className='w-full max-w-6xl px-4'
-          >
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12'>
-              {stats.map((stat, idx) => (
-                <StatCard
-                  key={idx}
-                  stat={stat}
-                  isVisible={statsVisible}
-                />
-              ))}
+          <div className='w-full'>
+            <div
+              ref={statsRef}
+              className='w-fit'
+            >
+              <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+                {stats.map((stat, idx) => (
+                  <StatCard
+                    key={idx}
+                    stat={stat}
+                    isVisible={statsVisible}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

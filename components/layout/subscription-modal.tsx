@@ -81,23 +81,22 @@ export const SubscriptionModal = ({
           >
             <div className='max-w-6xl mx-auto'>
               {/* Header with Back Button and Title */}
-              <div className='flex items-start justify-between mb-16'>
+              <div className='flex items-start justify-between mb-8'>
                 <Button
                   variant='outline'
                   onClick={() => setShowMembership(false)}
-                  className='flex items-center gap-2 border-red-800 text-red-800 hover:bg-red-50 mt-8'
+                  className='flex items-center gap-2 border-red-800 text-red-800 hover:bg-red-50'
                 >
                   <ArrowLeft className='w-4 h-4' />
                   {t('common.back')}
                 </Button>
-                <div className='text-center flex-1'>
+                {/* <div className='text-center flex-1'>
                   <div className='flex justify-center mb-1'>
                     <Image
                       src='/images/giac-ngo-logo-1.png'
                       alt='Giác Ngộ Logo'
                       width={120}
                       height={120}
-                      className='object-contain'
                     />
                   </div>
                   <h1 className='text-4xl font-bold text-red-800 mb-2'>
@@ -106,7 +105,7 @@ export const SubscriptionModal = ({
                   <p className='text-xl text-red-700 max-w-3xl mx-auto leading-relaxed'>
                     {t('pricing.subtitle')}
                   </p>
-                </div>
+                </div> */}
                 <div className='w-32'></div> {/* Spacer for centering */}
               </div>
 
