@@ -36,7 +36,8 @@ import {
   Square,
   Play,
   VolumeX,
-  Pause
+  Pause,
+  Download
 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { messagesService } from '@/service/messages'
@@ -262,6 +263,23 @@ export function MainChatBubble({
   const handleFeedbackCancel = () => {
     setFeedbackText('')
     setFeedbackModalOpen(false)
+  }
+
+  const handleDownloadAudio = async () => {
+    const textToRead = markdownToText(message.content)
+    // Get voice settings based on current language
+    const voiceSettings = getVoiceSettings(
+      language === 'vi' ? 'vi-VN' : 'en-US'
+    )
+
+    await textToSpeechService.downloadAudioFile(textToRead, 'response.mp3', {
+      voice_name: voiceSettings.selectedVoice,
+      language_code: language === 'vi' ? 'vi-VN' : 'en-US',
+      audio_encoding: 'MP3',
+      speaking_rate: voiceSettings.speakingRate,
+      pitch: voiceSettings.pitch,
+      volume_gain_db: voiceSettings.volumeGain
+    })
   }
 
   const isMessageLiked = userId && message.like_user_ids?.includes(userId)
@@ -510,6 +528,17 @@ export function MainChatBubble({
                       ) : (
                         <Copy className='h-3 w-3' />
                       )}
+                    </Button>
+
+                    {/* Download Button */}
+                    <Button
+                      variant='ghost'
+                      title={t('chat.actions.download')}
+                      size='sm'
+                      onClick={handleDownloadAudio}
+                      className='h-6 w-6 p-0 text-black rounded-full hover:bg-black/5'
+                    >
+                      <Download className='h-3 w-3' />
                     </Button>
                   </div>
                   <span className='text-xs font-light text-right hidden md:inline'>
