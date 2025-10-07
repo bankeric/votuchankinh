@@ -26,10 +26,13 @@
     "chat": "Trò chuyện",
     "settings": "Cài đặt",
     "admin": "Quản trị",
+    "voiceChat": "Chế độ thoại",
+    "meditate": "Thiền định",
     "profile": "Hồ sơ",
     "logout": "Đăng xuất",
     "login": "Đăng nhập",
-    "register": "Đăng ký"
+    "register": "Đăng ký",
+    "history": "Lịch sử"
   },
   "auth": {
     "signIn": "Đăng nhập",
