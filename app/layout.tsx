@@ -48,11 +48,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const promise = useMemo(() => {
-    return axiosInstance
-      .post('/api/v1/stripe/create-checkout-session')
-      .then((res) => res.data.clientSecret)
-  }, [])
   return (
     <html
       lang='en'
@@ -65,24 +60,19 @@ export default function RootLayout({
           ebGaramond.className
         )}
       >
-        <CheckoutProvider
-          stripe={stripePromise}
-          options={{ clientSecret: promise }}
-        >
-          <Elements stripe={stripePromise}>
-            <SessionProvider>
-              <ThemeProvider
-                attribute='class'
-                defaultTheme='light'
-                enableSystem
-                disableTransitionOnChange
-              >
-                <ClientProvider>{children}</ClientProvider>
-                <ToastContainer />
-              </ThemeProvider>
-            </SessionProvider>
-          </Elements>
-        </CheckoutProvider>
+        <Elements stripe={stripePromise}>
+          <SessionProvider>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='light'
+              enableSystem
+              disableTransitionOnChange
+            >
+              <ClientProvider>{children}</ClientProvider>
+              <ToastContainer />
+            </ThemeProvider>
+          </SessionProvider>
+        </Elements>
       </body>
     </html>
   )
