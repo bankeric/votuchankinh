@@ -26,10 +26,13 @@
     "chat": "Chat",
     "settings": "Settings",
     "admin": "Admin",
+    "voiceChat": "Voice Chat",
+    "meditate": "Meditate",
     "profile": "Profile",
     "logout": "Logout",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "history": "History"
   },
   "auth": {
     "signIn": "Sign In",

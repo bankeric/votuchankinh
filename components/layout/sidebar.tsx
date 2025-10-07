@@ -42,7 +42,8 @@ import {
   Settings,
   Trash2,
   X,
-  ChevronsLeft
+  ChevronsLeft,
+  ChevronDown
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { authService } from '@/service/auth'
@@ -66,6 +67,9 @@ export function Sidebar({
   const [searchQuery, setSearchQuery] = useState('')
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false)
+  const [isHistoryOpen, setIsHistoryOpen] = useState(true)
+  const isAnyModalOpen = isSettingsModalOpen || isLogin || isLogoutDialogOpen
+  const shouldShowQuickFeatures = isCollapsed || isAnyModalOpen
   const { user, logout } = useAuthStore()
   const { t, language, changeLanguage } = useTranslations()
   const {
@@ -209,19 +213,42 @@ export function Sidebar({
           <Menu className='w-5 h-5' />
         </Button>
 
-        {/* Admin Panel Button - Collapsed */}
-        {isAdmin && (
-          <Button
-            variant='ghost'
-            size='sm'
-            onClick={() => router.push('/admin')}
-            className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
-            title={t('navigation.admin')}
-          >
-            <span className='text-sm'><Image src={'/images/pricing-2.png'} alt='Admin' width={40} height={40} /></span>
-          </Button>
+        {/* Quick Features - Collapsed (shown when collapsed or modal open) */}
+        {shouldShowQuickFeatures && (
+          <>
+            {isAdmin && (
+              <Button
+                variant='ghost'
+                size='sm'
+                onClick={() => router.push('/admin')}
+                className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
+                title={t('navigation.admin')}
+              >
+                <Image src={'/images/pricing-2.png'} alt='Admin' width={40} height={40} />
+              </Button>
+            )}
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => router.push('/voice')}
+              className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
+              title='Voice Chat'
+            >
+              <Image src={'/images/voice-chat.png'} alt='Voice Chat' width={40} height={40} />
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => router.push('/meditate')}
+              className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
+              title='Meditate'
+            >
+              <Image src={'/images/Meditate.png'} alt='Meditate' width={40} height={40} />
+            </Button>
+          </>
         )}
-        {/* New Chat Button - Collapsed */}
+
+        {/* New Chat Button - Collapsed right under Meditate */}
         {user && (
           <Button
             variant='outline'
@@ -234,8 +261,9 @@ export function Sidebar({
           </Button>
         )}
 
-        {/* User Menu - Collapsed */}
-        <div className='mt-auto'>
+        {/* Bottom Area - Collapsed */}
+        <div className='mt-auto w-full flex flex-col items-center'>
+          {/* User Menu - Collapsed */}
           <div className='transition-all duration-300 ease-in-out'>
             {user ? (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
@@ -313,31 +341,21 @@ export function Sidebar({
           />
         </div>
 
-        {/* Admin Panel Button */}
-        {isAdmin && (
-          <div className='mb-3'>
+        {/* Admin / Voice Chat / Meditate / New Chat - grouped with icons and labels */}
+        <div className='space-y-2'>
+          {/* These buttons are hidden in expanded mode, shown only in collapsed mode */}
+          {user && (
             <Button
               variant='outline'
               size='sm'
-              onClick={() => router.push('/admin')}
-              className='w-full justify-center items-center h-6 text-xs border border-black bg-inherit text-black rounded-lg hover:bg-red-800 hover:text-white'
+              onClick={handleCreateNewChat}
+              className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-[#f9f0dc] h-8 text-xs hover:bg-red-800 hover:text-white'
             >
-              <span className='text-gray-700'>{t('navigation.admin')}</span>
+              <Plus className='w-3 h-3' />
+              <span>{t('chat.newChat')}</span>
             </Button>
-          </div>
-        )}
-        {/* New Chat Button */}
-        {user && (
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={handleCreateNewChat}
-            className='w-full justify-center items-center gap-2 border border-black text-black rounded-lg bg-[#f9f0dc] h-6 text-xs hover:bg-red-800 hover:text-white'
-          >
-            <Plus className='w-2 h-2' />
-            <span>{t('chat.newChat')}</span>
-          </Button>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Search and Chats */}
@@ -354,22 +372,33 @@ export function Sidebar({
           />
         </div> */}
 
-        {/* Chat List */}
-        <ChatList
-          chats={chats}
-          activeChatId={activeChatId}
-          loadingTitleChatId={loadingTitleChatId}
-          totalChats={totalChats}
-          onChatSelect={setActiveChatAndGetMessages}
-          onDeleteChat={handleDeleteChat}
-          onEditChatTitle={editChatTitle}
-          onLoadMore={handleLoadMore}
-        />
+        {/* History Dropdown */}
+        <div className='mb-2'>
+          <button
+            onClick={() => setIsHistoryOpen((v) => !v)}
+            className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-2 py-2'
+          >
+            <span>{t('navigation.history') || 'Lịch sử'}</span>
+            <ChevronDown className={`w-4 h-4 transition-transform ${isHistoryOpen ? 'rotate-180' : ''}`} />
+          </button>
+        </div>
+        {isHistoryOpen && (
+          <ChatList
+            chats={chats}
+            activeChatId={activeChatId}
+            loadingTitleChatId={loadingTitleChatId}
+            totalChats={totalChats}
+            onChatSelect={setActiveChatAndGetMessages}
+            onDeleteChat={handleDeleteChat}
+            onEditChatTitle={editChatTitle}
+            onLoadMore={handleLoadMore}
+          />
+        )}
       </div>
 
       {/* Footer V2 */}
       <div className='px-5 pt-5 pb-5 border-t border-[#2c2c2c]/40'>
-        <div className='flex items-center justify-center gap-2'>
+        <div className='flex items-center justify-center gap-2 flex-wrap'>
           <div className='transition-all duration-300 ease-in-out'>
             {user && (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
@@ -421,7 +450,6 @@ export function Sidebar({
               🇻🇳 {t('settings.vietnamese')}
             </Button>
           )}
-
           <div className='transition-all duration-300 ease-in-out'>
             {!user && (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
