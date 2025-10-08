@@ -69,8 +69,9 @@ export function Sidebar({
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false)
   const [isHistoryOpen, setIsHistoryOpen] = useState(true)
   const isAnyModalOpen = isSettingsModalOpen || isLogin || isLogoutDialogOpen
-  const shouldShowQuickFeatures = isCollapsed || isAnyModalOpen
   const { user, logout } = useAuthStore()
+  // Show quick feature icons when any modal open, or when collapsed AND user is logged in
+  const shouldShowQuickFeatures = isAnyModalOpen || (isCollapsed && !!user)
   const { t, language, changeLanguage } = useTranslations()
   const {
     chats,
@@ -372,27 +373,31 @@ export function Sidebar({
           />
         </div> */}
 
-        {/* History Dropdown */}
-        <div className='mb-2'>
-          <button
-            onClick={() => setIsHistoryOpen((v) => !v)}
-            className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-2 py-2'
-          >
-            <span>{t('navigation.history') || 'Lịch sử'}</span>
-            <ChevronDown className={`w-4 h-4 transition-transform ${isHistoryOpen ? 'rotate-180' : ''}`} />
-          </button>
-        </div>
-        {isHistoryOpen && (
-          <ChatList
-            chats={chats}
-            activeChatId={activeChatId}
-            loadingTitleChatId={loadingTitleChatId}
-            totalChats={totalChats}
-            onChatSelect={setActiveChatAndGetMessages}
-            onDeleteChat={handleDeleteChat}
-            onEditChatTitle={editChatTitle}
-            onLoadMore={handleLoadMore}
-          />
+        {/* History Dropdown - hidden when not logged in */}
+        {user && (
+          <>
+            <div className='mb-2'>
+              <button
+                onClick={() => setIsHistoryOpen((v) => !v)}
+                className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-2 py-2'
+              >
+                <span>{t('navigation.history') || 'Lịch sử'}</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${isHistoryOpen ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+            {isHistoryOpen && (
+              <ChatList
+                chats={chats}
+                activeChatId={activeChatId}
+                loadingTitleChatId={loadingTitleChatId}
+                totalChats={totalChats}
+                onChatSelect={setActiveChatAndGetMessages}
+                onDeleteChat={handleDeleteChat}
+                onEditChatTitle={editChatTitle}
+                onLoadMore={handleLoadMore}
+              />
+            )}
+          </>
         )}
       </div>
 
