@@ -48,7 +48,7 @@ export async function generateBuddhistResponse(
         language: payload.language,
         model: payload.model,
         options: {
-          stream: false
+          stream: true
         },
         agent_id: payload.agentId
       })

@@ -206,7 +206,7 @@ class TextToSpeechService {
     if (this.currentText !== text) {
       this.currentText = text
       this.currentSentenceIndex = 0
-      
+
       // Split the text into sentences
       const sentences = text.match(/[^.!?]+[.!?]+/g) || [text]
       this.sentences = sentences
@@ -215,7 +215,7 @@ class TextToSpeechService {
     // Initialize progress tracking
     let totalProcessed = 0
     const totalLength = text.length
-    
+
     // Calculate how much text we've already processed
     for (let j = 0; j < this.currentSentenceIndex; j++) {
       totalProcessed += this.sentences[j]?.length || 0
@@ -252,7 +252,7 @@ class TextToSpeechService {
         this.playBase64Audio(
           sentence,
           options,
-          (i === 0 && this.currentSentenceIndex === 0) ? onStart : undefined, // Only call onStart for the very first chunk of new text
+          i === 0 && this.currentSentenceIndex === 0 ? onStart : undefined, // Only call onStart for the very first chunk of new text
           () => {
             // When this chunk ends, resolve the promise to continue to the next chunk
             if (i === this.sentences.length - 1 && onEnd) onEnd() // Call onEnd for the last chunk
@@ -458,6 +458,47 @@ class TextToSpeechService {
     return ''
   }
 
+  // Download audio file
+  async downloadAudioFile(
+    text: string,
+    filename: string = 'tts_audio.mp3',
+    options: Partial<TTSRequest> = {},
+    onError?: (error: string) => void
+  ): Promise<void> {
+    try {
+      const data = await this.getBase64Audio(text, options)
+
+      if (data.error) {
+        throw new Error(data.error)
+      }
+
+      if (!data.audio_base64) {
+        throw new Error('No audio data received')
+      }
+
+      // Convert base64 to audio blob using utility function
+      const audioBlob = base64ToBlob(
+        data.audio_base64,
+        data.content_type || 'audio/mpeg'
+      )
+
+      // Create a temporary link to trigger download
+      const url = URL.createObjectURL(audioBlob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = filename
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error('Error downloading audio file:', error)
+      onError?.(
+        error instanceof Error ? error.message : 'Unknown error occurred'
+      )
+    }
+  }
+
   // Audio Control Methods
 
   /**
@@ -521,7 +562,7 @@ class TextToSpeechService {
       // If we're in a paused state with chunked text, continue from where we left off
       this.isPaused = false
       this.isPlaying = true
-      
+
       if (this.pausedResolve) {
         this.pausedResolve()
         this.pausedResolve = null
