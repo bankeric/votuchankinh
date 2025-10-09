@@ -373,24 +373,30 @@ export default function SutraScrollPage() {
 
         {/* Right Side - Language Toggle Button */}
         <div className='flex items-center'>
-          <button
-            onClick={toggleLanguage}
-            className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-colors bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full border border-[#8B4513]/20 hover:border-[#8B4513]/40'
-          >
-            <span className='font-serif text-sm'>
-              {language === 'vi' ? (
-                <>
-                  <span className='hidden sm:inline'>ENG | VIE</span>
-                  <span className='sm:hidden'>VN - EN</span>
-                </>
-              ) : (
-                <>
-                  <span className='hidden sm:inline'>VIE | ENG</span>
-                  <span className='sm:hidden'>EN - VN</span>
-                </>
-              )}
-            </span>
-          </button>
+          <div className='rounded-full border-2 border-[#8B1E1E] p-1 bg-[#EFE0BD] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+            <div className='flex items-center h-8 gap-1 px-0.5'>
+              <button
+                onClick={() => setLanguage('vi')}
+                className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                  language === 'vi'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                }`}
+              >
+                VIE
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                  language === 'en'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                }`}
+              >
+                ENG
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 

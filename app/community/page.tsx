@@ -255,14 +255,30 @@ export default function CommunityPage() {
         </div>
 
         {/* Language Toggle Button */}
-        <button
-          onClick={toggleLanguage}
-          className='flex items-center space-x-2 text-[#991b1b]/80 hover:text-[#991b1b] transition-colors bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full'
-        >
-          <span className='font-serif text-sm'>
-            {language === 'vi' ? 'ENG | VIE' : 'VIE | ENG'}
-          </span>
-        </button>
+        <div className='rounded-full border-2 border-[#8B1E1E] p-1 bg-[#EFE0BD] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+          <div className='flex items-center h-8 gap-1 px-0.5'>
+            <button
+              onClick={() => setLanguage('vi')}
+              className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                language === 'vi'
+                  ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                  : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+              }`}
+            >
+              VIE
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                language === 'en'
+                  ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                  : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+              }`}
+            >
+              ENG
+            </button>
+          </div>
+        </div>
       </header>
 
       <section
@@ -549,116 +565,126 @@ export default function CommunityPage() {
             {/* Photo Collage Section */}
             <div className='border-t border-[#991b1b]/20 pt-6'>
               <h3 className='text-xl font-serif text-[#991b1b] mb-4 text-center'>
-                {language === 'vi'
-                  ? 'Khoảnh Khắc Đáng Nhớ'
-                  : 'Memorable Moments'}
+                {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
               </h3>
 
               <div className='grid grid-cols-3 md:grid-cols-6 gap-3 mb-6'>
-                {Array.from({ length: 18 }, (_, index) => (
-                  <div
-                    key={index}
-                    className={`
-                      ${index === 0 || index === 5 ? 'md:col-span-2' : ''}
-                      ${index === 8 || index === 13 ? 'md:col-span-3' : ''}
-                      aspect-square bg-gradient-to-br from-[#991b1b]/8 to-[#991b1b]/18 
-                      rounded-lg border border-[#991b1b]/15 relative overflow-hidden group
-                      hover:shadow-lg hover:shadow-[#991b1b]/20 transition-all duration-300
-                      transform hover:scale-[1.02]
-                    `}
+                {['c1','c2','c3','c4','c5','c6'].map((id, index) => (
+                  <Link
+                    href={`/library?story=${id}`}
+                    key={id}
+                    className='group block aspect-square rounded-lg border border-[#991b1b]/20 overflow-hidden bg-[#991b1b]/10 hover:border-[#991b1b]/40 hover:shadow-lg hover:shadow-[#991b1b]/20 transition-all'
+                    title={language === 'vi' ? `Câu chuyện ${index + 1}` : `Story ${index + 1}`}
                   >
-                    <div className='absolute inset-0 bg-black/5 group-hover:bg-black/15 transition-all duration-300'></div>
-                    <div className='absolute bottom-1 left-1 right-1'>
-                      <div className='bg-white/95 backdrop-blur-sm rounded px-1 py-0.5'>
-                        <p className='text-xs font-serif text-[#991b1b]'>
-                          {index < 9
-                            ? language === 'vi'
-                              ? 'Cộng đồng'
-                              : 'Community'
-                            : language === 'vi'
-                            ? 'Vi hành'
-                            : 'Pilgrimage'}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Photo placeholder icon */}
-                    <div className='absolute inset-0 flex items-center justify-center'>
-                      <div className='w-8 h-8 bg-[#991b1b]/20 rounded-full flex items-center justify-center group-hover:bg-[#991b1b]/30 transition-colors'>
-                        <span className='text-sm opacity-60'>📷</span>
-                      </div>
-                    </div>
-                  </div>
+                    <img
+                      src={`/images/${id}.png`}
+                      alt={`Story ${index + 1}`}
+                      className='w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300'
+                    />
+                  </Link>
                 ))}
               </div>
             </div>
 
-            {/* Timeline Section */}
+            {/* Questions Section */}
             <div className='border-t border-[#991b1b]/20 pt-6'>
               <h3 className='text-xl font-serif text-[#991b1b] mb-6 text-center'>
-                {language === 'vi' ? 'Dòng Thời Gian' : 'Timeline'}
+                {language === 'vi' ? 'Câu Hỏi Vấn Tỉnh' : 'Questions for Awakening'}
               </h3>
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 {[
                   {
-                    date: '2024',
-                    title:
-                      language === 'vi'
-                        ? 'Thành lập cộng đồng'
-                        : 'Community established'
+                    id: 1,
+                    icon: '/images/t1.png',
+                    question: {
+                      vi: 'Khi thân xác này hoại diệt, con sẽ đi về đâu?',
+                      en: 'When this body perishes, where will I go?'
+                    },
+                    answer: {
+                      vi: 'Nếu con còn đồng hoá mình với thân tâm, còn dính mắc vào nghiệp và nhân quả, con sẽ tiếp tục bị cuốn hút trong sáu nẻo luân hồi: Trời, Người, Thần, Súc sanh, Ngạ quỷ, Địa ngục. Nếu con sống được với Tánh Phật, không còn dính mắc, thì khi thân này tan rã, con sẽ trở về Phật Giới - Quê Xưa chân thật của mình. Con đường do con lựa chọn ngay trong từng khoảnh khắc tỉnh thức.',
+                      en: 'If you still identify with body and mind, still cling to karma and cause-effect, you will continue to be drawn into the six realms of samsara: Heaven, Human, Asura, Animal, Hungry Ghost, Hell. If you live with Buddha Nature, free from attachment, then when this body dissolves, you will return to Buddha Realm - your true original home. The path is what you choose in each moment of awakening.'
+                    }
                   },
                   {
-                    date: '2024',
-                    title:
-                      language === 'vi'
-                        ? 'Chuyến vi hành đầu tiên'
-                        : 'First pilgrimage'
+                    id: 2,
+                    icon: '/images/t2.png',
+                    question: {
+                      vi: 'Con niệm danh hiệu "A Di Đà Phật" ngày đêm có phải là Niệm Phật không?',
+                      en: 'Is reciting "Amitabha Buddha" day and night considered chanting Buddha\'s name?'
+                    },
+                    answer: {
+                      vi: '"Niệm Phật không niệm gọi Tên làm gì." Nếu con chưa từng gặp Phật A Di Đà thì làm sao con nhớ (niệm) được? Con chỉ đang gọi Tên Ngài. Đó chỉ là vọng âm. "Niệm là hằng Nhớ không nghi / Phật là bản thể Như Lai của mình." Niệm Phật chân chánh là hằng nhớ mình có Tánh Phật, luôn quay về sống với Tánh Giác thanh tịnh đó.',
+                      en: '"Chanting Buddha without remembrance, why call the Name?" If you have never met Amitabha Buddha, how can you remember (chant) Him? You are only calling His Name. That is just deluded sound. "Chanting is constantly remembering without doubt / Buddha is the Tathagata nature of yourself." True Buddha chanting is constantly remembering you have Buddha Nature, always returning to live with that pure awareness.'
+                    }
                   },
                   {
-                    date: '2024',
-                    title:
-                      language === 'vi'
-                        ? 'Thiền tọa hàng tuần'
-                        : 'Weekly meditation'
+                    id: 3,
+                    icon: '/images/t3.png',
+                    question: {
+                      vi: 'Tại sao con luôn bị vọng tưởng quấy nhiễu? Làm sao để dừng chúng?',
+                      en: 'Why am I always bothered by delusive thoughts? How can I stop them?'
+                    },
+                    answer: {
+                      vi: '"Vì theo niệm khởi tất bật trần gian." Con không cần phải "dừng" vọng tưởng, vì càng cố dừng, nó càng khởi mạnh hơn. Ta tặng cho con chữ "THÔI". Khi một vọng tưởng khởi lên, con chỉ cần nhận biết nó và nhẹ nhàng nói thầm "Thôi". Thôi không theo nó, thôi không phân tích, thôi không đồng hoá. Chỉ cần "Thôi", con sẽ lập tức trở về với Tánh Phật thanh tịnh. "Thôi công quán tưởng luân hồi dừng ngay."',
+                      en: '"Because following thoughts, everything becomes worldly." You don\'t need to "stop" delusive thoughts, because the more you try to stop them, the stronger they become. I give you the word "ENOUGH". When a delusive thought arises, you just need to recognize it and gently say silently "Enough". Enough not following it, enough not analyzing, enough not identifying. Just "Enough", you will immediately return to pure Buddha Nature. "Enough effort, contemplation stops right away."'
+                    }
                   },
                   {
-                    date: '2024',
-                    title:
-                      language === 'vi'
-                        ? 'Chia sẻ pháp thoại'
-                        : 'Dharma sharing sessions'
+                    id: 4,
+                    icon: '/images/t4.png',
+                    question: {
+                      vi: '"Vô Tu" có phải là buông thả, không cần nỗ lực gì không? "Vô Chứng" nghĩa là con sẽ không bao giờ đạt được gì sao?',
+                      en: 'Is "No Practice" letting go, requiring no effort? Does "No Attainment" mean I will never achieve anything?'
+                    },
+                    answer: {
+                      vi: '"Vô Tu" không phải là buông thả. Nó là sự nỗ lực cao nhất: nỗ lực không nỗ lực. Tức là con không dùng Tánh Ma (ý chí, bản ngã) để tu. Thay vì cố gắng đè nén phiền não, con chỉ đơn giản "Thấy" nó và "Thôi" không theo. Đó là sự tu tập tự nhiên, không tạo tác, thuận theo Tánh Phật thanh tịnh.\n\n"Vô Chứng" vì con vốn đã là Phật, đã viên mãn, tròn đầy, thì còn có cái gì để "đạt được" nữa? Sự chứng đắc là khái niệm của Tánh Ma, muốn có thêm, muốn trở thành một cái gì đó. Khi con nhận ra mình không cần phải trở thành gì cả, chỉ cần nhận lại cái mình vốn có, đó chính là "Vô Chứng".',
+                      en: '"No Practice" is not letting go. It is the highest effort: effort without effort. That is, you don\'t use Mara Nature (will, ego) to practice. Instead of trying to suppress afflictions, you simply "See" them and "Enough" not following. That is natural practice, non-fabricated, in accord with pure Buddha Nature.\n\n"No Attainment" because you are already Buddha, already complete, perfect, so what is there to "achieve"? Attainment is a concept of Mara Nature, wanting to have more, wanting to become something. When you realize you don\'t need to become anything, just receive back what you originally have, that is "No Attainment".'
+                    }
                   },
                   {
-                    date: '2024',
-                    title: language === 'vi' ? 'Lễ cầu an' : 'Prayer ceremonies'
+                    id: 5,
+                    icon: '/images/t5.png',
+                    question: {
+                      vi: 'Con nghe nói về "khai mở luân xa", "khai thiên nhãn". Con có nên theo học không?',
+                      en: 'I hear about "opening chakras", "opening the celestial eye". Should I learn these?'
+                    },
+                    answer: {
+                      vi: 'Đó đều là những pháp hữu vi, thuộc về thân xác và năng lượng. Chúng có thể mang lại một số khả năng đặc biệt tạm thời, nhưng chúng không đưa đến giải thoát. Ngược lại, chúng còn khiến con dính mắc nhiều hơn vào thân này và những năng lực huyền diệu, nuôi lớn bản ngã. Con đường của con là con đường "Vô Tu Vô Chứng", quay về nhận lại Tánh Phật vốn thanh tịnh, không phải luyện tập để có được thần thông.',
+                      en: 'Those are all conditioned methods, belonging to body and energy. They may bring some special temporary abilities, but they don\'t lead to liberation. On the contrary, they make you more attached to this body and miraculous powers, feeding the ego. Your path is the path of "No Practice, No Attainment", returning to recognize your originally pure Buddha Nature, not training to gain supernatural powers.'
+                    }
                   },
                   {
-                    date: '2024',
-                    title:
-                      language === 'vi'
-                        ? 'Hoạt động từ thiện'
-                        : 'Charity activities'
+                    id: 6,
+                    icon: '/images/t6.png',
+                    question: {
+                      vi: 'Con có thể dùng tiền bạc để "mua" công đức, phước báu được không?',
+                      en: 'Can I use money to "buy" merit and blessings?'
+                    },
+                    answer: {
+                      vi: 'Con dùng tiền để cúng dường, bố thí, làm từ thiện là con đang tạo ra phước báu. Nhưng nếu con làm với tâm "trao đổi", cho rằng bỏ ra tiền sẽ được phước, thì phước đó rất hữu hạn và còn mang theo sự tính toán của Tánh Ma. Công đức chân thật đến từ cái tâm thanh tịnh, vô ngã khi con hành động. Một người nghèo chỉ có một đồng nhưng bố thí với tâm hoàn toàn trong sáng, công đức có thể còn lớn hơn người giàu bỏ ra vạn lượng vàng mà tâm còn kể công.',
+                      en: 'Using money to make offerings, give alms, do charity is creating blessings. But if you do it with an "exchange" mind, thinking that spending money will get blessings, then those blessings are very limited and carry the calculation of Mara Nature. True merit comes from the pure, selfless mind when you act. A poor person with only one coin but giving with a completely pure mind may have greater merit than a rich person giving ten thousand gold pieces with a calculating mind.'
+                    }
                   }
                 ].map((item, index) => (
                   <div
-                    key={index}
+                    key={item.id}
                     className='flex items-start space-x-3 group'
                   >
                     <div className='flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#991b1b]/10 to-[#991b1b]/20 rounded-lg border border-[#991b1b]/20 flex items-center justify-center group-hover:shadow-md transition-all duration-300'>
-                      <span className='text-xs font-serif text-[#991b1b]/70'>
-                        {item.date}
-                      </span>
+                      <img
+                        src={item.icon}
+                        alt={`Question ${item.id}`}
+                        className='w-8 h-8 object-contain'
+                      />
                     </div>
                     <div className='flex-1 pt-1'>
                       <h4 className='text-sm font-serif text-[#991b1b] mb-2'>
-                        {item.title}
+                        {item.question[language]}
                       </h4>
-                      <div className='w-full h-16 bg-gradient-to-r from-[#991b1b]/5 to-[#991b1b]/10 rounded border border-[#991b1b]/10 flex items-center justify-center group-hover:shadow-sm transition-all duration-300'>
-                        <span className='text-xs text-[#991b1b]/50 italic'>
-                          {language === 'vi'
-                            ? 'Hình ảnh sẽ được cập nhật'
-                            : 'Images coming soon'}
+                      <div className='w-full bg-gradient-to-r from-[#991b1b]/5 to-[#991b1b]/10 rounded border border-[#991b1b]/10 group-hover:shadow-sm transition-all duration-300 p-3'>
+                        <span className='text-xs text-[#991b1b]/80 text-justify leading-relaxed whitespace-pre-line block'>
+                          {item.answer[language]}
                         </span>
                       </div>
                     </div>

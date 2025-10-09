@@ -4,12 +4,15 @@ import type React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import SiteFooter from '@/components/site-footer'
 
 // Dùng lại data từ bản 1
 import tocData from './tocData'
 import sutraContent from './sutraContent'
+import storyData from './story/storyData'
+import storyContent from './story/storyContent'
 
 interface SutraContentItem {
   title?: string
@@ -30,6 +33,8 @@ export default function LibraryPage() {
   const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
   const [selectedResultIndex, setSelectedResultIndex] = useState<number>(-1)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState<'ke' | 'story'>('ke')
+  const [storyId, setStoryId] = useState<string>('')
 
   const searchRef = useRef<HTMLDivElement>(null)
 
@@ -60,6 +65,17 @@ export default function LibraryPage() {
       document.body.style.backgroundSize = ''
     }
   }, [])
+
+  // Read story from URL and activate story tab
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    const s = searchParams?.get('story') || ''
+    if (s) {
+      setStoryId(s)
+      setActiveTab('story')
+    }
+  }, [searchParams])
+
 
   // Translations
   const translations = {
@@ -272,24 +288,30 @@ export default function LibraryPage() {
 
         {/* Right Side - Language Toggle Button */}
         <div className='flex items-center'>
-          <button
-            onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')}
-            className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-colors bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full border border-[#8B4513]/20 hover:border-[#8B4513]/40'
-          >
-            <span className='font-serif text-sm'>
-              {language === 'vi' ? (
-                <>
-                  <span className='hidden sm:inline'>ENG | VIE</span>
-                  <span className='sm:hidden'>VN - EN</span>
-                </>
-              ) : (
-                <>
-                  <span className='hidden sm:inline'>VIE | ENG</span>
-                  <span className='sm:hidden'>EN - VN</span>
-                </>
-              )}
-            </span>
-          </button>
+          <div className='rounded-full border-2 border-[#8B1E1E] p-1 bg-[#EFE0BD] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+            <div className='flex items-center h-8 gap-1 px-0.5'>
+              <button
+                onClick={() => setLanguage('vi')}
+                className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                  language === 'vi'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                }`}
+              >
+                VIE
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                  language === 'en'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                }`}
+              >
+                ENG
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -339,39 +361,66 @@ export default function LibraryPage() {
 
       <div className='pt-20 flex'>
         {/* TOC Desktop */}
-        <aside className='hidden sm:block w-80 lg:w-96 mr-6'>
-          <div className='bg-[#EFE0BD]/90 backdrop-blur-sm border-2 border-[#2c2c2c]/30 rounded-2xl p-4 max-h-[calc(100vh-8rem)] overflow-y-auto shadow'>
+        <aside className='hidden sm:block w-80 lg:w-96 mr-6 mt-16'>
+          <div className={`bg-[#EFE0BD]/90 backdrop-blur-sm border-2 border-[#2c2c2c]/30 rounded-2xl p-4 shadow ${
+            activeTab === 'story'
+              ? 'max-h-none overflow-visible'
+              : 'max-h-[calc(100vh-8rem)] overflow-y-auto'
+          }`}>
             <h3 className='text-lg font-serif text-[#991b1b] mb-4'>
-              {translations[language].tableOfContents}
+              {activeTab === 'story'
+                ? 'Câu Chuyện Ngộ Đạo'
+                : translations[language].tableOfContents}
             </h3>
             <nav className='space-y-2'>
-              {tocData.map((chapter) => (
-                <div key={chapter.id}>
-                  <button
-                    onClick={() => handleChapterClick(chapter.id)}
-                    className='w-full text-left text-sm font-serif text-[#991b1b]/80 hover:text-[#991b1b] py-1 px-2 rounded hover:bg-[#991b1b]/10 transition-colors'
-                  >
-                    {chapter.title}
-                  </button>
-                  {expandedSection === chapter.id && (
-                    <div className='ml-4 space-y-1 animate-slide-down'>
-                      {chapter.items.map((item) => (
-                        <button
-                          key={item.id}
-                          onClick={() => handleItemClick(item.id)}
-                          className={`block w-full text-left text-xs font-serif py-1 px-2 rounded transition-colors ${
-                            selectedSutraItem === item.id
-                              ? 'text-[#991b1b] bg-[#991b1b]/20'
-                              : 'text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5'
-                          }`}
-                        >
-                          {item.title}
-                        </button>
-                      ))}
+              {activeTab === 'story'
+                ? storyData && storyData[0] && storyData[0].items ? storyData[0].items.map((story) => (
+                    <button
+                      key={story.id}
+                      onClick={() => {
+                        setStoryId(story.id)
+                        setActiveTab('story')
+                      }}
+                      className={`w-full text-left text-sm font-serif py-2 px-3 rounded transition-colors ${
+                        storyId === story.id
+                          ? 'text-[#991b1b] bg-[#991b1b]/20'
+                          : 'text-[#991b1b]/80 hover:text-[#991b1b] hover:bg-[#991b1b]/10'
+                      }`}
+                    >
+                      {story.title[language]}
+                    </button>
+                  )) : (
+                    <div className='text-center text-[#991b1b]/60 font-serif text-sm py-4'>
+                      Không có câu chuyện nào
                     </div>
-                  )}
-                </div>
-              ))}
+                  )
+                : tocData.map((chapter) => (
+                    <div key={chapter.id}>
+                      <button
+                        onClick={() => handleChapterClick(chapter.id)}
+                        className='w-full text-left text-sm font-serif text-[#991b1b]/80 hover:text-[#991b1b] py-1 px-2 rounded hover:bg-[#991b1b]/10 transition-colors'
+                      >
+                        {chapter.title}
+                      </button>
+                      {expandedSection === chapter.id && (
+                        <div className='ml-4 space-y-1 animate-slide-down'>
+                          {chapter.items.map((item) => (
+                            <button
+                              key={item.id}
+                              onClick={() => handleItemClick(item.id)}
+                              className={`block w-full text-left text-xs font-serif py-1 px-2 rounded transition-colors ${
+                                selectedSutraItem === item.id
+                                  ? 'text-[#991b1b] bg-[#991b1b]/20'
+                                  : 'text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5'
+                              }`}
+                            >
+                              {item.title}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
             </nav>
           </div>
         </aside>
@@ -379,6 +428,36 @@ export default function LibraryPage() {
         {/* Main Content */}
         <div className='flex-1 max-w-4xl mx-auto sm:pr-6'>
           {/* Search */}
+          {/* Capsule Toggle - outside the search box */}
+          <div className='mt-1 mb-1 flex justify-center'>
+            <div className='rounded-full border-2 border-[#8B1E1E] p-1.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+              <div className='flex items-center h-10 gap-2 px-0.5'>
+                  <button
+                    onClick={() => setActiveTab('ke')}
+                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                      activeTab === 'ke'
+                        ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                        : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                    }`}
+                    aria-pressed={activeTab === 'ke'}
+                  >
+                    Kệ
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('story')}
+                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                      activeTab === 'story'
+                        ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                        : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                    }`}
+                    aria-pressed={activeTab === 'story'}
+                  >
+                    Câu Chuyện
+                  </button>
+                </div>
+            </div>
+          </div>
+
           <div className='mb-6 relative z-40'>
             <div className='bg-background/20 backdrop-blur-sm border-2 border-[#2c2c2c]/30 rounded-2xl p-3 sm:p-4 shadow'>
               <div
@@ -449,8 +528,83 @@ export default function LibraryPage() {
             </div>
           </div>
 
-          {/* Sutra Content */}
-          {selectedSutraItem && sutraContent[selectedSutraItem] ? (
+          {/* Sutra Content or Story */}
+          {activeTab === 'story' ? (
+            <div className='h-full flex items-start justify-center min-h-[600px] mt-4 mb-8'>
+              <div className='w-full max-w-6xl bg-background/20 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 shadow min-h-[600px]'>
+                {storyId && storyContent[storyId] ? (
+                  <>
+                    <div className='text-center mb-6 sm:mb-8'>
+                      <p className='text-base sm:text-lg font-serif text-[#991b1b]/70 mb-2'>
+                        {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
+                      </p>
+                      <h2 className='text-2xl sm:text-3xl md:text-4xl font-serif text-[#991b1b] mb-4 sm:mb-6'>
+                        {storyContent[storyId].title[language]}
+                      </h2>
+                      <div className='flex justify-center mb-6 sm:mb-8'>
+                        <div
+                          className='w-24 h-2 bg-[#991b1b] rounded-full opacity-60'
+                          style={{
+                            background:
+                              'linear-gradient(90deg, transparent 0%, #991b1b 20%, #991b1b 80%, transparent 100%)',
+                            filter: 'blur(0.5px)'
+                          }}
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Image - Centered */}
+                    <div className='mb-8 flex justify-center'>
+                      <div className='w-full max-w-md aspect-square overflow-hidden rounded-xl border border-[#8B4513]/20 bg-white'>
+                        <img
+                          src={`/images/${storyId}.png`}
+                          alt={storyContent[storyId].title[language]}
+                          className='w-full h-full object-contain'
+                        />
+                      </div>
+                    </div>
+
+                    {/* Content - Full Width Left to Right */}
+                    <div className='w-full'>
+                      <div className='prose prose-lg max-w-none'>
+                        <div className='font-serif text-[#991b1b]/90 leading-relaxed space-y-4'>
+                          <div className='text-sm sm:text-base whitespace-pre-line text-justify'>
+                            {storyContent[storyId].content[language]}
+                          </div>
+                          {(storyContent[storyId].date || storyContent[storyId].author) && (
+                            <div className='text-xs text-[#991b1b]/60 mt-6 pt-4 border-t border-[#991b1b]/20'>
+                              {storyContent[storyId].author && (
+                                <p className='font-serif'>
+                                  {language === 'vi' ? 'Tác giả: ' : 'Author: '}
+                                  {storyContent[storyId].author![language]}
+                                </p>
+                              )}
+                              {storyContent[storyId].date && (
+                                <p className='font-serif'>
+                                  {language === 'vi' ? 'Năm: ' : 'Year: '}
+                                  {storyContent[storyId].date}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className='text-center'>
+                    <div className='aspect-square md:aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#8B4513]/20 bg-white'>
+                      <img
+                        src={`/images/${storyId || 'c1'}.png`}
+                        alt={`Story ${storyId || 'c1'}`}
+                        className='w-full h-full object-contain'
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : selectedSutraItem && sutraContent[selectedSutraItem] ? (
             <div
               key={selectedSutraItem}
               className='animate-fade-in'
