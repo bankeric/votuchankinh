@@ -20,7 +20,7 @@ export const WelcomeScreenV2 = () => {
     >
       <div className='mb-8'>
         <Image
-          src={'/images/library.png'}
+          src={'/images/pricing-3.png'}
           alt='Welcome Icon'
           width={160}
           height={160}

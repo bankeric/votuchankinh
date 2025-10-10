@@ -46,16 +46,10 @@ export const InputArea = ({
   return (
     <div className='bg-[#f4eacf] border-t border-[#2c2c2c]/30 p-3 md:p-4'>
       <div className='max-w-4xl mx-auto'>
-        <form
-          onSubmit={handleSubmit}
-          className='relative'
-        >
+        <form onSubmit={handleSubmit} className='relative'>
           <div className='flex items-center gap-2'>
             {/* File Upload Button */}
-            <div
-              className='relative dropdown-container'
-              ref={ref}
-            >
+            <div className='relative dropdown-container' ref={ref}>
               <Button
                 type='button'
                 variant='outline'
@@ -99,7 +93,7 @@ export const InputArea = ({
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 rows={1}
-                className='text-black rounded-2xl min-h-12 border-2 border-black truncate'
+                className='text-black rounded-2xl min-h-12 border-2 border-black focus-visible:ring-0 focus-visible:border-black focus:outline-none'
               />
             </div>
 
@@ -109,7 +103,7 @@ export const InputArea = ({
               variant={'outline'}
               onClick={handleVoiceToggle}
               className={`h-10 md:h-12 px-3 md:px-4 rounded-2xl text-black border-2 border-black ${
-                isRecording ? ' animate-pulse' : ''
+                isRecording ? 'animate-pulse' : ''
               }`}
             >
               {isRecording ? (
