@@ -225,7 +225,12 @@ export function Sidebar({
                 className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
                 title={t('navigation.admin')}
               >
-                <Image src={'/images/pricing-2.png'} alt='Admin' width={40} height={40} />
+                <Image
+                  src={'/images/pricing-2.png'}
+                  alt='Admin'
+                  width={40}
+                  height={40}
+                />
               </Button>
             )}
             <Button
@@ -235,7 +240,12 @@ export function Sidebar({
               className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
               title='Voice Chat'
             >
-              <Image src={'/images/voice-chat.png'} alt='Voice Chat' width={40} height={40} />
+              <Image
+                src={'/images/voice-chat.png'}
+                alt='Voice Chat'
+                width={40}
+                height={40}
+              />
             </Button>
             <Button
               variant='ghost'
@@ -244,7 +254,12 @@ export function Sidebar({
               className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
               title='Meditate'
             >
-              <Image src={'/images/Meditate.png'} alt='Meditate' width={40} height={40} />
+              <Image
+                src={'/images/Meditate.png'}
+                alt='Meditate'
+                width={40}
+                height={40}
+              />
             </Button>
           </>
         )}
@@ -283,7 +298,9 @@ export function Sidebar({
                     align='end'
                     className='w-48'
                   >
-                    <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
+                    <DropdownMenuItem
+                      onClick={() => setIsSettingsModalOpen(true)}
+                    >
                       <Settings className='w-4 h-4 mr-2' />
                       {t('navigation.settings')}
                     </DropdownMenuItem>
@@ -317,9 +334,20 @@ export function Sidebar({
   return (
     <div className='hidden md:flex w-80 bg-[#efe0bd] border-r border-[#2c2c2c]/30 flex-col transform transition-all duration-300 ease-in-out'>
       {/* Header */}
-      <div className='p-4 '>
-        <div className='flex items-center justify-between mb-2'>
-          <div className='flex-1' />
+      <div className='h-16'>
+        <div className='h-full flex items-center justify-between'>
+          <div className='' />
+
+          <Image
+            src={'/images/giac-ngo-logo-6.png'}
+            alt='Logo'
+            width={160}
+            height={40}
+            objectFit='contain'
+            style={{ cursor: 'pointer' }}
+            onClick={() => router.push('/landing')}
+          />
+
           <Button
             variant='ghost'
             size='sm'
@@ -329,17 +357,6 @@ export function Sidebar({
           >
             <ChevronsLeft className='w-4 h-4' />
           </Button>
-        </div>
-
-        <div className='flex items-center justify-center mb-6'>
-          <Image
-            src={'/images/giac-ngo-logo-2.png'}
-            alt='Logo'
-            width={160}
-            height={40}
-            style={{ cursor: 'pointer' }}
-            onClick={() => router.push('/landing')}
-          />
         </div>
 
         {/* Admin / Voice Chat / Meditate / New Chat - grouped with icons and labels */}
@@ -382,7 +399,11 @@ export function Sidebar({
                 className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-2 py-2'
               >
                 <span>{t('navigation.history') || 'Lịch sử'}</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${isHistoryOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    isHistoryOpen ? 'rotate-180' : ''
+                  }`}
+                />
               </button>
             </div>
             {isHistoryOpen && (
@@ -422,7 +443,9 @@ export function Sidebar({
                     align='center'
                     className='w-48'
                   >
-                    <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
+                    <DropdownMenuItem
+                      onClick={() => setIsSettingsModalOpen(true)}
+                    >
                       <Settings className='w-4 h-4 mr-2' />
                       {t('navigation.settings')}
                     </DropdownMenuItem>
