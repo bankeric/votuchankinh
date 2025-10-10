@@ -17,6 +17,7 @@ import { useElements, useStripe } from '@stripe/react-stripe-js'
 import { useTranslations } from '@/hooks/use-translations'
 import axios from 'axios'
 import axiosInstance from '@/lib/axios'
+import { useAuthStore } from '@/store/auth'
 
 interface PaymentModalProps {
   open: boolean
@@ -31,6 +32,8 @@ interface PaymentModalProps {
     monthly: number
     yearly: number
     currency: string
+    stripeMonthlyId: string
+    stripeYearlyId: string
   }
 }
 
@@ -65,6 +68,7 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const { language } = useTranslations()
+  const { user } = useAuthStore()
 
   const text = language === 'en' ? textEn : textVi
 
@@ -72,7 +76,7 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
     // Handle Stripe payment logic here
     console.log(`Processing ${paymentType} payment for ${plan.id}`)
 
-    if (!stripe || !elements) return
+    if (!stripe || !elements || !user) return
 
     setLoading(true)
     setMessage('')
@@ -82,9 +86,11 @@ export function PaymentModal({ open, onOpenChange, plan }: PaymentModalProps) {
       const res = await axiosInstance.post(
         '/api/v1/stripe/create-checkout-session',
         {
-          currency: plan.currency,
-          amount: paymentType === 'yearly' ? plan.yearly : plan.monthly,
-          product_name: paymentType === 'yearly' ? plan.yearlyName : plan.name
+          email: user.email,
+          price_id:
+            paymentType === 'yearly'
+              ? plan.stripeYearlyId
+              : plan.stripeMonthlyId
         }
       )
       const { id, url } = res.data
