@@ -18,7 +18,9 @@ const pricingPlansVi = [
     popular: false,
     currency: 'vnd',
     monthly: 0,
-    yearly: 0
+    yearly: 0,
+    stripeMonthlyId: '', // free plan has no stripeId
+    stripeYearlyId: ''
   },
   {
     id: 'giac-ngo',
@@ -39,7 +41,9 @@ const pricingPlansVi = [
     popular: true,
     currency: 'vnd',
     monthly: 99000,
-    yearly: 1069200
+    yearly: 1069200,
+    stripeMonthlyId: 'price_1SFoVMRvqbhgU2bC0yhgJqU0', // replace with actual Stripe price ID
+    stripeYearlyId: 'price_1SG9pCRvqbhgU2bCx3UXqMml' // replace with actual Stripe price ID
   },
   {
     id: 'don-ngo',
@@ -60,7 +64,9 @@ const pricingPlansVi = [
     popular: false,
     currency: 'vnd',
     monthly: 249000,
-    yearly: 2688200
+    yearly: 2688200,
+    stripeMonthlyId: 'price_1SFoWVRvqbhgU2bCe0VU3dtr', // replace with actual Stripe price ID
+    stripeYearlyId: 'price_1SG9qCRvqbhgU2bCjDZpNDRt' // replace with actual Stripe price ID
   }
 ]
 
@@ -84,7 +90,9 @@ const pricingPlansEng = [
     popular: false,
     currency: 'usd',
     monthly: 0,
-    yearly: 0
+    yearly: 0,
+    stripeMonthlyId: '', // free plan has no stripeId
+    stripeYearlyId: ''
   },
   {
     id: 'giac-ngo',
@@ -105,7 +113,9 @@ const pricingPlansEng = [
     popular: true,
     currency: 'usd',
     monthly: 400, // 2 decimal
-    yearly: 4320 // 2 decimal
+    yearly: 4320, // 2 decimal
+    stripeMonthlyId: 'price_1SFoVMRvqbhgU2bC0yhgJqU0', // replace with actual Stripe price ID
+    stripeYearlyId: 'price_1SG9pCRvqbhgU2bCx3UXqMml' // replace with actual Stripe price ID
   },
   {
     id: 'don-ngo',
@@ -126,7 +136,9 @@ const pricingPlansEng = [
     popular: false,
     currency: 'usd',
     monthly: 1000, // 2 decimal
-    yearly: 10800 // 2 decimal
+    yearly: 10800, // 2 decimal
+    stripeMonthlyId: 'price_1SFoWVRvqbhgU2bCe0VU3dtr', // replace with actual Stripe price ID
+    stripeYearlyId: 'price_1SG9qCRvqbhgU2bCjDZpNDRt' // replace with actual Stripe price ID
   }
 ]
 

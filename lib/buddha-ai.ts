@@ -31,7 +31,9 @@ export async function generateBuddhistResponse(
   try {
     const url = payload.isPreview
       ? `/api/v1/agents/${payload.agentId}/chat`
-      : `/api/v1/chat/${payload.chatId}/ask`
+      : getAuthToken()
+      ? `/api/v1/chat/${payload.chatId}/ask`
+      : `/api/v1/guess/${payload.chatId}/ask`
     const context = payload.isConversationMode
       ? 'Make sure the answer is short and concise'
       : ''
@@ -39,7 +41,7 @@ export async function generateBuddhistResponse(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${getAuthToken()}`
+        Authorization: getAuthToken() ? `Bearer ${getAuthToken()}` : ''
       },
       body: JSON.stringify({
         context: context,

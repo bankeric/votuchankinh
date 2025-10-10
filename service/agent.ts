@@ -1,5 +1,6 @@
 import axiosInstance, { getAuthToken } from '@/lib/axios'
 import { Agent } from '@/interfaces/agent'
+import axios from 'axios'
 
 export interface CreateAgentDto {
   name: string
@@ -48,6 +49,34 @@ class AgentService {
       return data
     } catch (error) {
       console.error('Error fetching agents:', error)
+      throw error
+    }
+  }
+
+  // Get public agents
+  async getPublicAgents({
+    limit = 100,
+    offset = 0,
+    language
+  }: {
+    limit?: number
+    offset?: number
+    language?: string
+  }): Promise<Agent[]> {
+    try {
+      const { data } = await axiosInstance.get<Agent[]>(
+        `${this.BASE_URL}/public`,
+        {
+          params: {
+            limit,
+            offset,
+            language
+          }
+        }
+      )
+      return data
+    } catch (error) {
+      console.error('Error fetching public agents:', error)
       throw error
     }
   }

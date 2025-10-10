@@ -24,12 +24,12 @@ export const ClientProvider = ({ children }: { children: React.ReactNode }) => {
   useOnce(() => {
     // const isPublicPath = publicPaths.some((path) => pathname === path)
     getCurrentUser()
+    fetchAgents(language, false)
   }, [])
 
   useOnce(() => {
     if (!user) return
     fetchAgentSettings()
-    fetchAgents(language, false)
     getModels()
   }, [user, language])
   return <HydrationZustand>{children}</HydrationZustand>

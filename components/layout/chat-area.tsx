@@ -59,10 +59,10 @@ const useChat = () => {
     value?: string
   ) => {
     e.preventDefault && e.preventDefault()
-    if (!getAuthToken()) {
-      setIsLogin(true)
-      return
-    }
+    // if (!getAuthToken()) {
+    //   setIsLogin(true)
+    //   return
+    // }
     logging('finalInput', value)
     const finalInput = value || input.trim()
 
@@ -138,11 +138,14 @@ const useChat = () => {
           setMessageId(conversation.uuid, aiMessage.uuid, messageId)
         }
       })
-      updateActiveChatTitleAndCreateSection(
-        conversation.uuid,
-        language,
-        currentAgent.uuid
-      )
+
+      getAuthToken() &&
+        updateActiveChatTitleAndCreateSection(
+          conversation.uuid,
+          language,
+          currentAgent.uuid
+        )
+
       setActiveChatId(conversation.uuid)
       logging('updateActiveChatTitleAndCreateSection response', response)
     } catch (error) {
