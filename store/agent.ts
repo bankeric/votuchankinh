@@ -12,6 +12,7 @@ import { PreviewMessage } from '@/interfaces/chat'
 import { ragFileService } from '@/service/rag-file'
 import { RagFile } from '@/interfaces/rag-file'
 import { v4 as uuidv4 } from 'uuid'
+import { getAuthToken } from '@/lib/axios'
 
 export interface GPTFormData {
   name: string
@@ -134,9 +135,13 @@ export const useAgentStore = create<AgentState>()((set, get) => {
     console.log('Fetching agents for language:', language)
 
     try {
-      const agents = await agentService.getAll({
-        language: language
-      })
+      const agents = getAuthToken()
+        ? await agentService.getAll({
+            language: language
+          })
+        : await agentService.getPublicAgents({
+            language
+          })
 
       const agentsMap = agents.reduce((acc, agent) => {
         acc[agent.uuid] = agent
