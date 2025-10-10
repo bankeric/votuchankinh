@@ -242,7 +242,6 @@ export default function LibraryPage() {
   const handleItemClick = (itemId: string) => {
     setSelectedSutraItem(itemId)
   }
-
   return (
     <main className='min-h-screen text-[#2c2c2c] relative'>
       {/* Header */}
@@ -359,13 +358,43 @@ export default function LibraryPage() {
         </Link>
       </div>
 
-      <div className='pt-20 flex'>
+      <div className='pt-12 flex'>
         {/* TOC Desktop */}
-        <aside className='hidden sm:block w-80 lg:w-96 mr-6 mt-16'>
+        <aside className='hidden sm:block w-80 lg:w-96 mr-6 mt-16 ml-4'>
+          {/* Capsule Toggle - moved to sidebar top */}
+          <div className='flex justify-center mb-4'>
+            <div className='rounded-full border-2 border-[#8B1E1E] p-1.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+              <div className='flex items-center h-10 gap-2 px-0.5'>
+                <button
+                  onClick={() => setActiveTab('ke')}
+                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                    activeTab === 'ke'
+                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                  }`}
+                  aria-pressed={activeTab === 'ke'}
+                >
+                  Kệ
+                </button>
+                <button
+                  onClick={() => setActiveTab('story')}
+                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                    activeTab === 'story'
+                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                  }`}
+                  aria-pressed={activeTab === 'story'}
+                >
+                  Câu Chuyện
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div className={`bg-[#EFE0BD]/90 backdrop-blur-sm border-2 border-[#2c2c2c]/30 rounded-2xl p-4 shadow ${
             activeTab === 'story'
-              ? 'max-h-none overflow-visible'
-              : 'max-h-[calc(100vh-8rem)] overflow-y-auto'
+              ? 'max-h-[calc(100vh-20rem)] overflow-y-auto'
+              : 'max-h-[calc(100vh-20rem)] overflow-y-auto'
           }`}>
             <h3 className='text-lg font-serif text-[#991b1b] mb-4'>
               {activeTab === 'story'
@@ -429,33 +458,8 @@ export default function LibraryPage() {
         <div className='flex-1 max-w-4xl mx-auto sm:pr-6'>
           {/* Search */}
           {/* Capsule Toggle - outside the search box */}
-          <div className='mt-1 mb-1 flex justify-center'>
-            <div className='rounded-full border-2 border-[#8B1E1E] p-1.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
-              <div className='flex items-center h-10 gap-2 px-0.5'>
-                  <button
-                    onClick={() => setActiveTab('ke')}
-                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                      activeTab === 'ke'
-                        ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                        : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                    }`}
-                    aria-pressed={activeTab === 'ke'}
-                  >
-                    Kệ
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('story')}
-                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                      activeTab === 'story'
-                        ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                        : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                    }`}
-                    aria-pressed={activeTab === 'story'}
-                  >
-                    Câu Chuyện
-                  </button>
-                </div>
-            </div>
+          <div className='mt-12 mb-12 flex justify-center'>
+
           </div>
 
           <div className='mb-6 relative z-40'>
@@ -591,17 +595,27 @@ export default function LibraryPage() {
                       </div>
                     </div>
                   </>
-                ) : (
-                  <div className='text-center'>
-                    <div className='aspect-square md:aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#8B4513]/20 bg-white'>
-                      <img
-                        src={`/images/${storyId || 'c1'}.png`}
-                        alt={`Story ${storyId || 'c1'}`}
-                        className='w-full h-full object-contain'
-                      />
-                    </div>
-                  </div>
-                )}
+          ) : (
+            <div className='h-full flex items-center justify-center min-h-[600px]'>
+              <div className='text-center animate-fade-in px-4'>
+                <div className='mb-4 sm:mb-6 flex items-center justify-center'>
+                  <Image
+                    src={'/images/library.png'}
+                    alt='Library Icon'
+                    width={160}
+                    height={160}
+                    className='w-24 h-24 sm:w-40 sm:h-40 object-contain'
+                  />
+                </div>
+                <h2 className='text-xl sm:text-2xl font-serif text-[#991b1b] mb-3 sm:mb-4'>
+                  {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
+                </h2>
+                <p className='text-base sm:text-lg font-serif text-[#991b1b]/60'>
+                  {language === 'vi' ? 'Chọn một câu chuyện để đọc nội dung' : 'Select a story to read content'}
+                </p>
+              </div>
+            </div>
+          )}
               </div>
             </div>
           ) : selectedSutraItem && sutraContent[selectedSutraItem] ? (

@@ -513,34 +513,17 @@ export default function CommunityPage() {
           >
             {/* Featured Story Section */}
             <div className='border-l-4 border-[#991b1b]/40 pl-4 mb-8'>
-              <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-                {/* Main Feature - smaller */}
-                <div className='col-span-2'>
-                  <div className='aspect-[4/3] bg-gradient-to-br from-[#991b1b]/10 to-[#991b1b]/20 rounded-lg border border-[#991b1b]/20 relative overflow-hidden group'>
-                    <div className='absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300'></div>
-                    <div className='absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent'>
-                      <h3 className='text-sm font-serif text-white mb-1'>
-                        {language === 'vi'
-                          ? 'Chuyến Vi Hành Thiêng Liêng'
-                          : 'Sacred Pilgrimage Journey'}
-                      </h3>
-                      <p className='text-xs text-white/80'>
-                        {language === 'vi'
-                          ? 'Hành trình tìm về cội nguồn tâm linh'
-                          : 'Journey back to spiritual roots'}
-                      </p>
-                      <span className='text-xs text-white/60 mt-1 block'>
-                        {language === 'vi' ? 'Tháng 10, 2024' : 'October 2024'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
+              <div className='grid grid-cols-3 md:grid-cols-3 gap-3'>
                 {Array.from({ length: 6 }, (_, index) => (
                   <div
                     key={index}
-                    className='aspect-square bg-gradient-to-br from-[#991b1b]/15 to-[#991b1b]/25 rounded-lg border border-[#991b1b]/20 relative overflow-hidden group'
+                    className='aspect-square rounded-lg border border-[#991b1b]/20 relative overflow-hidden group'
                   >
+                    <img
+                      src={`/images/kk${index + 1}.png`}
+                      alt={`Event ${index + 1}`}
+                      className='w-full h-full object-cover'
+                    />
                     <div className='absolute inset-0 p-2 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent'>
                       <h4 className='text-xs font-serif text-white mb-1'>
                         {index < 3

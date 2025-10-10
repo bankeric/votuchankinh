@@ -24,8 +24,8 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c1',
         title: {
-          vi: 'Câu Chuyện Ngộ Đạo 1',
-          en: 'Enlightenment Story 1'
+          vi: 'Minh Châu ngộ đạo',
+          en: 'Minh Chau Enlightenment'
         },
         description: {
           vi: 'Câu Chuyện Minh Châu Có Đại Duyên Lớn Gặp Sư Tam Vô Khai Thị',
@@ -35,8 +35,8 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c2',
         title: {
-          vi: 'Câu Chuyện Ngộ Đạo 2',
-          en: 'Enlightenment Story 2'
+          vi: 'Huệ Tịnh ngộ đạo',
+          en: 'Hue Tinh Enlightenment'
         },
         description: {
           vi: 'Câu chuyện Huệ Tịnh có đại duyên lớn được gặp Sư Cha Tam Vô',
@@ -46,8 +46,8 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c3',
         title: {
-          vi: 'Câu Chuyện Ngộ Đạo 3',
-          en: 'Enlightenment Story 3'
+          vi: 'Huệ Thanh ngộ đạo ',
+          en: 'Hue Thanh Enlightenment'
         },
         description: {
           vi: 'Câu chuyện Huệ Thanh có đại duyên lớn được gặp Sư Tam Vô khai thị',
@@ -57,8 +57,8 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c4',
         title: {
-          vi: 'Câu Chuyện Ngộ Đạo 4',
-          en: 'Enlightenment Story 4'
+          vi: 'Hằng Thức ngộ đạo',
+          en: 'Hang Thuc Enlightenment'
         },
         description: {
           vi: 'Câu chuyện Hằng Thức khi có đại duyên lớn được gặp Sư Cha Tam Vô',
@@ -68,8 +68,8 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c5',
         title: {
-          vi: 'Câu Chuyện Ngộ Đạo 5',
-          en: 'Enlightenment Story 5'
+          vi: 'Hoa - Huệ Đức ngộ đạo',
+          en: 'Hoa - Hue Duc Enlightenment'
         },
         description: {
           vi: 'Câu chuyện Hoa - Huệ Đức được Sư Cha Tam Vô thức tỉnh ngộ đạo',
@@ -79,12 +79,12 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c6',
         title: {
-          vi: 'Câu Chuyện Ngộ Đạo 6',
-          en: 'Enlightenment Story 6'
+          vi: 'Vô Luận ngộ đạo',
+          en: 'Vo Luan Enlightenment'
         },
         description: {
           vi: 'Câu chuyện Vô Luận ngộ đạo',
-          en: 'TThe story of Vô Luận'
+          en: 'The story of Vô Luận'
         }
       }
     ]
