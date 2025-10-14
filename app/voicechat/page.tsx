@@ -18,12 +18,9 @@ export default function VoiceChatPage() {
       setLoading(true)
       console.log('Requesting ephemeral session from backend...')
 
-      const resp = await axiosInstance.post(
-        'http://localhost:3001/api/v1/agents/voice',
-        {
-          model: 'gpt-4o-realtime-preview'
-        }
-      )
+      const resp = await axiosInstance.post('/api/v1/agents/voice', {
+        model: 'gpt-4o-realtime-preview'
+      })
 
       const agent = new RealtimeAgent({
         name: 'Assistant',
