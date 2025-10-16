@@ -24,6 +24,7 @@ import { InputArea } from './input-area'
 import { getAuthToken } from '@/lib/axios'
 import { LoginModal } from './login-modal'
 import { useSpeechToText } from '@/hooks/useSpeechToText'
+import { InlineMeditation } from '@/components/meditation/inline-meditation'
 
 const useChat = () => {
   const {
@@ -181,7 +182,7 @@ export function ChatArea() {
   const { conversation, messages, input, handleSubmit, isLoading, setInput } =
     chat
 
-  const { isConversationMode, setIsConversationMode } = useChatStore()
+  const { isConversationMode, setIsConversationMode, isMeditationMode, setIsMeditationMode } = useChatStore()
   const { isListening, toggleListening } = useSpeechToText({
     lang: language,
     onResult: (text, isFinal) => {
@@ -287,6 +288,15 @@ export function ChatArea() {
       minute: '2-digit'
     })
   }
+  // Show meditation mode if active
+  if (isMeditationMode) {
+    return (
+      <div className='flex flex-col h-[calc(100vh-4rem)] md:h-[calc(100vh-64px)]'>
+        <InlineMeditation onClose={() => setIsMeditationMode(false)} />
+      </div>
+    )
+  }
+
   // if (!conversation) return <></>
   return (
     <div className='flex flex-col h-[calc(100vh-4rem)] md:h-[calc(100vh-64px)]'>

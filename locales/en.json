@@ -21,6 +21,13 @@
     "ok": "OK",
     "upgrade": "Upgrade"
   },
+  "upload": {
+    "uploading": "📤 Uploading {{filename}}... ({{progress}})",
+    "success": "✅ {{filename}} uploaded successfully",
+    "failed": "❌ Failed to upload {{filename}}: {{error}}",
+    "completed": "🎉 Upload completed! Successful: {{successful}}, Failed: {{failed}}",
+    "info": "{{message}}"
+  },
   "navigation": {
     "home": "Home",
     "chat": "Chat",
@@ -721,6 +728,18 @@
       "english": "Hello! This is a voice test.",
       "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
     }
+  },
+  "meditate": {
+    "title": "Meditation",
+    "remaining": "Time remaining:",
+    "status": {
+      "ready": "Ready",
+      "running": "Meditating..."
+    },
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset",
+    "completedToast": "🎉 Congratulations! You've completed 30 minutes of meditation!"
   },
   "pricing": {
     "title": "Member Upgrade",

@@ -24,6 +24,7 @@ interface ChatStore {
   loadingChatId: string | null
   loadingTitleChatId: string | null
   isConversationMode: boolean
+  isMeditationMode: boolean
   // currentModel: string;
   // Chat actions
   setActiveChatId: (id: string | null) => void
@@ -31,6 +32,7 @@ interface ChatStore {
   setLoadingChatId: (id: string | null) => void
   setLoadingTitleChatId: (id: string | null) => void
   setIsConversationMode: (isConversationMode: boolean) => void
+  setIsMeditationMode: (isMeditationMode: boolean) => void
   createNewChat: ({
     agent_id,
     firstMessage,
@@ -190,9 +192,11 @@ export const useChatStore = create<ChatStore>()((set, get) => {
     loadingChatId: null,
     loadingTitleChatId: null,
     isConversationMode: false,
+    isMeditationMode: false,
     getMessages,
     setMessageId,
     setIsConversationMode: (isConversationMode) => set({ isConversationMode }),
+    setIsMeditationMode: (isMeditationMode) => set({ isMeditationMode }),
     setActiveChatId: (id) => {
       set({ activeChatId: id })
       // chat/<chat_id> without reload
