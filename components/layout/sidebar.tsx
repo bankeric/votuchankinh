@@ -236,22 +236,11 @@ export function Sidebar({
             <Button
               variant='ghost'
               size='sm'
-              onClick={() => router.push('/voice')}
+              onClick={() => {
+                const { setIsMeditationMode } = useChatStore.getState()
+                setIsMeditationMode(true)
+              }}
               className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
-              title='Voice Chat'
-            >
-              <Image
-                src={'/images/voice-chat.png'}
-                alt='Voice Chat'
-                width={40}
-                height={40}
-              />
-            </Button>
-            <Button
-              variant='ghost'
-              size='sm'
-              onClick={() => router.push('/meditate')}
-              className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
               title='Meditate'
             >
               <Image
@@ -260,6 +249,20 @@ export function Sidebar({
                 width={40}
                 height={40}
               />
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => router.push('/voice')}
+              className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
+              title='Voice Chat'
+            >
+              <Image
+                src={'/images/voice-chat.png'}
+                alt='Voice Chat'
+                width={40}
+                height={40}
+              />  
             </Button>
           </>
         )}
@@ -334,8 +337,8 @@ export function Sidebar({
   return (
     <div className='hidden md:flex w-80 bg-[#efe0bd] border-r border-[#2c2c2c]/30 flex-col transform transition-all duration-300 ease-in-out'>
       {/* Header */}
-      <div className='h-16'>
-        <div className='h-full flex items-center justify-between'>
+      <div className='px-4 py-4'>
+        <div className='flex items-center justify-between mb-4'>
           <div className='' />
 
           <Image
@@ -359,10 +362,23 @@ export function Sidebar({
           </Button>
         </div>
 
-        {/* Admin / Voice Chat / Meditate / New Chat - grouped with icons and labels */}
-        <div className='space-y-2'>
-          {/* These buttons are hidden in expanded mode, shown only in collapsed mode */}
-          {user && (
+        {/* Admin Button */}
+        {/* {isAdmin && (
+          <div className='mb-3'>
+            <Button
+              variant='outline'
+              size='sm'
+              onClick={() => router.push('/admin')}
+              className='w-full justify-center items-center border border-black text-black rounded-lg bg-[#f9f0dc] h-8 text-xs hover:bg-red-800 hover:text-white'
+            >
+              <span>Admin</span>
+            </Button>
+          </div>
+        )} */}
+
+        {/* New Chat Button */}
+        {user && (
+          <div className='mb-4'>
             <Button
               variant='outline'
               size='sm'
@@ -372,8 +388,8 @@ export function Sidebar({
               <Plus className='w-3 h-3' />
               <span>{t('chat.newChat')}</span>
             </Button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Search and Chats */}
@@ -393,10 +409,10 @@ export function Sidebar({
         {/* History Dropdown - hidden when not logged in */}
         {user && (
           <>
-            <div className='mb-2'>
+            <div className='mb-3'>
               <button
                 onClick={() => setIsHistoryOpen((v) => !v)}
-                className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-2 py-2'
+                className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-3 py-2 bg-red-800 text-white'
               >
                 <span>{t('navigation.history') || 'Lịch sử'}</span>
                 <ChevronDown
@@ -407,24 +423,26 @@ export function Sidebar({
               </button>
             </div>
             {isHistoryOpen && (
-              <ChatList
-                chats={chats}
-                activeChatId={activeChatId}
-                loadingTitleChatId={loadingTitleChatId}
-                totalChats={totalChats}
-                onChatSelect={setActiveChatAndGetMessages}
-                onDeleteChat={handleDeleteChat}
-                onEditChatTitle={editChatTitle}
-                onLoadMore={handleLoadMore}
-              />
+              <div className='mt-2'>
+                <ChatList
+                  chats={chats}
+                  activeChatId={activeChatId}
+                  loadingTitleChatId={loadingTitleChatId}
+                  totalChats={totalChats}
+                  onChatSelect={setActiveChatAndGetMessages}
+                  onDeleteChat={handleDeleteChat}
+                  onEditChatTitle={editChatTitle}
+                  onLoadMore={handleLoadMore}
+                />
+              </div>
             )}
           </>
         )}
       </div>
 
       {/* Footer V2 */}
-      <div className='px-5 pt-5 pb-5 border-t border-[#2c2c2c]/40'>
-        <div className='flex items-center justify-center gap-2 flex-wrap'>
+      <div className='px-4 pt-6 pb-5 border-t border-[#2c2c2c]/40'>
+        <div className='flex items-center justify-center gap-4 flex-wrap'>
           <div className='transition-all duration-300 ease-in-out'>
             {user && (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
@@ -433,7 +451,7 @@ export function Sidebar({
                     <Button
                       variant='ghost'
                       size='sm'
-                      className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200'
+                      className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2'
                     >
                       <Settings className='w-4 h-4' />
                     </Button>
@@ -463,7 +481,7 @@ export function Sidebar({
             <Button
               variant={'ghost'}
               size='sm'
-              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200`}
+              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2`}
               onClick={() => changeLanguage(Language.EN)}
             >
               🇺🇸 {t('settings.english')}
@@ -472,7 +490,7 @@ export function Sidebar({
             <Button
               variant={'ghost'}
               size='sm'
-              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200`}
+              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2`}
               onClick={() => changeLanguage(Language.VI)}
             >
               🇻🇳 {t('settings.vietnamese')}
@@ -484,7 +502,7 @@ export function Sidebar({
                 <Button
                   variant={'ghost'}
                   onClick={() => setIsLogin(true)}
-                  className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200'
+                  className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2'
                 >
                   <LogIn className='w-4 h-4' />
                 </Button>

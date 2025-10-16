@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, Variants } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Menu, X } from 'lucide-react'
 import SiteFooter from '@/components/site-footer'
 
 const floatingCharacters = ['清', '靜', '無思']
 
 export default function SutraScrollPage() {
   const [language, setLanguage] = useState<'vi' | 'en'>('vi')
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [showStory, setShowStory] = useState(true)
+  const [showVerse, setShowVerse] = useState(true)
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === 'vi' ? 'en' : 'vi'))
@@ -291,7 +294,7 @@ export default function SutraScrollPage() {
   }
 
   const scrollSections = translations[language].scrollSections
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  
   return (
     <main className='min-h-screen bg-[#EFE0BD] text-[#8B4513] relative'>
       <nav className='fixed left-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:block'>
@@ -332,9 +335,9 @@ export default function SutraScrollPage() {
 
       {/* Top Navigation Bar */}
       <header className='fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-[#EFE0BD]/80 backdrop-blur-sm border-b border-[#8B4513]/10'>
-        {/* Return to Silence Button */}
+        {/* Return to Silence Button - Always visible */}
         <Link
-          href='/'
+          href='/landing'
           className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-colors bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full border border-[#8B4513]/20 hover:border-[#8B4513]/40'
         >
           <ArrowLeft className='w-4 h-4' />
@@ -371,34 +374,136 @@ export default function SutraScrollPage() {
           </Link>
         </div>
 
-        {/* Right Side - Language Toggle Button */}
+        {/* Language Toggle Button - Capsule style for both mobile and desktop */}
         <div className='flex items-center'>
-          <div className='rounded-full border-2 border-[#8B1E1E] p-1 bg-[#EFE0BD] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
-            <div className='flex items-center h-8 gap-1 px-0.5'>
-              <button
-                onClick={() => setLanguage('vi')}
-                className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                  language === 'vi'
-                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                }`}
-              >
-                VIE
-              </button>
-              <button
-                onClick={() => setLanguage('en')}
-                className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                  language === 'en'
-                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                }`}
-              >
-                ENG
-              </button>
+          {/* Mobile: Capsule VN-EN button */}
+          <div className='md:hidden'>
+            <div className='rounded-full border-2 border-[#8B1E1E] p-0.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+              <div className='flex items-center h-8 gap-0.1 px-0.1'>
+                <button
+                  onClick={() => setLanguage('vi')}
+                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
+                    language === 'vi'
+                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                  }`}
+                >
+                  VN
+                </button>
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
+                    language === 'en'
+                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Enhanced capsule buttons */}
+          <div className='hidden md:block'>
+            <div className='rounded-full border-2 border-[#8B1E1E] p-0.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
+              <div className='flex items-center h-10 gap-0.1 px-0.1'>
+                <button
+                  onClick={() => setLanguage('vi')}
+                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                    language === 'vi'
+                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                  }`}
+                >
+                  VIE
+                </button>
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
+                    language === 'en'
+                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                  }`}
+                >
+                  ENG
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Sidebar */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsSidebarOpen(false)}
+              className='md:hidden fixed inset-0 bg-black/50 z-[90]'
+            />
+            
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className='md:hidden fixed left-0 top-0 h-full w-80 bg-[#EFE0BD] border-r border-[#8B4513]/20 z-[100] shadow-2xl'
+            >
+              <div className='p-4 space-y-6'>
+                {/* Top row: Home button (left) and Close button (right) */}
+                <div className='flex justify-between items-center'>
+                  <Link
+                    href='/'
+                    onClick={() => setIsSidebarOpen(false)}
+                    className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 p-2 rounded-lg transition-colors'
+                  >
+                    <ArrowLeft className='w-4 h-4' />
+                    <span className='font-serif text-sm'>Trang chủ</span>
+                  </Link>
+                  
+                  <button
+                    onClick={() => setIsSidebarOpen(false)}
+                    className='p-2 text-[#8B4513]/70 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 rounded-full transition-colors'
+                  >
+                    <X className='w-5 h-5' />
+                  </button>
+                </div>
+
+                {/* Content toggles - Original style with checkboxes */}
+                <div className='space-y-3'>
+                  {/* Story toggle */}
+                  <label className='flex items-center justify-between p-2 rounded-lg border border-[#8B4513]/20 bg-[#FAF2E2] hover:bg-[#D4AF8C]/20 transition-colors cursor-pointer shadow-sm'>
+                    <span className='font-serif text-[#8B4513] text-xs'>Câu chuyện</span>
+                    <input
+                      type='checkbox'
+                      checked={showStory}
+                      onChange={(e) => setShowStory(e.target.checked)}
+                      className='w-3 h-3 text-[#8B1E1E] bg-[#EFE0BD] border-[#8B4513]/30 rounded focus:ring-[#8B1E1E] focus:ring-1'
+                    />
+                  </label>
+
+                  {/* Verse toggle */}
+                  <label className='flex items-center justify-between p-2 rounded-lg border border-[#8B4513]/20 bg-[#FAF2E2] hover:bg-[#D4AF8C]/20 transition-colors cursor-pointer shadow-sm'>
+                    <span className='font-serif text-[#8B4513] text-xs'>Kệ</span>
+                    <input
+                      type='checkbox'
+                      checked={showVerse}
+                      onChange={(e) => setShowVerse(e.target.checked)}
+                      className='w-3 h-3 text-[#8B1E1E] bg-[#EFE0BD] border-[#8B4513]/30 rounded focus:ring-[#8B1E1E] focus:ring-1'
+                    />
+                  </label>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Floating AI Button - Bottom Right Corner với màu sắc mới */}
       <div

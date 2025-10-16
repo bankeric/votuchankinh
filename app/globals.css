@@ -312,6 +312,29 @@
 
 /* Mobile-specific improvements */
 @media (max-width: 768px) {
+    /* React-Toastify: move to top-right and shrink */
+    .Toastify__toast-container {
+      top: 8px !important;
+      right: 8px !important;
+      left: auto !important;
+      bottom: auto !important;
+      padding: 0 !important;
+      width: auto !important;
+      max-width: 280px !important;
+    }
+
+    .Toastify__toast {
+      border-radius: 10px !important;
+      padding: 6px 10px !important;
+      font-size: 12px !important;
+      min-height: 36px !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    }
+
+    .Toastify__progress-bar {
+      height: 2px !important;
+    }
+
   /* Improve touch targets */
   button,
   a {

@@ -26,7 +26,7 @@ import Image from 'next/image'
 import { useAuthStore } from '@/store/auth'
 import { appToast } from '@/lib/toastify'
 import { LoginModal } from './login-modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface SidebarMobileProps {
   isMobileOpen: boolean
@@ -57,6 +57,7 @@ export const SidebarMobile = ({
   setActiveChatAndGetMessages
 }: SidebarMobileProps) => {
   const [isLogin, setIsLogin] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
   const router = useRouter()
   const { t, language, changeLanguage } = useTranslations()
   const { handleCreateChat } = useCreateChat()
@@ -76,24 +77,43 @@ export const SidebarMobile = ({
     setIsLogin(true)
   }
 
+  // Handle mount/unmount animations
+  useEffect(() => {
+    if (isMobileOpen) {
+      setIsAnimating(true)
+    } else if (isAnimating) {
+      const timer = setTimeout(() => setIsAnimating(false), 250)
+      return () => clearTimeout(timer)
+    }
+  }, [isMobileOpen])
+
+  const shouldRenderLayer = isMobileOpen || isAnimating
+
   return (
     <>
       {/* Mobile overlay */}
-      <div
-        className='fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden'
-        onClick={() => setIsMobileOpen(false)}
-      />
+      {shouldRenderLayer && (
+        <div
+          className={`fixed inset-0 z-40 md:hidden transition-opacity duration-250 ease-out ${
+            isMobileOpen ? 'opacity-100 bg-black/50' : 'opacity-0 bg-black/0'
+          }`}
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
 
       {/* Mobile sidebar */}
-      <div
-        className={`fixed left-0 top-0 h-full w-80 bg-[#efe0bd] border-r  border-[#2c2c2c]/30 flex flex-col z-50 md:hidden transform transition-transform duration-300 ease-in-out`}
-      >
+      {shouldRenderLayer && (
+        <div
+          className={`fixed left-0 top-0 h-full w-80 bg-[#efe0bd] border-r  border-[#2c2c2c]/30 flex flex-col z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+            isMobileOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
         {/* Header */}
-        <div className='p-4 border-b border-orange-100'>
-          <div className='flex items-center justify-between mb-4'>
+        <div className='p-4 pb-0'>
+          <div className='flex items-center justify-between mb-0'>
             <div className='flex items-center justify-center'>
               <Image
-                src={'/images/giac-ngo-logo-2.png'}
+                src={'/images/giac-ngo-logo-6.png'}
                 alt='Logo'
                 width={160}
                 height={40}
@@ -111,42 +131,63 @@ export const SidebarMobile = ({
             </Button>
           </div>
 
-          {/* Admin Panel Button */}
-          {isAdmin && (
-            <div
-              className='mb-4'
-              key='admin-panel-button'
-            >
+          {/* Divider directly under logo - old color */}
+          <div className='border-b border-[#2c2c2c]/30 my-3' />
+
+          {/* Quick actions: Admin + Voice + Meditate (icons only on mobile) */}
+          <div className='mb-3 flex justify-start gap-2'>
+            {isAdmin && (
               <Button
-                variant='outline'
+                variant='ghost'
                 size='sm'
+                aria-label={t('navigation.admin')}
                 onClick={() => {
                   router.push('/admin')
                   setIsMobileOpen(false)
                 }}
-                className='w-full justify-start gap-2 h-8 text-xs rounded-2xl border-black bg-inherit'
+                className='w-10 h-10 p-0 border border-black rounded-2xl bg-inherit'
               >
-                <span className='text-gray-700'>{t('navigation.admin')}</span>
+                <Image src={'/images/pricing-2.png'} alt='Admin' width={40} height={40} />
               </Button>
-            </div>
-          )}
+            )}
 
-          {/* New Chat Button */}
-          {user && (
-            <Button
-              variant='outline'
-              size='sm'
-              onClick={handleCreateChat}
-              className='w-full justify-start gap-2 rounded-2xl border-black bg-inherit'
-            >
-              <Plus className='w-4 h-4' />
-              <span>{t('chat.newChat')}</span>
-            </Button>
-          )}
+            {user && (
+              <>
+                <Button
+                  variant='ghost'
+                  size='sm'
+                  aria-label={t('navigation.voiceChat')}
+                  onClick={() => {
+                    router.push('/voice')
+                    setIsMobileOpen(false)
+                  }}
+                  className='w-10 h-10 p-0 border border-black rounded-2xl bg-inherit'
+                >
+                  <Image src={'/images/voice-chat.png'} alt='Voice Chat' width={40} height={40} />
+                </Button>
+
+                <Button
+                  variant='ghost'
+                  size='sm'
+                  aria-label={t('navigation.meditate')}
+                  onClick={() => {
+                    const { setIsMeditationMode } = useChatStore.getState()
+                    setIsMeditationMode(true)
+                    setIsMobileOpen(false)
+                  }}
+                  className='w-10 h-10 p-0 border border-black rounded-2xl bg-inherit'
+                >
+                  <Image src={'/images/Meditate.png'} alt='Meditate' width={40} height={40} />
+                </Button>
+              </>
+            )}
+          </div>
+
+          {/* End header content */}
         </div>
 
         {/* Search and Chats */}
-        <div className='flex-1 overflow-y-auto p-2 border-t border-[#2c2c2c]/30'>
+        <div className='flex-1 overflow-y-auto p-2'>
           {/* Search */}
           {/* <div className='relative mb-3'>
             <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-gray-500' />
@@ -158,6 +199,20 @@ export const SidebarMobile = ({
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div> */}
+
+          {/* New Chat Button above chat list */}
+          {user && (
+            <div className='mb-3'>
+              <Button
+                size='sm'
+                onClick={handleCreateChat}
+                className='w-full justify-start gap-2 rounded-2xl bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]'
+              >
+                <Plus className='w-4 h-4 text-white' />
+                <span>{t('chat.newChat')}</span>
+              </Button>
+            </div>
+          )}
 
           {/* Chat List */}
           <ChatList
@@ -174,7 +229,7 @@ export const SidebarMobile = ({
 
         {/* Footer */}
         <div className='p-2 border-t border-[#2c2c2c]/30'>
-          <div className='flex items-center justify-center gap-2'>
+          <div className='flex items-center justify-between gap-2'>
             <div className='transition-all duration-300 ease-in-out'>
               {user && (
                 <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
@@ -242,7 +297,8 @@ export const SidebarMobile = ({
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Settings Modal - Mobile */}
       <SettingsModal

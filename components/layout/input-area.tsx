@@ -31,7 +31,7 @@ export const InputArea = ({
   handleFileChange,
   handleFileUpload
 }: InputAreaProps) => {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const { t } = useTranslations()
   const [showFileSubmenu, setShowFileSubmenu] = useState(false)
 
@@ -42,7 +42,7 @@ export const InputArea = ({
     setShowFileSubmenu(false)
   }
 
-  useOnClickOutside(ref, () => setShowFileSubmenu(false))
+  useOnClickOutside(ref as any, () => setShowFileSubmenu(false))
   return (
     <div className='bg-[#f4eacf] border-t border-[#2c2c2c]/30 p-3 md:p-4'>
       <div className='max-w-4xl mx-auto'>
@@ -93,7 +93,7 @@ export const InputArea = ({
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 rows={1}
-                className='text-black rounded-2xl min-h-12 border-2 border-black focus-visible:ring-0 focus-visible:border-black focus:outline-none'
+                className='text-black rounded-2xl min-h-12 border-2 border-black focus-visible:ring-0 focus-visible:border-black focus:outline-none placeholder:text-xs md:placeholder:text-sm'
               />
             </div>
 

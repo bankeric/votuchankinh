@@ -34,8 +34,12 @@ const AgentSelector = ({ value, onSelectAgent }: AgentSelectorProps) => {
                  data-[state=open]:bg-[#efe2c9] transition-colors'
         aria-label='Choose AI Agent'
       >
-        <span className='mr-1 md:mr-2'>Agent</span>
-        <SelectValue placeholder='Choose Agent' />
+        <div className='flex items-center justify-between w-full'>
+          <div className='flex items-center gap-1'>
+            <span className='text-xs md:text-sm'>Agent:</span>
+            <SelectValue placeholder='--' />
+          </div>
+        </div>
       </SelectTrigger>
 
       <SelectContent
