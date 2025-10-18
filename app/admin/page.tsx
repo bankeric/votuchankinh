@@ -7,8 +7,12 @@ import { useAuthStore } from '@/store/auth'
 
 export default function AdminPage() {
   const { user, isAuthenticated } = useAuthStore()
+  const roleAccepted = [Role.ADMIN, Role.OWNER]
   useOnce(() => {
-    if (isAuthenticated !== undefined && (!user || user.role !== Role.ADMIN)) {
+    if (
+      isAuthenticated !== undefined &&
+      (!user || !roleAccepted.includes(user.role))
+    ) {
       window.location.href = '/ai/new'
     }
   }, [user, isAuthenticated])

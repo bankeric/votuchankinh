@@ -406,7 +406,9 @@
       "apiKey": "Khóa API",
       "apiKeyShort": "API",
       "agentManagement": "Quản lý Agent",
-      "agentManagementShort": "Agent"
+      "agentManagementShort": "Agent",
+      "modelManagement": "Quản lý Mô hình",
+      "modelManagementShort": "Mô hình"
     },
     "files": {
       "management": {
@@ -474,6 +476,47 @@
         },
         "cancel": "Hủy",
         "confirm": "Bắt đầu Finetune"
+      }
+    },
+    "modelManagement": {
+      "title": "Quản lý Mô hình AI",
+      "currentModel": "Mô hình hiện tại",
+      "availableModels": "Các mô hình có sẵn",
+      "selectModel": "Chọn mô hình",
+      "modelDetails": "Chi tiết mô hình",
+      "version": "Phiên bản",
+      "releaseDate": "Ngày phát hành",
+      "parameters": "Số tham số",
+      "performance": "Hiệu suất",
+      "setAsCurrent": "Đặt làm mô hình hiện tại",
+      "current": "Hiện tại",
+      "actions": {
+        "addModel": "Thêm mô hình mới",
+        "addNewModel": "Thêm mô hình AI mới",
+        "cancel": "Hủy"
+      },
+      "form": {
+        "name": "Tên mô hình",
+        "namePlaceholder": "Nhập tên mô hình...",
+        "description": "Mô tả",
+        "descriptionPlaceholder": "Mô tả ngắn gọn về mô hình...",
+        "baseModel": "Mô hình gốc",
+        "baseModelPlaceholder": "Chọn mô hình gốc...",
+        "version": "Phiên bản",
+        "status": "Trạng thái",
+        "statusOptions": {
+          "active": "Hoạt động",
+          "deprecated": "Không còn sử dụng",
+          "pending": "Đang chờ"
+        }
+      },
+      "table": {
+        "name": "Tên mô hình",
+        "description": "Mô tả",
+        "baseModel": "Mô hình gốc",
+        "status": "Trạng thái",
+        "version": "Phiên bản",
+        "noModels": "Không có mô hình nào được thêm"
       }
     },
     "userManagement": {
