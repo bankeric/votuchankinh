@@ -1,13 +1,17 @@
 'use client'
 
 import type React from 'react'
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-import { ArrowLeft, Menu, X } from 'lucide-react'
 import SiteFooter from '@/components/site-footer'
+import {
+  LibraryHeader,
+  LibrarySearch,
+  LibrarySidebar,
+  LibraryMobileSidebar,
+  LibraryContent
+} from '@/components/library'
 
 // Dùng lại data từ bản 1
 import tocData from './tocData'
@@ -22,8 +26,6 @@ interface SutraContentItem {
   author?: string
 }
 
-type SutraContentMap = Record<string, SutraContentItem | string>
-
 export default function LibraryPage() {
   // State
   const [language, setLanguage] = useState<'vi' | 'en'>('vi')
@@ -33,31 +35,11 @@ export default function LibraryPage() {
   const [searchResults, setSearchResults] = useState<any[]>([])
   const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
   const [selectedResultIndex, setSelectedResultIndex] = useState<number>(-1)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<'ke' | 'story'>('ke')
   const [storyId, setStoryId] = useState<string>('')
+  const [storySubTab, setStorySubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
+  const [keSubTab, setKeSubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
-  const [showStory, setShowStory] = useState(true)
-  const [showVerse, setShowVerse] = useState(true)
-
-  const searchRef = useRef<HTMLDivElement>(null)
-
-  // Click outside search box
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target as Node)
-      ) {
-        setShowSearchResults(false)
-        setSelectedResultIndex(-1)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
 
   // Background setup
   useEffect(() => {
@@ -79,7 +61,6 @@ export default function LibraryPage() {
       setActiveTab('story')
     }
   }, [searchParams])
-
 
   // Translations
   const translations = {
@@ -246,257 +227,67 @@ export default function LibraryPage() {
   const handleItemClick = (itemId: string) => {
     setSelectedSutraItem(itemId)
   }
+
+  // Chia câu chuyện thành 2 nhóm
+  const suTamVoStories = storyData && storyData[0] && storyData[0].items ? 
+    storyData[0].items.filter(story => 
+      ['c1', 'c2', 'c3'].includes(story.id) // Câu chuyện của Sư Tam Vô
+    ) : []
+  
+  const huynhDeStories = storyData && storyData[0] && storyData[0].items ? 
+    storyData[0].items.filter(story => 
+      ['c4', 'c5', 'c6'].includes(story.id) // Câu chuyện của Huynh Đệ
+    ) : []
+
+  const getCurrentStories = () => {
+    return storySubTab === 'su-tam-vo' ? suTamVoStories : huynhDeStories
+  }
+
+  // Chia các kệ thành 2 nhóm
+  const suTamVoChapters = tocData.filter(chapter => 
+    ['section-01-tam-vo', 'section-02-gioi-luat', 'section-03-tim-dao'].includes(chapter.id)
+  )
+  
+  const huynhDeChapters = tocData.filter(chapter => 
+    !['section-01-tam-vo', 'section-02-gioi-luat', 'section-03-tim-dao'].includes(chapter.id)
+  )
+
+  const getCurrentChapters = () => {
+    return keSubTab === 'su-tam-vo' ? suTamVoChapters : huynhDeChapters
+  }
+
   return (
     <main className='min-h-screen text-[#2c2c2c] relative'>
       {/* Header */}
-      <header className='fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-[#EFE0BD]/80 backdrop-blur-sm border-b border-[#8B4513]/10'>
-        {/* Mobile Hamburger Menu Button */}
-        <button
-          onClick={() => setIsMobileSidebarOpen(true)}
-          className='md:hidden flex items-center justify-center w-10 h-10 text-[#8B4513]/80 hover:text-[#8B4513] transition-colors bg-[#D4AF8C]/30 backdrop-blur-sm rounded-full border border-[#8B4513]/20 hover:border-[#8B4513]/40'
-        >
-          <Menu className='w-5 h-5' />
-        </button>
-
-        {/* Desktop Return to Home Button */}
-        <Link
-          href='/'
-          className='hidden md:flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-colors bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full border border-[#8B4513]/20 hover:border-[#8B4513]/40'
-        >
-          <ArrowLeft className='w-4 h-4' />
-          <span className='font-serif text-sm'>
-            {translations[language].returnToHome}
-          </span>
-        </Link>
-
-        {/* Center Navigation - Community Button only (Library is hidden since we're on Library page) */}
-        <div className='flex items-center space-x-3'>
-          <Link
-            href='/community'
-            className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-all duration-300 bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-[#D4AF8C]/50 hover:scale-105 border border-[#8B4513]/20 hover:border-[#8B4513]/40'
-          >
-            <img
-              src='/images/lotus-community-icon.png'
-              alt='Community'
-              className='w-5 h-5'
-            />
-            <span className='font-serif text-sm hidden sm:inline'>
-              Community
-            </span>
-          </Link>
-        </div>
-
-        {/* Language Toggle Button - Mobile responsive, Desktop original */}
-        <div className='flex items-center'>
-          {/* Mobile: Capsule VN-EN button */}
-          <div className='md:hidden'>
-            <div className='rounded-full border-2 border-[#8B1E1E] p-0.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
-              <div className='flex items-center h-8 gap-0.1 px-0.1'>
-                <button
-                  onClick={() => setLanguage('vi')}
-                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                    language === 'vi'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
-                >
-                  VN
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                    language === 'en'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
-                >
-                  EN
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop: Enhanced capsule buttons */}
-          <div className='hidden md:block'>
-            <div className='rounded-full border-2 border-[#8B1E1E] p-0.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
-              <div className='flex items-center h-10 gap-0.1 px-0.1'>
-                <button
-                  onClick={() => setLanguage('vi')}
-                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                    language === 'vi'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
-                >
-                  VIE
-                </button>
-                <button
-                  onClick={() => setLanguage('en')}
-                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                    language === 'en'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
-                >
-                  ENG
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <LibraryHeader
+        language={language}
+        setLanguage={setLanguage}
+        setIsMobileSidebarOpen={setIsMobileSidebarOpen}
+        translations={translations}
+      />
 
       {/* Mobile Sidebar */}
-      <AnimatePresence>
-        {isMobileSidebarOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMobileSidebarOpen(false)}
-              className='md:hidden fixed inset-0 bg-black/50 z-[90]'
-            />
-            
-            {/* Sidebar */}
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className='md:hidden fixed left-0 top-0 h-full w-80 bg-[#EFE0BD] border-r border-[#8B4513]/20 z-[100] shadow-2xl'
-            >
-              <div className='p-4 space-y-4 flex flex-col h-full'>
-                {/* Top row: Home button (left) and Close button (right) */}
-                <div className='flex justify-between items-center flex-shrink-0'>
-                  <Link
-                    href='/'
-                    onClick={() => setIsMobileSidebarOpen(false)}
-                    className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 p-2 rounded-lg transition-colors'
-                  >
-                    <ArrowLeft className='w-4 h-4' />
-                    <span className='font-serif text-sm'>Trang chủ</span>
-                  </Link>
-                  
-                  <button
-                    onClick={() => setIsMobileSidebarOpen(false)}
-                    className='p-2 text-[#8B4513]/70 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 rounded-full transition-colors'
-                  >
-                    <X className='w-5 h-5' />
-                  </button>
-                </div>
-
-                {/* Content toggles - Original style capsule */}
-                <div className='flex justify-center flex-shrink-0'>
-                  <div className='rounded-full border-2 border-[#8B1E1E] p-0.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
-                    <div className='flex items-center h-10 gap-0.1 px-0.1'>
-                      <button
-                        onClick={() => {
-                          setActiveTab('ke')
-                          // Auto-select first sutra item when switching to Kệ
-                          if (tocData[0] && tocData[0].items[0]) {
-                            setExpandedSection(tocData[0].id)
-                            setSelectedSutraItem(tocData[0].items[0].id)
-                          }
-                        }}
-                        className={`px-3 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                          activeTab === 'ke'
-                            ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                            : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                        }`}
-                      >
-                        Kệ
-                      </button>
-                      <button
-                        onClick={() => {
-                          setActiveTab('story')
-                          // Auto-select first story when switching to Câu Chuyện
-                          if (storyData && storyData[0] && storyData[0].items && storyData[0].items[0]) {
-                            setStoryId(storyData[0].items[0].id)
-                          }
-                        }}
-                        className={`px-2.5 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                          activeTab === 'story'
-                            ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                            : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                        }`}
-                      >
-                        Câu Chuyện
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content List */}
-                <div className='flex-1 overflow-y-auto'>
-                  <div className='bg-[#EFE0BD]/90 backdrop-blur-sm border border-[#8B4513]/30 rounded-lg p-3 max-h-[calc(100vh-200px)] overflow-y-auto'>
-                    <h3 className='text-sm font-serif text-[#991b1b] mb-3 text-center'>
-                      {activeTab === 'story'
-                        ? 'Câu Chuyện Ngộ Đạo'
-                        : 'Mục Lục'}
-                    </h3>
-                    
-                    <nav className='space-y-1'>
-                      {activeTab === 'story'
-                        ? storyData && storyData[0] && storyData[0].items ? storyData[0].items.map((story) => (
-                            <button
-                              key={story.id}
-                              onClick={() => {
-                                setStoryId(story.id)
-                                setIsMobileSidebarOpen(false) // Close sidebar after selection
-                              }}
-                              className={`w-full text-left text-xs font-serif py-2 px-2 rounded transition-colors ${
-                                storyId === story.id
-                                  ? 'text-[#991b1b] bg-[#991b1b]/20'
-                                  : 'text-[#991b1b]/80 hover:text-[#991b1b] hover:bg-[#991b1b]/10'
-                              }`}
-                            >
-                              {story.title[language]}
-                            </button>
-                          )) : (
-                            <div className='text-center text-[#991b1b]/60 font-serif text-xs py-4'>
-                              Không có câu chuyện nào
-                            </div>
-                          )
-                        : tocData.map((chapter) => (
-                            <div key={chapter.id}>
-                              <button
-                                onClick={() => handleChapterClick(chapter.id)}
-                                className='w-full text-left text-xs font-serif text-[#991b1b]/80 hover:text-[#991b1b] py-1 px-2 rounded hover:bg-[#991b1b]/10 transition-colors'
-                              >
-                                {chapter.title}
-                              </button>
-                              {expandedSection === chapter.id && (
-                                <div className='ml-3 space-y-0.5 animate-slide-down'>
-                                  {chapter.items.map((item) => (
-                                    <button
-                                      key={item.id}
-                                      onClick={() => {
-                                        handleItemClick(item.id)
-                                        setIsMobileSidebarOpen(false) // Close sidebar after selection
-                                      }}
-                                      className={`block w-full text-left text-xs font-serif py-1 px-2 rounded transition-colors ${
-                                        selectedSutraItem === item.id
-                                          ? 'text-[#991b1b] bg-[#991b1b]/20'
-                                          : 'text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5'
-                                      }`}
-                                    >
-                                      {item.title}
-                                    </button>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                    </nav>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      <LibraryMobileSidebar
+        isMobileSidebarOpen={isMobileSidebarOpen}
+        setIsMobileSidebarOpen={setIsMobileSidebarOpen}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        keSubTab={keSubTab}
+        setKeSubTab={setKeSubTab}
+        storySubTab={storySubTab}
+        setStorySubTab={setStorySubTab}
+        expandedSection={expandedSection}
+        selectedSutraItem={selectedSutraItem}
+        storyId={storyId}
+        setStoryId={setStoryId}
+        onChapterClick={handleChapterClick}
+        onItemClick={handleItemClick}
+        getCurrentChapters={getCurrentChapters}
+        getCurrentStories={getCurrentStories}
+        language={language}
+        tocData={tocData}
+        storyData={storyData}
+      />
 
       {/* Floating AI Button */}
       <div
@@ -544,348 +335,57 @@ export default function LibraryPage() {
 
       <div className='pt-12 flex'>
         {/* TOC Desktop */}
-        <aside className='hidden sm:block w-80 lg:w-96 mr-6 mt-16 ml-4'>
-          {/* Capsule Toggle - moved to sidebar top */}
-          <div className='flex justify-center mb-4'>
-            <div className='rounded-full border-2 border-[#8B1E1E] p-1.5 bg-[#FAF2E2] shadow-[0_2px_0_rgba(139,30,30,0.25)]'>
-              <div className='flex items-center h-10 gap-2 px-0.5'>
-                <button
-                  onClick={() => setActiveTab('ke')}
-                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                    activeTab === 'ke'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
-                  aria-pressed={activeTab === 'ke'}
-                >
-                  Kệ
-                </button>
-                <button
-                  onClick={() => setActiveTab('story')}
-                  className={`px-5 sm:px-6 h-10 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                    activeTab === 'story'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
-                  aria-pressed={activeTab === 'story'}
-                >
-                  Câu Chuyện
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className={`bg-[#EFE0BD]/90 backdrop-blur-sm border-2 border-[#2c2c2c]/30 rounded-2xl p-4 shadow ${
-            activeTab === 'story'
-              ? 'max-h-[calc(100vh-20rem)] overflow-y-auto'
-              : 'max-h-[calc(100vh-20rem)] overflow-y-auto'
-          }`}>
-            <h3 className='text-lg font-serif text-[#991b1b] mb-4'>
-              {activeTab === 'story'
-                ? 'Câu Chuyện Ngộ Đạo'
-                : translations[language].tableOfContents}
-            </h3>
-            <nav className='space-y-2'>
-              {activeTab === 'story'
-                ? storyData && storyData[0] && storyData[0].items ? storyData[0].items.map((story) => (
-                    <button
-                      key={story.id}
-                      onClick={() => {
-                        setStoryId(story.id)
-                        setActiveTab('story')
-                      }}
-                      className={`w-full text-left text-sm font-serif py-2 px-3 rounded transition-colors ${
-                        storyId === story.id
-                          ? 'text-[#991b1b] bg-[#991b1b]/20'
-                          : 'text-[#991b1b]/80 hover:text-[#991b1b] hover:bg-[#991b1b]/10'
-                      }`}
-                    >
-                      {story.title[language]}
-                    </button>
-                  )) : (
-                    <div className='text-center text-[#991b1b]/60 font-serif text-sm py-4'>
-                      Không có câu chuyện nào
-                    </div>
-                  )
-                : tocData.map((chapter) => (
-                    <div key={chapter.id}>
-                      <button
-                        onClick={() => handleChapterClick(chapter.id)}
-                        className='w-full text-left text-sm font-serif text-[#991b1b]/80 hover:text-[#991b1b] py-1 px-2 rounded hover:bg-[#991b1b]/10 transition-colors'
-                      >
-                        {chapter.title}
-                      </button>
-                      {expandedSection === chapter.id && (
-                        <div className='ml-4 space-y-1 animate-slide-down'>
-                          {chapter.items.map((item) => (
-                            <button
-                              key={item.id}
-                              onClick={() => handleItemClick(item.id)}
-                              className={`block w-full text-left text-xs font-serif py-1 px-2 rounded transition-colors ${
-                                selectedSutraItem === item.id
-                                  ? 'text-[#991b1b] bg-[#991b1b]/20'
-                                  : 'text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5'
-                              }`}
-                            >
-                              {item.title}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-            </nav>
-          </div>
-        </aside>
+        <LibrarySidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          keSubTab={keSubTab}
+          setKeSubTab={setKeSubTab}
+          storySubTab={storySubTab}
+          setStorySubTab={setStorySubTab}
+          expandedSection={expandedSection}
+          selectedSutraItem={selectedSutraItem}
+          storyId={storyId}
+          setStoryId={setStoryId}
+          onChapterClick={handleChapterClick}
+          onItemClick={handleItemClick}
+          getCurrentChapters={getCurrentChapters}
+          getCurrentStories={getCurrentStories}
+          translations={translations}
+          language={language}
+        />
 
         {/* Main Content */}
         <div className='flex-1 max-w-4xl mx-auto sm:pr-6'>
           {/* Search */}
-          {/* Capsule Toggle - outside the search box */}
-          <div className='mt-12 mb-12 flex justify-center'>
+          <div className='mt-12 mb-12 flex justify-center'></div>
 
-          </div>
-
-          <div className='mb-6 relative z-40'>
-            <div className='bg-background/20 backdrop-blur-sm border-2 border-[#2c2c2c]/30 rounded-2xl p-3 sm:p-4 shadow'>
-              <div
-                className='relative'
-                ref={searchRef}
-              >
-                <input
-                  type='text'
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  onKeyDown={handleSearchKeyDown}
-                  placeholder={translations[language].searchPlaceholder}
-                  className='w-full px-3 py-2 sm:px-4 sm:py-3 bg-transparent border border-[#991b1b]/30 rounded-xl text-[#991b1b] placeholder-[#991b1b]/50 font-serif focus:outline-none focus:border-[#991b1b]/60 focus:ring-2 focus:ring-[#991b1b]/20 text-sm sm:text-base'
-                />
-                <div className='absolute right-3 top-1/2 transform -translate-y-1/2 text-[#991b1b]/50'>
-                  ⌕
-                </div>
-
-                {showSearchResults && searchResults.length > 0 && (
-                  <div className='absolute left-0 right-0 mt-2 bg-background/95 backdrop-blur-sm border rounded-xl shadow max-h-96 overflow-y-auto z-[60] top-full'>
-                    {searchResults.map((result, index) => (
-                      <button
-                        key={`${result.type}-${result.id}`}
-                        onClick={() => handleSearchResultClick(result)}
-                        className={`w-full text-left p-3 sm:p-4 border-b border-[#991b1b]/10 last:border-b-0 hover:bg-[#991b1b]/10 transition-colors ${
-                          index === selectedResultIndex ? 'bg-[#991b1b]/20' : ''
-                        }`}
-                      >
-                        <div className='font-serif text-sm text-[#991b1b] mb-1'>
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: highlightSearchTerms(
-                                result.title,
-                                searchQuery
-                              )
-                            }}
-                          />
-                        </div>
-                        <div className='text-xs text-[#991b1b]/60 mb-2'>
-                          {result.parentChapter}
-                          {result.type === 'item' && ' › ' + result.title}
-                        </div>
-                        {result.snippet && (
-                          <div className='text-xs text-[#991b1b]/50 line-clamp-2'>
-                            <span
-                              dangerouslySetInnerHTML={{
-                                __html: highlightSearchTerms(
-                                  result.snippet,
-                                  searchQuery
-                                )
-                              }}
-                            />
-                          </div>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {showSearchResults &&
-                  searchResults.length === 0 &&
-                  searchQuery.trim() && (
-                    <div className='absolute left-0 right-0 mt-2 bg-background/95 border rounded-xl shadow p-4 z-[60] top-full text-center text-[#991b1b]/60 font-serif text-sm'>
-                      {translations[language].noResults}
-                    </div>
-                  )}
-              </div>
-            </div>
-          </div>
+          <LibrarySearch
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            searchResults={searchResults}
+            showSearchResults={showSearchResults}
+            setShowSearchResults={setShowSearchResults}
+            selectedResultIndex={selectedResultIndex}
+            setSelectedResultIndex={setSelectedResultIndex}
+            onSearchResultClick={handleSearchResultClick}
+            onSearchChange={handleSearchChange}
+            onSearchKeyDown={handleSearchKeyDown}
+            highlightSearchTerms={highlightSearchTerms}
+            translations={translations}
+            language={language}
+          />
 
           {/* Sutra Content or Story */}
-          {activeTab === 'story' ? (
-            <div className='h-full flex items-start justify-center min-h-[600px] mt-4 mb-8'>
-              <div className='w-full max-w-6xl bg-background/20 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 shadow min-h-[600px]'>
-                {storyId && storyContent[storyId] ? (
-                  <>
-                    <div className='text-center mb-6 sm:mb-8'>
-                      <p className='text-base sm:text-lg font-serif text-[#991b1b]/70 mb-2'>
-                        {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
-                      </p>
-                      <h2 className='text-2xl sm:text-3xl md:text-4xl font-serif text-[#991b1b] mb-4 sm:mb-6'>
-                        {storyContent[storyId].title[language]}
-                      </h2>
-                      <div className='flex justify-center mb-6 sm:mb-8'>
-                        <div
-                          className='w-24 h-2 bg-[#991b1b] rounded-full opacity-60'
-                          style={{
-                            background:
-                              'linear-gradient(90deg, transparent 0%, #991b1b 20%, #991b1b 80%, transparent 100%)',
-                            filter: 'blur(0.5px)'
-                          }}
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* Image - Centered */}
-                    <div className='mb-8 flex justify-center'>
-                      <div className='w-full max-w-md aspect-square overflow-hidden rounded-xl border border-[#8B4513]/20 bg-white'>
-                        <img
-                          src={`/images/${storyId}.png`}
-                          alt={storyContent[storyId].title[language]}
-                          className='w-full h-full object-contain'
-                        />
-                      </div>
-                    </div>
-
-                    {/* Content - Full Width Left to Right */}
-                    <div className='w-full'>
-                      <div className='prose prose-lg max-w-none'>
-                        <div className='font-serif text-[#991b1b]/90 leading-relaxed space-y-4'>
-                          <div className='text-sm sm:text-base whitespace-pre-line text-justify'>
-                            {storyContent[storyId].content[language]}
-                          </div>
-                          {(storyContent[storyId].date || storyContent[storyId].author) && (
-                            <div className='text-xs text-[#991b1b]/60 mt-6 pt-4 border-t border-[#991b1b]/20'>
-                              {storyContent[storyId].author && (
-                                <p className='font-serif'>
-                                  {language === 'vi' ? 'Tác giả: ' : 'Author: '}
-                                  {storyContent[storyId].author![language]}
-                                </p>
-                              )}
-                              {storyContent[storyId].date && (
-                                <p className='font-serif'>
-                                  {language === 'vi' ? 'Năm: ' : 'Year: '}
-                                  {storyContent[storyId].date}
-                                </p>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-          ) : (
-            <div className='h-full flex items-center justify-center min-h-[600px]'>
-              <div className='text-center animate-fade-in px-4'>
-                <div className='mb-4 sm:mb-6 flex items-center justify-center'>
-                  <Image
-                    src={'/images/library.png'}
-                    alt='Library Icon'
-                    width={160}
-                    height={160}
-                    className='w-24 h-24 sm:w-40 sm:h-40 object-contain'
-                  />
-                </div>
-                <h2 className='text-xl sm:text-2xl font-serif text-[#991b1b] mb-3 sm:mb-4'>
-                  {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
-                </h2>
-                <p className='text-base sm:text-lg font-serif text-[#991b1b]/60'>
-                  {language === 'vi' ? 'Chọn một câu chuyện để đọc nội dung' : 'Select a story to read content'}
-                </p>
-              </div>
-            </div>
-          )}
-              </div>
-            </div>
-          ) : selectedSutraItem && sutraContent[selectedSutraItem] ? (
-            <div
-              key={selectedSutraItem}
-              className='animate-fade-in'
-            >
-              <div className='bg-background/20 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 shadow min-h-[600px]'>
-                {(() => {
-                  const contentObj = sutraContent[selectedSutraItem] as
-                    | SutraContentItem
-                    | string
-                  const chapter = tocData.find((chapter) =>
-                    chapter.items.some((item) => item.id === selectedSutraItem)
-                  )
-                  const content: SutraContentItem =
-                    typeof contentObj === 'string'
-                      ? { content: contentObj }
-                      : contentObj
-
-                  return (
-                    <>
-                      <div className='text-center mb-6 sm:mb-8'>
-                        <p className='text-base sm:text-lg font-serif text-[#991b1b]/70 mb-2'>
-                          {chapter?.title}
-                        </p>
-                        <h2 className='text-2xl sm:text-3xl md:text-4xl font-serif text-[#991b1b] mb-4 sm:mb-6'>
-                          {content.title || ''}
-                        </h2>
-                        <div className='flex justify-center mb-6 sm:mb-8'>
-                          <div
-                            className='w-24 h-2 bg-[#991b1b] rounded-full opacity-60'
-                            style={{
-                              background:
-                                'linear-gradient(90deg, transparent 0%, #991b1b 20%, #991b1b 80%, transparent 100%)',
-                              filter: 'blur(0.5px)'
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <div className='prose prose-lg max-w-none'>
-                        <div className='font-serif text-[#991b1b]/90 leading-relaxed text-center space-y-4 sm:space-y-6'>
-                          <div className='text-base sm:text-lg whitespace-pre-line'>
-                            {content.content}
-                          </div>
-                          {/* <div className='text-3xl sm:text-4xl font-serif text-[#991b1b]/60 py-4 sm:py-6'>
-                            無
-                          </div> */}
-                          {(content.date || content.author) && (
-                            <div className='text-sm text-[#991b1b]/60 mt-6 sm:mt-8 pt-4 border-t border-[#991b1b]/20'>
-                              {content.author && (
-                                <p className='font-serif'>{content.author}</p>
-                              )}
-                              {content.date && (
-                                <p className='font-serif'>{content.date}</p>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )
-                })()}
-              </div>
-            </div>
-          ) : (
-            <div className='h-full flex items-center justify-center min-h-[600px]'>
-              <div className='text-center animate-fade-in px-4'>
-                <div className='mb-4 sm:mb-6 flex items-center justify-center'>
-                  <Image
-                    src={'/images/ai_1.png'}
-                    alt='Library Icon'
-                    width={160}
-                    height={160}
-                    className='w-24 h-24 sm:w-40 sm:h-40 object-contain'
-                  />
-                </div>
-                <h2 className='text-xl sm:text-2xl font-serif text-[#991b1b] mb-3 sm:mb-4'>
-                  {translations[language].tableOfContents}
-                </h2>
-                <p className='text-base sm:text-lg font-serif text-[#991b1b]/60'>
-                  {translations[language].selectContent}
-                </p>
-              </div>
-            </div>
-          )}
+          <LibraryContent
+            activeTab={activeTab}
+            selectedSutraItem={selectedSutraItem}
+            storyId={storyId}
+            sutraContent={sutraContent}
+            storyContent={storyContent}
+            tocData={tocData}
+            language={language}
+            translations={translations}
+          />
         </div>
       </div>
 
