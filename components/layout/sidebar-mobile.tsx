@@ -169,6 +169,19 @@ export const SidebarMobile = ({
                 <Button
                   variant='ghost'
                   size='sm'
+                  aria-label={t('navigation.socialFeed')}
+                  onClick={() => {
+                    router.push('/community')
+                    setIsMobileOpen(false)
+                  }}
+                  className='w-10 h-10 p-0 border border-black rounded-2xl bg-inherit'
+                >
+                  <Image src={'/images/pricing-1.png'} alt='Social Feed' width={40} height={40} />
+                </Button>
+
+                <Button
+                  variant='ghost'
+                  size='sm'
                   aria-label={t('navigation.meditate')}
                   onClick={() => {
                     const { setIsMeditationMode } = useChatStore.getState()

@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -70,8 +69,10 @@ export function Sidebar({
   const [isHistoryOpen, setIsHistoryOpen] = useState(true)
   const isAnyModalOpen = isSettingsModalOpen || isLogin || isLogoutDialogOpen
   const { user, logout } = useAuthStore()
+
   // Show quick feature icons when any modal open, or when collapsed AND user is logged in
   const shouldShowQuickFeatures = isAnyModalOpen || (isCollapsed && !!user)
+
   const { t, language, changeLanguage } = useTranslations()
   const {
     chats,
@@ -88,12 +89,10 @@ export function Sidebar({
   const router = useRouter()
   const { handleCreateChat } = useCreateChat()
   const { setSelectedAgentId } = useAgents()
+
   const renderLogoutDialog = () => {
     return (
-      <AlertDialog
-        open={isLogoutDialogOpen}
-        onOpenChange={setIsLogoutDialogOpen}
-      >
+      <AlertDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen}>
         <AlertDialogContent className='sm:max-w-[425px]'>
           <AlertDialogHeader>
             <AlertDialogTitle className='flex items-center gap-2'>
@@ -128,9 +127,7 @@ export function Sidebar({
   const handleLogout = async () => {
     await logout()
     router.push('/landing')
-    appToast(t('auth.logoutSuccess'), {
-      type: 'success'
-    })
+    appToast(t('auth.logoutSuccess'), { type: 'success' })
     setIsLogoutDialogOpen(false)
   }
 
@@ -143,7 +140,6 @@ export function Sidebar({
   const handleDeleteChat = (chatId: string, e: React.MouseEvent) => {
     e.stopPropagation()
     deleteChat(chatId)
-
     // If the active chat is deleted, select the first available chat
     if (chatId === activeChatId && chats.length > 1) {
       const remainingChats = chats.filter((chat) => chat.uuid !== chatId)
@@ -159,7 +155,6 @@ export function Sidebar({
 
   const setActiveChatAndGetMessages = async (chatId: string) => {
     setActiveChatId(chatId)
-
     const messages = await getMessages(chatId)
     let agentId = chats.find((chat) => chat.uuid === chatId)?.agent_id
     if (!agentId && messages && messages.length > 0) {
@@ -254,7 +249,7 @@ export function Sidebar({
               variant='ghost'
               size='sm'
               onClick={() => router.push('/voice')}
-              className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
+              className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
               title='Voice Chat'
             >
               <Image
@@ -262,7 +257,21 @@ export function Sidebar({
                 alt='Voice Chat'
                 width={40}
                 height={40}
-              />  
+              />
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => router.push('/community')}
+              className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
+              title={t('navigation.socialFeed')}
+            >
+              <Image
+                src={'/images/pricing-1.png'}
+                alt='Social Feed'
+                width={40}
+                height={40}
+              />
             </Button>
           </>
         )}
@@ -296,14 +305,8 @@ export function Sidebar({
                       <MoreVertical className='w-4 h-4' />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    side='right'
-                    align='end'
-                    className='w-48'
-                  >
-                    <DropdownMenuItem
-                      onClick={() => setIsSettingsModalOpen(true)}
-                    >
+                  <DropdownMenuContent side='right' align='end' className='w-48'>
+                    <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
                       <Settings className='w-4 h-4 mr-2' />
                       {t('navigation.settings')}
                     </DropdownMenuItem>
@@ -340,7 +343,6 @@ export function Sidebar({
       <div className='px-4 py-4'>
         <div className='flex items-center justify-between mb-4'>
           <div className='' />
-
           <Image
             src={'/images/giac-ngo-logo-6.png'}
             alt='Logo'
@@ -350,7 +352,6 @@ export function Sidebar({
             style={{ cursor: 'pointer' }}
             onClick={() => router.push('/landing')}
           />
-
           <Button
             variant='ghost'
             size='sm'
@@ -361,6 +362,9 @@ export function Sidebar({
             <ChevronsLeft className='w-4 h-4' />
           </Button>
         </div>
+
+        {/* Divider line - Right after logo */}
+        <div className='border-t border-[#2c2c2c]/30 mb-3'></div>
 
         {/* Admin Button */}
         {/* {isAdmin && (
@@ -393,7 +397,7 @@ export function Sidebar({
       </div>
 
       {/* Search and Chats */}
-      <div className='flex-1 overflow-y-auto p-4 border-t border-[#2c2c2c]/30'>
+      <div className='flex-1 overflow-y-auto p-4'>
         {/* Search */}
         {/* <div className='relative mb-4'>
           <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-gray-500' />
@@ -456,14 +460,8 @@ export function Sidebar({
                       <Settings className='w-4 h-4' />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    side='top'
-                    align='center'
-                    className='w-48'
-                  >
-                    <DropdownMenuItem
-                      onClick={() => setIsSettingsModalOpen(true)}
-                    >
+                  <DropdownMenuContent side='top' align='center' className='w-48'>
+                    <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
                       <Settings className='w-4 h-4 mr-2' />
                       {t('navigation.settings')}
                     </DropdownMenuItem>
@@ -496,6 +494,7 @@ export function Sidebar({
               🇻🇳 {t('settings.vietnamese')}
             </Button>
           )}
+
           <div className='transition-all duration-300 ease-in-out'>
             {!user && (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
@@ -513,19 +512,13 @@ export function Sidebar({
       </div>
 
       {/* Settings Modal */}
-      <SettingsModal
-        open={isSettingsModalOpen}
-        onOpenChange={setIsSettingsModalOpen}
-      />
+      <SettingsModal open={isSettingsModalOpen} onOpenChange={setIsSettingsModalOpen} />
 
       {/* Logout Confirmation Dialog */}
       {renderLogoutDialog()}
 
       {/* Login Modal */}
-      <LoginModal
-        open={isLogin}
-        onClose={() => setIsLogin(false)}
-      />
+      <LoginModal open={isLogin} onClose={() => setIsLogin(false)} />
     </div>
   )
 }

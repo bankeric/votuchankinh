@@ -27,6 +27,7 @@ import {
   Trash2,
   Crown
 } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "@/hooks/use-translations";
 import { useAuthStore } from "@/store/auth";
 import { SelectVoice } from "../v2/admin/voice/select-voice";
