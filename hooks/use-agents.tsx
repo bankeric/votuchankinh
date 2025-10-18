@@ -1,3 +1,4 @@
+import React from "react";
 import { ChatMode } from "@/interfaces/chat";
 import { useAgentStore } from "@/store/agent";
 import { useAgentSettingStore } from "@/store/agent-setting";
@@ -13,15 +14,36 @@ const iconMap = {
 
 const useAgents = () => {
   const { agents, setSelectedAgentId, selectedAgentId, agentsMap } = useAgentStore();
-  const currentAgent = selectedAgentId ? agentsMap[selectedAgentId] : (agents.length > 0 ? agents[0] : null);
+  
+  // Find "Tâm An" agent or fallback to first agent
+  const findDefaultAgent = () => {
+    const tamAnAgent = agents.find(agent => agent.name === "Tâm An");
+    return tamAnAgent || (agents.length > 0 ? agents[0] : null);
+  };
+  
+  const currentAgent = selectedAgentId ? agentsMap[selectedAgentId] : findDefaultAgent();
+  
   const onSelectAgent = (agentId: string) => {
     setSelectedAgentId(agentId, false);
   };
+  
   const selectTheFirstAgent = () => {
-    if (agents.length > 0) {
-      setSelectedAgentId(agents[0].uuid, false);
+    const defaultAgent = findDefaultAgent();
+    if (defaultAgent) {
+      setSelectedAgentId(defaultAgent.uuid, false);
     }
   };
+  
+  // Auto-select Tâm An when agents are loaded
+  React.useEffect(() => {
+    if (agents.length > 0 && !selectedAgentId) {
+      const defaultAgent = findDefaultAgent();
+      if (defaultAgent) {
+        setSelectedAgentId(defaultAgent.uuid, false);
+      }
+    }
+  }, [agents, selectedAgentId]);
+  
   return { currentAgent, agents, onSelectAgent, selectedAgentId, selectTheFirstAgent, setSelectedAgentId, agentsMap };
 };
 

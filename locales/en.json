@@ -34,6 +34,7 @@
     "settings": "Settings",
     "admin": "Admin",
     "voiceChat": "Voice Chat",
+    "socialFeed": "Social Feed",
     "meditate": "Meditate",
     "profile": "Profile",
     "logout": "Logout",
@@ -493,7 +494,7 @@
     "vietnamese": "Tiếng Việt"
   },
   "app": {
-    "title": "Buddha AI",
+    "title": "Giác Ngộ AI",
     "subtitle": "Wisdom and Mindful Guidance",
     "description": "An AI assistant offering wisdom inspired by Buddhist teachings",
     "welcome": "Welcome to Buddha AI",
@@ -501,7 +502,7 @@
     "learnMore": "Learn More"
   },
   "onboarding": {
-    "welcome": "Welcome to Buddha AI",
+    "welcome": "Welcome to Giác Ngộ AI",
     "subtitle": "Wisdom and Mindful Guidance",
     "description": "Please select your preferred language to get started with personalized Buddhist teachings and guidance.",
     "selectLanguage": "Select Your Language",

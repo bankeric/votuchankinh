@@ -34,6 +34,7 @@
     "settings": "Cài đặt",
     "admin": "Quản trị",
     "voiceChat": "Chế độ thoại",
+    "socialFeed": "Mạng xã hội",
     "meditate": "Thiền định",
     "profile": "Hồ sơ",
     "logout": "Đăng xuất",
@@ -151,15 +152,15 @@
   },
   
   "app": {
-    "title": "Buddha AI",
+    "title": "Giác Ngộ AI",
     "subtitle": "Trí tuệ và Hướng dẫn Chánh niệm",
     "description": "Trợ lý AI cung cấp trí tuệ lấy cảm hứng từ giáo lý Phật giáo",
-    "welcome": "Chào mừng đến với Buddha AI",
+    "welcome": "Chào mừng đến với Giác Ngộ AI",
     "getStarted": "Bắt đầu",
     "learnMore": "Tìm hiểu thêm"
   },
   "onboarding": {
-    "welcome": "Chào mừng đến với Buddha AI",
+    "welcome": "Chào mừng đến với Giác Ngộ AI",
     "subtitle": "Trí tuệ và Hướng dẫn Chánh niệm",
     "description": "Vui lòng chọn ngôn ngữ ưa thích để bắt đầu với những lời dạy và hướng dẫn Phật giáo được cá nhân hóa.",
     "selectLanguage": "Chọn Ngôn Ngữ Của Bạn",

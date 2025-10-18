@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { ChevronDown, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAgentStore } from '@/store/agent'
+import { useAuthStore } from '@/store/auth'
 import { Agent, AgentStatus } from '@/interfaces/agent'
+import { useIsMobile } from '@/hooks/use-mobile'
 import {
   Select,
   SelectContent,
@@ -18,27 +20,47 @@ interface AgentSelectorProps {
 
 const AgentSelector = ({ value, onSelectAgent }: AgentSelectorProps) => {
   const { agents, isLoading } = useAgentStore()
+  const { isAuthenticated } = useAuthStore()
+  const isMobile = useIsMobile()
 
   const activeAgent = agents.filter(
     (agent) => agent.status === AgentStatus.ACTIVE
   )
+
+  // If not authenticated, show static display
+  if (!isAuthenticated) {
+    return (
+      <div className='min-w-[140px] md:min-w-[200px] bg-[#f3ead7] text-[#1f1f1f] font-serif text-sm md:text-base rounded-xl md:rounded-2xl px-3 md:px-4 py-2 md:py-2.5
+                   border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
+                   flex items-center justify-between'>
+        <div className='flex items-center justify-between w-full'>
+          <span className='flex items-center gap-3'>
+            <span>Agent</span>
+            <span>{value?.name || 'Tâm An'}</span>
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  // If authenticated, show dropdown
   return (
     <Select
       value={value?.uuid}
       onValueChange={onSelectAgent}
     >
       <SelectTrigger
-        className='min-w-[120px] md:min-w-[170px] bg-[#f3ead7] text-[#1f1f1f] font-serif text-xs md:text-sm rounded-xl md:rounded-2xl px-2 md:px-4 py-1 md:py-2
+        className='min-w-[140px] md:min-w-[200px] bg-[#f3ead7] text-[#1f1f1f] font-serif text-sm md:text-base rounded-xl md:rounded-2xl px-3 md:px-4 py-2 md:py-2.5
                  border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
                  hover:bg-[#efe2c9] focus:outline-none focus:ring-0
                  data-[state=open]:bg-[#efe2c9] transition-colors'
         aria-label='Choose AI Agent'
       >
         <div className='flex items-center justify-between w-full'>
-          <div className='flex items-center gap-1'>
-            <span className='text-xs md:text-sm'>Agent:</span>
-            <SelectValue placeholder='--' />
-          </div>
+          <span className='flex items-center gap-3'>
+            <span>Agent</span>
+            <SelectValue placeholder='Tâm An' />
+          </span>
         </div>
       </SelectTrigger>
 

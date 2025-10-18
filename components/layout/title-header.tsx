@@ -70,12 +70,12 @@ export function TitleHeader({}: TitleHeaderProps) {
             {/* Subscription Plan - Mobile */}
             <button
               onClick={() => setShowMembership(true)}
-            className='md:hidden flex items-center space-x-1 px-2 py-1 bg-[#991b1b] text-[#f6efe0] font-serif text-[11px] leading-none rounded-lg whitespace-nowrap overflow-hidden
+            className='md:hidden flex items-center px-3 py-2 bg-[#991b1b] text-[#f6efe0] font-serif text-sm rounded-lg whitespace-nowrap
                  border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
-                 hover:bg-[#7a1515] transition-colors'
+                 hover:bg-[#7a1515] transition-colors ml-2 min-w-fit'
             aria-label={language === 'en' ? 'Upgrade' : 'Nâng cấp'}
             >
-              <Crown className='w-3 h-3' />
+              <span>{language === 'en' ? 'Upgrade' : 'Nâng cấp'}</span>
             </button>
 
             {/* Subscription Plan - Desktop */}
@@ -83,7 +83,7 @@ export function TitleHeader({}: TitleHeaderProps) {
               onClick={() => setShowMembership(true)}
             className='hidden md:flex items-center space-x-2 px-3 py-2 bg-[#991b1b] text-[#f6efe0] font-serif text-sm rounded-xl whitespace-nowrap
                  border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
-                 hover:bg-[#7a1515] transition-colors w-full'
+                 hover:bg-[#7a1515] transition-colors'
             >
               {/* <Crown className='w-4 h-4' /> */}
               <span>{language === 'en' ? 'Upgrade' : 'Nâng cấp'}</span>
@@ -103,7 +103,7 @@ export function TitleHeader({}: TitleHeaderProps) {
           <div className='flex items-center justify-center'>
             <div className='px-3 py-1 bg-[#991b1b] text-[#f6efe0] font-serif text-sm rounded-lg
                            border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]'>
-              {currentAgent.name}
+              {currentAgent?.name}
             </div>
           </div>
         </div>
