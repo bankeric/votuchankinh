@@ -37,6 +37,7 @@ import { ApiKey } from './api-key'
 import AgentSelector from '@/components/agent-selector'
 import { SelectVoice } from './voice/select-voice'
 import { AgentManagement } from './agent-management'
+import { ModelManagement } from './model-management'
 
 export function AdminPanel() {
   const { t } = useTranslation()
@@ -74,10 +75,16 @@ export function AdminPanel() {
       shortLabel: t('admin.tabs.finetuneShort'),
       icon: <FileText className='w-4 h-4' />
     },
+    // {
+    //   id: 'user-management',
+    //   label: t('admin.tabs.userManagement'),
+    //   shortLabel: t('admin.tabs.userManagementShort'),
+    //   icon: <UserCog className='w-4 h-4' />
+    // },
     {
-      id: 'user-management',
-      label: t('admin.tabs.userManagement'),
-      shortLabel: t('admin.tabs.userManagementShort'),
+      id: 'model-management',
+      label: t('admin.tabs.modelManagement'),
+      shortLabel: t('admin.tabs.modelManagementShort'),
       icon: <UserCog className='w-4 h-4' />
     },
     {
@@ -86,12 +93,12 @@ export function AdminPanel() {
       shortLabel: t('admin.tabs.agentManagementShort'), // TODO: change later
       icon: <UserCog className='w-4 h-4' /> // TODO: change later
     },
-    {
-      id: 'apiKey',
-      label: t('admin.tabs.apiKey'),
-      shortLabel: t('admin.tabs.apiKeyShort'),
-      icon: <Key className='w-4 h-4' />
-    },
+    // {
+    //   id: 'apiKey',
+    //   label: t('admin.tabs.apiKey'),
+    //   shortLabel: t('admin.tabs.apiKeyShort'),
+    //   icon: <Key className='w-4 h-4' />
+    // },
     {
       id: 'setting',
       label: t('admin.tabs.setting'),
@@ -229,7 +236,7 @@ export function AdminPanel() {
         )}
 
         {/* User Management */}
-        {activeTab === 'user-management' && (
+        {/* {activeTab === 'user-management' && (
           <div className='space-y-4 md:space-y-6'>
             <Card>
               <CardHeader>
@@ -240,6 +247,23 @@ export function AdminPanel() {
               </CardHeader>
               <CardContent>
                 <UserManagement />
+              </CardContent>
+            </Card>
+          </div>
+        )} */}
+
+        {/* Model Management */}
+        {activeTab === 'model-management' && (
+          <div className='space-y-4 md:space-y-6'>
+            <Card>
+              <CardHeader>
+                <CardTitle className='flex items-center gap-2 text-lg md:text-xl'>
+                  <UserCog className='w-5 h-5' />
+                  {t('admin.modelManagement.title')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ModelManagement />
               </CardContent>
             </Card>
           </div>
@@ -280,11 +304,11 @@ export function AdminPanel() {
         )}
 
         {/* API Key */}
-        {activeTab === 'apiKey' && (
+        {/* {activeTab === 'apiKey' && (
           <div className='space-y-4 md:space-y-6'>
             <ApiKey />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   )

@@ -59,8 +59,13 @@ export const ManagementLayout = ({
       ? window.location.pathname.split('/').pop()
       : ''
 
+  const roleAccepted = [Role.ADMIN, Role.OWNER]
+
   useOnce(() => {
-    if (isAuthenticated !== undefined && (!user || user.role !== Role.ADMIN)) {
+    if (
+      isAuthenticated !== undefined &&
+      (!user || !roleAccepted.includes(user.role))
+    ) {
       window.location.href = '/ai/new'
     }
   }, [user, isAuthenticated])

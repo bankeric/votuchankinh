@@ -1,49 +1,62 @@
-import { ApprovalStatus, ChatMode, Message } from "@/interfaces/chat";
-import { QAndAPair } from "@/interfaces/question-answer";
-import { appToast } from "@/lib/toastify";
-import { fineTuneService, FineTuningJob } from "@/service/finetune";
-import { messagesService } from "@/service/messages";
-import { create } from "zustand";
+import { ApprovalStatus, ChatMode, Message } from '@/interfaces/chat'
+import { QAndAPair } from '@/interfaces/question-answer'
+import { appToast } from '@/lib/toastify'
+import {
+  CreateFineTuningModelRequest,
+  fineTuneService,
+  FineTuningJob,
+  FineTuningModel
+} from '@/service/finetune'
+import { messagesService } from '@/service/messages'
+import { create } from 'zustand'
 
 interface FineTuneJSONPart {
   contents: {
-    role: string;
-    parts: { text: string }[];
-  }[];
+    role: string
+    parts: { text: string }[]
+  }[]
 }
 
 const prepareJSON = (messages: Message): FineTuneJSONPart => {
   if (!messages.related_message) {
-    throw new Error("Message has no related message");
+    throw new Error('Message has no related message')
   }
   const json: FineTuneJSONPart = {
     contents: [
       {
-        role: "user",
-        parts: [{ text: messages.content }],
+        role: 'user',
+        parts: [{ text: messages.content }]
       },
       {
-        role: "model",
-        parts: [{ text: messages.related_message?.content }],
-      },
-    ],
-  };
-  return json;
-};
-
+        role: 'model',
+        parts: [{ text: messages.related_message?.content }]
+      }
+    ]
+  }
+  return json
+}
 
 interface FineTuneStore {
-  messages: Message[];
-  fineTuningJobs: FineTuningJob[];
-  qAndAPairs: QAndAPair[];
-  setAllMessages: (agentId?: string) => Promise<void>;
-  prepareJSON: (messages: Message[]) => FineTuneJSONPart[];
-  addQAndAPair: (qAndAPair: QAndAPair) => void;
-  removeQAndAPair: (index: number) => void;
-  rejectMessage: (messageId: string) => void;
-  saveQAndAPairsToSystem: () => void;
-  startTraining: (baseModel?: string) => void;
-  getFineTuningJobs: () => Promise<void>;
+  messages: Message[]
+  fineTuningJobs: FineTuningJob[]
+  qAndAPairs: QAndAPair[]
+  listModels: FineTuningModel[]
+
+  fetchModels: (limit?: number, offset?: number) => Promise<void>
+  createModel: (data: CreateFineTuningModelRequest) => Promise<void>
+  updateModel: (
+    uuid: string,
+    data: Partial<CreateFineTuningModelRequest>
+  ) => Promise<void>
+  deleteModel: (uuid: string) => Promise<void>
+  setAllMessages: (agentId?: string) => Promise<void>
+  prepareJSON: (messages: Message[]) => FineTuneJSONPart[]
+  addQAndAPair: (qAndAPair: QAndAPair) => void
+  removeQAndAPair: (index: number) => void
+  rejectMessage: (messageId: string) => void
+  saveQAndAPairsToSystem: () => void
+  startTraining: (baseModel?: string) => void
+  getFineTuningJobs: () => Promise<void>
 }
 
 const useFineTuneStore = create<FineTuneStore>((set, get) => {
@@ -51,57 +64,87 @@ const useFineTuneStore = create<FineTuneStore>((set, get) => {
     messages: [],
     fineTuningJobs: [],
     qAndAPairs: [],
+    listModels: [],
+
+    fetchModels: async (limit = 10, offset = 0) => {
+      const response = await fineTuneService.getFineTuningModels(limit, offset)
+      set({ listModels: response.models })
+    },
+    createModel: async (data: CreateFineTuningModelRequest) => {
+      await fineTuneService.createFineTuningModel(data)
+      await get().fetchModels()
+      appToast('Fine-tuning model created', {
+        type: 'success'
+      })
+    },
+    updateModel: async (
+      uuid: string,
+      data: Partial<CreateFineTuningModelRequest>
+    ) => {
+      await fineTuneService.updateFineTuningModel(uuid, data)
+      await get().fetchModels()
+      appToast('Fine-tuning model updated', {
+        type: 'success'
+      })
+    },
+    deleteModel: async (uuid: string) => {
+      await fineTuneService.deleteFineTuningModel(uuid)
+      await get().fetchModels()
+      appToast('Fine-tuning model deleted', {
+        type: 'success'
+      })
+    },
     setAllMessages: async (agentId?: string) => {
       const response = await messagesService.getMessages({
         limit: 1000,
         include_related: true,
         approval_status: ApprovalStatus.APPROVED,
-        agent_id: agentId,
-      });
-      const messages = response.data;
-      set({ messages });
+        agent_id: agentId
+      })
+      const messages = response.data
+      set({ messages })
     },
     prepareJSON: (messages: Message[]) => {
-      const json = messages.map(prepareJSON);
-      console.log(json);
-      return json;
+      const json = messages.map(prepareJSON)
+      console.log(json)
+      return json
     },
     addQAndAPair: (qAndAPair: QAndAPair) => {
-      set((state) => ({ qAndAPairs: [...state.qAndAPairs, qAndAPair] }));
+      set((state) => ({ qAndAPairs: [...state.qAndAPairs, qAndAPair] }))
     },
     removeQAndAPair: (index: number) => {
       set((state) => ({
-        qAndAPairs: state.qAndAPairs.filter((_, i) => i !== index),
-      }));
+        qAndAPairs: state.qAndAPairs.filter((_, i) => i !== index)
+      }))
     },
     rejectMessage: async (messageId: string) => {
       await messagesService.updateMessage(messageId, {
-        approval_status: ApprovalStatus.REJECTED,
-      });
-      await get().setAllMessages();
-      appToast("Message rejected", {
-        type: "success",
-      });
+        approval_status: ApprovalStatus.REJECTED
+      })
+      await get().setAllMessages()
+      appToast('Message rejected', {
+        type: 'success'
+      })
     },
     saveQAndAPairsToSystem: async () => {
-      await messagesService.saveQAndAPairsToSystem(get().qAndAPairs);
-      await get().setAllMessages();
-      set({ qAndAPairs: [] });
-      appToast("Q&A pairs saved to system", {
-        type: "success",
-      });
+      await messagesService.saveQAndAPairsToSystem(get().qAndAPairs)
+      await get().setAllMessages()
+      set({ qAndAPairs: [] })
+      appToast('Q&A pairs saved to system', {
+        type: 'success'
+      })
     },
     getFineTuningJobs: async () => {
-      const response = await fineTuneService.listFineTuningJobs();
-      set({ fineTuningJobs: response.jobs });
+      const response = await fineTuneService.listFineTuningJobs()
+      set({ fineTuningJobs: response.jobs })
     },
     startTraining: (baseModel?: string) => {
       fineTuneService.startFineTuning({
-        base_model: baseModel || "gemini-2.5-flash",
-        mode: ChatMode.GUIDANCE,
-      });
-    },
-  };
-});
+        base_model: baseModel || 'gemini-2.5-flash',
+        mode: ChatMode.GUIDANCE
+      })
+    }
+  }
+})
 
-export default useFineTuneStore;
+export default useFineTuneStore
