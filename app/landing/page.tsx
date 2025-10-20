@@ -42,10 +42,10 @@ function StatItem({ stat, isVisible, delay }: { stat: Stat; isVisible: boolean; 
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className='text-[#eae6dd]/50 text-sm mb-1 font-light'>
+      <div className='text-[#eae6dd]/50 text-sm mb-1 font-light text-left min-h-5 md:min-h-6'>
         {stat.title}
       </div>
-      <div className='text-3xl font-light text-[#eae6dd] tracking-wide'>
+      <div className='text-3xl font-light text-[#eae6dd] tracking-wide text-left'>
         {count.toLocaleString()}
       </div>
     </div>
@@ -257,8 +257,8 @@ export default function WordlessSutraPage() {
 
       {/* Navigation Bar */}
       <nav className='fixed top-0 left-0 right-0 z-50'>
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-          <div className='flex items-center h-16 border-b border-[#eae6dd]/20'>
+        <div className='max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8'>
+          <div className='flex items-center h-12 sm:h-16 border-b border-[#eae6dd]/20'>
             {/* Left side - Logo with Dropdown */}
             <div 
               ref={dropdownRef}
@@ -266,15 +266,15 @@ export default function WordlessSutraPage() {
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
             >
-              <button className='flex items-center space-x-2 text-[#eae6dd] hover:text-[#d4af37] transition-colors'>
+              <button className='flex items-center space-x-1 sm:space-x-2 text-[#eae6dd] hover:text-[#d4af37] transition-colors'>
                 <Image
                   src='/images/giac-ngo-logo-2.png'
                   alt='Giac Ngo logo'
-                  width={130}
-                  height={130}
-                  className='object-contain brightness-120 contrast-160 saturate-140'
+                  width={100}
+                  height={100}
+                  className='object-contain brightness-120 contrast-160 saturate-140 w-16 h-16 sm:w-32 sm:h-32'
                 />
-                <ChevronDown size={16} className={`transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
+                <ChevronDown size={12} className={`sm:w-4 sm:h-4 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Dropdown Menu */}
@@ -319,41 +319,42 @@ export default function WordlessSutraPage() {
             </div>
 
             {/* Center - Library and Community */}
-            <div className='flex items-center space-x-6'>
+            <div className='flex items-center space-x-2 sm:space-x-6'>
               <button 
                 onClick={() => router.push('/library')}
-                className='px-4 py-2 text-[#eae6dd] hover:text-red-600 transition-colors font-medium'
+                className='px-2 py-1 sm:px-4 sm:py-2 text-[#eae6dd] hover:text-red-600 transition-colors font-medium text-sm sm:text-base'
               >
                 Library
               </button>
-              <div className='w-px h-4 bg-[#eae6dd]/50'></div>
+              <div className='w-px h-3 sm:h-4 bg-[#eae6dd]/50'></div>
               <button 
                 onClick={() => router.push('/community')}
-                className='px-4 py-2 text-[#eae6dd] hover:text-red-600 transition-colors font-medium'
+                className='px-2 py-1 sm:px-4 sm:py-2 text-[#eae6dd] hover:text-red-600 transition-colors font-medium text-sm sm:text-base'
               >
                 Community
               </button>
             </div>
             
             {/* Right side - Login and Launch App */}
-            <div className='flex items-center space-x-3 flex-1 justify-end'>
+            <div className='flex items-center space-x-1 sm:space-x-3 flex-1 justify-end'>
               <div className='group relative'>
                 <button 
                   onClick={() => router.push('/auth/login')}
-                  className='px-6 py-2 bg-transparent border border-[#eae6dd] text-[#eae6dd] hover:bg-[#eae6dd] hover:text-black rounded-full font-medium transition-colors flex items-center justify-center w-20'
+                  className='px-3 py-1.5 sm:px-6 sm:py-2 bg-transparent border border-[#eae6dd] text-[#eae6dd] hover:bg-[#eae6dd] hover:text-black rounded-full font-medium transition-colors flex items-center justify-center w-12 sm:w-20'
                 >
-                  <svg className='w-5 h-5 group-hover:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                  <svg className='w-4 h-4 sm:w-5 sm:h-5 group-hover:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' />
                   </svg>
-                  <span className='hidden group-hover:block'>Login</span>
+                  <span className='hidden group-hover:block text-xs sm:text-base'>Login</span>
                 </button>
               </div>
               
               <button 
                 onClick={() => router.push('/sutra')}
-                className='px-6 py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors'
+                className='px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors text-xs sm:text-base'
               >
-                Launch App
+                <span className='hidden sm:inline'>Launch App</span>
+                <span className='sm:hidden'>App</span>
               </button>
             </div>
           </div>
@@ -417,23 +418,33 @@ export default function WordlessSutraPage() {
             </p>
           </div>
 
-          {/* Stats Section - Left aligned with Click anywhere to enter on right */}
+          {/* Stats Section - Mobile: centered with click text below, Desktop: left stats with right click text */}
           <div className='w-full px-4 sm:px-6 lg:px-8 pb-8 absolute bottom-0 left-0 right-0'>
-            <div className='max-w-7xl mx-auto flex justify-between items-end'>
-              <div 
-                ref={statsRef}
-                className='flex flex-wrap gap-x-12 gap-y-6'
-              >
-                {stats.map((stat, idx) => (
-                  <StatItem 
-                    key={idx}
-                    stat={stat}
-                    isVisible={statsVisible}
-                    delay={idx * 100}
-                  />
+            {/* Mobile Layout */}
+            <div className='md:hidden max-w-7xl mx-auto flex flex-col items-center space-y-6'>
+              <div ref={statsRef} className='grid grid-cols-2 gap-x-10 gap-y-2'>
+                {stats.slice(0, 4).map((stat, idx) => (
+                  <div key={idx} className='flex flex-col items-start'>
+                    <StatItem stat={stat} isVisible={statsVisible} delay={idx * 100} />
+                  </div>
                 ))}
               </div>
-              <div className='text-[#eae6dd]/50 text-xs font-light italic'>
+
+              <div className='text-[#eae6dd]/50 text-xs font-light italic text-center'>
+                Click anywhere to enter
+              </div>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className='hidden md:block max-w-7xl mx-auto'>
+              <div className='grid grid-cols-4 items-end'>
+                {stats.map((stat, idx) => (
+                  <div key={idx} className='flex justify-start'>
+                    <StatItem stat={stat} isVisible={statsVisible} delay={idx * 100} />
+                  </div>
+                ))}
+              </div>
+              <div className='mt-2 text-[#eae6dd]/50 text-xs font-light italic text-right'>
                 Click anywhere to enter
               </div>
             </div>

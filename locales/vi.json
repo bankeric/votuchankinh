@@ -21,12 +21,20 @@
     "ok": "OK",
     "upgrade": "Nâng cấp"
   },
+  "upload": {
+    "uploading": "📤 Đang tải lên {{filename}}... ({{progress}})",
+    "success": "✅ {{filename}} đã tải lên thành công",
+    "failed": "❌ Tải lên thất bại {{filename}}: {{error}}",
+    "completed": "🎉 Hoàn tất tải lên! Thành công: {{successful}}, Thất bại: {{failed}}",
+    "info": "{{message}}"
+  },
   "navigation": {
     "home": "Trang chủ",
     "chat": "Trò chuyện",
     "settings": "Cài đặt",
     "admin": "Quản trị",
     "voiceChat": "Chế độ thoại",
+    "socialFeed": "Mạng xã hội",
     "meditate": "Thiền định",
     "profile": "Hồ sơ",
     "logout": "Đăng xuất",
@@ -142,33 +150,17 @@
       "shortLabel": "Làm Kệ"
     }
   },
-  "settings": {
-    "title": "Cài đặt",
-    "general": "Chung",
-    "appearance": "Giao diện",
-    "language": "Ngôn ngữ",
-    "notifications": "Thông báo",
-    "privacy": "Riêng tư",
-    "account": "Tài khoản",
-    "profile": "Hồ sơ",
-    "darkMode": "Chế độ tối",
-    "lightMode": "Chế độ sáng",
-    "systemMode": "Hệ thống",
-    "languageSelection": "Chọn ngôn ngữ",
-    "selectLanguage": "Chọn ngôn ngữ",
-    "english": "English",
-    "vietnamese": "Tiếng Việt"
-  },
+  
   "app": {
-    "title": "Buddha AI",
+    "title": "Giác Ngộ AI",
     "subtitle": "Trí tuệ và Hướng dẫn Chánh niệm",
     "description": "Trợ lý AI cung cấp trí tuệ lấy cảm hứng từ giáo lý Phật giáo",
-    "welcome": "Chào mừng đến với Buddha AI",
+    "welcome": "Chào mừng đến với Giác Ngộ AI",
     "getStarted": "Bắt đầu",
     "learnMore": "Tìm hiểu thêm"
   },
   "onboarding": {
-    "welcome": "Chào mừng đến với Buddha AI",
+    "welcome": "Chào mừng đến với Giác Ngộ AI",
     "subtitle": "Trí tuệ và Hướng dẫn Chánh niệm",
     "description": "Vui lòng chọn ngôn ngữ ưa thích để bắt đầu với những lời dạy và hướng dẫn Phật giáo được cá nhân hóa.",
     "selectLanguage": "Chọn Ngôn Ngữ Của Bạn",
@@ -715,7 +707,7 @@
           "downloadJson": "Tải JSON",
           "keyInformation": "Thông tin Khóa API",
           "name": "Tên",
-          "description": "Mô tả",
+          "descriptionLabel": "Mô tả",
           "status": "Trạng thái",
           "permissions": "Quyền hạn",
           "created": "Ngày tạo",
@@ -756,6 +748,18 @@
       "english": "Hello! This is a voice test.",
       "vietnamese": "Xin chào! Đây là bài kiểm tra giọng nói."
     }
+  },
+  "meditate": {
+    "title": "Thiền định",
+    "remaining": "Tĩnh tâm còn lại:",
+    "status": {
+      "ready": "Sẵn sàng",
+      "running": "Đang tĩnh tâm..."
+    },
+    "start": "Bắt đầu",
+    "pause": "Tạm dừng",
+    "reset": "Reset",
+    "completedToast": "🎉 Chúc mừng! Bạn đã hoàn thành 30 phút tĩnh tâm!"
   },
   "pricing": {
     "title": "Nâng cấp thành viên",

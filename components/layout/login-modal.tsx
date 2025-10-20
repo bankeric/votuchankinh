@@ -86,8 +86,8 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
       onOpenChange={onClose}
       modal
     >
-      <DialogContent className='sm:max-w-[600px] max-h-[90vh] overflow-y-auto [&>button]:hidden bg-amber-50 border-2 border-black rounded-lg shadow-2xl'>
-        <DialogHeader className='text-center space-y-4 pb-6'>
+      <DialogContent className='w-[92vw] sm:max-w-[600px] max-h-[90vh] overflow-y-auto [&>button]:hidden bg-amber-50 border-2 border-black rounded-2xl md:rounded-lg shadow-2xl p-4 md:p-6'>
+        <DialogHeader className='text-center space-y-3 md:space-y-4 pb-4 md:pb-6'>
           <div className='flex justify-center'>
             <Image
               src={'/images/giac-ngo-logo-1.png'}
@@ -96,14 +96,14 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
               height={84}
             />
           </div>
-          <DialogTitle className='text-3xl font-bold text-red-800 text-center'>
+          <DialogTitle className='text-2xl md:text-3xl font-bold text-red-800 text-center'>
             Đăng nhập
           </DialogTitle>
         </DialogHeader>
 
         <form
           onSubmit={handleSubmit}
-          className='space-y-6'
+          className='space-y-5 md:space-y-6'
         >
           <div className='space-y-2'>
             <Label
@@ -174,64 +174,64 @@ export function LoginModal({ open, onClose }: OnboardingModalProps) {
         </form>
 
         <DialogFooter>
-          <div className='flex flex-col items-center w-full space-y-4 pt-4 border-t border-black mt-4'>
+          <div className='flex flex-col items-center w-full space-y-3 md:space-y-4 pt-4 border-t border-black mt-4'>
             <p className='text-gray-700 text-sm'>Or continue with</p>
-            <div className='flex justify-center space-x-4 w-full'>
+            <div className='grid grid-cols-4 gap-2 w-full'>
               <Button
                 type='button'
                 variant='ghost'
-                className='flex items-center space-x-2 hover:bg-black/10'
+                className='flex flex-col items-center justify-center gap-1 py-2 hover:bg-black/10'
                 onClick={() => handleSignIn(AuthProvider.FACEBOOK)}
               >
                 <Image
                   src='/images/facebook.png'
                   alt='Facebook'
-                  width={20}
-                  height={20}
+                  width={18}
+                  height={18}
                 />
-                <span>Facebook</span>
+                <span className='text-xs'>Facebook</span>
               </Button>
               <Button
                 type='button'
                 variant='ghost'
-                className='flex items-center space-x-2 hover:bg-black/10'
+                className='flex flex-col items-center justify-center gap-1 py-2 hover:bg-black/10'
                 onClick={() => handleSignIn(AuthProvider.GOOGLE)}
               >
                 <Image
                   src='/images/google.png'
                   alt='Google'
-                  width={20}
-                  height={20}
+                  width={18}
+                  height={18}
                 />
-                <span>Google</span>
+                <span className='text-xs'>Google</span>
               </Button>
               <Button
                 type='button'
                 variant='ghost'
-                className='flex items-center space-x-2 hover:bg-black/10'
+                className='flex flex-col items-center justify-center gap-1 py-2 hover:bg-black/10'
                 onClick={() => handleSignIn(AuthProvider.TIKTOK)}
               >
                 <Image
                   src='/images/tiktok.png'
                   alt='TikTok'
-                  width={20}
-                  height={20}
+                  width={18}
+                  height={18}
                 />
-                <span>TikTok</span>
+                <span className='text-xs'>TikTok</span>
               </Button>
               <Button
                 type='button'
                 variant='ghost'
-                className='flex items-center space-x-2 hover:bg-black/10'
+                className='flex flex-col items-center justify-center gap-1 py-2 hover:bg-black/10'
                 onClick={() => handleSignIn(AuthProvider.INSTAGRAM)}
               >
                 <Image
                   src='/images/instagram.png'
                   alt='Instagram'
-                  width={20}
-                  height={20}
+                  width={18}
+                  height={18}
                 />
-                <span>Instagram</span>
+                <span className='text-xs'>Instagram</span>
               </Button>
             </div>
           </div>

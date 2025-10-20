@@ -1,7 +1,9 @@
 import { toast, Bounce, ToastOptions } from "react-toastify";
 
 const defaultOptions: ToastOptions = {
-  position: "bottom-right",
+  position: typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 768px)').matches
+    ? 'top-right'
+    : 'bottom-right',
   autoClose: 9000,
   hideProgressBar: false,
   closeOnClick: false,
@@ -35,7 +37,11 @@ export const appToastPromise = (
     ...options,
   });
 
-export const appToastUpload = (update: any) => {
+// i18n-aware upload toasts. Pass `t` from useTranslations when available
+export const appToastUpload = (
+  update: any,
+  t?: (key: string, params?: Record<string, any>) => string
+) => {
   const {
     status,
     filename,
@@ -48,26 +54,44 @@ export const appToastUpload = (update: any) => {
 
   switch (status) {
     case "uploading":
-      toast.info(`📤 Uploading ${filename}... (${progress})`, {
+      toast.info(
+        t
+          ? t('upload.uploading', { filename, progress })
+          : `📤 Uploading ${filename}... (${progress})`,
+        {
         autoClose: 3000,
         position: "bottom-right",
-      });
+      }
+      );
       break;
     case "success":
-      toast.success(`✅ ${filename} uploaded successfully`, {
+      toast.success(
+        t ? t('upload.success', { filename }) : `✅ ${filename} uploaded successfully`,
+        {
         autoClose: 4000,
         position: "bottom-right",
-      });
+      }
+      );
       break;
     case "failed":
-      toast.error(`❌ Failed to upload ${filename}: ${error}`, {
+      toast.error(
+        t
+          ? t('upload.failed', { filename, error })
+          : `❌ Failed to upload ${filename}: ${error}`,
+        {
         autoClose: 5000,
         position: "bottom-right",
-      });
+      }
+      );
       break;
     case "completed":
       toast.success(
-        `🎉 Upload completed! ${successful_count} successful, ${failed_count} failed`,
+        t
+          ? t('upload.completed', {
+              successful: successful_count,
+              failed: failed_count,
+            })
+          : `🎉 Upload completed! ${successful_count} successful, ${failed_count} failed`,
         {
           autoClose: 6000,
           position: "bottom-right",
@@ -76,7 +100,7 @@ export const appToastUpload = (update: any) => {
       break;
     default:
       if (message) {
-        toast.info(message, {
+        toast.info(t ? t('upload.info', { message }) : message, {
           autoClose: 3000,
           position: "bottom-right",
         });

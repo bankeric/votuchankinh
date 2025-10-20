@@ -12,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Globe, CheckCircle } from "lucide-react";
 import { useTranslations } from "@/hooks/use-translations";
 import { Language } from "@/interfaces/chat";
+import Image from "next/image";
 
 interface OnboardingModalProps {
   open: boolean;
@@ -57,8 +58,14 @@ export function OnboardingModal({ open, onComplete }: OnboardingModalProps) {
       >
         <DialogHeader className="text-center space-y-4 pb-6">
           <div className="flex justify-center">
-            <div className="w-16 h-16 bg-[#f9f0dc] border-2 border-black rounded-full flex items-center justify-center">
-              <span className="text-red-800 text-2xl font-bold">🙏</span>
+            <div className="w-20 h-20 bg-[#f9f0dc] border-2 border-black rounded-full flex items-center justify-center overflow-hidden">
+              <Image
+                src="/images/Tathagata.png"
+                alt="Tathagata"
+                width={64}
+                height={64}
+                className="object-cover"
+              />
             </div>
           </div>
           <DialogTitle className="text-2xl font-bold text-red-800 text-center">

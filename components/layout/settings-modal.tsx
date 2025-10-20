@@ -27,6 +27,7 @@ import {
   Trash2,
   Crown
 } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "@/hooks/use-translations";
 import { useAuthStore } from "@/store/auth";
 import { SelectVoice } from "../v2/admin/voice/select-voice";
@@ -81,27 +82,19 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                 </div>
                 <div className="flex gap-3">
                   <Button
-                    variant={language === Language.EN ? "default" : "outline"}
                     size="lg"
                     onClick={() => changeLanguage(Language.EN)}
                     className={cn(
-                      "flex-1 h-12 text-base font-medium transition-all duration-200",
-                      language === Language.EN 
-                        ? "bg-gradient-to-r from-red-800 to-red-600 text-white shadow-lg" 
-                        : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
+                      "flex-1 h-12 text-base font-medium transition-all duration-200 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]",
                     )}
                   >
                     🇺🇸 English
                   </Button>
                   <Button
-                    variant={language === Language.VI ? "default" : "outline"}
                     size="lg"
                     onClick={() => changeLanguage(Language.VI)}
                     className={cn(
-                      "flex-1 h-12 text-base font-medium transition-all duration-200",
-                      language === Language.VI 
-                        ? "bg-gradient-to-r from-red-800 to-red-600 text-white shadow-lg" 
-                        : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
+                      "flex-1 h-12 text-base font-medium transition-all duration-200 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]",
                     )}
                   >
                     🇻🇳 Tiếng Việt
@@ -178,42 +171,30 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                   <p className="text-sm text-gray-600">Choose your preferred color scheme</p>
                   <div className="grid grid-cols-3 gap-3">
                     <Button
-                      variant={theme === "light" ? "default" : "outline"}
                       size="lg"
                       onClick={() => setTheme("light")}
                       className={cn(
-                        "h-16 flex flex-col items-center gap-2 transition-all duration-200",
-                        theme === "light" 
-                          ? "bg-gradient-to-br from-red-800 to-red-600 text-white shadow-lg" 
-                          : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
+                        "h-16 flex flex-col items-center gap-2 transition-all duration-200 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]",
                       )}
                     >
                       <Sun className="w-6 h-6" />
                       <span className="text-sm font-medium">Light</span>
                     </Button>
                     <Button
-                      variant={theme === "dark" ? "default" : "outline"}
                       size="lg"
                       onClick={() => setTheme("dark")}
                       className={cn(
-                        "h-16 flex flex-col items-center gap-2 transition-all duration-200",
-                        theme === "dark" 
-                          ? "bg-gradient-to-br from-red-800 to-red-600 text-white shadow-lg" 
-                          : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
+                        "h-16 flex flex-col items-center gap-2 transition-all duration-200 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]",
                       )}
                     >
                       <Moon className="w-6 h-6" />
                       <span className="text-sm font-medium">Dark</span>
                     </Button>
                     <Button
-                      variant={theme === "system" ? "default" : "outline"}
                       size="lg"
                       onClick={() => setTheme("system")}
                       className={cn(
-                        "h-16 flex flex-col items-center gap-2 transition-all duration-200",
-                        theme === "system" 
-                          ? "bg-gradient-to-br from-red-800 to-red-600 text-white shadow-lg" 
-                          : "border-amber-300 hover:border-red-600 hover:bg-amber-50"
+                        "h-16 flex flex-col items-center gap-2 transition-all duration-200 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]",
                       )}
                     >
                       <Monitor className="w-6 h-6" />
@@ -245,7 +226,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     <p className="text-sm text-gray-600">Download your chat history and settings</p>
                   </div>
                 </div>
-                <Button variant="outline" size="lg" className="w-full flex items-center gap-2 border-amber-300 hover:bg-amber-50 hover:border-red-600">
+                <Button size="lg" className="w-full flex items-center gap-2 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]">
                   <Download className="w-5 h-5" />
                   Export Data
                 </Button>
@@ -261,7 +242,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     <p className="text-sm text-red-700">Permanently delete all your chat history and settings</p>
                   </div>
                 </div>
-                <Button variant="destructive" size="lg" className="w-full flex items-center gap-2">
+                <Button size="lg" className="w-full flex items-center gap-2 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]">
                   <Trash2 className="w-5 h-5" />
                   Clear All Data
                 </Button>
@@ -321,13 +302,12 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                   </div>
                 </div>
                 <Button 
-                  variant="destructive" 
                   size="lg"
                   onClick={() => {
                     logout();
                     onOpenChange(false);
                   }}
-                  className="w-full flex items-center gap-2"
+                  className="w-full flex items-center gap-2 bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]"
                 >
                   <LogOut className="w-5 h-5" />
                   Sign Out
@@ -344,14 +324,14 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:max-w-[1000px] w-[1000px] h-[700px] p-0 bg-white border border-gray-200 shadow-2xl flex flex-col">
+      <DialogContent className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-0 bg-[#EFE0BD] border-2 border-black shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset] flex flex-col w-[92vw] h-[82vh] rounded-2xl md:rounded-none md:w-[1000px] md:h-[700px] md:sm:max-w-[1000px]">
         <DialogTitle className="sr-only">{t("settings.title")}</DialogTitle>
         {/* Fixed Header */}
-        <div className="flex-shrink-0 p-6 pb-4 border-b border-amber-200/50 bg-gradient-to-r from-amber-50 to-white">
+        <div className="flex-shrink-0 p-4 md:p-6 pb-3 md:pb-4 border-b border-[#2c2c2c] bg-[#EFE0BD]">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 text-2xl font-bold text-black">
-              <div className="p-2 rounded-xl bg-gradient-to-br from-red-800 to-red-600 shadow-lg">
-                <User className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-2 md:gap-3 text-xl md:text-2xl font-bold text-black">
+              <div className="p-2 md:p-2 rounded-xl bg-[#991b1b] text-[#f6efe0] border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]">
+                <User className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
 {t("settings.title")}
             </div>
@@ -361,16 +341,16 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                   onOpenChange(false);
                   router.push('/pricing');
                 }}
-                className="bg-gradient-to-r from-red-800 to-red-600 hover:from-red-700 hover:to-red-500 text-white shadow-lg flex items-center gap-2"
+                className="bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset] flex items-center gap-2 text-xs md:text-sm px-3 py-2 md:px-4 md:py-2 rounded-xl"
               >
-                <Crown className="w-4 h-4" />
+                <Crown className="w-3 h-3 md:w-4 md:h-4" />
                 {t("common.upgrade")}
               </Button>
               <Button
                 variant="ghost"
-                size="sm"
+                size="icon"
                 onClick={() => onOpenChange(false)}
-                className="h-10 w-10 p-0 rounded-full hover:bg-amber-100 transition-colors"
+                className="h-8 w-8 md:h-10 md:w-10 p-0 rounded-full hover:bg-amber-100 transition-colors"
               >
                 {/* <X className="h-5 w-5" /> */}
               </Button>
@@ -380,7 +360,7 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
 
         <div className="flex flex-1 overflow-hidden">
           {/* Fixed Sidebar */}
-          <div className="flex-shrink-0 w-32 border-r border-amber-200/50 bg-gradient-to-b from-amber-50 to-white p-3 overflow-hidden">
+          <div className="flex-shrink-0 w-16 md:w-32 border-r border-[#2c2c2c] bg-[#EFE0BD] p-2 md:p-3 overflow-hidden">
             <nav className="space-y-2 h-full overflow-y-auto settings-sidebar" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
               {sidebarItems.map((item) => {
                 const Icon = item.icon;
@@ -389,10 +369,10 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                     key={item.id}
                     variant="ghost"
                     className={cn(
-                      "w-full flex-col h-auto p-2 rounded-lg transition-all duration-200 group",
+                      "w-full flex-col h-auto p-2 rounded-lg transition-all duration-200 group items-center",
                       activeSection === item.id 
-                        ? "bg-gradient-to-b from-red-800 to-red-600 text-white shadow-md" 
-                        : "text-gray-600 hover:text-gray-900 hover:bg-amber-50"
+                        ? "bg-[#991b1b] text-[#f6efe0] border-2 border-[#2c2c2c] rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]" 
+                        : "text-[#2c2c2c] hover:text-black"
                     )}
                     onClick={() => setActiveSection(item.id)}
                   >
@@ -400,14 +380,14 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
                       "p-1.5 rounded-md mb-1 transition-colors",
                       activeSection === item.id 
                         ? "bg-white/20" 
-                        : "bg-amber-100 group-hover:bg-amber-200"
+                        : "bg-[#f3ead7] group-hover:bg-[#efe0bd]"
                     )}>
                       <Icon className={cn(
                         "w-4 h-4 transition-colors",
-                        activeSection === item.id ? "text-white" : "text-gray-600"
+                        activeSection === item.id ? "text-white" : "text-[#2c2c2c]"
                       )} />
                     </div>
-                    <span className="text-xs font-medium text-center leading-tight px-1">{item.label}</span>
+                    <span className="hidden md:block text-xs font-medium text-center leading-tight px-1">{item.label}</span>
                   </Button>
                 );
               })}
@@ -415,8 +395,8 @@ export function SettingsModal({ open, onOpenChange }: SettingsModalProps) {
           </div>
 
           {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto bg-gradient-to-br from-white to-amber-50/30">
-            <div className="p-6">
+          <div className="flex-1 overflow-y-auto bg-[#f3ead7]">
+            <div className="p-4 md:p-6">
               <div className="max-w-3xl">
                 {renderContent()}
               </div>

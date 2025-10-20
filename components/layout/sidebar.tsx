@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -70,8 +69,10 @@ export function Sidebar({
   const [isHistoryOpen, setIsHistoryOpen] = useState(true)
   const isAnyModalOpen = isSettingsModalOpen || isLogin || isLogoutDialogOpen
   const { user, logout } = useAuthStore()
+
   // Show quick feature icons when any modal open, or when collapsed AND user is logged in
   const shouldShowQuickFeatures = isAnyModalOpen || (isCollapsed && !!user)
+
   const { t, language, changeLanguage } = useTranslations()
   const {
     chats,
@@ -88,12 +89,10 @@ export function Sidebar({
   const router = useRouter()
   const { handleCreateChat } = useCreateChat()
   const { setSelectedAgentId } = useAgents()
+
   const renderLogoutDialog = () => {
     return (
-      <AlertDialog
-        open={isLogoutDialogOpen}
-        onOpenChange={setIsLogoutDialogOpen}
-      >
+      <AlertDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen}>
         <AlertDialogContent className='sm:max-w-[425px]'>
           <AlertDialogHeader>
             <AlertDialogTitle className='flex items-center gap-2'>
@@ -128,9 +127,7 @@ export function Sidebar({
   const handleLogout = async () => {
     await logout()
     router.push('/landing')
-    appToast(t('auth.logoutSuccess'), {
-      type: 'success'
-    })
+    appToast(t('auth.logoutSuccess'), { type: 'success' })
     setIsLogoutDialogOpen(false)
   }
 
@@ -143,7 +140,6 @@ export function Sidebar({
   const handleDeleteChat = (chatId: string, e: React.MouseEvent) => {
     e.stopPropagation()
     deleteChat(chatId)
-
     // If the active chat is deleted, select the first available chat
     if (chatId === activeChatId && chats.length > 1) {
       const remainingChats = chats.filter((chat) => chat.uuid !== chatId)
@@ -159,7 +155,6 @@ export function Sidebar({
 
   const setActiveChatAndGetMessages = async (chatId: string) => {
     setActiveChatId(chatId)
-
     const messages = await getMessages(chatId)
     let agentId = chats.find((chat) => chat.uuid === chatId)?.agent_id
     if (!agentId && messages && messages.length > 0) {
@@ -236,6 +231,23 @@ export function Sidebar({
             <Button
               variant='ghost'
               size='sm'
+              onClick={() => {
+                const { setIsMeditationMode } = useChatStore.getState()
+                setIsMeditationMode(true)
+              }}
+              className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
+              title='Meditate'
+            >
+              <Image
+                src={'/images/Meditate.png'}
+                alt='Meditate'
+                width={40}
+                height={40}
+              />
+            </Button>
+            <Button
+              variant='ghost'
+              size='sm'
               onClick={() => router.push('/voice')}
               className='w-10 h-10 p-0 mb-4 hover:bg-red-800 hover:text-white'
               title='Voice Chat'
@@ -250,13 +262,13 @@ export function Sidebar({
             <Button
               variant='ghost'
               size='sm'
-              onClick={() => router.push('/meditate')}
+              onClick={() => router.push('/community')}
               className='w-10 h-10 p-0 mb-6 hover:bg-red-800 hover:text-white'
-              title='Meditate'
+              title={t('navigation.socialFeed')}
             >
               <Image
-                src={'/images/Meditate.png'}
-                alt='Meditate'
+                src={'/images/pricing-1.png'}
+                alt='Social Feed'
                 width={40}
                 height={40}
               />
@@ -293,14 +305,8 @@ export function Sidebar({
                       <MoreVertical className='w-4 h-4' />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    side='right'
-                    align='end'
-                    className='w-48'
-                  >
-                    <DropdownMenuItem
-                      onClick={() => setIsSettingsModalOpen(true)}
-                    >
+                  <DropdownMenuContent side='right' align='end' className='w-48'>
+                    <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
                       <Settings className='w-4 h-4 mr-2' />
                       {t('navigation.settings')}
                     </DropdownMenuItem>
@@ -334,10 +340,9 @@ export function Sidebar({
   return (
     <div className='hidden md:flex w-80 bg-[#efe0bd] border-r border-[#2c2c2c]/30 flex-col transform transition-all duration-300 ease-in-out'>
       {/* Header */}
-      <div className='h-16'>
-        <div className='h-full flex items-center justify-between'>
+      <div className='px-4 py-4'>
+        <div className='flex items-center justify-between mb-4'>
           <div className='' />
-
           <Image
             src={'/images/giac-ngo-logo-6.png'}
             alt='Logo'
@@ -347,7 +352,6 @@ export function Sidebar({
             style={{ cursor: 'pointer' }}
             onClick={() => router.push('/landing')}
           />
-
           <Button
             variant='ghost'
             size='sm'
@@ -359,10 +363,26 @@ export function Sidebar({
           </Button>
         </div>
 
-        {/* Admin / Voice Chat / Meditate / New Chat - grouped with icons and labels */}
-        <div className='space-y-2'>
-          {/* These buttons are hidden in expanded mode, shown only in collapsed mode */}
-          {user && (
+        {/* Divider line - Right after logo */}
+        <div className='border-t border-[#2c2c2c]/30 mb-3'></div>
+
+        {/* Admin Button */}
+        {/* {isAdmin && (
+          <div className='mb-3'>
+            <Button
+              variant='outline'
+              size='sm'
+              onClick={() => router.push('/admin')}
+              className='w-full justify-center items-center border border-black text-black rounded-lg bg-[#f9f0dc] h-8 text-xs hover:bg-red-800 hover:text-white'
+            >
+              <span>Admin</span>
+            </Button>
+          </div>
+        )} */}
+
+        {/* New Chat Button */}
+        {user && (
+          <div className='mb-4'>
             <Button
               variant='outline'
               size='sm'
@@ -372,12 +392,12 @@ export function Sidebar({
               <Plus className='w-3 h-3' />
               <span>{t('chat.newChat')}</span>
             </Button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Search and Chats */}
-      <div className='flex-1 overflow-y-auto p-4 border-t border-[#2c2c2c]/30'>
+      <div className='flex-1 overflow-y-auto p-4'>
         {/* Search */}
         {/* <div className='relative mb-4'>
           <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-gray-500' />
@@ -393,10 +413,10 @@ export function Sidebar({
         {/* History Dropdown - hidden when not logged in */}
         {user && (
           <>
-            <div className='mb-2'>
+            <div className='mb-3'>
               <button
                 onClick={() => setIsHistoryOpen((v) => !v)}
-                className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-2 py-2'
+                className='w-full flex items-center justify-between text-sm text-black hover:bg-red-800 hover:text-white rounded-lg px-3 py-2 bg-red-800 text-white'
               >
                 <span>{t('navigation.history') || 'Lịch sử'}</span>
                 <ChevronDown
@@ -407,24 +427,26 @@ export function Sidebar({
               </button>
             </div>
             {isHistoryOpen && (
-              <ChatList
-                chats={chats}
-                activeChatId={activeChatId}
-                loadingTitleChatId={loadingTitleChatId}
-                totalChats={totalChats}
-                onChatSelect={setActiveChatAndGetMessages}
-                onDeleteChat={handleDeleteChat}
-                onEditChatTitle={editChatTitle}
-                onLoadMore={handleLoadMore}
-              />
+              <div className='mt-2'>
+                <ChatList
+                  chats={chats}
+                  activeChatId={activeChatId}
+                  loadingTitleChatId={loadingTitleChatId}
+                  totalChats={totalChats}
+                  onChatSelect={setActiveChatAndGetMessages}
+                  onDeleteChat={handleDeleteChat}
+                  onEditChatTitle={editChatTitle}
+                  onLoadMore={handleLoadMore}
+                />
+              </div>
             )}
           </>
         )}
       </div>
 
       {/* Footer V2 */}
-      <div className='px-5 pt-5 pb-5 border-t border-[#2c2c2c]/40'>
-        <div className='flex items-center justify-center gap-2 flex-wrap'>
+      <div className='px-4 pt-6 pb-5 border-t border-[#2c2c2c]/40'>
+        <div className='flex items-center justify-center gap-4 flex-wrap'>
           <div className='transition-all duration-300 ease-in-out'>
             {user && (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
@@ -433,19 +455,13 @@ export function Sidebar({
                     <Button
                       variant='ghost'
                       size='sm'
-                      className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200'
+                      className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2'
                     >
                       <Settings className='w-4 h-4' />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    side='top'
-                    align='center'
-                    className='w-48'
-                  >
-                    <DropdownMenuItem
-                      onClick={() => setIsSettingsModalOpen(true)}
-                    >
+                  <DropdownMenuContent side='top' align='center' className='w-48'>
+                    <DropdownMenuItem onClick={() => setIsSettingsModalOpen(true)}>
                       <Settings className='w-4 h-4 mr-2' />
                       {t('navigation.settings')}
                     </DropdownMenuItem>
@@ -463,7 +479,7 @@ export function Sidebar({
             <Button
               variant={'ghost'}
               size='sm'
-              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200`}
+              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2`}
               onClick={() => changeLanguage(Language.EN)}
             >
               🇺🇸 {t('settings.english')}
@@ -472,19 +488,20 @@ export function Sidebar({
             <Button
               variant={'ghost'}
               size='sm'
-              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200`}
+              className={`text-xs text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2`}
               onClick={() => changeLanguage(Language.VI)}
             >
               🇻🇳 {t('settings.vietnamese')}
             </Button>
           )}
+
           <div className='transition-all duration-300 ease-in-out'>
             {!user && (
               <div className='animate-in fade-in-0 slide-in-from-bottom-2 duration-300'>
                 <Button
                   variant={'ghost'}
                   onClick={() => setIsLogin(true)}
-                  className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200'
+                  className='text-black hover:bg-red-800 hover:text-white transition-colors duration-200 px-2'
                 >
                   <LogIn className='w-4 h-4' />
                 </Button>
@@ -495,19 +512,13 @@ export function Sidebar({
       </div>
 
       {/* Settings Modal */}
-      <SettingsModal
-        open={isSettingsModalOpen}
-        onOpenChange={setIsSettingsModalOpen}
-      />
+      <SettingsModal open={isSettingsModalOpen} onOpenChange={setIsSettingsModalOpen} />
 
       {/* Logout Confirmation Dialog */}
       {renderLogoutDialog()}
 
       {/* Login Modal */}
-      <LoginModal
-        open={isLogin}
-        onClose={() => setIsLogin(false)}
-      />
+      <LoginModal open={isLogin} onClose={() => setIsLogin(false)} />
     </div>
   )
 }
