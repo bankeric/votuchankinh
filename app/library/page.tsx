@@ -16,8 +16,8 @@ import {
 // Dùng lại data từ bản 1
 import tocData from './tocData'
 import sutraContent from './sutraContent'
-import storyData from './story/storyData'
-import storyContent from './story/storyContent'
+import { storyData } from './story/storyData'
+import { storyContent } from './story/storyContent'
 
 interface SutraContentItem {
   title?: string
@@ -40,6 +40,16 @@ export default function LibraryPage() {
   const [storySubTab, setStorySubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
   const [keSubTab, setKeSubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+
+  // Validate data on mount
+  useEffect(() => {
+    if (!Array.isArray(tocData)) {
+      console.error('tocData is not an array:', tocData)
+    }
+    if (!Array.isArray(storyData)) {
+      console.error('storyData is not an array:', storyData)
+    }
+  }, [])
 
   // Background setup
   useEffect(() => {
@@ -97,6 +107,7 @@ export default function LibraryPage() {
   // Build search index
   const buildSearchIndex = () => {
     const searchIndex: any[] = []
+    if (!Array.isArray(tocData)) return searchIndex
     tocData.forEach((chapter) => {
       // add chapter
       searchIndex.push({
@@ -229,12 +240,12 @@ export default function LibraryPage() {
   }
 
   // Chia câu chuyện thành 2 nhóm
-  const suTamVoStories = storyData && storyData[0] && storyData[0].items ? 
+  const suTamVoStories = Array.isArray(storyData) && storyData[0] && Array.isArray(storyData[0].items) ? 
     storyData[0].items.filter(story => 
       ['c1', 'c2', 'c3'].includes(story.id) // Câu chuyện của Sư Tam Vô
     ) : []
   
-  const huynhDeStories = storyData && storyData[0] && storyData[0].items ? 
+  const huynhDeStories = Array.isArray(storyData) && storyData[0] && Array.isArray(storyData[0].items) ? 
     storyData[0].items.filter(story => 
       ['c4', 'c5', 'c6'].includes(story.id) // Câu chuyện của Huynh Đệ
     ) : []
@@ -244,16 +255,28 @@ export default function LibraryPage() {
   }
 
   // Chia các kệ thành 2 nhóm
-  const suTamVoChapters = tocData.filter(chapter => 
+  const suTamVoChapters = Array.isArray(tocData) ? tocData.filter(chapter => 
     ['section-01-tam-vo', 'section-02-gioi-luat', 'section-03-tim-dao'].includes(chapter.id)
-  )
+  ) : []
   
-  const huynhDeChapters = tocData.filter(chapter => 
+  const huynhDeChapters = Array.isArray(tocData) ? tocData.filter(chapter => 
     !['section-01-tam-vo', 'section-02-gioi-luat', 'section-03-tim-dao'].includes(chapter.id)
-  )
+  ) : []
 
   const getCurrentChapters = () => {
     return keSubTab === 'su-tam-vo' ? suTamVoChapters : huynhDeChapters
+  }
+
+  // Early return if data is invalid
+  if (!Array.isArray(tocData) || !Array.isArray(storyData)) {
+    return (
+      <main className='min-h-screen text-[#2c2c2c] relative flex items-center justify-center'>
+        <div className='text-center'>
+          <h1 className='text-2xl font-serif text-[#991b1b] mb-4'>Đang tải dữ liệu...</h1>
+          <p className='text-sm text-[#991b1b]/60'>Vui lòng thử lại sau ít phút.</p>
+        </div>
+      </main>
+    )
   }
 
   return (
