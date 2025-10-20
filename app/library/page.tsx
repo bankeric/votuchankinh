@@ -1,7 +1,7 @@
 'use client'
 
 import type React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import SiteFooter from '@/components/site-footer'
@@ -18,6 +18,10 @@ import tocData from './tocData'
 import sutraContent from './sutraContent'
 import storyData from './story/storyData'
 import storyContent from './story/storyContent'
+import { useCategoryStore } from '@/store/category'
+import { useOnce } from '@/hooks/use-once'
+import { CategoryAuthorGroup, CategoryType } from '@/interfaces/category'
+import { Story } from '@/interfaces/story'
 
 interface SutraContentItem {
   title?: string
@@ -29,18 +33,28 @@ interface SutraContentItem {
 export default function LibraryPage() {
   // State
   const [language, setLanguage] = useState<'vi' | 'en'>('vi')
-  const [selectedSutraItem, setSelectedSutraItem] = useState<string>('')
+  const [selectedStory, setSelectedStory] = useState<Story>()
   const [expandedSection, setExpandedSection] = useState<string>('')
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [searchResults, setSearchResults] = useState<any[]>([])
   const [showSearchResults, setShowSearchResults] = useState<boolean>(false)
   const [selectedResultIndex, setSelectedResultIndex] = useState<number>(-1)
-  const [activeTab, setActiveTab] = useState<'ke' | 'story'>('ke')
+  const [activeTab, setActiveTab] = useState<CategoryType>(CategoryType.VERSE)
   const [storyId, setStoryId] = useState<string>('')
-  const [storySubTab, setStorySubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
-  const [keSubTab, setKeSubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
+  const [storySubTab, setStorySubTab] = useState<CategoryAuthorGroup>(
+    CategoryAuthorGroup.TAMVO
+  )
+  const [keSubTab, setKeSubTab] = useState<CategoryAuthorGroup>(
+    CategoryAuthorGroup.TAMVO
+  )
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
+  // Global states
+  const { list: listCategories, fetchCategories } = useCategoryStore()
+
+  useOnce(() => {
+    fetchCategories(undefined, undefined, true)
+  }, [])
   // Background setup
   useEffect(() => {
     document.body.style.background =
@@ -58,7 +72,7 @@ export default function LibraryPage() {
     const s = searchParams?.get('story') || ''
     if (s) {
       setStoryId(s)
-      setActiveTab('story')
+      setActiveTab(CategoryType.STORY)
     }
   }, [searchParams])
 
@@ -164,11 +178,11 @@ export default function LibraryPage() {
       )
       if (parentChapter) {
         setExpandedSection(parentChapter.id)
-        setSelectedSutraItem(result.id)
+        setSelectedStory(result.id)
       }
     } else if (result.type === 'chapter') {
       setExpandedSection(result.id)
-      setSelectedSutraItem('')
+      setSelectedStory(undefined)
     }
     setShowSearchResults(false)
     setSearchQuery('')
@@ -224,36 +238,24 @@ export default function LibraryPage() {
     setExpandedSection(expandedSection === chapterId ? '' : chapterId)
   }
 
-  const handleItemClick = (itemId: string) => {
-    setSelectedSutraItem(itemId)
+  const handleItemClick = (story: Story) => {
+    setSelectedStory(story)
   }
-
-  // Chia câu chuyện thành 2 nhóm
-  const suTamVoStories = storyData && storyData[0] && storyData[0].items ? 
-    storyData[0].items.filter(story => 
-      ['c1', 'c2', 'c3'].includes(story.id) // Câu chuyện của Sư Tam Vô
-    ) : []
-  
-  const huynhDeStories = storyData && storyData[0] && storyData[0].items ? 
-    storyData[0].items.filter(story => 
-      ['c4', 'c5', 'c6'].includes(story.id) // Câu chuyện của Huynh Đệ
-    ) : []
 
   const getCurrentStories = () => {
-    return storySubTab === 'su-tam-vo' ? suTamVoStories : huynhDeStories
+    return listCategories.filter(
+      (category) =>
+        category.type === CategoryType.STORY &&
+        category.author_group === storySubTab
+    )
   }
 
-  // Chia các kệ thành 2 nhóm
-  const suTamVoChapters = tocData.filter(chapter => 
-    ['section-01-tam-vo', 'section-02-gioi-luat', 'section-03-tim-dao'].includes(chapter.id)
-  )
-  
-  const huynhDeChapters = tocData.filter(chapter => 
-    !['section-01-tam-vo', 'section-02-gioi-luat', 'section-03-tim-dao'].includes(chapter.id)
-  )
-
   const getCurrentChapters = () => {
-    return keSubTab === 'su-tam-vo' ? suTamVoChapters : huynhDeChapters
+    return listCategories.filter(
+      (category) =>
+        category.type === CategoryType.VERSE &&
+        category.author_group === keSubTab
+    )
   }
 
   return (
@@ -277,7 +279,7 @@ export default function LibraryPage() {
         storySubTab={storySubTab}
         setStorySubTab={setStorySubTab}
         expandedSection={expandedSection}
-        selectedSutraItem={selectedSutraItem}
+        selectedStory={selectedStory}
         storyId={storyId}
         setStoryId={setStoryId}
         onChapterClick={handleChapterClick}
@@ -343,7 +345,7 @@ export default function LibraryPage() {
           storySubTab={storySubTab}
           setStorySubTab={setStorySubTab}
           expandedSection={expandedSection}
-          selectedSutraItem={selectedSutraItem}
+          selectedStory={selectedStory}
           storyId={storyId}
           setStoryId={setStoryId}
           onChapterClick={handleChapterClick}
@@ -378,13 +380,13 @@ export default function LibraryPage() {
           {/* Sutra Content or Story */}
           <LibraryContent
             activeTab={activeTab}
-            selectedSutraItem={selectedSutraItem}
             storyId={storyId}
             sutraContent={sutraContent}
             storyContent={storyContent}
             tocData={tocData}
             language={language}
             translations={translations}
+            selectedStory={selectedStory}
           />
         </div>
       </div>

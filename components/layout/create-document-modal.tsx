@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { CreateStoryRequest, Story, StoryStatus } from '@/interfaces/story'
 import { useCategoryStore } from '@/store/category'
+import { use } from 'chai'
 
 interface CreateDocumentModalProps {
   open: boolean
@@ -38,6 +39,33 @@ export const CreateDocumentModal = ({
     category_id: '',
     status: StoryStatus.DRAFT
   })
+
+  useEffect(() => {
+    if (story) {
+      setData({
+        author: story.author,
+        title: story.title,
+        content: story.content,
+        language: story.language,
+        category_id: story.category_id,
+        status: story.status
+      })
+    }
+  }, [story])
+
+  useEffect(() => {
+    if (!open) {
+      // Reset data when modal is closed
+      setData({
+        author: '',
+        title: '',
+        content: '',
+        language: 'vi',
+        category_id: '',
+        status: StoryStatus.DRAFT
+      })
+    }
+  }, [open])
 
   const formatText = (command: string, value?: string) => {
     if (contentEditableRef.current) {
@@ -96,8 +124,6 @@ export const CreateDocumentModal = ({
       [name]: value
     }))
   }
-
-  console.log('Current data state:', data)
 
   return (
     <AnimatePresence>
@@ -233,6 +259,7 @@ export const CreateDocumentModal = ({
                       onInput={handleContentChange}
                       className='w-full min-h-[200px] px-4 py-3 bg-white border-2 border-[#2c2c2c]/20 rounded-b-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] overflow-auto'
                       style={{ maxHeight: '300px' }}
+                      dangerouslySetInnerHTML={{ __html: data.content }}
                       suppressContentEditableWarning={true}
                       onBlur={() => {
                         if (contentEditableRef.current) {

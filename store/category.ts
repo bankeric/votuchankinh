@@ -6,7 +6,11 @@ import { create } from 'zustand'
 interface CategoryState {
   list: Category[]
 
-  fetchCategories(limit?: number, offset?: number): void
+  fetchCategories(
+    limit?: number,
+    offset?: number,
+    includeStories?: boolean
+  ): void
   addCategory(category: CreateCategoryRequest): void
 }
 
@@ -14,9 +18,17 @@ export const useCategoryStore = create<CategoryState>()((set, get) => {
   return {
     list: [],
 
-    fetchCategories: async (limit?: number, offset?: number) => {
+    fetchCategories: async (
+      limit?: number,
+      offset?: number,
+      includeStories?: boolean
+    ) => {
       try {
-        const { data } = await categoryService.getCategories(offset, limit)
+        const { data } = await categoryService.getCategories(
+          offset,
+          limit,
+          includeStories
+        )
         set({ list: data })
       } catch (error) {
         console.error('Error fetching categories:', error)

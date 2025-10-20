@@ -7,6 +7,7 @@ interface StoryState {
   fetchStories: (limit?: number, offset?: number) => Promise<void>
   addStory: (story: CreateStoryRequest) => void
   updateStory: (uuid: string, story: Partial<CreateStoryRequest>) => void
+  deleteStory: (uuid: string) => void
 }
 
 export const useStoryStore = create<StoryState>()((set, get) => {
@@ -35,6 +36,15 @@ export const useStoryStore = create<StoryState>()((set, get) => {
       // Update story in the list
       try {
         await storyService.updateStory(uuid, story)
+        const { data } = await storyService.getStories()
+        set({ list: data })
+      } catch (error) {
+        console.error('Error updating story:', error)
+      }
+    },
+    deleteStory: async (uuid: string) => {
+      try {
+        await storyService.deleteStory(uuid)
         const { data } = await storyService.getStories()
         set({ list: data })
       } catch (error) {

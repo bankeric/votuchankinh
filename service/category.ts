@@ -9,17 +9,13 @@ class CategoryService {
 
   async getCategories(
     offset: number = 0,
-    limit: number = 50
+    limit: number = 50,
+    includeStories: boolean = false
   ): Promise<CategoryListResponse> {
-    const params = new URLSearchParams({
-      offset: offset.toString(),
-      limit: limit.toString()
-    })
-
     const { data } = await axiosInstance.get<CategoryListResponse>(
-      `${this.BASE_URL}?${params.toString()}`,
+      `${this.BASE_URL}`,
       {
-        params: { offset, limit }
+        params: { offset, limit, include_stories: includeStories }
       }
     )
     return data

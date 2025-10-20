@@ -35,6 +35,10 @@ class StoryService {
       ...request
     })
   }
+
+  async deleteStory(uuid: string) {
+    await axiosInstance.delete(`/api/v1/stories/${uuid}`)
+  }
 }
 
 export const storyService = new StoryService()

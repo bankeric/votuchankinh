@@ -20,17 +20,23 @@ import { useStoryStore } from '@/store/story'
 import { CreateStoryRequest, Story, StoryStatus } from '@/interfaces/story'
 import { useCategoryStore } from '@/store/category'
 import { useOnce } from '@/hooks/use-once'
-import { CategoryType, CreateCategoryRequest } from '@/interfaces/category'
+import {
+  CategoryAuthorGroup,
+  CategoryType,
+  CreateCategoryRequest
+} from '@/interfaces/category'
 import { CreateCategoryModal } from '@/components/layout/create-category-modal'
 
 export default function ManagementDocumentsPage() {
   const [openModal, setOpenModal] = useState(false)
+  const [selectedStory, setSelectedStory] = useState<Story>()
   const [openCategoryModal, setOpenCategoryModal] = useState(false)
   const {
     fetchStories,
     addStory,
     list: storyList,
-    updateStory
+    updateStory,
+    deleteStory
   } = useStoryStore()
   const {
     fetchCategories,
@@ -46,8 +52,17 @@ export default function ManagementDocumentsPage() {
   const handleCreate = () => {
     setOpenModal(true)
   }
+  const handleEdit = (file: Story) => {
+    setSelectedStory(file)
+    setOpenModal(true)
+  }
   const handleCreateCategory = () => {
     setOpenCategoryModal(true)
+  }
+
+  const onCloseModal = () => {
+    setSelectedStory(undefined)
+    setOpenModal(false)
   }
   // const handleView = (file: FileItem) => {}
   // const handleEdit = (file: FileItem) => {}
@@ -92,7 +107,11 @@ export default function ManagementDocumentsPage() {
   }
 
   const handleAddDocument = (newStory: CreateStoryRequest) => {
-    addStory(newStory)
+    if (selectedStory) {
+      updateStory(selectedStory.uuid, newStory)
+    } else {
+      addStory(newStory)
+    }
     setOpenModal(false)
   }
 
@@ -100,14 +119,24 @@ export default function ManagementDocumentsPage() {
     const [selectedType, setSelectedType] = useState<CategoryType>(
       CategoryType.VERSE
     )
+    const [selectedAuthorGroup, setSelectedAuthorGroup] =
+      useState<CategoryAuthorGroup>(CategoryAuthorGroup.TAMVO)
 
     const handleCategoryChange = (newCategory: string) => {
       setSelectedType(newCategory as CategoryType)
     }
 
+    const handleAuthorGroupChange = (newAuthorGroup: string) => {
+      setSelectedAuthorGroup(newAuthorGroup as CategoryAuthorGroup)
+    }
+
     const filteredCategories = useMemo(() => {
-      return categoryList.filter((category) => category.type === selectedType)
-    }, [categoryList, selectedType])
+      return categoryList.filter(
+        (category) =>
+          category.type === selectedType &&
+          category.author_group === selectedAuthorGroup
+      )
+    }, [categoryList, selectedType, selectedAuthorGroup])
 
     return (
       <tr
@@ -128,6 +157,20 @@ export default function ManagementDocumentsPage() {
             >
               <option value={CategoryType.VERSE}>Kệ</option>
               <option value={CategoryType.STORY}>Câu Chuyện</option>
+            </select>
+            <ChevronDown className='absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#2c2c2c]/60 pointer-events-none' />
+          </div>
+        </td>
+
+        <td className='px-4 py-3'>
+          <div className='relative'>
+            <select
+              value={selectedType}
+              onChange={(e) => handleAuthorGroupChange(e.target.value)}
+              className='w-full px-3 py-1.5 pr-8 bg-white border border-[#2c2c2c]/20 rounded-lg font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] appearance-none cursor-pointer hover:bg-[#EFE0BD]/30 transition-colors'
+            >
+              <option value={CategoryAuthorGroup.TAMVO}>Sư Tam Vô</option>
+              <option value={CategoryAuthorGroup.HUYNHDE}>Huynh Đệ</option>
             </select>
             <ChevronDown className='absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#2c2c2c]/60 pointer-events-none' />
           </div>
@@ -204,16 +247,17 @@ export default function ManagementDocumentsPage() {
                         >
                           <Eye className='w-4 h-4 text-[#2c2c2c]' />
                         </button> */}
-            {/* <button
-                          onClick={() => handleEdit(file)}
-                          className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-lg transition-colors'
-                          title='Chỉnh sửa'
-                        >
-                          <Edit className='w-4 h-4 text-[#2c2c2c]' />
-                        </button> */}
+            <button
+              onClick={() => handleEdit(item)}
+              className='p-1.5 hover:bg-[#2c2c2c]/10 rounded-lg transition-colors'
+              title='Chỉnh sửa'
+            >
+              <Edit className='w-4 h-4 text-[#2c2c2c]' />
+            </button>
             <button
               className='p-1.5 hover:bg-red-100 rounded-lg transition-colors'
               title='Xóa'
+              onClick={() => deleteStory(item.uuid)}
             >
               <Trash2 className='w-4 h-4 text-red-600' />
             </button>
@@ -267,11 +311,11 @@ export default function ManagementDocumentsPage() {
                     Danh mục
                   </th>
                   <th className='px-4 py-3 text-left font-serif text-sm font-semibold text-[#2c2c2c]'>
+                    Nhóm tác giả
+                  </th>
+                  <th className='px-4 py-3 text-left font-serif text-sm font-semibold text-[#2c2c2c]'>
                     Danh mục phụ
                   </th>
-                  {/* <th className='px-4 py-3 text-left font-serif text-sm font-semibold text-[#2c2c2c]'>
-                    Tags
-                  </th> */}
                   <th className='px-4 py-3 text-left font-serif text-sm font-semibold text-[#2c2c2c]'>
                     Ngày tải
                   </th>
@@ -317,8 +361,9 @@ export default function ManagementDocumentsPage() {
 
       <CreateDocumentModal
         open={openModal}
-        onClose={() => setOpenModal(false)}
+        onClose={onCloseModal}
         onConfirm={handleAddDocument}
+        story={selectedStory}
       />
       <CreateCategoryModal
         open={openCategoryModal}

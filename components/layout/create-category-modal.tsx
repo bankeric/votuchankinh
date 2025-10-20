@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import {
   Category,
+  CategoryAuthorGroup,
   CategoryType,
   CreateCategoryRequest
 } from '@/interfaces/category'
@@ -23,7 +24,8 @@ export const CreateCategoryModal = ({
   const [data, setData] = useState<CreateCategoryRequest>({
     name: '',
     description: '',
-    type: CategoryType.STORY
+    type: CategoryType.STORY,
+    author_group: CategoryAuthorGroup.TAMVO
   })
 
   useEffect(() => {
@@ -31,7 +33,8 @@ export const CreateCategoryModal = ({
       setData({
         name: category.name,
         description: category.description,
-        type: category.type
+        type: category.type,
+        author_group: category.author_group
       })
     }
   }, [category])
@@ -124,6 +127,29 @@ export const CreateCategoryModal = ({
                     >
                       <option value={CategoryType.VERSE}>Verse</option>
                       <option value={CategoryType.STORY}>Story</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
+                      Nhóm tác giả
+                    </label>
+                    <select
+                      className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
+                      defaultValue={data.author_group}
+                      onChange={(e) =>
+                        setData({
+                          ...data,
+                          author_group: e.target.value as CategoryAuthorGroup
+                        })
+                      }
+                    >
+                      <option value={CategoryAuthorGroup.TAMVO}>
+                        Sư Tam Vô
+                      </option>
+                      <option value={CategoryAuthorGroup.HUYNHDE}>
+                        Huynh Đệ
+                      </option>
                     </select>
                   </div>
                 </div>
