@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Bold,
@@ -12,44 +12,117 @@ import {
   Underline,
   X
 } from 'lucide-react'
+import { CreateStoryRequest, Story, StoryStatus } from '@/interfaces/story'
+import { useCategoryStore } from '@/store/category'
+import { use } from 'chai'
 
 interface CreateDocumentModalProps {
   open: boolean
   onClose: () => void
+  onConfirm?: (data: CreateStoryRequest) => void
+  story?: Story
 }
 
 export const CreateDocumentModal = ({
   open,
-  onClose
+  onClose,
+  onConfirm,
+  story
 }: CreateDocumentModalProps) => {
-  const [drawerMode, setDrawerMode] = useState<'create' | 'edit' | 'view'>(
-    'create'
-  )
-  const [attachments, setAttachments] = useState<File[]>([])
-  const [photos, setPhotos] = useState<File[]>([])
+  const { list: listCategories } = useCategoryStore()
+  const contentEditableRef = useRef<HTMLDivElement>(null)
+  const [data, setData] = useState<CreateStoryRequest>({
+    author: '',
+    title: '',
+    content: '',
+    language: 'vi',
+    category_id: '',
+    status: StoryStatus.DRAFT
+  })
+
+  useEffect(() => {
+    if (story) {
+      setData({
+        author: story.author,
+        title: story.title,
+        content: story.content,
+        language: story.language,
+        category_id: story.category_id,
+        status: story.status
+      })
+    }
+  }, [story])
+
+  useEffect(() => {
+    if (!open) {
+      // Reset data when modal is closed
+      setData({
+        author: '',
+        title: '',
+        content: '',
+        language: 'vi',
+        category_id: '',
+        status: StoryStatus.DRAFT
+      })
+    }
+  }, [open])
 
   const formatText = (command: string, value?: string) => {
-    document.execCommand(command, false, value)
-  }
+    if (contentEditableRef.current) {
+      contentEditableRef.current.focus()
+      document.execCommand(command, false, value)
 
-  const handleAttachmentUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setAttachments([...attachments, ...Array.from(e.target.files)])
+      // Update the content state
+      const newContent = contentEditableRef.current.innerHTML
+      setData((prev) => ({
+        ...prev,
+        content: newContent
+      }))
     }
   }
 
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setPhotos([...photos, ...Array.from(e.target.files)])
+  const handleContentChange = () => {
+    if (contentEditableRef.current) {
+      const newContent = contentEditableRef.current.innerHTML
+      setData((prev) => ({
+        ...prev,
+        content: newContent
+      }))
     }
   }
 
-  const removeAttachment = (index: number) => {
-    setAttachments(attachments.filter((_, i) => i !== index))
+  // Initialize placeholder when component mounts
+  useEffect(() => {
+    if (contentEditableRef.current && !data.content) {
+      contentEditableRef.current.innerHTML =
+        '<p style="color: #9ca3af;">Nhập nội dung chi tiết tài liệu...</p>'
+    }
+  }, [open])
+
+  const handleConfirm = () => {
+    if (onConfirm) {
+      // Get the final content from the contentEditable div
+      const finalContent = contentEditableRef.current?.innerHTML || data.content
+      const dataToSubmit = {
+        ...data,
+        content: finalContent
+      }
+      console.log('Data to confirm:', dataToSubmit)
+      onConfirm(dataToSubmit)
+    }
+    onClose()
   }
 
-  const removePhoto = (index: number) => {
-    setPhotos(photos.filter((_, i) => i !== index))
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target
+    setData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
   return (
@@ -75,11 +148,7 @@ export const CreateDocumentModal = ({
               {/* Header */}
               <div className='flex items-center justify-between p-6 border-b-2 border-[#2c2c2c]/20'>
                 <h3 className='text-2xl font-serif font-bold text-[#991b1b]'>
-                  {drawerMode === 'create'
-                    ? 'Tạo tài liệu mới'
-                    : drawerMode === 'edit'
-                    ? 'Chỉnh sửa tài liệu'
-                    : 'Chi tiết tài liệu'}
+                  Tài liệu
                 </h3>
                 <button
                   onClick={onClose}
@@ -101,7 +170,23 @@ export const CreateDocumentModal = ({
                       type='text'
                       className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
                       placeholder='Nhập tiêu đề tài liệu...'
-                      disabled={drawerMode === 'view'}
+                      name='title'
+                      value={data.title}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div>
+                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
+                      Tác giả
+                    </label>
+                    <input
+                      type='text'
+                      className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
+                      placeholder='Nhập tên tác giả...'
+                      name='author'
+                      value={data.author}
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -111,219 +196,189 @@ export const CreateDocumentModal = ({
                     </label>
 
                     {/* Formatting Toolbar */}
-                    {drawerMode !== 'view' && (
-                      <div className='flex items-center gap-1 p-2 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-t-xl border-b-0'>
-                        <button
-                          type='button'
-                          onClick={() => formatText('bold')}
-                          className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
-                          title='Bold'
-                        >
-                          <Bold className='w-4 h-4 text-[#2c2c2c]' />
-                        </button>
-                        <button
-                          type='button'
-                          onClick={() => formatText('italic')}
-                          className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
-                          title='Italic'
-                        >
-                          <Italic className='w-4 h-4 text-[#2c2c2c]' />
-                        </button>
-                        <button
-                          type='button'
-                          onClick={() => formatText('underline')}
-                          className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
-                          title='Underline'
-                        >
-                          <Underline className='w-4 h-4 text-[#2c2c2c]' />
-                        </button>
-                        <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
-                        <button
-                          type='button'
-                          onClick={() => formatText('insertUnorderedList')}
-                          className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
-                          title='Bullet List'
-                        >
-                          <List className='w-4 h-4 text-[#2c2c2c]' />
-                        </button>
-                        <button
-                          type='button'
-                          onClick={() => formatText('insertOrderedList')}
-                          className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
-                          title='Numbered List'
-                        >
-                          <ListOrdered className='w-4 h-4 text-[#2c2c2c]' />
-                        </button>
-                        <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
-                        <button
-                          type='button'
-                          onClick={() => {
-                            const url = prompt('Nhập URL:')
-                            if (url) formatText('createLink', url)
-                          }}
-                          className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
-                          title='Insert Link'
-                        >
-                          <LinkIcon className='w-4 h-4 text-[#2c2c2c]' />
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Content Editable Area */}
-                    <div
-                      contentEditable={drawerMode !== 'view'}
-                      className={`w-full min-h-[200px] px-4 py-3 bg-white border-2 border-[#2c2c2c]/20 ${
-                        drawerMode !== 'view' ? 'rounded-b-xl' : 'rounded-xl'
-                      } font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] overflow-auto`}
-                      suppressContentEditableWarning
-                    >
-                      <p className='text-[#2c2c2c]/40'>
-                        Nhập nội dung chi tiết tài liệu...
-                      </p>
+                    <div className='flex items-center gap-1 p-2 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-t-xl border-b-0'>
+                      <button
+                        type='button'
+                        onClick={() => formatText('bold')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Bold'
+                      >
+                        <Bold className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <button
+                        type='button'
+                        onClick={() => formatText('italic')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Italic'
+                      >
+                        <Italic className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <button
+                        type='button'
+                        onClick={() => formatText('underline')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Underline'
+                      >
+                        <Underline className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
+                      <button
+                        type='button'
+                        onClick={() => formatText('insertUnorderedList')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Bullet List'
+                      >
+                        <List className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <button
+                        type='button'
+                        onClick={() => formatText('insertOrderedList')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Numbered List'
+                      >
+                        <ListOrdered className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
+                      <button
+                        type='button'
+                        onClick={() => {
+                          const url = prompt('Nhập URL:')
+                          if (url) formatText('createLink', url)
+                        }}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Insert Link'
+                      >
+                        <LinkIcon className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
                     </div>
+
+                    {/* Rich Text Editor */}
+                    <div
+                      ref={contentEditableRef}
+                      contentEditable
+                      onInput={handleContentChange}
+                      className='w-full min-h-[200px] px-4 py-3 bg-white border-2 border-[#2c2c2c]/20 rounded-b-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] overflow-auto'
+                      style={{ maxHeight: '300px' }}
+                      dangerouslySetInnerHTML={{ __html: data.content }}
+                      suppressContentEditableWarning={true}
+                      onBlur={() => {
+                        if (contentEditableRef.current) {
+                          const content =
+                            contentEditableRef.current.innerHTML.trim()
+                          if (
+                            !content ||
+                            content === '<p><br></p>' ||
+                            content === '<br>'
+                          ) {
+                            contentEditableRef.current.innerHTML =
+                              '<p style="color: #9ca3af;">Nhập nội dung chi tiết tài liệu...</p>'
+                          }
+                        }
+                      }}
+                      onFocus={() => {
+                        if (contentEditableRef.current) {
+                          const content = contentEditableRef.current.innerHTML
+                          if (
+                            content.includes(
+                              'Nhập nội dung chi tiết tài liệu...'
+                            )
+                          ) {
+                            contentEditableRef.current.innerHTML = ''
+                          }
+                        }
+                      }}
+                    />
                   </div>
 
-                  <div>
-                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Tệp đính kèm
+                  {/* Select language */}
+                  <div className='mt-4'>
+                    <label
+                      htmlFor='language'
+                      className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'
+                    >
+                      Chọn ngôn ngữ
                     </label>
-
-                    {drawerMode !== 'view' && (
-                      <div className='mb-3'>
-                        <input
-                          type='file'
-                          id='attachment-upload'
-                          multiple
-                          onChange={handleAttachmentUpload}
-                          className='hidden'
-                          accept='.pdf,.doc,.docx,.txt,.zip'
-                        />
-                        <button
-                          type='button'
-                          onClick={() =>
-                            document
-                              .getElementById('attachment-upload')
-                              ?.click()
-                          }
-                          className='flex items-center gap-2 px-4 py-2 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] hover:bg-[#f3ead7] transition-colors'
-                        >
-                          <Paperclip className='w-4 h-4' />
-                          <span>Chọn tệp đính kèm</span>
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Attachment List */}
-                    {attachments.length > 0 && (
-                      <div className='space-y-2'>
-                        {attachments.map((file, index) => (
-                          <div
-                            key={index}
-                            className='flex items-center justify-between p-3 bg-white border-2 border-[#2c2c2c]/20 rounded-xl'
-                          >
-                            <div className='flex items-center gap-3'>
-                              <FileText className='w-5 h-5 text-[#991b1b]' />
-                              <div>
-                                <p className='font-serif text-sm text-[#2c2c2c]'>
-                                  {file.name}
-                                </p>
-                                <p className='font-serif text-xs text-[#2c2c2c]/60'>
-                                  {(file.size / 1024).toFixed(2)} KB
-                                </p>
-                              </div>
-                            </div>
-                            {drawerMode !== 'view' && (
-                              <button
-                                type='button'
-                                onClick={() => removeAttachment(index)}
-                                className='p-1 hover:bg-red-100 rounded-lg transition-colors'
-                              >
-                                <X className='w-4 h-4 text-red-600' />
-                              </button>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    <select
+                      id='language'
+                      className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
+                      name='language'
+                      value={data.language}
+                      onChange={handleChange}
+                    >
+                      <option value='vi'>Tiếng Việt</option>
+                      <option value='en'>English</option>
+                    </select>
                   </div>
 
-                  <div>
-                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Hình ảnh
+                  {/* Select category */}
+                  <div className='mt-4'>
+                    <label
+                      htmlFor='language'
+                      className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'
+                    >
+                      Chọn danh mục
                     </label>
-
-                    {drawerMode !== 'view' && (
-                      <div className='mb-3'>
-                        <input
-                          type='file'
-                          id='photo-upload'
-                          multiple
-                          onChange={handlePhotoUpload}
-                          className='hidden'
-                          accept='image/*'
-                        />
-                        <button
-                          type='button'
-                          onClick={() =>
-                            document.getElementById('photo-upload')?.click()
-                          }
-                          className='flex items-center gap-2 px-4 py-2 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] hover:bg-[#f3ead7] transition-colors'
+                    <select
+                      id='language'
+                      className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
+                      name='category_id'
+                      value={data.category_id}
+                      onChange={handleChange}
+                    >
+                      {listCategories.map((category) => (
+                        <option
+                          key={category.uuid}
+                          value={category.uuid}
                         >
-                          <ImageIcon className='w-4 h-4' />
-                          <span>Chọn hình ảnh</span>
-                        </button>
-                      </div>
-                    )}
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-                    {/* Photo Grid */}
-                    {photos.length > 0 && (
-                      <div className='grid grid-cols-3 gap-3'>
-                        {photos.map((file, index) => (
-                          <div
-                            key={index}
-                            className='relative group'
-                          >
-                            <div className='aspect-square bg-white border-2 border-[#2c2c2c]/20 rounded-xl overflow-hidden'>
-                              <img
-                                src={
-                                  URL.createObjectURL(file) ||
-                                  '/placeholder.svg'
-                                }
-                                alt={file.name}
-                                className='w-full h-full object-cover'
-                              />
-                            </div>
-                            {drawerMode !== 'view' && (
-                              <button
-                                type='button'
-                                onClick={() => removePhoto(index)}
-                                className='absolute top-2 right-2 p-1.5 bg-red-600 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity'
-                              >
-                                <X className='w-3 h-3' />
-                              </button>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                  {/* Select status */}
+                  <div className='mt-4'>
+                    <label
+                      htmlFor='language'
+                      className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'
+                    >
+                      Trạng thái
+                    </label>
+                    <select
+                      id='language'
+                      className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
+                      name='status'
+                      value={data.status}
+                      onChange={handleChange}
+                    >
+                      {Object.values(StoryStatus).map((status) => (
+                        <option
+                          key={status}
+                          value={status}
+                        >
+                          {status}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
               </div>
 
               {/* Footer Actions */}
-              {drawerMode !== 'view' && (
-                <div className='flex items-center justify-end gap-3 p-6 border-t-2 border-[#2c2c2c]/20'>
-                  <button
-                    onClick={onClose}
-                    className='px-6 py-2.5 bg-[#2c2c2c]/10 text-[#2c2c2c] rounded-xl font-serif text-sm hover:bg-[#2c2c2c]/20 transition-colors'
-                  >
-                    Hủy
-                  </button>
-                  <button className='px-6 py-2.5 bg-[#991b1b] text-[#f6efe0] rounded-xl font-serif text-sm border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030] hover:bg-[#7a1515] transition-colors'>
-                    {drawerMode === 'create' ? 'Tạo tài liệu' : 'Lưu thay đổi'}
-                  </button>
-                </div>
-              )}
+              <div className='flex items-center justify-end gap-3 p-6 border-t-2 border-[#2c2c2c]/20'>
+                <button
+                  onClick={onClose}
+                  className='px-6 py-2.5 bg-[#2c2c2c]/10 text-[#2c2c2c] rounded-xl font-serif text-sm hover:bg-[#2c2c2c]/20 transition-colors'
+                >
+                  Hủy
+                </button>
+                <button
+                  className='px-6 py-2.5 bg-[#991b1b] text-[#f6efe0] rounded-xl font-serif text-sm border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030] hover:bg-[#7a1515] transition-colors'
+                  onClick={handleConfirm}
+                >
+                  {'Lưu thay đổi'}
+                </button>
+              </div>
             </div>
           </motion.div>
         </>
