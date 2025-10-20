@@ -1,5 +1,7 @@
 'use client'
 
+import { CategoryType } from '@/interfaces/category'
+import { Story } from '@/interfaces/story'
 import Image from 'next/image'
 
 interface SutraContentItem {
@@ -23,8 +25,8 @@ interface TocChapter {
 }
 
 interface LibraryContentProps {
-  activeTab: 'ke' | 'story'
-  selectedSutraItem: string
+  activeTab: CategoryType
+  selectedStory?: Story
   storyId: string
   sutraContent: Record<string, SutraContentItem | string>
   storyContent: Record<string, StoryContentItem>
@@ -38,7 +40,7 @@ interface LibraryContentProps {
 
 export function LibraryContent({
   activeTab,
-  selectedSutraItem,
+  selectedStory,
   storyId,
   sutraContent,
   storyContent,
@@ -53,7 +55,9 @@ export function LibraryContent({
           <div className='w-full max-w-6xl bg-background/20 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 shadow min-h-[600px]'>
             <div className='text-center mb-6 sm:mb-8'>
               <p className='text-base sm:text-lg font-serif text-[#991b1b]/70 mb-2'>
-                {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
+                {language === 'vi'
+                  ? 'Câu Chuyện Ngộ Đạo'
+                  : 'Enlightenment Stories'}
               </p>
               <h2 className='text-2xl sm:text-3xl md:text-4xl font-serif text-[#991b1b] mb-4 sm:mb-6'>
                 {storyContent[storyId].title[language]}
@@ -69,7 +73,7 @@ export function LibraryContent({
                 />
               </div>
             </div>
-            
+
             {/* Image - Centered */}
             <div className='mb-8 flex justify-center'>
               <div className='w-full max-w-md aspect-square overflow-hidden rounded-xl border border-[#8B4513]/20 bg-white'>
@@ -88,7 +92,8 @@ export function LibraryContent({
                   <div className='text-sm sm:text-base whitespace-pre-line text-justify'>
                     {storyContent[storyId].content[language]}
                   </div>
-                  {(storyContent[storyId].date || storyContent[storyId].author) && (
+                  {(storyContent[storyId].date ||
+                    storyContent[storyId].author) && (
                     <div className='text-xs text-[#991b1b]/60 mt-6 pt-4 border-t border-[#991b1b]/20'>
                       {storyContent[storyId].author && (
                         <p className='font-serif'>
@@ -124,37 +129,39 @@ export function LibraryContent({
               />
             </div>
             <h2 className='text-xl sm:text-2xl font-serif text-[#991b1b] mb-3 sm:mb-4'>
-              {language === 'vi' ? 'Câu Chuyện Ngộ Đạo' : 'Enlightenment Stories'}
+              {language === 'vi'
+                ? 'Câu Chuyện Ngộ Đạo'
+                : 'Enlightenment Stories'}
             </h2>
             <p className='text-base sm:text-lg font-serif text-[#991b1b]/60'>
-              {language === 'vi' ? 'Chọn một câu chuyện để đọc nội dung' : 'Select a story to read content'}
+              {language === 'vi'
+                ? 'Chọn một câu chuyện để đọc nội dung'
+                : 'Select a story to read content'}
             </p>
           </div>
         </div>
       )
     }
-  } else if (selectedSutraItem && sutraContent[selectedSutraItem]) {
+  } else if (selectedStory) {
     return (
-      <div key={selectedSutraItem} className='animate-fade-in'>
+      <div
+        key={selectedStory.uuid}
+        className='animate-fade-in'
+      >
         <div className='bg-background/20 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 shadow min-h-[600px]'>
           {(() => {
-            const contentObj = sutraContent[selectedSutraItem] as SutraContentItem | string
-            const chapter = tocData.find((chapter) =>
-              chapter.items.some((item) => item.id === selectedSutraItem)
+            console.log(
+              'selectedStory in LibraryContent:',
+              selectedStory.content
             )
-            const content: SutraContentItem =
-              typeof contentObj === 'string'
-                ? { content: contentObj }
-                : contentObj
-
             return (
               <>
                 <div className='text-center mb-6 sm:mb-8'>
                   <p className='text-base sm:text-lg font-serif text-[#991b1b]/70 mb-2'>
-                    {chapter?.title}
+                    {selectedStory.title}
                   </p>
                   <h2 className='text-2xl sm:text-3xl md:text-4xl font-serif text-[#991b1b] mb-4 sm:mb-6'>
-                    {content.title || ''}
+                    {selectedStory.title || ''}
                   </h2>
                   <div className='flex justify-center mb-6 sm:mb-8'>
                     <div
@@ -169,16 +176,22 @@ export function LibraryContent({
                 </div>
                 <div className='prose prose-lg max-w-none'>
                   <div className='font-serif text-[#991b1b]/90 leading-relaxed text-center space-y-4 sm:space-y-6'>
-                    <div className='text-base sm:text-lg whitespace-pre-line'>
-                      {content.content}
-                    </div>
-                    {(content.date || content.author) && (
+                    <div
+                      className='text-base sm:text-lg whitespace-pre-line'
+                      dangerouslySetInnerHTML={{
+                        __html: selectedStory.content
+                      }}
+                    />
+
+                    {(selectedStory.created_at || selectedStory.author) && (
                       <div className='text-sm text-[#991b1b]/60 mt-6 sm:mt-8 pt-4 border-t border-[#991b1b]/20'>
-                        {content.author && (
-                          <p className='font-serif'>{content.author}</p>
+                        {selectedStory.author && (
+                          <p className='font-serif'>{selectedStory.author}</p>
                         )}
-                        {content.date && (
-                          <p className='font-serif'>{content.date}</p>
+                        {selectedStory.created_at && (
+                          <p className='font-serif'>
+                            {selectedStory.created_at}
+                          </p>
                         )}
                       </div>
                     )}

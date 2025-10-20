@@ -12,6 +12,12 @@ interface FeedState {
   fetchFeeds: (userId?: string) => Promise<void>
   likeFeed: (feedId: string) => Promise<void>
   reshareFeed: (feedId: string, content: string) => Promise<void>
+  createFeed: (
+    content: string,
+    user_question: string,
+    agent_id: string,
+    agent_content: string
+  ) => Promise<void>
 }
 
 export const useFeedStore = create<FeedState>()((set, get) => {
@@ -53,6 +59,31 @@ export const useFeedStore = create<FeedState>()((set, get) => {
         set({ list: data.data })
       } catch (error) {
         console.error('Failed to reshare feed:', error)
+        if (error instanceof AxiosError) {
+          if (error.response?.status === 401) {
+            removeAuthToken()
+            await authService.logout()
+          }
+        }
+      }
+    },
+    createFeed: async (
+      content: string,
+      user_question: string,
+      agent_id: string,
+      agent_content: string
+    ) => {
+      try {
+        await feedService.createFeed(
+          content,
+          user_question,
+          agent_id,
+          agent_content
+        )
+        const data = await feedService.getFeeds()
+        set({ list: data.data })
+      } catch (error) {
+        console.error('Failed to create feed:', error)
         if (error instanceof AxiosError) {
           if (error.response?.status === 401) {
             removeAuthToken()

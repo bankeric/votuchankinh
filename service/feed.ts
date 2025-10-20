@@ -30,6 +30,20 @@ class FeedService {
   async reshareFeed(feedId: string, content: string): Promise<void> {
     await axiosInstance.post(`/api/v1/feed/${feedId}/retweet`, { content })
   }
+
+  async createFeed(
+    content: string,
+    user_question: string,
+    agent_id: string,
+    agent_content: string
+  ): Promise<void> {
+    await axiosInstance.post(`/api/v1/feeds`, {
+      content,
+      user_question,
+      agent_id,
+      agent_content
+    })
+  }
 }
 
 export const feedService = new FeedService()

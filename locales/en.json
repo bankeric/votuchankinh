@@ -747,7 +747,7 @@
     "subtitle": "Choose the right plan to fully experience Buddha AI Chat. You can always start with the free Peace of Mind plan and upgrade whenever needed.",
     "plans": {
       "tamAn": {
-        "name": "Tam An – Free Plan",
+        "name": "Tam An - Free Plan",
         "price": "Free",
         "features": {
           "0": "Chat with Tam An agent",
@@ -758,7 +758,7 @@
         "discountNote": "Free"
       },
       "giacNgo": {
-        "name": "Giac Ngo – Pro Plan",
+        "name": "Giac Ngo - Pro Plan",
         "price": "99,000 VND/month",
         "yearlyPrice": "1,069,200 VND/year (10% off)",
         "features": {
@@ -771,7 +771,7 @@
         "discountNote": "Can apply 50% (STUDENT50) or 100% (HEAL100) discount codes for students and mental health patients"
       },
       "donNgo": {
-        "name": "Don Ngo – Premium Plan",
+        "name": "Don Ngo - Premium Plan",
         "price": "249,000 VND/month",
         "yearlyPrice": "2,688,200 VND/year (10% off)",
         "features": {

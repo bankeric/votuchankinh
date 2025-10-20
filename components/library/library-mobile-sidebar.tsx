@@ -3,6 +3,12 @@
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, X } from 'lucide-react'
+import {
+  Category,
+  CategoryAuthorGroup,
+  CategoryType
+} from '@/interfaces/category'
+import { Story } from '@/interfaces/story'
 
 interface TocItem {
   id: string
@@ -23,20 +29,20 @@ interface StoryItem {
 interface LibraryMobileSidebarProps {
   isMobileSidebarOpen: boolean
   setIsMobileSidebarOpen: (open: boolean) => void
-  activeTab: 'ke' | 'story'
-  setActiveTab: (tab: 'ke' | 'story') => void
-  keSubTab: 'su-tam-vo' | 'huynh-de'
-  setKeSubTab: (tab: 'su-tam-vo' | 'huynh-de') => void
-  storySubTab: 'su-tam-vo' | 'huynh-de'
-  setStorySubTab: (tab: 'su-tam-vo' | 'huynh-de') => void
+  activeTab: CategoryType
+  setActiveTab: (tab: CategoryType) => void
+  keSubTab: CategoryAuthorGroup
+  setKeSubTab: (tab: CategoryAuthorGroup) => void
+  storySubTab: CategoryAuthorGroup
+  setStorySubTab: (tab: CategoryAuthorGroup) => void
   expandedSection: string
-  selectedSutraItem: string
+  selectedStory?: Story
   storyId: string
   setStoryId: (id: string) => void
   onChapterClick: (chapterId: string) => void
-  onItemClick: (itemId: string) => void
-  getCurrentChapters: () => TocChapter[]
-  getCurrentStories: () => StoryItem[]
+  onItemClick: (itemId: Story) => void
+  getCurrentChapters: () => Category[]
+  getCurrentStories: () => Category[]
   language: 'vi' | 'en'
   tocData: TocChapter[]
   storyData: any[]
@@ -52,7 +58,6 @@ export function LibraryMobileSidebar({
   storySubTab,
   setStorySubTab,
   expandedSection,
-  selectedSutraItem,
   storyId,
   setStoryId,
   onChapterClick,
@@ -61,7 +66,8 @@ export function LibraryMobileSidebar({
   getCurrentStories,
   language,
   tocData,
-  storyData
+  storyData,
+  selectedStory
 }: LibraryMobileSidebarProps) {
   return (
     <AnimatePresence>
@@ -75,7 +81,7 @@ export function LibraryMobileSidebar({
             onClick={() => setIsMobileSidebarOpen(false)}
             className='md:hidden fixed inset-0 bg-black/50 z-[90]'
           />
-          
+
           {/* Sidebar */}
           <motion.div
             initial={{ x: '-100%' }}
@@ -95,7 +101,7 @@ export function LibraryMobileSidebar({
                   <ArrowLeft className='w-4 h-4' />
                   <span className='font-serif text-sm'>Trang chủ</span>
                 </Link>
-                
+
                 <button
                   onClick={() => setIsMobileSidebarOpen(false)}
                   className='p-2 text-[#8B4513]/70 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 rounded-full transition-colors'
@@ -110,7 +116,7 @@ export function LibraryMobileSidebar({
                   <div className='flex items-center h-10 gap-0.1 px-0.1'>
                     <button
                       onClick={() => {
-                        setActiveTab('ke')
+                        setActiveTab(CategoryType.VERSE)
                         // Auto-select first sutra item when switching to Kệ
                         if (tocData[0] && tocData[0].items[0]) {
                           // setExpandedSection(tocData[0].id)
@@ -118,7 +124,7 @@ export function LibraryMobileSidebar({
                         }
                       }}
                       className={`px-3 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                        activeTab === 'ke'
+                        activeTab === CategoryType.VERSE
                           ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
                           : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
                       }`}
@@ -127,9 +133,14 @@ export function LibraryMobileSidebar({
                     </button>
                     <button
                       onClick={() => {
-                        setActiveTab('story')
+                        setActiveTab(CategoryType.STORY)
                         // Auto-select first story when switching to Câu Chuyện
-                        if (storyData && storyData[0] && storyData[0].items && storyData[0].items[0]) {
+                        if (
+                          storyData &&
+                          storyData[0] &&
+                          storyData[0].items &&
+                          storyData[0].items[0]
+                        ) {
                           setStoryId(storyData[0].items[0].id)
                         }
                       }}
@@ -154,14 +165,16 @@ export function LibraryMobileSidebar({
                       <div className='flex items-center h-6 gap-0.1 px-0.1'>
                         <button
                           onClick={() => {
-                            if (activeTab === 'ke') {
-                              setKeSubTab('su-tam-vo')
+                            if (activeTab === CategoryType.VERSE) {
+                              setKeSubTab(CategoryAuthorGroup.TAMVO)
                             } else {
-                              setStorySubTab('su-tam-vo')
+                              setStorySubTab(CategoryAuthorGroup.TAMVO)
                             }
                           }}
                           className={`px-2 h-5 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                            (activeTab === 'ke' ? keSubTab : storySubTab) === 'su-tam-vo'
+                            (activeTab === CategoryType.VERSE
+                              ? keSubTab
+                              : storySubTab) === CategoryAuthorGroup.TAMVO
                               ? 'bg-[#8B1E1E] text-white'
                               : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
                           }`}
@@ -170,14 +183,16 @@ export function LibraryMobileSidebar({
                         </button>
                         <button
                           onClick={() => {
-                            if (activeTab === 'ke') {
-                              setKeSubTab('huynh-de')
+                            if (activeTab === CategoryType.VERSE) {
+                              setKeSubTab(CategoryAuthorGroup.HUYNHDE)
                             } else {
-                              setStorySubTab('huynh-de')
+                              setStorySubTab(CategoryAuthorGroup.HUYNHDE)
                             }
                           }}
                           className={`px-2 h-5 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                            (activeTab === 'ke' ? keSubTab : storySubTab) === 'huynh-de'
+                            (activeTab === CategoryType.VERSE
+                              ? keSubTab
+                              : storySubTab) === CategoryAuthorGroup.HUYNHDE
                               ? 'bg-[#8B1E1E] text-white'
                               : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
                           }`}
@@ -189,32 +204,32 @@ export function LibraryMobileSidebar({
                   </div>
 
                   <h3 className='text-sm font-serif text-[#991b1b] mb-3 text-center'>
-                    {activeTab === 'story'
-                      ? 'Câu Chuyện Ngộ Đạo'
-                      : 'Mục Lục'}
+                    {activeTab === 'story' ? 'Câu Chuyện Ngộ Đạo' : 'Mục Lục'}
                   </h3>
-                  
+
                   <nav className='space-y-1'>
                     {activeTab === 'story' ? (
                       <>
                         {/* Danh sách câu chuyện theo sub-tab - Căn giữa */}
                         <div className='flex flex-col items-center space-y-1'>
-                          {getCurrentStories().length > 0 ? getCurrentStories().map((story) => (
-                            <button
-                              key={story.id}
-                              onClick={() => {
-                                setStoryId(story.id)
-                                setIsMobileSidebarOpen(false) // Close sidebar after selection
-                              }}
-                              className={`w-full max-w-xs text-center text-xs font-serif py-2 px-2 rounded transition-colors ${
-                                storyId === story.id
-                                  ? 'text-[#991b1b] bg-[#991b1b]/20'
-                                  : 'text-[#991b1b]/80 hover:text-[#991b1b] hover:bg-[#991b1b]/10'
-                              }`}
-                            >
-                              {story.title[language]}
-                            </button>
-                          )) : (
+                          {getCurrentStories().length > 0 ? (
+                            getCurrentStories().map((story) => (
+                              <button
+                                key={story.uuid}
+                                onClick={() => {
+                                  setStoryId(story.uuid)
+                                  setIsMobileSidebarOpen(false) // Close sidebar after selection
+                                }}
+                                className={`w-full max-w-xs text-center text-xs font-serif py-2 px-2 rounded transition-colors ${
+                                  storyId === story.uuid
+                                    ? 'text-[#991b1b] bg-[#991b1b]/20'
+                                    : 'text-[#991b1b]/80 hover:text-[#991b1b] hover:bg-[#991b1b]/10'
+                                }`}
+                              >
+                                {story.name}
+                              </button>
+                            ))
+                          ) : (
                             <div className='text-center text-[#991b1b]/60 font-serif text-xs py-4'>
                               Không có câu chuyện nào
                             </div>
@@ -226,33 +241,40 @@ export function LibraryMobileSidebar({
                         {/* Danh sách kệ theo sub-tab - Căn giữa */}
                         <div className='flex flex-col items-center space-y-1'>
                           {getCurrentChapters().map((chapter) => (
-                            <div key={chapter.id} className='w-full max-w-xs'>
+                            <div
+                              key={chapter.uuid}
+                              className='w-full max-w-xs'
+                            >
                               <button
-                                onClick={() => onChapterClick(chapter.id)}
+                                onClick={() => onChapterClick(chapter.uuid)}
                                 className='w-full text-center text-xs font-serif text-[#991b1b]/80 hover:text-[#991b1b] py-1 px-2 rounded hover:bg-[#991b1b]/10 transition-colors'
                               >
-                                {chapter.title}
+                                {chapter.name}
                               </button>
-                              {expandedSection === chapter.id && (
+                              {expandedSection === chapter.uuid && (
                                 <div className='flex flex-col items-center space-y-0.5 animate-slide-down mt-1'>
-                                  {chapter.items.map((item, index) => (
+                                  {chapter.stories.map((item, index) => (
                                     <button
-                                      key={item.id}
+                                      key={item.uuid}
                                       onClick={() => {
-                                        onItemClick(item.id)
+                                        onItemClick(item)
                                         setIsMobileSidebarOpen(false) // Close sidebar after selection
                                       }}
                                       className={`w-full text-center text-xs font-serif py-1 px-2 rounded transition-colors ${
-                                        selectedSutraItem === item.id
+                                        selectedStory?.uuid === item.uuid
                                           ? 'text-[#991b1b] bg-[#991b1b]/20'
                                           : 'text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5'
                                       }`}
                                     >
-                                      <div className="flex flex-col items-center">
-                                        <div className="w-6 h-4 flex items-center justify-center bg-[#991b1b]/10 rounded-full mb-1">
-                                          <span className="text-xs font-bold text-[#991b1b]">{index + 1}</span>
+                                      <div className='flex flex-col items-center'>
+                                        <div className='w-6 h-4 flex items-center justify-center bg-[#991b1b]/10 rounded-full mb-1'>
+                                          <span className='text-xs font-bold text-[#991b1b]'>
+                                            {index + 1}
+                                          </span>
                                         </div>
-                                        <span className="text-xs leading-tight text-center">{item.title.replace(/^\d+\.\s*/, '')}</span>
+                                        <span className='text-xs leading-tight text-center'>
+                                          {item.title.replace(/^\d+\.\s*/, '')}
+                                        </span>
                                       </div>
                                     </button>
                                   ))}
