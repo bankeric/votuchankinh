@@ -1,7 +1,7 @@
 'use client'
 
 import type React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import SiteFooter from '@/components/site-footer'
@@ -16,8 +16,8 @@ import {
 // Dùng lại data từ bản 1
 import tocData from './tocData'
 import sutraContent from './sutraContent'
-import { storyData } from './story/storyData'
-import { storyContent } from './story/storyContent'
+import storyData, { StoryItem } from './story/storyData'
+import storyContent from './story/storyContent'
 
 interface SutraContentItem {
   title?: string
@@ -29,7 +29,7 @@ interface SutraContentItem {
 export default function LibraryPage() {
   // State
   const [language, setLanguage] = useState<'vi' | 'en'>('vi')
-  const [selectedSutraItem, setSelectedSutraItem] = useState<string>('')
+  const [selectedStory, setSelectedStory] = useState<string>('')
   const [expandedSection, setExpandedSection] = useState<string>('')
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [searchResults, setSearchResults] = useState<any[]>([])
@@ -40,6 +40,7 @@ export default function LibraryPage() {
   const [storySubTab, setStorySubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
   const [keSubTab, setKeSubTab] = useState<'su-tam-vo' | 'huynh-de'>('su-tam-vo')
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+
 
   // Validate data on mount
   useEffect(() => {
@@ -175,11 +176,11 @@ export default function LibraryPage() {
       )
       if (parentChapter) {
         setExpandedSection(parentChapter.id)
-        setSelectedSutraItem(result.id)
+        setSelectedStory(result.id)
       }
     } else if (result.type === 'chapter') {
       setExpandedSection(result.id)
-      setSelectedSutraItem('')
+      setSelectedStory('')
     }
     setShowSearchResults(false)
     setSearchQuery('')
@@ -236,7 +237,7 @@ export default function LibraryPage() {
   }
 
   const handleItemClick = (itemId: string) => {
-    setSelectedSutraItem(itemId)
+    setSelectedStory(itemId)
   }
 
   // Chia câu chuyện thành 2 nhóm
@@ -300,7 +301,7 @@ export default function LibraryPage() {
         storySubTab={storySubTab}
         setStorySubTab={setStorySubTab}
         expandedSection={expandedSection}
-        selectedSutraItem={selectedSutraItem}
+        selectedSutraItem={selectedStory}
         storyId={storyId}
         setStoryId={setStoryId}
         onChapterClick={handleChapterClick}
@@ -366,7 +367,7 @@ export default function LibraryPage() {
           storySubTab={storySubTab}
           setStorySubTab={setStorySubTab}
           expandedSection={expandedSection}
-          selectedSutraItem={selectedSutraItem}
+          selectedSutraItem={selectedStory}
           storyId={storyId}
           setStoryId={setStoryId}
           onChapterClick={handleChapterClick}
@@ -401,7 +402,7 @@ export default function LibraryPage() {
           {/* Sutra Content or Story */}
           <LibraryContent
             activeTab={activeTab}
-            selectedSutraItem={selectedSutraItem}
+            selectedSutraItem={selectedStory}
             storyId={storyId}
             sutraContent={sutraContent}
             storyContent={storyContent}
