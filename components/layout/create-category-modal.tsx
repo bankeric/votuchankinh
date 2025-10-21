@@ -39,6 +39,17 @@ export const CreateCategoryModal = ({
     }
   }, [category])
 
+  useEffect(() => {
+    if (!open) {
+      setData({
+        name: '',
+        description: '',
+        type: CategoryType.STORY,
+        author_group: CategoryAuthorGroup.TAMVO
+      })
+    }
+  }, [open])
+
   const handleConfirm = () => {
     if (onConfirm) {
       onConfirm(data)

@@ -12,6 +12,8 @@ interface CategoryState {
     includeStories?: boolean
   ): void
   addCategory(category: CreateCategoryRequest): void
+  updateCategory(uuid: string, category: Partial<CreateCategoryRequest>): void
+  deleteCategory(uuid: string): void
 }
 
 export const useCategoryStore = create<CategoryState>()((set, get) => {
@@ -42,6 +44,29 @@ export const useCategoryStore = create<CategoryState>()((set, get) => {
         set({ list: data })
       } catch (error) {
         console.error('Error adding category:', error)
+      }
+    },
+
+    updateCategory: async (
+      uuid: string,
+      category: Partial<CreateCategoryRequest>
+    ) => {
+      try {
+        await categoryService.updateCategory(uuid, category)
+        const { data } = await categoryService.getCategories()
+        set({ list: data })
+      } catch (error) {
+        console.error('Error updating category:', error)
+      }
+    },
+
+    deleteCategory: async (uuid: string) => {
+      try {
+        await categoryService.deleteCategory(uuid)
+        const { data } = await categoryService.getCategories()
+        set({ list: data })
+      } catch (error) {
+        console.error('Error deleting category:', error)
       }
     }
   }

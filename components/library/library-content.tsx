@@ -150,16 +150,11 @@ export function LibraryContent({
       >
         <div className='bg-background/20 backdrop-blur-sm border rounded-2xl p-6 sm:p-8 shadow min-h-[600px]'>
           {(() => {
-            console.log(
-              'selectedStory in LibraryContent:',
-              selectedStory.content
-            )
+            console.log('Selected Story:', selectedStory.image_url)
             return (
               <>
+                {/* Title */}
                 <div className='text-center mb-6 sm:mb-8'>
-                  <p className='text-base sm:text-lg font-serif text-[#991b1b]/70 mb-2'>
-                    {selectedStory.title}
-                  </p>
                   <h2 className='text-2xl sm:text-3xl md:text-4xl font-serif text-[#991b1b] mb-4 sm:mb-6'>
                     {selectedStory.title || ''}
                   </h2>
@@ -174,6 +169,19 @@ export function LibraryContent({
                     />
                   </div>
                 </div>
+                {/* Image */}
+                {selectedStory.image_url && (
+                  <div className='mb-8 flex justify-center'>
+                    <div className='w-full max-w-md aspect-square overflow-hidden rounded-xl border border-[#8B4513]/20 bg-white'>
+                      <img
+                        src={selectedStory.image_url}
+                        alt={selectedStory.title || 'Story Image'}
+                        className='w-full h-full object-contain'
+                      />
+                    </div>
+                  </div>
+                )}
+                {/* Content */}
                 <div className='prose prose-lg max-w-none'>
                   <div className='font-serif text-[#991b1b]/90 leading-relaxed text-center space-y-4 sm:space-y-6'>
                     <div
@@ -183,6 +191,7 @@ export function LibraryContent({
                       }}
                     />
 
+                    {/* Footer */}
                     {(selectedStory.created_at || selectedStory.author) && (
                       <div className='text-sm text-[#991b1b]/60 mt-6 sm:mt-8 pt-4 border-t border-[#991b1b]/20'>
                         {selectedStory.author && (

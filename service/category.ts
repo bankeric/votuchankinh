@@ -26,6 +26,19 @@ class CategoryService {
       ...request
     })
   }
+
+  async updateCategory(
+    uuid: string,
+    category: Partial<CreateCategoryRequest>
+  ): Promise<void> {
+    await axiosInstance.put(`/api/v1/categories/${uuid}`, {
+      ...category
+    })
+  }
+
+  async deleteCategory(uuid: string): Promise<void> {
+    await axiosInstance.delete(`/api/v1/categories/${uuid}`)
+  }
 }
 
 export const categoryService = new CategoryService()
