@@ -99,7 +99,7 @@ export const CreateDocumentModal = ({
     if (contentEditableRef.current) {
       contentEditableRef.current.focus()
       document.execCommand('foreColor', false, color)
-      
+
       const newContent = contentEditableRef.current.innerHTML
       setData((prev) => ({
         ...prev,
@@ -112,7 +112,7 @@ export const CreateDocumentModal = ({
     if (contentEditableRef.current) {
       contentEditableRef.current.focus()
       document.execCommand('justify' + align, false, '')
-      
+
       const newContent = contentEditableRef.current.innerHTML
       setData((prev) => ({
         ...prev,
@@ -125,15 +125,15 @@ export const CreateDocumentModal = ({
     const files = event.target.files
     if (files && files.length > 0) {
       const newImages: string[] = []
-      
+
       Array.from(files).forEach((file) => {
         const reader = new FileReader()
         reader.onload = (e) => {
           const result = e.target?.result as string
           newImages.push(result)
-          
+
           if (newImages.length === files.length) {
-            setSelectedImages(prev => [...prev, ...newImages])
+            setSelectedImages((prev) => [...prev, ...newImages])
           }
         }
         reader.readAsDataURL(file)
@@ -142,7 +142,7 @@ export const CreateDocumentModal = ({
   }
 
   const removeImage = (index: number) => {
-    setSelectedImages(prev => prev.filter((_, i) => i !== index))
+    setSelectedImages((prev) => prev.filter((_, i) => i !== index))
   }
 
   const handleContentChange = () => {
@@ -241,7 +241,7 @@ export const CreateDocumentModal = ({
                   </div>
 
                   {/* Image Upload */}
-                  <div>
+                  {/* <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
                       Hình ảnh
                     </label>
@@ -282,7 +282,7 @@ export const CreateDocumentModal = ({
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
@@ -495,17 +495,17 @@ export const CreateDocumentModal = ({
                       Âm thanh
                     </label>
                     {data.audio_url ? (
-                      <div className='relative w-fit'>
+                      <div className='relative w-[400px]'>
                         <audio
                           src={data.audio_url}
                           controls
-                          className='w-full max-w-md rounded-xl border-2 border-[#2c2c2c]/20'
+                          className='w-full max-w-md rounded-xl'
                         />
                         <button
                           onClick={() =>
                             setData((prev) => ({ ...prev, audio_url: null }))
                           }
-                          className='absolute top-2 right-2 p-1 bg-[#991b1b] text-white rounded-full hover:bg-[#7a1515] transition-colors'
+                          className='absolute top-0 right-[-20px] p-1 bg-[#991b1b] text-white rounded-full hover:bg-[#7a1515] transition-colors'
                         >
                           <X className='w-4 h-4' />
                         </button>

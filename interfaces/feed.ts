@@ -25,3 +25,10 @@ export interface FeedListResponse {
   data: Feed[]
   status: string
 }
+
+export interface CreateFeedRequest {
+  content: string
+  user_question: string
+  agent_id: string
+  agent_content: string
+}

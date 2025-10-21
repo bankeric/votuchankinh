@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 import { WelcomeScreen } from '@/components/v2/chat/welcome-screen'
 import { MainChatBubble } from '@/components/v2/chat/main-chat-bubble'
-import { MessageRole, ChatMode } from '@/interfaces/chat'
+import { MessageRole, ChatMode, Message } from '@/interfaces/chat'
 import { generateBuddhistResponse } from '@/lib/buddha-ai'
 import { now } from '@/lib/utils'
 import { useChatStore } from '@/store/chat'
@@ -25,6 +25,7 @@ import { getAuthToken } from '@/lib/axios'
 import { LoginModal } from './login-modal'
 import { useSpeechToText } from '@/hooks/useSpeechToText'
 import { InlineMeditation } from '@/components/meditation/inline-meditation'
+import { ShareFeedModal } from './share-feed-modal'
 
 const useChat = () => {
   const {
@@ -182,7 +183,12 @@ export function ChatArea() {
   const { conversation, messages, input, handleSubmit, isLoading, setInput } =
     chat
 
-  const { isConversationMode, setIsConversationMode, isMeditationMode, setIsMeditationMode } = useChatStore()
+  const {
+    isConversationMode,
+    setIsConversationMode,
+    isMeditationMode,
+    setIsMeditationMode
+  } = useChatStore()
   const { isListening, toggleListening } = useSpeechToText({
     lang: language,
     onResult: (text, isFinal) => {
@@ -202,6 +208,11 @@ export function ChatArea() {
     continuous: true,
     interimResults: true
   })
+
+  const [shareItem, setShareItem] = useState<{
+    question: string
+    answer: string
+  } | null>(null)
 
   const handleConversationMode = (checked: boolean) => {
     setIsConversationMode(checked)
@@ -288,6 +299,18 @@ export function ChatArea() {
       minute: '2-digit'
     })
   }
+
+  const handleShare = (index: number) => {
+    if (!conversation || index <= 0) return
+    const answer = conversation.messages[index].content || ''
+    const question = conversation.messages[index - 1]?.content || ''
+
+    setShareItem({ question, answer })
+  }
+
+  const onCloseShareModal = () => {
+    setShareItem(null)
+  }
   // Show meditation mode if active
   if (isMeditationMode) {
     return (
@@ -322,6 +345,7 @@ export function ChatArea() {
                   isLastMessage={index === conversation.messages.length - 1}
                   isLoading={!!isLoading}
                   formatTime={formatTime}
+                  onShare={() => handleShare(index)}
                 />
               ))}
 
@@ -343,6 +367,15 @@ export function ChatArea() {
         handleFileChange={handleFileChange}
         handleFileUpload={handleFileUpload}
       />
+
+      {shareItem && (
+        <ShareFeedModal
+          open={!!shareItem}
+          onClose={onCloseShareModal}
+          question={shareItem.question}
+          answer={shareItem.answer}
+        />
+      )}
 
       <LoginModal
         open={chat.isLogin}

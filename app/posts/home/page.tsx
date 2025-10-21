@@ -1,5 +1,6 @@
 'use client'
 import { FeedLayout } from '@/components/layout/feed-layout'
+import { ShareFeedModal } from '@/components/layout/share-feed-modal'
 import { useOnce } from '@/hooks/use-once'
 import { useAuthStore } from '@/store/auth'
 import { useFeedStore } from '@/store/feed'
@@ -9,7 +10,12 @@ import { useState } from 'react'
 
 export default function NewFeedPage() {
   const { user } = useAuthStore()
-  const { list, fetchFeeds, likeFeed, reshareFeed } = useFeedStore()
+  const { list, fetchFeeds, likeFeed } = useFeedStore()
+  const [shareItem, setShareItem] = useState<{
+    postId: string
+    question: string
+    answer: string
+  } | null>(null)
 
   const formatTimeAgo = (dateString: string) => {
     // Thu, 16 Oct 2025 03:04:04 GMT -> many ago
@@ -29,9 +35,15 @@ export default function NewFeedPage() {
     await likeFeed(postId)
   }
 
-  const handleReshare = async (postId: string) => {
-    await reshareFeed(postId, '')
+  const handleReshare = async (
+    postId: string,
+    question: string,
+    answer: string
+  ) => {
+    setShareItem({ postId, question, answer })
   }
+
+  console.log('Share Item:', shareItem)
 
   const isLiked = (postId: string) => {
     return user
@@ -47,6 +59,10 @@ export default function NewFeedPage() {
           (post) => post.uuid === postId && post.retweet_ids.includes(user.uuid)
         )
       : false
+  }
+
+  const onCloseShareModal = () => {
+    setShareItem(null)
   }
 
   useOnce(() => {
@@ -152,7 +168,13 @@ export default function NewFeedPage() {
                   </span>
                 </button>
                 <button
-                  onClick={() => handleReshare(post.uuid)}
+                  onClick={() =>
+                    handleReshare(
+                      post.uuid,
+                      post.user_question,
+                      post.agent_content
+                    )
+                  }
                   className={`flex items-center gap-2 transition-colors ${
                     isRetweeted(post.uuid)
                       ? 'text-[#d4af37]'
@@ -185,6 +207,18 @@ export default function NewFeedPage() {
           </div>
         )}
       </div>
+
+      {/* Retweet Modal */}
+      {shareItem && (
+        <ShareFeedModal
+          open={!!shareItem}
+          onClose={onCloseShareModal}
+          question={shareItem.question}
+          answer={shareItem.answer}
+          isRetweet
+          postId={shareItem.postId}
+        />
+      )}
     </FeedLayout>
   )
 }

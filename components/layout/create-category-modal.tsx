@@ -7,6 +7,7 @@ import {
   CategoryType,
   CreateCategoryRequest
 } from '@/interfaces/category'
+import { Language } from '@/interfaces/chat'
 
 interface CreateCategoryModalProps {
   open: boolean
@@ -25,7 +26,8 @@ export const CreateCategoryModal = ({
     name: '',
     description: '',
     type: CategoryType.STORY,
-    author_group: CategoryAuthorGroup.TAMVO
+    author_group: CategoryAuthorGroup.TAMVO,
+    language: Language.VI
   })
 
   useEffect(() => {
@@ -34,7 +36,8 @@ export const CreateCategoryModal = ({
         name: category.name,
         description: category.description,
         type: category.type,
-        author_group: category.author_group
+        author_group: category.author_group,
+        language: category.language
       })
     }
   }, [category])
@@ -45,7 +48,8 @@ export const CreateCategoryModal = ({
         name: '',
         description: '',
         type: CategoryType.STORY,
-        author_group: CategoryAuthorGroup.TAMVO
+        author_group: CategoryAuthorGroup.TAMVO,
+        language: Language.VI
       })
     }
   }, [open])
@@ -161,6 +165,25 @@ export const CreateCategoryModal = ({
                       <option value={CategoryAuthorGroup.HUYNHDE}>
                         Huynh Đệ
                       </option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
+                      Ngôn ngữ
+                    </label>
+                    <select
+                      className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
+                      defaultValue={data.language}
+                      onChange={(e) =>
+                        setData({
+                          ...data,
+                          language: e.target.value as Language
+                        })
+                      }
+                    >
+                      <option value={Language.VI}>Tiếng Việt</option>
+                      <option value={Language.EN}>English</option>
                     </select>
                   </div>
                 </div>

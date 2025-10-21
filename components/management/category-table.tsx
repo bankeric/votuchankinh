@@ -4,6 +4,7 @@ import {
   CategoryType,
   CreateCategoryRequest
 } from '@/interfaces/category'
+import { Language } from '@/interfaces/chat'
 import { Story, StoryStatus } from '@/interfaces/story'
 import { useCategoryStore } from '@/store/category'
 import { useStoryStore } from '@/store/story'
@@ -43,9 +44,11 @@ export const CategoryTable = ({ onEdit }: CategoryTableProps) => {
                 Loại
               </th>
               <th className='px-4 py-3 text-left font-serif text-sm font-semibold text-[#2c2c2c]'>
+                Ngôn ngữ
+              </th>
+              <th className='px-4 py-3 text-left font-serif text-sm font-semibold text-[#2c2c2c]'>
                 Ngày tạo
               </th>
-
               <th className='px-4 py-3 text-right font-serif text-sm font-semibold text-[#2c2c2c]'>
                 Hành động
               </th>
@@ -111,6 +114,10 @@ const TableRow = ({
   const onDelete = (uuid: string) => {
     deleteCategory(uuid)
   }
+
+  const handleCategoryLanguageChange = (value: Language) => {
+    updateCategory(item.uuid, { language: value })
+  }
   return (
     <tr
       className={`border-b border-[#2c2c2c]/10 hover:bg-[#EFE0BD]/50 transition-colors ${
@@ -152,6 +159,23 @@ const TableRow = ({
           >
             <option value={CategoryType.VERSE}>Kệ</option>
             <option value={CategoryType.STORY}>Câu chuyện</option>
+          </select>
+          <ChevronDown className='absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#2c2c2c]/60 pointer-events-none' />
+        </div>
+      </td>
+
+      <td className='px-4 py-3'>
+        <div className='relative'>
+          <select
+            value={item.language || ''}
+            onChange={(e) =>
+              handleCategoryLanguageChange(e.target.value as Language)
+            }
+            className='w-full px-3 py-1.5 pr-8 bg-white border border-[#2c2c2c]/20 rounded-lg font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] appearance-none cursor-pointer hover:bg-[#EFE0BD]/30 transition-colors'
+          >
+            <option value=''>Chọn ngôn ngữ</option>
+            <option value={Language.VI}>Tiếng Việt</option>
+            <option value={Language.EN}>English</option>
           </select>
           <ChevronDown className='absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#2c2c2c]/60 pointer-events-none' />
         </div>
