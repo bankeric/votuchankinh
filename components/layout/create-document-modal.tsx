@@ -10,7 +10,11 @@ import {
   ListOrdered,
   Paperclip,
   Underline,
-  X
+  X,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  Palette
 } from 'lucide-react'
 import { CreateStoryRequest, Story, StoryStatus } from '@/interfaces/story'
 import { useCategoryStore } from '@/store/category'
@@ -39,6 +43,7 @@ export const CreateDocumentModal = ({
     category_id: '',
     status: StoryStatus.DRAFT
   })
+  const [selectedImages, setSelectedImages] = useState<string[]>([])
 
   useEffect(() => {
     if (story) {
@@ -79,6 +84,56 @@ export const CreateDocumentModal = ({
         content: newContent
       }))
     }
+  }
+
+  const setTextColor = (color: string) => {
+    if (contentEditableRef.current) {
+      contentEditableRef.current.focus()
+      document.execCommand('foreColor', false, color)
+      
+      const newContent = contentEditableRef.current.innerHTML
+      setData((prev) => ({
+        ...prev,
+        content: newContent
+      }))
+    }
+  }
+
+  const setTextAlign = (align: string) => {
+    if (contentEditableRef.current) {
+      contentEditableRef.current.focus()
+      document.execCommand('justify' + align, false, '')
+      
+      const newContent = contentEditableRef.current.innerHTML
+      setData((prev) => ({
+        ...prev,
+        content: newContent
+      }))
+    }
+  }
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files
+    if (files && files.length > 0) {
+      const newImages: string[] = []
+      
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          const result = e.target?.result as string
+          newImages.push(result)
+          
+          if (newImages.length === files.length) {
+            setSelectedImages(prev => [...prev, ...newImages])
+          }
+        }
+        reader.readAsDataURL(file)
+      })
+    }
+  }
+
+  const removeImage = (index: number) => {
+    setSelectedImages(prev => prev.filter((_, i) => i !== index))
   }
 
   const handleContentChange = () => {
@@ -176,6 +231,50 @@ export const CreateDocumentModal = ({
                     />
                   </div>
 
+                  {/* Image Upload */}
+                  <div>
+                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
+                      Hình ảnh
+                    </label>
+                    <div className='space-y-3'>
+                      <input
+                        type='file'
+                        accept='image/*'
+                        onChange={handleImageUpload}
+                        className='hidden'
+                        id='image-upload'
+                        multiple
+                      />
+                      <label
+                        htmlFor='image-upload'
+                        className='flex items-center justify-center w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] hover:bg-[#f3ead7] transition-colors cursor-pointer'
+                      >
+                        <ImageIcon className='w-4 h-4 mr-2' />
+                        Chọn hình ảnh
+                      </label>
+                      {selectedImages.length > 0 && (
+                        <div className={`flex gap-3 ${selectedImages.length === 1 ? 'justify-center' : 'justify-start'}`}>
+                          {selectedImages.map((image, index) => (
+                            <div key={index} className='relative group'>
+                              <img
+                                src={image}
+                                alt={`Preview ${index + 1}`}
+                                className={`object-cover rounded-xl border-2 border-[#2c2c2c]/20 w-32 h-32`}
+                              />
+                              <button
+                                type='button'
+                                onClick={() => removeImage(index)}
+                                className='absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100'
+                              >
+                                <X className='w-3 h-3' />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
                       Tác giả
@@ -220,6 +319,40 @@ export const CreateDocumentModal = ({
                         title='Underline'
                       >
                         <Underline className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
+                      <button
+                        type='button'
+                        onClick={() => setTextColor('#991b1b')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Màu đỏ'
+                      >
+                        <Palette className='w-4 h-4 text-[#991b1b]' />
+                      </button>
+                      <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
+                      <button
+                        type='button'
+                        onClick={() => setTextAlign('Left')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Căn trái'
+                      >
+                        <AlignLeft className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <button
+                        type='button'
+                        onClick={() => setTextAlign('Center')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Căn giữa'
+                      >
+                        <AlignCenter className='w-4 h-4 text-[#2c2c2c]' />
+                      </button>
+                      <button
+                        type='button'
+                        onClick={() => setTextAlign('Right')}
+                        className='p-2 hover:bg-[#f3ead7] rounded-lg transition-colors'
+                        title='Căn phải'
+                      >
+                        <AlignRight className='w-4 h-4 text-[#2c2c2c]' />
                       </button>
                       <div className='w-px h-6 bg-[#2c2c2c]/20 mx-1' />
                       <button
