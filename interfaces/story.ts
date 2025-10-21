@@ -11,6 +11,8 @@ export interface CreateStoryRequest {
   language: string
   category_id: string
   status: StoryStatus
+  image_url: string | null
+  audio_url: string | null
 }
 
 export interface Story {
@@ -23,6 +25,8 @@ export interface Story {
   title: string
   updated_at: string
   uuid: string
+  image_url: string | null
+  audio_url: string | null
 }
 
 export interface StoryListResponse {

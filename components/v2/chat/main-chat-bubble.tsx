@@ -37,7 +37,8 @@ import {
   Play,
   VolumeX,
   Pause,
-  Download
+  Download,
+  Share
 } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { messagesService } from '@/service/messages'
@@ -48,18 +49,21 @@ import { useVoiceStore } from '@/store/voice'
 import { useAudioPlayerStore } from '@/store/audio-player'
 import useAgents from '@/hooks/use-agents'
 import Image from 'next/image'
+import { useFeedStore } from '@/store/feed'
 interface MainChatBubbleProps {
   message: Message
   isLastMessage: boolean
   isLoading: boolean
   formatTime: (timestamp: number) => string
+  onShare: () => void
 }
 
 export function MainChatBubble({
   message,
   isLastMessage,
   isLoading,
-  formatTime
+  formatTime,
+  onShare
 }: MainChatBubbleProps) {
   const { user } = useAuthStore()
   const userId = user?.uuid
@@ -84,6 +88,7 @@ export function MainChatBubble({
   const [feedbackText, setFeedbackText] = useState('')
   const [copied, setCopied] = useState(false)
   const [showProgressPopover, setShowProgressPopover] = useState(false)
+  const [shareModalOpen, setShareModalOpen] = useState(false)
 
   // Check if this message is currently playing or paused
   const isThisMessagePlaying =
@@ -284,6 +289,12 @@ export function MainChatBubble({
 
   const isMessageLiked = userId && message.like_user_ids?.includes(userId)
   const isMessageDisliked = userId && message.dislike_user_ids?.includes(userId)
+
+  const openShareModal = () => {
+    setShareModalOpen(true)
+  }
+
+  const handleShare = () => {}
 
   return (
     <>
@@ -540,6 +551,17 @@ export function MainChatBubble({
                     >
                       <Download className='h-3 w-3' />
                     </Button>
+
+                    {/* Share button */}
+                    <Button
+                      variant='ghost'
+                      title={t('chat.actions.share')}
+                      size='sm'
+                      onClick={onShare}
+                      className='h-6 w-6 p-0 text-black rounded-full hover:bg-black/5'
+                    >
+                      <Share className='h-3 w-3' />
+                    </Button>
                   </div>
                   <span className='text-xs font-light text-right hidden md:inline'>
                     {formatTime(new Date(message.created_at || '').getTime())}
@@ -550,6 +572,23 @@ export function MainChatBubble({
           </Card>
         </div>
       </div>
+
+      {/* Share Modal */}
+      <Dialog
+        open={shareModalOpen}
+        onOpenChange={setShareModalOpen}
+      >
+        <DialogContent className='sm:max-w-[500px]'>
+          <DialogHeader>
+            <DialogTitle className='text-orange-900'>
+              {t('chat.share.modal.title')}
+            </DialogTitle>
+            <DialogDescription className='text-orange-700'>
+              {t('chat.share.modal.description')}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
       {/* Feedback Modal */}
       <Dialog

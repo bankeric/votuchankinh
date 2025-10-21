@@ -1,4 +1,4 @@
-import { Feed } from '@/interfaces/feed'
+import { CreateFeedRequest, Feed } from '@/interfaces/feed'
 import { User } from '@/interfaces/user'
 import { removeAuthToken } from '@/lib/axios'
 import { authService, LoginDto } from '@/service/auth'
@@ -12,12 +12,7 @@ interface FeedState {
   fetchFeeds: (userId?: string) => Promise<void>
   likeFeed: (feedId: string) => Promise<void>
   reshareFeed: (feedId: string, content: string) => Promise<void>
-  createFeed: (
-    content: string,
-    user_question: string,
-    agent_id: string,
-    agent_content: string
-  ) => Promise<void>
+  createFeed: (params: CreateFeedRequest) => Promise<void>
 }
 
 export const useFeedStore = create<FeedState>()((set, get) => {
@@ -67,19 +62,9 @@ export const useFeedStore = create<FeedState>()((set, get) => {
         }
       }
     },
-    createFeed: async (
-      content: string,
-      user_question: string,
-      agent_id: string,
-      agent_content: string
-    ) => {
+    createFeed: async (params: CreateFeedRequest) => {
       try {
-        await feedService.createFeed(
-          content,
-          user_question,
-          agent_id,
-          agent_content
-        )
+        await feedService.createFeed(params)
         const data = await feedService.getFeeds()
         set({ list: data.data })
       } catch (error) {

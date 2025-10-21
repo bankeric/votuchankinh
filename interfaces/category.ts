@@ -5,6 +5,7 @@ export interface Category {
   description: string
   name: string
   author_group: CategoryAuthorGroup
+  language: string
   type: CategoryType
   updated_at: string
   uuid: string
@@ -31,4 +32,5 @@ export interface CreateCategoryRequest {
   description: string
   type: CategoryType
   author_group: CategoryAuthorGroup
+  language: string
 }

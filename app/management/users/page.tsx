@@ -2,7 +2,7 @@
 
 import { ManagementLayout } from '@/components/layout/management-layout'
 import { useOnce } from '@/hooks/use-once'
-import { User } from '@/interfaces/user'
+import { Role, User } from '@/interfaces/user'
 import { useUserStore } from '@/store/users'
 import {
   AlertCircle,
@@ -20,11 +20,15 @@ export default function ManagementUsersPage() {
   const handleCreate = () => {}
   const handleView = (user: User) => {}
   const handleEdit = (user: User) => {}
-  const { users, fetchUsers } = useUserStore()
+  const { users, fetchUsers, updateUserRole } = useUserStore()
 
   useOnce(() => {
     fetchUsers()
   }, [])
+
+  const handleUpdateRole = (userId: string, newRole: Role) => {
+    updateUserRole(userId, newRole)
+  }
   return (
     <ManagementLayout>
       <div>
@@ -83,9 +87,24 @@ export default function ManagementUsersPage() {
                       {user.email}
                     </td>
                     <td className='px-4 py-3'>
-                      <span className='px-2 py-1 bg-[#991b1b]/10 text-[#991b1b] rounded-lg font-serif text-xs capitalize'>
-                        {user.role}
-                      </span>
+                      <select
+                        value={user.role}
+                        onChange={(e) => {
+                          // Handle role change
+                          handleUpdateRole(user.uuid, e.target.value as Role)
+                        }}
+                        className='px-2 py-1 bg-[#f6efe0] border border-[#2c2c2c]/20 text-[#2c2c2c] rounded-lg font-serif text-xs capitalize focus:outline-none focus:ring-2 focus:ring-[#991b1b] focus:border-[#991b1b]'
+                      >
+                        {Object.values(Role).map((role) => (
+                          <option
+                            key={role}
+                            value={role}
+                            className='capitalize'
+                          >
+                            {role}
+                          </option>
+                        ))}
+                      </select>
                     </td>
                     <td className='px-4 py-3 font-serif text-sm text-[#2c2c2c]'>
                       {user.last_login_at ? user.last_login_at.toString() : ''}
