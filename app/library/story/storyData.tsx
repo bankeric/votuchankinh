@@ -46,7 +46,7 @@ export const storyData: StoryChapter[] = [
       {
         id: 'c3',
         title: {
-          vi: 'Huệ Thanh ngộ đạo ',
+          vi: 'Huệ Thanh ngộ đạo',
           en: 'Hue Thanh Enlightenment'
         },
         description: {
@@ -73,7 +73,7 @@ export const storyData: StoryChapter[] = [
         },
         description: {
           vi: 'Câu chuyện Hoa - Huệ Đức được Sư Cha Tam Vô thức tỉnh ngộ đạo',
-          en: 'The story of Hoa – Huệ Đức'
+          en: 'The story of Hoa - Huệ Đức'
         }
       },
       {

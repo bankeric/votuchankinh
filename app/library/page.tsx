@@ -16,7 +16,7 @@ import {
 // Dùng lại data từ bản 1
 import tocData from './tocData'
 import sutraContent from './sutraContent'
-import storyData from './story/storyData'
+import storyData, { StoryItem } from './story/storyData'
 import storyContent from './story/storyContent'
 import { useCategoryStore } from '@/store/category'
 import { useOnce } from '@/hooks/use-once'
@@ -111,6 +111,7 @@ export default function LibraryPage() {
   // Build search index
   const buildSearchIndex = () => {
     const searchIndex: any[] = []
+    if (!Array.isArray(tocData)) return searchIndex
     tocData.forEach((chapter) => {
       // add chapter
       searchIndex.push({
