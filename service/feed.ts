@@ -1,4 +1,4 @@
-import { FeedListResponse } from '@/interfaces/feed'
+import { CreateFeedRequest, FeedListResponse } from '@/interfaces/feed'
 import axiosInstance from '@/lib/axios'
 
 class FeedService {
@@ -31,18 +31,8 @@ class FeedService {
     await axiosInstance.post(`/api/v1/feed/${feedId}/retweet`, { content })
   }
 
-  async createFeed(
-    content: string,
-    user_question: string,
-    agent_id: string,
-    agent_content: string
-  ): Promise<void> {
-    await axiosInstance.post(`/api/v1/feeds`, {
-      content,
-      user_question,
-      agent_id,
-      agent_content
-    })
+  async createFeed(params: CreateFeedRequest): Promise<void> {
+    await axiosInstance.post(`/api/v1/feed`, params)
   }
 }
 

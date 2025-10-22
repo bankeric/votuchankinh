@@ -19,9 +19,9 @@ import sutraContent from './sutraContent'
 import storyData, { StoryItem } from './story/storyData'
 import storyContent from './story/storyContent'
 import { useCategoryStore } from '@/store/category'
-import { useOnce } from '@/hooks/use-once'
 import { CategoryAuthorGroup, CategoryType } from '@/interfaces/category'
 import { Story } from '@/interfaces/story'
+import { Language } from '@/interfaces/chat'
 
 interface SutraContentItem {
   title?: string
@@ -52,9 +52,10 @@ export default function LibraryPage() {
   // Global states
   const { list: listCategories, fetchCategories } = useCategoryStore()
 
-  useOnce(() => {
-    fetchCategories(undefined, undefined, true)
-  }, [])
+  useEffect(() => {
+    fetchCategories(undefined, undefined, true, language as Language)
+    setSelectedStory(undefined)
+  }, [language])
   // Background setup
   useEffect(() => {
     document.body.style.background =

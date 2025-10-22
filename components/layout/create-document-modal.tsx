@@ -18,7 +18,7 @@ import {
 } from 'lucide-react'
 import { CreateStoryRequest, Story, StoryStatus } from '@/interfaces/story'
 import { useCategoryStore } from '@/store/category'
-import { use } from 'chai'
+import { CldUploadButton, CldUploadWidget } from 'next-cloudinary'
 
 interface CreateDocumentModalProps {
   open: boolean
@@ -26,6 +26,9 @@ interface CreateDocumentModalProps {
   onConfirm?: (data: CreateStoryRequest) => void
   story?: Story
 }
+
+const preset =
+  process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'local-giacngo'
 
 export const CreateDocumentModal = ({
   open,
@@ -41,7 +44,9 @@ export const CreateDocumentModal = ({
     content: '',
     language: 'vi',
     category_id: '',
-    status: StoryStatus.DRAFT
+    status: StoryStatus.DRAFT,
+    image_url: null,
+    audio_url: null
   })
   const [selectedImages, setSelectedImages] = useState<string[]>([])
 
@@ -53,7 +58,9 @@ export const CreateDocumentModal = ({
         content: story.content,
         language: story.language,
         category_id: story.category_id,
-        status: story.status
+        status: story.status,
+        image_url: story.image_url,
+        audio_url: story.audio_url
       })
     }
   }, [story])
@@ -67,7 +74,9 @@ export const CreateDocumentModal = ({
         content: '',
         language: 'vi',
         category_id: '',
-        status: StoryStatus.DRAFT
+        status: StoryStatus.DRAFT,
+        image_url: null,
+        audio_url: null
       })
     }
   }, [open])
@@ -90,7 +99,7 @@ export const CreateDocumentModal = ({
     if (contentEditableRef.current) {
       contentEditableRef.current.focus()
       document.execCommand('foreColor', false, color)
-      
+
       const newContent = contentEditableRef.current.innerHTML
       setData((prev) => ({
         ...prev,
@@ -103,7 +112,7 @@ export const CreateDocumentModal = ({
     if (contentEditableRef.current) {
       contentEditableRef.current.focus()
       document.execCommand('justify' + align, false, '')
-      
+
       const newContent = contentEditableRef.current.innerHTML
       setData((prev) => ({
         ...prev,
@@ -116,15 +125,15 @@ export const CreateDocumentModal = ({
     const files = event.target.files
     if (files && files.length > 0) {
       const newImages: string[] = []
-      
+
       Array.from(files).forEach((file) => {
         const reader = new FileReader()
         reader.onload = (e) => {
           const result = e.target?.result as string
           newImages.push(result)
-          
+
           if (newImages.length === files.length) {
-            setSelectedImages(prev => [...prev, ...newImages])
+            setSelectedImages((prev) => [...prev, ...newImages])
           }
         }
         reader.readAsDataURL(file)
@@ -133,7 +142,7 @@ export const CreateDocumentModal = ({
   }
 
   const removeImage = (index: number) => {
-    setSelectedImages(prev => prev.filter((_, i) => i !== index))
+    setSelectedImages((prev) => prev.filter((_, i) => i !== index))
   }
 
   const handleContentChange = () => {
@@ -232,7 +241,7 @@ export const CreateDocumentModal = ({
                   </div>
 
                   {/* Image Upload */}
-                  <div>
+                  {/* <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
                       Hình ảnh
                     </label>
@@ -273,7 +282,7 @@ export const CreateDocumentModal = ({
                         </div>
                       )}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
@@ -421,6 +430,120 @@ export const CreateDocumentModal = ({
                         }
                       }}
                     />
+                  </div>
+
+                  {/* Upload image */}
+                  <div>
+                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
+                      Hình ảnh
+                    </label>
+                    {data.image_url ? (
+                      <div className='relative w-fit'>
+                        <img
+                          src={data.image_url}
+                          alt='Uploaded image'
+                          className='w-full max-w-md h-auto rounded-xl border-2 border-[#2c2c2c]/20'
+                        />
+                        <button
+                          onClick={() =>
+                            setData((prev) => ({ ...prev, image_url: null }))
+                          }
+                          className='absolute top-2 right-2 p-1 bg-[#991b1b] text-white rounded-full hover:bg-[#7a1515] transition-colors'
+                        >
+                          <X className='w-4 h-4' />
+                        </button>
+                      </div>
+                    ) : (
+                      <CldUploadWidget
+                        uploadPreset={preset}
+                        onSuccess={(result, { widget }) => {
+                          setData((prev) => ({
+                            ...prev,
+                            image_url:
+                              typeof result?.info === 'object' &&
+                              result?.info?.secure_url
+                                ? result.info.secure_url
+                                : null
+                          }))
+                        }}
+                        onQueuesEnd={(result, { widget }) => {
+                          widget.close()
+                        }}
+                      >
+                        {({ open }) => {
+                          function handleOnClick() {
+                            setData((prev) => ({ ...prev, image_url: null }))
+                            open()
+                          }
+                          return (
+                            <button
+                              onClick={handleOnClick}
+                              className='flex items-center gap-2 px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] hover:bg-[#f3ead7] transition-colors'
+                            >
+                              <ImageIcon className='w-4 h-4' />
+                              Tải lên hình ảnh
+                            </button>
+                          )
+                        }}
+                      </CldUploadWidget>
+                    )}
+                  </div>
+
+                  {/* Upload audio  */}
+                  <div>
+                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
+                      Âm thanh
+                    </label>
+                    {data.audio_url ? (
+                      <div className='relative w-[400px]'>
+                        <audio
+                          src={data.audio_url}
+                          controls
+                          className='w-full max-w-md rounded-xl'
+                        />
+                        <button
+                          onClick={() =>
+                            setData((prev) => ({ ...prev, audio_url: null }))
+                          }
+                          className='absolute top-0 right-[-20px] p-1 bg-[#991b1b] text-white rounded-full hover:bg-[#7a1515] transition-colors'
+                        >
+                          <X className='w-4 h-4' />
+                        </button>
+                      </div>
+                    ) : (
+                      <CldUploadWidget
+                        uploadPreset={preset}
+                        onSuccess={(result, { widget }) => {
+                          setData((prev) => ({
+                            ...prev,
+                            audio_url:
+                              typeof result?.info === 'object' &&
+                              result?.info?.secure_url
+                                ? result.info.secure_url
+                                : null
+                          }))
+                        }}
+                        onQueuesEnd={(result, { widget }) => {
+                          widget.close()
+                        }}
+                      >
+                        {({ open }) => {
+                          function handleOnClick() {
+                            setData((prev) => ({ ...prev, audio_url: null }))
+                            open()
+                          }
+                          return (
+                            <button
+                              onClick={handleOnClick}
+                              className='flex items-center gap-2 px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] hover:bg-[#f3ead7] transition-colors'
+                            >
+                              <ImageIcon className='w-4 h-4' />
+                              Tải lên âm thanh
+                            </button>
+                          )
+                        }}
+                      </CldUploadWidget>
+                    )}
                   </div>
 
                   {/* Select language */}
