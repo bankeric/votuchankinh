@@ -3,6 +3,7 @@ import { Language } from '@/interfaces/chat'
 import { categoryService } from '@/service/category'
 import { list } from 'postcss'
 import { create } from 'zustand'
+import { toast } from 'react-toastify'
 
 interface CategoryState {
   list: Category[]
@@ -46,8 +47,10 @@ export const useCategoryStore = create<CategoryState>()((set, get) => {
         await categoryService.createCategory(category)
         const { data } = await categoryService.getCategories()
         set({ list: data })
+        toast.success('Danh mục đã được tạo thành công!')
       } catch (error) {
         console.error('Error adding category:', error)
+        toast.error('Có lỗi xảy ra khi tạo danh mục. Vui lòng thử lại!')
       }
     },
 
@@ -59,8 +62,10 @@ export const useCategoryStore = create<CategoryState>()((set, get) => {
         await categoryService.updateCategory(uuid, category)
         const { data } = await categoryService.getCategories()
         set({ list: data })
+        toast.success('Danh mục đã được cập nhật thành công!')
       } catch (error) {
         console.error('Error updating category:', error)
+        toast.error('Có lỗi xảy ra khi cập nhật danh mục. Vui lòng thử lại!')
       }
     },
 
@@ -69,8 +74,10 @@ export const useCategoryStore = create<CategoryState>()((set, get) => {
         await categoryService.deleteCategory(uuid)
         const { data } = await categoryService.getCategories()
         set({ list: data })
+        toast.success('Danh mục đã được xóa thành công!')
       } catch (error) {
         console.error('Error deleting category:', error)
+        toast.error('Có lỗi xảy ra khi xóa danh mục. Vui lòng thử lại!')
       }
     }
   }
