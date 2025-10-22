@@ -163,6 +163,13 @@ export const CreateDocumentModal = ({
     }
   }, [open])
 
+  // Set content when story is loaded
+  useEffect(() => {
+    if (contentEditableRef.current && story && story.content) {
+      contentEditableRef.current.innerHTML = story.content
+    }
+  }, [story])
+
   const handleConfirm = () => {
     if (onConfirm) {
       // Get the final content from the contentEditable div
@@ -400,8 +407,9 @@ export const CreateDocumentModal = ({
                       contentEditable
                       onInput={handleContentChange}
                       className='w-full min-h-[200px] px-4 py-3 bg-white border-2 border-[#2c2c2c]/20 rounded-b-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] overflow-auto'
-                      style={{ maxHeight: '300px' }}
-                      dangerouslySetInnerHTML={{ __html: data.content }}
+                      style={{ 
+                        maxHeight: '300px'
+                      }}
                       suppressContentEditableWarning={true}
                       onBlur={() => {
                         if (contentEditableRef.current) {
@@ -419,13 +427,14 @@ export const CreateDocumentModal = ({
                       }}
                       onFocus={() => {
                         if (contentEditableRef.current) {
-                          const content = contentEditableRef.current.innerHTML
+                          const element = contentEditableRef.current
+                          const content = element.innerHTML
                           if (
                             content.includes(
                               'Nhập nội dung chi tiết tài liệu...'
                             )
                           ) {
-                            contentEditableRef.current.innerHTML = ''
+                            element.innerHTML = ''
                           }
                         }
                       }}
