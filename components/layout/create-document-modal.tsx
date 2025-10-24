@@ -19,6 +19,7 @@ import {
 import { CreateStoryRequest, Story, StoryStatus } from '@/interfaces/story'
 import { useCategoryStore } from '@/store/category'
 import { CldUploadButton, CldUploadWidget } from 'next-cloudinary'
+import { Language } from '@/interfaces/chat'
 
 interface CreateDocumentModalProps {
   open: boolean
@@ -42,7 +43,7 @@ export const CreateDocumentModal = ({
     author: '',
     title: '',
     content: '',
-    language: 'vi',
+    language: Language.VI,
     category_id: '',
     status: StoryStatus.DRAFT,
     image_url: null,
@@ -172,6 +173,10 @@ export const CreateDocumentModal = ({
 
   const handleConfirm = () => {
     if (onConfirm) {
+      if (!data.title || !data.author || !data.category_id || !data.content) {
+        alert('Vui lòng điền đầy đủ các trường bắt buộc.')
+        return
+      }
       // Get the final content from the contentEditable div
       const finalContent = contentEditableRef.current?.innerHTML || data.content
       const dataToSubmit = {
@@ -234,8 +239,11 @@ export const CreateDocumentModal = ({
                 <div className='space-y-6'>
                   {/* Title */}
                   <div>
-                    <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Tiêu đề
+                    <label
+                      htmlFor='title'
+                      className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'
+                    >
+                      Tiêu đề *
                     </label>
                     <input
                       type='text'
@@ -293,7 +301,7 @@ export const CreateDocumentModal = ({
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Tác giả
+                      Tác giả *
                     </label>
                     <input
                       type='text'
@@ -302,12 +310,13 @@ export const CreateDocumentModal = ({
                       name='author'
                       value={data.author}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Nội dung chi tiết
+                      Nội dung chi tiết *
                     </label>
 
                     {/* Formatting Toolbar */}
@@ -407,7 +416,7 @@ export const CreateDocumentModal = ({
                       contentEditable
                       onInput={handleContentChange}
                       className='w-full min-h-[200px] px-4 py-3 bg-white border-2 border-[#2c2c2c]/20 rounded-b-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b] overflow-auto'
-                      style={{ 
+                      style={{
                         maxHeight: '300px'
                       }}
                       suppressContentEditableWarning={true}
@@ -561,7 +570,7 @@ export const CreateDocumentModal = ({
                       htmlFor='language'
                       className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'
                     >
-                      Chọn ngôn ngữ
+                      Chọn ngôn ngữ *
                     </label>
                     <select
                       id='language'
@@ -581,7 +590,7 @@ export const CreateDocumentModal = ({
                       htmlFor='language'
                       className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'
                     >
-                      Chọn danh mục
+                      Chọn danh mục *
                     </label>
                     <select
                       id='language'
@@ -590,6 +599,7 @@ export const CreateDocumentModal = ({
                       value={data.category_id}
                       onChange={handleChange}
                     >
+                      <option value=''>-- Chọn danh mục --</option>
                       {listCategories.map((category) => (
                         <option
                           key={category.uuid}
