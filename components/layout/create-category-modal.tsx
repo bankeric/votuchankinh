@@ -56,6 +56,10 @@ export const CreateCategoryModal = ({
 
   const handleConfirm = () => {
     if (onConfirm) {
+      if (!data.name || !data.description) {
+        alert('Vui lòng điền đầy đủ thông tin bắt buộc.')
+        return
+      }
       onConfirm(data)
     }
   }
@@ -99,7 +103,7 @@ export const CreateCategoryModal = ({
                   {/* Title */}
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Tên danh mục
+                      Tên danh mục *
                     </label>
                     <input
                       type='text'
@@ -114,7 +118,7 @@ export const CreateCategoryModal = ({
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Mô tả danh mục
+                      Mô tả danh mục *
                     </label>
                     <textarea
                       className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
@@ -128,7 +132,7 @@ export const CreateCategoryModal = ({
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Loại danh mục
+                      Loại danh mục *
                     </label>
                     <select
                       className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
@@ -140,14 +144,14 @@ export const CreateCategoryModal = ({
                         })
                       }
                     >
-                      <option value={CategoryType.VERSE}>Verse</option>
-                      <option value={CategoryType.STORY}>Story</option>
+                      <option value={CategoryType.VERSE}>Kệ</option>
+                      <option value={CategoryType.STORY}>Câu chuyện</option>
                     </select>
                   </div>
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Nhóm tác giả
+                      Nhóm tác giả *
                     </label>
                     <select
                       className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'
@@ -170,7 +174,7 @@ export const CreateCategoryModal = ({
 
                   <div>
                     <label className='block font-serif text-sm font-semibold text-[#2c2c2c] mb-2'>
-                      Ngôn ngữ
+                      Ngôn ngữ *
                     </label>
                     <select
                       className='w-full px-4 py-3 bg-[#EFE0BD] border-2 border-[#2c2c2c]/20 rounded-xl font-serif text-sm text-[#2c2c2c] focus:outline-none focus:border-[#991b1b]'

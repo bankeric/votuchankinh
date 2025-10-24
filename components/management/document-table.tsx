@@ -238,9 +238,9 @@ const TableRow = ({
               item.status
             )}`}
           >
-            <option value='approved'>Approved</option>
-            <option value='draft'>Draft</option>
-            <option value='review'>Review</option>
+            <option value={StoryStatus.ARCHIVED}>Archived</option>
+            <option value={StoryStatus.DRAFT}>Draft</option>
+            <option value={StoryStatus.PUBLISHED}>Published</option>
           </select>
           <div className='absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1'>
             {getStatusIcon(item.status)}
