@@ -6,6 +6,12 @@ export { auth as authMiddleware } from '@/auth'
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('buddha-token')
   const { pathname } = request.nextUrl
+  const hostname = request.headers.get('host')
+
+  // Redirect giac.ngo to app.giac.ngo
+  if (hostname === 'giac.ngo' || hostname === 'localhost:3000') {
+    return NextResponse.redirect(new URL(`https://app.giac.ngo${pathname}`, request.url))
+  }
 
   // Handle CORS for blob URLs
   if (request.headers.get('origin')) {
