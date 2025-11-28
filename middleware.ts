@@ -8,9 +8,9 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const hostname = request.headers.get('host')
 
-  // Redirect giac.ngo to app.giac.ngo
-  if (hostname === 'giac.ngo' || hostname === 'localhost:3000') {
-    return NextResponse.redirect(new URL(`https://app.giac.ngo${pathname}`, request.url))
+  // Redirect giac.ngo to app.giac.ngo only for root path
+  if ((hostname === 'giac.ngo' || hostname === 'www.giac.ngo' || hostname === 'localhost:3000') && pathname === '/') {
+    return NextResponse.redirect(new URL('https://app.giac.ngo', request.url))
   }
 
   // Handle CORS for blob URLs
