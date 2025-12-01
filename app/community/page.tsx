@@ -242,11 +242,10 @@ export default function CommunityPage() {
             <button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
-              className={`px-3 py-1 rounded-full border transition-all duration-300 text-xs font-serif ${
-                activeSection === section.id
+              className={`px-3 py-1 rounded-full border transition-all duration-300 text-xs font-serif ${activeSection === section.id
                   ? 'bg-red-800/30 border-red-800/60 text-[#991b1b]'
                   : 'bg-transparent border-transparent text-[#991b1b]/60 hover:border-[#991b1b]/60 hover:text-[#991b1b]'
-              }`}
+                }`}
               title={section.title}
             >
               {section.label}
@@ -259,21 +258,19 @@ export default function CommunityPage() {
           <div className='flex items-center h-8 gap-1 px-0.5'>
             <button
               onClick={() => setLanguage('vi')}
-              className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                language === 'vi'
+              className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${language === 'vi'
                   ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
                   : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-              }`}
+                }`}
             >
               VIE
             </button>
             <button
               onClick={() => setLanguage('en')}
-              className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                language === 'en'
+              className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${language === 'en'
                   ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
                   : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-              }`}
+                }`}
             >
               ENG
             </button>
@@ -531,8 +528,8 @@ export default function CommunityPage() {
                             ? 'Thiền Tọa Cộng Đồng'
                             : 'Community Meditation'
                           : language === 'vi'
-                          ? 'Chia Sẻ Pháp Thoại'
-                          : 'Dharma Sharing'}
+                            ? 'Chia Sẻ Pháp Thoại'
+                            : 'Dharma Sharing'}
                       </h4>
                       <span className='text-xs text-white/80'>
                         {language === 'vi'
@@ -552,19 +549,26 @@ export default function CommunityPage() {
               </h3>
 
               <div className='grid grid-cols-3 md:grid-cols-6 gap-3 mb-6'>
-                {['c1','c2','c3','c4','c5','c6'].map((id, index) => (
-                  <Link
-                    href={`/library?story=${id}`}
-                    key={id}
+                {[
+                  { img: 'c1', url: 'https://app.giac.ngo/giac-ngo/library/202' },
+                  { img: 'c2', url: 'https://app.giac.ngo/giac-ngo/library/201' },
+                  { img: 'c3', url: 'https://app.giac.ngo/giac-ngo/library/200' },
+                  { img: 'c4', url: 'https://app.giac.ngo/giac-ngo/library/199' },
+                  { img: 'c5', url: 'https://app.giac.ngo/giac-ngo/library/198' },
+                  { img: 'c6', url: 'https://app.giac.ngo/giac-ngo/library/197' }
+                ].map((item, index) => (
+                  <a
+                    href={item.url}
+                    key={item.img}
                     className='group block aspect-square rounded-lg border border-[#991b1b]/20 overflow-hidden bg-[#991b1b]/10 hover:border-[#991b1b]/40 hover:shadow-lg hover:shadow-[#991b1b]/20 transition-all'
                     title={language === 'vi' ? `Câu chuyện ${index + 1}` : `Story ${index + 1}`}
                   >
                     <img
-                      src={`/images/${id}.png`}
+                      src={`/images/${item.img}.png`}
                       alt={`Story ${index + 1}`}
                       className='w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300'
                     />
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
@@ -684,8 +688,8 @@ export default function CommunityPage() {
         className='fixed bottom-8 right-8 z-50'
         style={{ touchAction: 'manipulation' }}
       >
-        <Link
-          href='/ai/new'
+        <a
+          href='https://app.giac.ngo/giacngo/chat'
           className='group relative flex items-center justify-center w-16 h-16 bg-[#EFE0BD] rounded-full shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 overflow-hidden'
           style={{
             WebkitTapHighlightColor: 'transparent',
@@ -711,7 +715,7 @@ export default function CommunityPage() {
             <div className='absolute top-1/2 left-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-yellow-200/70 to-transparent transform -translate-x-1/2 -translate-y-1/2 animate-ray-3'></div>
             <div className='absolute top-1/2 left-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-90 animate-ray-4'></div>
           </div>
-        </Link>
+        </a>
       </div>
 
       <SiteFooter />

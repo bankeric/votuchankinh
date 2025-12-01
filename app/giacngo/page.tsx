@@ -86,75 +86,34 @@ export default function WordlessSutraPage() {
 
   useEffect(() => {
     async function fetchStats() {
-      try {
-        const response = await axiosInstance.get(`/api/v1/users/statistic`)
-        const data = response.data as {
-          active_users: number
-          new_users: number
-          retention_rate: number
-          social_share: number
-          subscriptions_this_month: number
+      setStats([
+        {
+          title: 'Đăng ký mới (30 ngày)',
+          value: 127,
+          description: 'Thước đo thu hút người dùng',
+          tooltip: 'Số tài khoản mới được tạo trong 30 ngày gần nhất'
+        },
+        {
+          title: 'Người dùng hoạt động',
+          value: 430,
+          description: 'Giá trị thực mang lại',
+          tooltip:
+            'Số người dùng hoạt động hàng ngày (DAU) và hàng tháng (MAU)',
+          suffix: ' DAU'
+        },
+        {
+          title: 'Nâng cấp gói',
+          value: 23,
+          description: 'Sẵn sàng trả phí',
+          tooltip: 'Số lượt nâng cấp từ Basic lên Pro/Premium trong tháng'
+        },
+        {
+          title: 'Lượt chia sẻ',
+          value: 856,
+          description: 'Lan tỏa thông điệp',
+          tooltip: 'Tổng số lần chia sẻ nội dung ra mạng xã hội'
         }
-
-        setStats([
-          {
-            title: 'Đăng ký mới (30 ngày)',
-            value: data.new_users || 0,
-            description: 'Thước đo thu hút người dùng',
-            tooltip: 'Số tài khoản mới được tạo trong 30 ngày gần nhất'
-          },
-          {
-            title: 'Người dùng hoạt động',
-            value: data.active_users || 0,
-            description: 'Giá trị thực mang lại',
-            tooltip:
-              'Số người dùng hoạt động hàng ngày (DAU) và hàng tháng (MAU)',
-            suffix: ' DAU'
-          },
-          {
-            title: 'Nâng cấp gói',
-            value: data.subscriptions_this_month || 0,
-            description: 'Sẵn sàng trả phí',
-            tooltip: 'Số lượt nâng cấp từ Basic lên Pro/Premium trong tháng'
-          },
-          {
-            title: 'Lượt chia sẻ',
-            value: data.social_share || 0,
-            description: 'Lan tỏa thông điệp',
-            tooltip: 'Tổng số lần chia sẻ nội dung ra mạng xã hội'
-          }
-        ])
-      } catch (error) {
-        console.error('Failed to fetch stats:', error)
-        setStats([
-          {
-            title: 'Đăng ký mới (30 ngày)',
-            value: 127,
-            description: 'Thước đo thu hút người dùng',
-            tooltip: 'Số tài khoản mới được tạo trong 30 ngày gần nhất'
-          },
-          {
-            title: 'Người dùng hoạt động',
-            value: 430,
-            description: 'Giá trị thực mang lại',
-            tooltip:
-              'Số người dùng hoạt động hàng ngày (DAU) và hàng tháng (MAU)',
-            suffix: ' DAU'
-          },
-          {
-            title: 'Nâng cấp gói',
-            value: 23,
-            description: 'Sẵn sàng trả phí',
-            tooltip: 'Số lượt nâng cấp từ Basic lên Pro/Premium trong tháng'
-          },
-          {
-            title: 'Lượt chia sẻ',
-            value: 856,
-            description: 'Lan tỏa thông điệp',
-            tooltip: 'Tổng số lần chia sẻ nội dung ra mạng xã hội'
-          }
-        ])
-      }
+      ])
     }
 
     fetchStats()

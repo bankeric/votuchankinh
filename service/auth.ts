@@ -1,9 +1,4 @@
 import { User } from '@/interfaces/user'
-import axiosInstance, {
-  setAuthToken,
-  removeAuthToken,
-  getAuthToken
-} from '@/lib/axios'
 
 export interface LoginDto {
   email: string
@@ -32,104 +27,41 @@ export interface ResetPasswordDto {
 }
 
 class AuthService {
-  private readonly BASE_URL = '/api/v1'
-
   // Login user
   async login(credentials: LoginDto): Promise<AuthResponse> {
-    try {
-      const { data } = await axiosInstance.post<AuthResponse>(
-        `${this.BASE_URL}/sign-in`,
-        credentials
-      )
-      setAuthToken(data.token)
-      return data
-    } catch (error) {
-      console.error('Login error:', error)
-      throw error
-    }
+    return { user: {} as User, token: 'mock-token' }
   }
 
   // Register new user
   async register(userData: RegisterDto): Promise<AuthResponse> {
-    try {
-      const { data } = await axiosInstance.post<AuthResponse>(
-        `${this.BASE_URL}/sign-up`,
-        userData
-      )
-      setAuthToken(data.token)
-      return data
-    } catch (error) {
-      console.error('Registration error:', error)
-      throw error
-    }
+    return { user: {} as User, token: 'mock-token' }
   }
 
   // Logout user
   async logout(): Promise<void> {
-    try {
-      await axiosInstance.post(`${this.BASE_URL}/logout`)
-      // Sign out from NextAuth to prevent headers error
-      if (typeof window !== 'undefined') {
-        await import('next-auth/react').then(({ signOut }) =>
-          signOut({ callbackUrl: '/landing' })
-        )
-      }
-    } catch (error) {
-      console.error('Logout error:', error)
-    } finally {
-      removeAuthToken()
-    }
+    return
   }
 
   // Get current user
   async getCurrentUser(): Promise<User> {
-    if (!this.isAuthenticated()) {
-      return Promise.reject(new Error('User is not authenticated'))
-    }
-    try {
-      const { data } = await axiosInstance.get<{ user: User }>(
-        `${this.BASE_URL}/users/me`
-      )
-      return data.user
-    } catch (error) {
-      console.error('Get current user error:', error)
-      throw error
-    }
+    return {} as User
   }
 
   // Check if user is authenticated
   isAuthenticated(): boolean {
-    return !!getAuthToken()
+    return false
   }
 
   // Forgot password - send email
   async forgotPassword(email: ForgotPasswordDto): Promise<{ message: string }> {
-    try {
-      const { data } = await axiosInstance.post<{ message: string }>(
-        `${this.BASE_URL}/forgot-password`,
-        email
-      )
-      return data
-    } catch (error) {
-      console.error('Forgot password error:', error)
-      throw error
-    }
+    return { message: 'Mock email sent' }
   }
 
   // Reset password with token
   async resetPassword(
     resetData: ResetPasswordDto
   ): Promise<{ message: string }> {
-    try {
-      const { data } = await axiosInstance.post<{ message: string }>(
-        `${this.BASE_URL}/reset-password`,
-        resetData
-      )
-      return data
-    } catch (error) {
-      console.error('Reset password error:', error)
-      throw error
-    }
+    return { message: 'Mock password reset' }
   }
 
   // Login user
@@ -138,21 +70,7 @@ class AuthService {
     email: string,
     name: string
   ): Promise<AuthResponse> {
-    try {
-      const { data } = await axiosInstance.post<AuthResponse>(
-        `${this.BASE_URL}/social-login`,
-        {
-          social_id: socialId,
-          email,
-          name
-        }
-      )
-      setAuthToken(data.token)
-      return data
-    } catch (error) {
-      console.error('Login error:', error)
-      throw error
-    }
+    return { user: {} as User, token: 'mock-token' }
   }
 }
 

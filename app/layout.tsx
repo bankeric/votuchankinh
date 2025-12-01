@@ -13,7 +13,7 @@ import { CheckoutProvider } from '@stripe/react-stripe-js/checkout'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { useMemo } from 'react'
-import axiosInstance from '@/lib/axios'
+// import axiosInstance from '@/lib/axios'
 
 const inter = Inter({ subsets: ['latin'] })
 

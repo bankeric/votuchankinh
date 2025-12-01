@@ -294,7 +294,7 @@ export default function SutraScrollPage() {
   }
 
   const scrollSections = translations[language].scrollSections
-  
+
   return (
     <main className='min-h-screen bg-[#EFE0BD] text-[#8B4513] relative'>
       <nav className='fixed left-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:block'>
@@ -303,11 +303,10 @@ export default function SutraScrollPage() {
             <button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
-              className={`group relative w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
-                activeSection === section.id
-                  ? 'bg-[#991b1b] shadow-lg shadow-[#991b1b]/30'
-                  : 'bg-[#8B4513]/40 hover:bg-[#8B4513]/70'
-              }`}
+              className={`group relative w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${activeSection === section.id
+                ? 'bg-[#991b1b] shadow-lg shadow-[#991b1b]/30'
+                : 'bg-[#8B4513]/40 hover:bg-[#8B4513]/70'
+                }`}
               aria-label={`Go to ${section.label}`}
             >
               {/* Tooltip */}
@@ -321,11 +320,10 @@ export default function SutraScrollPage() {
               {/* Active indicator ring */}
               {activeSection === section.id && (
                 <div
-                  className={`absolute inset-0 rounded-full border-2 animate-ping ${
-                    index === 0
-                      ? 'border-[#991b1b] shadow-lg shadow-[#991b1b]/50' // Special styling for first dot
-                      : 'border-[#991b1b]/50'
-                  }`}
+                  className={`absolute inset-0 rounded-full border-2 animate-ping ${index === 0
+                    ? 'border-[#991b1b] shadow-lg shadow-[#991b1b]/50' // Special styling for first dot
+                    : 'border-[#991b1b]/50'
+                    }`}
                 ></div>
               )}
             </button>
@@ -348,8 +346,9 @@ export default function SutraScrollPage() {
 
         {/* Center Navigation - Library and Community Buttons */}
         <div className='flex items-center space-x-3'>
+          {/* Liên kết Library đã được cập nhật href */}
           <Link
-            href='/library'
+            href='https://app.giac.ngo/giac-ngo/library' // <-- Đã thay đổi từ '/library' thành URL tuyệt đối
             className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-all duration-300 bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-[#D4AF8C]/50 hover:scale-105 border border-[#8B4513]/20 hover:border-[#8B4513]/40'
           >
             <img
@@ -359,6 +358,8 @@ export default function SutraScrollPage() {
             />
             <span className='font-serif text-sm hidden sm:inline'>Library</span>
           </Link>
+
+          {/* Liên kết Community giữ nguyên */}
           <Link
             href='/community'
             className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-all duration-300 bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-[#D4AF8C]/50 hover:scale-105 border border-[#8B4513]/20 hover:border-[#8B4513]/40'
@@ -382,21 +383,19 @@ export default function SutraScrollPage() {
               <div className='flex items-center h-8 gap-0.1 px-0.1'>
                 <button
                   onClick={() => setLanguage('vi')}
-                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                    language === 'vi'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
+                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${language === 'vi'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                    }`}
                 >
                   VN
                 </button>
                 <button
                   onClick={() => setLanguage('en')}
-                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                    language === 'en'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
+                  className={`px-2 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${language === 'en'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                    }`}
                 >
                   EN
                 </button>
@@ -410,21 +409,19 @@ export default function SutraScrollPage() {
               <div className='flex items-center h-10 gap-0.1 px-0.1'>
                 <button
                   onClick={() => setLanguage('vi')}
-                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                    language === 'vi'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
+                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${language === 'vi'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                    }`}
                 >
                   VIE
                 </button>
                 <button
                   onClick={() => setLanguage('en')}
-                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${
-                    language === 'en'
-                      ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                      : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                  }`}
+                  className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${language === 'en'
+                    ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                    : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                    }`}
                 >
                   ENG
                 </button>
@@ -446,7 +443,7 @@ export default function SutraScrollPage() {
               onClick={() => setIsSidebarOpen(false)}
               className='md:hidden fixed inset-0 bg-black/50 z-[90]'
             />
-            
+
             {/* Sidebar */}
             <motion.div
               initial={{ x: '-100%' }}
@@ -466,7 +463,7 @@ export default function SutraScrollPage() {
                     <ArrowLeft className='w-4 h-4' />
                     <span className='font-serif text-sm'>Trang chủ</span>
                   </Link>
-                  
+
                   <button
                     onClick={() => setIsSidebarOpen(false)}
                     className='p-2 text-[#8B4513]/70 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 rounded-full transition-colors'
@@ -511,7 +508,7 @@ export default function SutraScrollPage() {
         style={{ touchAction: 'manipulation' }}
       >
         <Link
-          href='/ai/new'
+          href='https://app.giac.ngo/giacngo/chat'
           className='group relative flex items-center justify-center w-16 h-16 bg-[#EFE0BD] rounded-full shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 overflow-hidden'
           style={{
             WebkitTapHighlightColor: 'transparent',
