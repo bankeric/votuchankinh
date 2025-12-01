@@ -1,7 +1,6 @@
 import { CreateStoryRequest, Story } from '@/interfaces/story'
 import { storyService } from '@/service/story'
 import { create } from 'zustand'
-import { toast } from 'react-toastify'
 
 interface StoryState {
   list: Story[]
@@ -29,10 +28,8 @@ export const useStoryStore = create<StoryState>()((set, get) => {
         await storyService.createStory(story)
         const { data } = await storyService.getStories()
         set({ list: data })
-        toast.success('Tài liệu đã được tạo thành công!')
       } catch (error) {
         console.error('Error adding story:', error)
-        toast.error('Có lỗi xảy ra khi tạo tài liệu. Vui lòng thử lại!')
       }
     },
     updateStory: async (uuid: string, story: Partial<CreateStoryRequest>) => {
@@ -41,10 +38,8 @@ export const useStoryStore = create<StoryState>()((set, get) => {
         await storyService.updateStory(uuid, story)
         const { data } = await storyService.getStories()
         set({ list: data })
-        toast.success('Tài liệu đã được cập nhật thành công!')
       } catch (error) {
         console.error('Error updating story:', error)
-        toast.error('Có lỗi xảy ra khi cập nhật tài liệu. Vui lòng thử lại!')
       }
     },
     deleteStory: async (uuid: string) => {
@@ -52,10 +47,8 @@ export const useStoryStore = create<StoryState>()((set, get) => {
         await storyService.deleteStory(uuid)
         const { data } = await storyService.getStories()
         set({ list: data })
-        toast.success('Tài liệu đã được xóa thành công!')
       } catch (error) {
         console.error('Error deleting story:', error)
-        toast.error('Có lỗi xảy ra khi xóa tài liệu. Vui lòng thử lại!')
       }
     }
   }
