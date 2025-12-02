@@ -60,7 +60,7 @@ export default function Custom404Page() {
               className='w-full sm:w-auto bg-[#991b1b] hover:bg-[#7a1515] text-[#f6efe0] font-serif text-base px-8 py-6 rounded-xl shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset] hover:shadow-[0_3px_0_#00000040,0_0_0_3px_#00000015_inset] transition-all duration-200 active:translate-y-0.5'
             >
               <Link
-                href='/'
+                href='/giacngo'
                 className='flex items-center gap-2'
               >
                 <Home size={20} />
