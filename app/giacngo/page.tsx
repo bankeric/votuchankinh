@@ -84,40 +84,40 @@ export default function WordlessSutraPage() {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    async function fetchStats() {
-      setStats([
-        {
-          title: 'Đăng ký mới (30 ngày)',
-          value: 127,
-          description: 'Thước đo thu hút người dùng',
-          tooltip: 'Số tài khoản mới được tạo trong 30 ngày gần nhất'
-        },
-        {
-          title: 'Người dùng hoạt động',
-          value: 430,
-          description: 'Giá trị thực mang lại',
-          tooltip:
-            'Số người dùng hoạt động hàng ngày (DAU) và hàng tháng (MAU)',
-          suffix: ' DAU'
-        },
-        {
-          title: 'Nâng cấp gói',
-          value: 23,
-          description: 'Sẵn sàng trả phí',
-          tooltip: 'Số lượt nâng cấp từ Basic lên Pro/Premium trong tháng'
-        },
-        {
-          title: 'Lượt chia sẻ',
-          value: 856,
-          description: 'Lan tỏa thông điệp',
-          tooltip: 'Tổng số lần chia sẻ nội dung ra mạng xã hội'
-        }
-      ])
-    }
+  // useEffect(() => {
+  //   async function fetchStats() {
+  //     setStats([
+  //       {
+  //         title: 'Đăng ký mới (30 ngày)',
+  //         value: 127,
+  //         description: 'Thước đo thu hút người dùng',
+  //         tooltip: 'Số tài khoản mới được tạo trong 30 ngày gần nhất'
+  //       },
+  //       {
+  //         title: 'Người dùng hoạt động',
+  //         value: 430,
+  //         description: 'Giá trị thực mang lại',
+  //         tooltip:
+  //           'Số người dùng hoạt động hàng ngày (DAU) và hàng tháng (MAU)',
+  //         suffix: ' DAU'
+  //       },
+  //       {
+  //         title: 'Nâng cấp gói',
+  //         value: 23,
+  //         description: 'Sẵn sàng trả phí',
+  //         tooltip: 'Số lượt nâng cấp từ Basic lên Pro/Premium trong tháng'
+  //       },
+  //       {
+  //         title: 'Lượt chia sẻ',
+  //         value: 856,
+  //         description: 'Lan tỏa thông điệp',
+  //         tooltip: 'Tổng số lần chia sẻ nội dung ra mạng xã hội'
+  //       }
+  //     ])
+  //   }
 
-    fetchStats()
-  }, [])
+  //   fetchStats()
+  // }, [])
 
   useEffect(() => {
     setIsVisible(true)
@@ -306,10 +306,13 @@ export default function WordlessSutraPage() {
 
 
             {/* Right side - Login and Launch App */}
+            {/* Right side - Login and Launch App */}
             <div className='flex items-center space-x-1 sm:space-x-3 flex-1 justify-end'>
-              <div className='group relative'>
+
+              {/* Login — ẩn mobile, hiện desktop */}
+              <div className='group relative hidden sm:block'>
                 <button
-                  onClick={() => router.push('/landing')}
+                  onClick={() => router.push('/giacngo')}
                   className='px-3 py-1.5 sm:px-6 sm:py-2 bg-transparent border border-[#eae6dd] text-[#eae6dd] hover:bg-[#eae6dd] hover:text-black rounded-full font-medium transition-colors flex items-center justify-center w-12 sm:w-20'
                 >
                   <svg className='w-4 h-4 sm:w-5 sm:h-5 group-hover:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -319,12 +322,12 @@ export default function WordlessSutraPage() {
                 </button>
               </div>
 
+              {/* Launch App — ẩn mobile, hiện desktop */}
               <button
                 onClick={() => { window.location.href = 'https://app.giac.ngo/giac-ngo/chat' }}
-                className='px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors text-xs sm:text-base'
+                className='hidden sm:block px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors text-xs sm:text-base'
               >
-                <span className='hidden sm:inline'>Launch App</span>
-                <span className='sm:hidden'>App</span>
+                Launch App
               </button>
             </div>
           </div>
@@ -387,13 +390,13 @@ export default function WordlessSutraPage() {
           <div className='w-full px-4 sm:px-6 lg:px-8 pb-8 absolute bottom-0 left-0 right-0'>
             {/* Mobile Layout */}
             <div className='md:hidden max-w-7xl mx-auto flex flex-col items-center space-y-6'>
-              <div ref={statsRef} className='grid grid-cols-2 gap-x-10 gap-y-2'>
+              {/* <div ref={statsRef} className='grid grid-cols-2 gap-x-10 gap-y-2'>
                 {stats.slice(0, 4).map((stat, idx) => (
                   <div key={idx} className='flex flex-col items-start'>
                     <StatItem stat={stat} isVisible={statsVisible} delay={idx * 100} />
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <div className='text-[#eae6dd]/50 text-xs font-light italic text-center'>
                 Click anywhere to enter

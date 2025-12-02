@@ -326,7 +326,7 @@ export default function CareerPage() {
             asChild
             className="text-[#991b1b] hover:text-[#991b1b] hover:bg-[#991b1b]/10"
           >
-            <Link href="/landing">
+            <Link href="/giacngo">
               <ArrowLeft className="w-4 h-4 mr-2" />
               {language === "en" ? "Back to Home" : "Về Trang chủ"}
             </Link>
@@ -335,21 +335,19 @@ export default function CareerPage() {
           <div className="flex items-center gap-1 bg-[#991b1b]/10 rounded-full p-1 border border-[#991b1b]/20">
             <button
               onClick={() => setLanguage("en")}
-              className={`px-3 py-1 rounded-full text-xs font-serif transition-all duration-200 ${
-                language === "en"
+              className={`px-3 py-1 rounded-full text-xs font-serif transition-all duration-200 ${language === "en"
                   ? "bg-[#991b1b] text-[#f6efe0] font-semibold"
                   : "text-[#991b1b]/60 hover:text-[#991b1b]"
-              }`}
+                }`}
             >
               EN
             </button>
             <button
               onClick={() => setLanguage("vi")}
-              className={`px-3 py-1 rounded-full text-xs font-serif transition-all duration-200 ${
-                language === "vi"
+              className={`px-3 py-1 rounded-full text-xs font-serif transition-all duration-200 ${language === "vi"
                   ? "bg-[#991b1b] text-[#f6efe0] font-semibold"
                   : "text-[#991b1b]/60 hover:text-[#991b1b]"
-              }`}
+                }`}
             >
               VI
             </button>
@@ -377,11 +375,10 @@ export default function CareerPage() {
                 setActiveSection("career")
                 setExpandedRole(null)
               }}
-              className={`px-6 py-2 rounded-full text-sm font-serif font-semibold transition-all duration-200 ${
-                activeSection === "career"
+              className={`px-6 py-2 rounded-full text-sm font-serif font-semibold transition-all duration-200 ${activeSection === "career"
                   ? "bg-[#991b1b] text-[#f6efe0] shadow-sm"
                   : "text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5"
-              }`}
+                }`}
             >
               {currentContent.careerLabel}
             </button>
@@ -390,11 +387,10 @@ export default function CareerPage() {
                 setActiveSection("volunteer")
                 setExpandedRole(null)
               }}
-              className={`px-6 py-2 rounded-full text-sm font-serif font-semibold transition-all duration-200 ${
-                activeSection === "volunteer"
+              className={`px-6 py-2 rounded-full text-sm font-serif font-semibold transition-all duration-200 ${activeSection === "volunteer"
                   ? "bg-[#991b1b] text-[#f6efe0] shadow-sm"
                   : "text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5"
-              }`}
+                }`}
             >
               {currentContent.volunteerLabel}
             </button>
@@ -426,18 +422,16 @@ export default function CareerPage() {
                       </div>
                     </div>
                     <ChevronDown
-                      className={`w-5 h-5 text-[#991b1b] flex-shrink-0 transition-transform duration-300 ${
-                        expandedRole === index ? "rotate-180" : ""
-                      }`}
+                      className={`w-5 h-5 text-[#991b1b] flex-shrink-0 transition-transform duration-300 ${expandedRole === index ? "rotate-180" : ""
+                        }`}
                     />
                   </div>
                 </button>
 
                 {/* Expanded Content */}
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    expandedRole === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ${expandedRole === index ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+                    }`}
                 >
                   <div className="px-4 pb-4 border-t border-[#991b1b]/20">
                     {/* Tech Stack */}
@@ -501,7 +495,7 @@ export default function CareerPage() {
 
         {/* Culture Section */}
         <div className="max-w-4xl mx-auto mb-8">
-          
+
         </div>
 
         {/* Apply Section */}

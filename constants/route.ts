@@ -1,7 +1,7 @@
 // Add paths that don't require authentication
 export const publicPaths = [
   '/',
-  '/landing',
+  // '/landing',
   '/sutra',
   '/community',
   '/library',
@@ -9,7 +9,7 @@ export const publicPaths = [
   '/auth/login',
   '/auth/register',
   '/auth/forgot-password',
-  '/auth/reset-password', 
+  '/auth/reset-password',
   '/login',
   '/register',
   '/forgot-password',
