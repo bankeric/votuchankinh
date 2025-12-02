@@ -508,7 +508,7 @@ export default function SutraScrollPage() {
         style={{ touchAction: 'manipulation' }}
       >
         <Link
-          href='https://app.giac.ngo/giacngo/chat'
+          href='https://app.giac.ngo/login'
           className='group relative flex items-center justify-center w-16 h-16 bg-[#EFE0BD] rounded-full shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 hover:rotate-12 overflow-hidden'
           style={{
             WebkitTapHighlightColor: 'transparent',
