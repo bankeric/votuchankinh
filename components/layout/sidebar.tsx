@@ -126,7 +126,7 @@ export function Sidebar({
 
   const handleLogout = async () => {
     await logout()
-    router.push('/landing')
+    router.push('/giacngo')
     appToast(t('auth.logoutSuccess'), { type: 'success' })
     setIsLogoutDialogOpen(false)
   }
@@ -350,7 +350,7 @@ export function Sidebar({
             height={40}
             objectFit='contain'
             style={{ cursor: 'pointer' }}
-            onClick={() => router.push('/landing')}
+            onClick={() => router.push('/giacngo')}
           />
           <Button
             variant='ghost'
@@ -420,9 +420,8 @@ export function Sidebar({
               >
                 <span>{t('navigation.history') || 'Lịch sử'}</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    isHistoryOpen ? 'rotate-180' : ''
-                  }`}
+                  className={`w-4 h-4 transition-transform ${isHistoryOpen ? 'rotate-180' : ''
+                    }`}
                 />
               </button>
             </div>

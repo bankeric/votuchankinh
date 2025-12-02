@@ -335,7 +335,7 @@ export default function SutraScrollPage() {
       <header className='fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-[#EFE0BD]/80 backdrop-blur-sm border-b border-[#8B4513]/10'>
         {/* Return to Silence Button - Always visible */}
         <Link
-          href='/landing'
+          href='/giacngo'
           className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-colors bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full border border-[#8B4513]/20 hover:border-[#8B4513]/40'
         >
           <ArrowLeft className='w-4 h-4' />

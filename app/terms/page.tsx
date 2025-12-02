@@ -126,7 +126,7 @@ export default function TermsPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
-          <Link href="/landing">
+          <Link href="/giacngo">
             <Button variant="ghost" className="text-[#2c2c2c] hover:text-[#991b1b] hover:bg-[#EFE0BD]/50 font-serif">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Trang chủ
