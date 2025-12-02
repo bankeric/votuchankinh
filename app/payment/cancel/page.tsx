@@ -133,7 +133,7 @@ function CancelPaymentContent() {
           </Link>
 
           <Link
-            href='/'
+            href='/giacngo'
             className='w-full flex items-center justify-center space-x-3 px-6 py-3 
                        bg-transparent text-[#2c2c2c] font-serif text-sm rounded-xl
                        border-2 border-[#2c2c2c]/30 hover:border-[#2c2c2c]/50

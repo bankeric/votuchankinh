@@ -227,7 +227,7 @@ export default function CommunityPage() {
       <header className='fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 bg-background/30 backdrop-blur-sm'>
         {/* Return to Sutra Button */}
         <Link
-          href='/sutra'
+          href='/giacngo'
           className='flex items-center space-x-2 text-[#991b1b]/80 hover:text-[#991b1b] transition-colors bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full'
         >
           <ArrowLeft className='w-4 h-4' />
@@ -243,8 +243,8 @@ export default function CommunityPage() {
               key={section.id}
               onClick={() => scrollToSection(section.id)}
               className={`px-3 py-1 rounded-full border transition-all duration-300 text-xs font-serif ${activeSection === section.id
-                  ? 'bg-red-800/30 border-red-800/60 text-[#991b1b]'
-                  : 'bg-transparent border-transparent text-[#991b1b]/60 hover:border-[#991b1b]/60 hover:text-[#991b1b]'
+                ? 'bg-red-800/30 border-red-800/60 text-[#991b1b]'
+                : 'bg-transparent border-transparent text-[#991b1b]/60 hover:border-[#991b1b]/60 hover:text-[#991b1b]'
                 }`}
               title={section.title}
             >
@@ -259,8 +259,8 @@ export default function CommunityPage() {
             <button
               onClick={() => setLanguage('vi')}
               className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${language === 'vi'
-                  ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                  : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
                 }`}
             >
               VIE
@@ -268,8 +268,8 @@ export default function CommunityPage() {
             <button
               onClick={() => setLanguage('en')}
               className={`px-3 h-8 inline-flex items-center justify-center text-sm font-serif transition-colors rounded-full ${language === 'en'
-                  ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
-                  : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
+                ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
+                : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
                 }`}
             >
               ENG

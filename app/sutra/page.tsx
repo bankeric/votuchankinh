@@ -456,7 +456,7 @@ export default function SutraScrollPage() {
                 {/* Top row: Home button (left) and Close button (right) */}
                 <div className='flex justify-between items-center'>
                   <Link
-                    href='/'
+                    href='/giacngo'
                     onClick={() => setIsSidebarOpen(false)}
                     className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 p-2 rounded-lg transition-colors'
                   >

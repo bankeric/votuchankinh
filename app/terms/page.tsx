@@ -198,7 +198,7 @@ export default function TermsPage() {
                 {language === "vi" ? "Chính sách quyền riêng tư" : "Privacy Policy"}
               </Button>
             </Link>
-            <Link href="/">
+            <Link href="/giacngo">
               <Button className="w-full sm:w-auto bg-[#991b1b] hover:bg-[#7a1515] text-white font-serif">
                 {language === "vi" ? "Về trang chủ" : "Back to Home"}
               </Button>

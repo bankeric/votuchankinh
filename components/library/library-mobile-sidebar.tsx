@@ -94,7 +94,7 @@ export function LibraryMobileSidebar({
               {/* Top row: Home button (left) and Close button (right) */}
               <div className='flex justify-between items-center flex-shrink-0'>
                 <Link
-                  href='/'
+                  href='/giacngo'
                   onClick={() => setIsMobileSidebarOpen(false)}
                   className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] hover:bg-[#D4AF8C]/30 p-2 rounded-lg transition-colors'
                 >
@@ -123,11 +123,10 @@ export function LibraryMobileSidebar({
                           // setSelectedSutraItem(tocData[0].items[0].id)
                         }
                       }}
-                      className={`px-3 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                        activeTab === CategoryType.VERSE
+                      className={`px-3 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${activeTab === CategoryType.VERSE
                           ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
                           : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                      }`}
+                        }`}
                     >
                       Kệ
                     </button>
@@ -144,11 +143,10 @@ export function LibraryMobileSidebar({
                           setStoryId(storyData[0].items[0].id)
                         }
                       }}
-                      className={`px-2.5 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                        activeTab === 'story'
+                      className={`px-2.5 h-6 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${activeTab === 'story'
                           ? 'bg-[#8B1E1E] text-white hover:bg-[#A12222]'
                           : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                      }`}
+                        }`}
                     >
                       Câu Chuyện
                     </button>
@@ -171,13 +169,12 @@ export function LibraryMobileSidebar({
                               setStorySubTab(CategoryAuthorGroup.TAMVO)
                             }
                           }}
-                          className={`px-2 h-5 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                            (activeTab === CategoryType.VERSE
+                          className={`px-2 h-5 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${(activeTab === CategoryType.VERSE
                               ? keSubTab
                               : storySubTab) === CategoryAuthorGroup.TAMVO
                               ? 'bg-[#8B1E1E] text-white'
                               : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                          }`}
+                            }`}
                         >
                           Sư Tam Vô
                         </button>
@@ -189,13 +186,12 @@ export function LibraryMobileSidebar({
                               setStorySubTab(CategoryAuthorGroup.HUYNHDE)
                             }
                           }}
-                          className={`px-2 h-5 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${
-                            (activeTab === CategoryType.VERSE
+                          className={`px-2 h-5 inline-flex items-center justify-center text-xs font-serif transition-colors rounded-full ${(activeTab === CategoryType.VERSE
                               ? keSubTab
                               : storySubTab) === CategoryAuthorGroup.HUYNHDE
                               ? 'bg-[#8B1E1E] text-white'
                               : 'text-[#8B1E1E] hover:bg-[#8B1E1E]/10'
-                          }`}
+                            }`}
                         >
                           Huynh Đệ
                         </button>
@@ -220,11 +216,10 @@ export function LibraryMobileSidebar({
                                   setStoryId(story.uuid)
                                   setIsMobileSidebarOpen(false) // Close sidebar after selection
                                 }}
-                                className={`w-full max-w-xs text-center text-xs font-serif py-2 px-2 rounded transition-colors ${
-                                  storyId === story.uuid
+                                className={`w-full max-w-xs text-center text-xs font-serif py-2 px-2 rounded transition-colors ${storyId === story.uuid
                                     ? 'text-[#991b1b] bg-[#991b1b]/20'
                                     : 'text-[#991b1b]/80 hover:text-[#991b1b] hover:bg-[#991b1b]/10'
-                                }`}
+                                  }`}
                               >
                                 {story.name}
                               </button>
@@ -260,11 +255,10 @@ export function LibraryMobileSidebar({
                                         onItemClick(item)
                                         setIsMobileSidebarOpen(false) // Close sidebar after selection
                                       }}
-                                      className={`w-full text-center text-xs font-serif py-1 px-2 rounded transition-colors ${
-                                        selectedStory?.uuid === item.uuid
+                                      className={`w-full text-center text-xs font-serif py-1 px-2 rounded transition-colors ${selectedStory?.uuid === item.uuid
                                           ? 'text-[#991b1b] bg-[#991b1b]/20'
                                           : 'text-[#991b1b]/60 hover:text-[#991b1b] hover:bg-[#991b1b]/5'
-                                      }`}
+                                        }`}
                                     >
                                       <div className='flex flex-col items-center'>
                                         <div className='w-6 h-4 flex items-center justify-center bg-[#991b1b]/10 rounded-full mb-1'>

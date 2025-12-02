@@ -137,7 +137,7 @@ function SuccessContent() {
           </Link>
 
           <Link
-            href='/'
+            href='/giacngo'
             className='w-full flex items-center justify-center space-x-3 px-6 py-3 
                        bg-[#f3ead7] text-[#2c2c2c] font-serif text-sm rounded-xl
                        border-2 border-[#2c2c2c] shadow-[0_2px_0_#00000030,0_0_0_3px_#00000010_inset]
