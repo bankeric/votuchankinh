@@ -288,7 +288,7 @@ export default function WordlessSutraPage() {
               <div className='w-px h-3 sm:h-4 bg-[#eae6dd]/50'></div>
 
               <button
-                onClick={() => { window.location.href = 'https://app.giac.ngo/giac-ngo/library' }}
+                onClick={() => { window.location.href = 'https://giac.ngo/giac-ngo/library' }}
                 className='px-2 py-1 sm:px-4 sm:py-2 text-[#eae6dd] hover:text-red-600 transition-colors font-medium text-sm sm:text-base'
               >
                 Library
@@ -324,7 +324,7 @@ export default function WordlessSutraPage() {
 
               {/* Launch App — ẩn mobile, hiện desktop */}
               <button
-                onClick={() => { window.location.href = 'https://app.giac.ngo/giac-ngo/chat' }}
+                onClick={() => { window.location.href = 'https://giac.ngo/giac-ngo/chat' }}
                 className='hidden sm:block px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors text-xs sm:text-base'
               >
                 Launch App
