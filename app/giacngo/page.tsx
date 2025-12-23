@@ -312,7 +312,7 @@ export default function WordlessSutraPage() {
               {/* Login — ẩn mobile, hiện desktop */}
               <div className='group relative hidden sm:block'>
                 <button
-                  onClick={() => router.push('/giacngo')}
+                  onClick={() => { window.location.href = 'https://giac.ngo/login' }}
                   className='px-3 py-1.5 sm:px-6 sm:py-2 bg-transparent border border-[#eae6dd] text-[#eae6dd] hover:bg-[#eae6dd] hover:text-black rounded-full font-medium transition-colors flex items-center justify-center w-12 sm:w-20'
                 >
                   <svg className='w-4 h-4 sm:w-5 sm:h-5 group-hover:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
