@@ -224,7 +224,9 @@ export default function WordlessSutraPage() {
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
             >
-              <button className='flex items-center space-x-1 sm:space-x-2 text-[#eae6dd] hover:text-[#d4af37] transition-colors'>
+              <button 
+                onClick={() => { window.location.href = 'https://giac.ngo/giac-ngo/chat' }}
+                className='flex items-center space-x-1 sm:space-x-2 text-[#eae6dd] hover:text-[#d4af37] transition-colors'>
                 <Image
                   src='/images/giac-ngo-logo-2.png'
                   alt='Giac Ngo logo'
