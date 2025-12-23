@@ -318,7 +318,10 @@ export default function WordlessSutraPage() {
                   className='px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors flex items-center justify-center w-12 sm:w-20'
                 >
                   <svg className='w-4 h-4 sm:w-5 sm:h-5 group-hover:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' />
+                    <rect x='5' y='8' width='14' height='10' rx='2' strokeWidth={2} />
+                    <circle cx='9' cy='13' r='1.5' fill='currentColor' />
+                    <circle cx='15' cy='13' r='1.5' fill='currentColor' />
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 4v4M9 18v2M15 18v2M2 12h3M19 12h3' />
                   </svg>
                   <span className='hidden group-hover:block text-xs sm:text-base'>Login</span>
                 </button>
