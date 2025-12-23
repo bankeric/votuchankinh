@@ -550,12 +550,12 @@ export default function CommunityPage() {
 
               <div className='grid grid-cols-3 md:grid-cols-6 gap-3 mb-6'>
                 {[
-                  { img: 'c1', url: 'https://app.giac.ngo/giac-ngo/library/202' },
-                  { img: 'c2', url: 'https://app.giac.ngo/giac-ngo/library/201' },
-                  { img: 'c3', url: 'https://app.giac.ngo/giac-ngo/library/200' },
-                  { img: 'c4', url: 'https://app.giac.ngo/giac-ngo/library/199' },
-                  { img: 'c5', url: 'https://app.giac.ngo/giac-ngo/library/198' },
-                  { img: 'c6', url: 'https://app.giac.ngo/giac-ngo/library/197' }
+                  { img: 'c1', url: 'https://giac.ngo/giac-ngo/library/202' },
+                  { img: 'c2', url: 'https://giac.ngo/giac-ngo/library/201' },
+                  { img: 'c3', url: 'https://giac.ngo/giac-ngo/library/200' },
+                  { img: 'c4', url: 'https://giac.ngo/giac-ngo/library/199' },
+                  { img: 'c5', url: 'https://giac.ngo/giac-ngo/library/198' },
+                  { img: 'c6', url: 'https://giac.ngo/giac-ngo/library/197' }
                 ].map((item, index) => (
                   <a
                     href={item.url}

@@ -288,7 +288,7 @@ export default function WordlessSutraPage() {
               <div className='w-px h-3 sm:h-4 bg-[#eae6dd]/50'></div>
 
               <button
-                onClick={() => { window.location.href = 'https://app.giac.ngo/giac-ngo/library' }}
+                onClick={() => { window.location.href = 'https://giac.ngo/giac-ngo/library' }}
                 className='px-2 py-1 sm:px-4 sm:py-2 text-[#eae6dd] hover:text-red-600 transition-colors font-medium text-sm sm:text-base'
               >
                 Library

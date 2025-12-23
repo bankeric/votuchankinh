@@ -348,7 +348,7 @@ export default function SutraScrollPage() {
         <div className='flex items-center space-x-3'>
           {/* Liên kết Library đã được cập nhật href */}
           <Link
-            href='https://app.giac.ngo/giac-ngo/library' // <-- Đã thay đổi từ '/library' thành URL tuyệt đối
+            href='https://giac.ngo/giac-ngo/library'
             className='flex items-center space-x-2 text-[#8B4513]/80 hover:text-[#8B4513] transition-all duration-300 bg-[#D4AF8C]/30 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-[#D4AF8C]/50 hover:scale-105 border border-[#8B4513]/20 hover:border-[#8B4513]/40'
           >
             <img
