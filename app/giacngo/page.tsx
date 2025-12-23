@@ -315,7 +315,7 @@ export default function WordlessSutraPage() {
               <div className='group relative hidden sm:block'>
                 <button
                   onClick={() => { window.location.href = 'https://giac.ngo/login' }}
-                  className='px-3 py-1.5 sm:px-6 sm:py-2 bg-transparent border border-[#eae6dd] text-[#eae6dd] hover:bg-[#eae6dd] hover:text-black rounded-full font-medium transition-colors flex items-center justify-center w-12 sm:w-20'
+                  className='px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors flex items-center justify-center w-12 sm:w-20'
                 >
                   <svg className='w-4 h-4 sm:w-5 sm:h-5 group-hover:hidden' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' />
