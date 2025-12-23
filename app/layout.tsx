@@ -38,10 +38,7 @@ const ebGaramond = EB_Garamond({
 // recreating the `Stripe` object on every render.
 const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 
-if (!publishableKey) {
-  throw new Error('Missing publishable key')
-}
-const stripePromise = loadStripe(publishableKey)
+const stripePromise = publishableKey ? loadStripe(publishableKey) : null
 
 export default function RootLayout({
   children

@@ -10,6 +10,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  allowedDevOrigins: [process.env.REPLIT_DEV_DOMAIN, '127.0.0.1'].filter(Boolean),
   async headers() {
     return [
       {

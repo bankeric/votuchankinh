@@ -11,10 +11,7 @@ import CheckoutIntentForm from '@/components/stripe/stripe-intent-form'
 // Sign in to see your own test API key embedded in code samples.
 const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 
-if (!publishableKey) {
-  throw new Error('Missing publishable key')
-}
-const stripePromise = loadStripe(publishableKey)
+const stripePromise = publishableKey ? loadStripe(publishableKey) : null
 
 export default function StripeIntent() {
   const [clientSecret, setClientSecret] = useState('')
