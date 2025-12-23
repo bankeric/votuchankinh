@@ -240,7 +240,7 @@ export default function WordlessSutraPage() {
               {/* Dropdown Menu */}
               {showDropdown && (
                 <div className='absolute top-full left-0 w-48 bg-[#eae6dd]/10 backdrop-blur-sm border border-[#eae6dd]/20 rounded-lg overflow-hidden shadow-xl group'>
-                  <a href='/sutra' className='block px-4 py-3 text-[#eae6dd] hover:text-red-600 hover:bg-[#eae6dd]/10 transition-colors font-serif'>
+                  <a href='/organization' className='block px-4 py-3 text-[#eae6dd] hover:text-red-600 hover:bg-[#eae6dd]/10 transition-colors font-serif'>
                     Organization
                   </a>
                   <a href='/career' className='block px-4 py-3 text-[#eae6dd] hover:text-red-600 hover:bg-[#eae6dd]/10 transition-colors font-serif'>
