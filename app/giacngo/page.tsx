@@ -324,13 +324,6 @@ export default function WordlessSutraPage() {
                 </button>
               </div>
 
-              {/* Launch App — ẩn mobile, hiện desktop */}
-              <button
-                onClick={() => { window.location.href = 'https://giac.ngo/giac-ngo/chat' }}
-                className='hidden sm:block px-3 py-1.5 sm:px-6 sm:py-2 bg-red-800 hover:bg-red-900 text-white rounded-full font-medium transition-colors text-xs sm:text-base'
-              >
-                Launch App
-              </button>
             </div>
           </div>
         </div>
